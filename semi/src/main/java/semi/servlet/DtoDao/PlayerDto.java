@@ -2,7 +2,7 @@ package semi.servlet.DtoDao;
 
 import java.sql.Date;
 
-public class PlayerInsertDto {
+public class PlayerDto {
 	private String playerId;
 	private String playerPw;
 	private String playerName;
@@ -75,17 +75,11 @@ public class PlayerInsertDto {
 	}
 	
 	//생성자
-	public PlayerInsertDto() {
+	public PlayerDto() {
 		super();
 	}
 	
 	//toString
-	@Override
-	public String toString() {
-		return "PlayerInsertDto [playerId=" + playerId + ", playerPw=" + playerPw + ", playerName=" + playerName
-				+ ", playerBirth=" + playerBirth + ", playerPhone=" + playerPhone + ", playerEmail=" + playerEmail
-				+ ", playerPoint=" + playerPoint + ", playerGrade=" + playerGrade + ", playerJoin=" + playerJoin
-				+ ", playerLogin=" + playerLogin + "]";
-	}
+	
 	
 }

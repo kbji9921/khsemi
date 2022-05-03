@@ -3,8 +3,8 @@ package semi.servlet.DtoDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-public class PlayerInsertDao {
-	public void insert(PlayerInsertDto playerInsertDto) throws Exception{
+public class PlayerDao {
+	public void insert(PlayerDto playerDto) throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
 		String sql = "insert into player ('player_id','player_ps','player_name','player_birth','player_phone','player_email') "
@@ -12,12 +12,12 @@ public class PlayerInsertDao {
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		
-		ps.setString(1, playerInsertDto.getPlayerId());
-		ps.setString(2, playerInsertDto.getPlayerPw());
-		ps.setString(3, playerInsertDto.getPlayerName());
-		ps.setDate(4, playerInsertDto.getPlayerBirth());
-		ps.setInt(5, playerInsertDto.getPlayerPhone());
-		ps.setString(6, playerInsertDto.getPlayerEmail());
+		ps.setString(1, playerDto.getPlayerId());
+		ps.setString(2, playerDto.getPlayerPw());
+		ps.setString(3, playerDto.getPlayerName());
+		ps.setDate(4, playerDto.getPlayerBirth());
+		ps.setInt(5, playerDto.getPlayerPhone());
+		ps.setString(6, playerDto.getPlayerEmail());
 		
 		ps.execute();
 		
