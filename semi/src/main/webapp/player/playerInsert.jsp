@@ -7,12 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원 등록</title>
-    <style>
-        .insert{
-            width: 1000px;
-            height: 800px;
-        }
-    </style>
 </head>
 <body>
     <form action="insert.player" method="post">
