@@ -7,7 +7,7 @@ public class PlayerInsertDao {
 	public void insert(PlayerInsertDto playerInsertDto) throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "insert into player ('player_id','player_ps','player_name','player_birth','player_phone','player_email') "
+		String sql = "insert into player (player_id,player_ps,player_name,player_birth,player_phone,player_email) "
 				+ "values (?,?,?,?,?,?)";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
