@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+/*
+    기본 화면 설정을 위한 디자인 파일
+*/
+
+main {
+    width:1000px;
+    margin:auto;
+}
+header {
+    min-height: 120px;
+    padding: 20px;
+    text-align:center;
+}
+.section {
+    min-height: 450px;
+}
+footer {
+    min-height: 120px;
+    padding: 20px;
+    border-top: 3px solid gray;
+}
