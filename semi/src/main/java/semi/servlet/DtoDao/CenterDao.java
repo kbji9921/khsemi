@@ -11,7 +11,7 @@ public class CenterDao {
 	public List<CenterDto> selectList() throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select * from center order by center_open desc";
+		String sql = "select * from center order by center_pay desc, center_open desc";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		
@@ -27,6 +27,9 @@ public class CenterDao {
 			centerDto.setCenterPhone(rs.getString("center_phone"));
 			centerDto.setCenterOpen(rs.getDate("center_open"));
 			centerDto.setCenterIntroduction(rs.getString("center_introduction"));
+			//센터 비용, 개월 추가
+			centerDto.setCenterPay(rs.getInt("center_pay"));
+			centerDto.setCenterMonth(rs.getInt("center_month"));
 			
 			list.add(centerDto);
 		}
@@ -57,6 +60,9 @@ public class CenterDao {
 			centerDto.setCenterPhone(rs.getString("center_phone"));
 			centerDto.setCenterOpen(rs.getDate("center_open"));
 			centerDto.setCenterIntroduction(rs.getString("center_introduction"));
+			//센터 비용, 개월 추가
+			centerDto.setCenterPay(rs.getInt("center_pay"));
+			centerDto.setCenterMonth(rs.getInt("center_month"));
 		}
 		else {
 			centerDto = null;
@@ -72,8 +78,8 @@ public class CenterDao {
 	public void insert (CenterDto centerDto) throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "insert into center(center_no, center_name, center_week_stime, center_week_ftime, center_wknd_stime, center_wknd_ftime, center_phone, center_introduction) "
-				+ "values(?,?,?,?,?,?,?,?)";
+		String sql = "insert into center(center_no, center_name, center_week_stime, center_week_ftime, center_wknd_stime, center_wknd_ftime, center_phone, center_introduction, center_pay, center_month) "
+				+ "values(?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setLong(1, centerDto.getCenterNo());
 		ps.setString(2, centerDto.getCenterName());
@@ -83,6 +89,9 @@ public class CenterDao {
 		ps.setString(6, centerDto.getCenterWkndFtime());
 		ps.setString(7, centerDto.getCenterPhone());
 		ps.setString(8, centerDto.getCenterIntroduction());
+		ps.setInt(9, centerDto.getCenterPay());
+		ps.setInt(10, centerDto.getCenterMonth());
+		
 		ps.execute();
 		
 		con.close();
@@ -93,8 +102,8 @@ public class CenterDao {
 		Connection con =JdbcUtils.getConnection();
 		
 		String sql = "update center set center_name=?, center_week_stime=?, center_week_ftime=?, "
-				+ "center_wknd_stime=?, center_wknd_ftime=?, center_phone=?, center_introduction=? "
-				+ "where center_no=?";
+				+ "center_wknd_stime=?, center_wknd_ftime=?, center_phone=?, center_introduction=?, "
+				+ "center_pay=?, center_month=? where center_no=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, centerDto.getCenterName());
 		ps.setString(2, centerDto.getCenterWeekStime());
@@ -104,6 +113,8 @@ public class CenterDao {
 		ps.setString(6, centerDto.getCenterPhone());
 		ps.setString(7, centerDto.getCenterIntroduction());
 		ps.setLong(8, centerDto.getCenterNo());
+		ps.setInt(9, centerDto.getCenterPay());
+		ps.setInt(10, centerDto.getCenterMonth());
 		
 		int count = ps.executeUpdate();
 		
