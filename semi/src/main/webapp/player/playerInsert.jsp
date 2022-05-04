@@ -21,13 +21,15 @@
     	<input type="text" name="playerName" required placeholder="2~7"><br><br>
     	
     	<label>생년월일</label><br><br>
-    	<input type="date" name="playerBirth" required ><br><br>
+    	<input type="date" name="playerBirth" required><br><br>
+    	
     	
     	<label>전화번호</label><br><br>
     	<input type="number" name="playerPhone" required ><br><br>
     	
     	<label>이메일</label><br><br>
     	<input type="email" name="playerEmail"  placeholder="8~21"><br><br>
+    	
     	
     	<input type="submit" value="join">
     </form>
