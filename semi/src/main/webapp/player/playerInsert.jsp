@@ -20,8 +20,6 @@
     	<label>닉네임</label><br><br>
     	<input type="text" name="playerName" required placeholder="2~7"><br><br>
     	
-    	<label>생년월일</label><br><br>
-    	<input type="date" name="playerBirth" required ><br><br>
     	
     	<label>전화번호</label><br><br>
     	<input type="number" name="playerPhone" required ><br><br>

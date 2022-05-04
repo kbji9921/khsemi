@@ -23,7 +23,6 @@ public class PlayerInsertServlet extends HttpServlet{
 			playerDto.setPlayerId(req.getParameter("playerId"));
 			playerDto.setPlayerPw(req.getParameter("playerPw"));
 			playerDto.setPlayerName(req.getParameter("playerName"));
-			playerDto.setPlayerBirth(Date.valueOf(req.getParameter("playerBirth")));
 			playerDto.setPlayerPhone(Integer.parseInt(req.getParameter("playerPhone")));
 			playerDto.setPlayerEmail(req.getParameter("playerEmail"));
 			
