@@ -10,15 +10,24 @@ public class TrainerDao {
 	// 목록
 	public List<TrainerDto> selectList() throws Exception {
 		Connection con = JdbcUtils.getConnection();
-		String sql = "select * from trainer order by trainer_logindate";
+		String sql = "select * from trainer";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		List<TrainerDto> list = new ArrayList<>();
 		while (rs.next()) {
 			TrainerDto trainerDto = new TrainerDto();
+			
+			trainerDto.setCenterNo(rs.getInt("center_no"));
 			trainerDto.setTrainerId(rs.getString("trainer_id"));
+			trainerDto.setTrainerPw(rs.getString("trainer_pw"));
 			trainerDto.setTrainerName(rs.getString("trainer_name"));
-			trainerDto.setTrainerSports(rs.getString("trainer_sports"));
+			trainerDto.setTrainerBirth(rs.getString("trainer_birth"));
+			trainerDto.setTrainerGender(rs.getString("trainer_gender"));
+			trainerDto.setTrainerPhone(rs.getString("trainer_phone"));
+			trainerDto.setTrainerEmail(rs.getString("trainer_email"));
+			trainerDto.setTrainerJoindate(rs.getDate("trainer_joindate"));
+			trainerDto.setTrainerLogindate(rs.getDate("trainer_logindate"));
+			trainerDto.setTrainerPrice(rs.getInt("trainer_price"));
 			list.add(trainerDto);
 		}
 		con.close();
@@ -29,8 +38,8 @@ public class TrainerDao {
 	public void insert(TrainerDto trainerDto) throws Exception {
 		Connection con = JdbcUtils.getConnection();
 
-		String sql = "insert into trainer (trainer_id, trainer_pw, trainer_name, trainer_gender, trainer_email, trainer_birth, trainer_sports, trainer_phone, trainer_price) values "
-				+ " (?,?,?,?,?,?,?,?,?) ";
+		String sql = "insert into trainer (trainer_id, trainer_pw, trainer_name, trainer_gender, trainer_email, trainer_birth, trainer_sports, trainer_phone) values "
+				+ " (?,?,?,?,?,?,?,?) ";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, trainerDto.getTrainerId());
 		ps.setString(2, trainerDto.getTrainerPw());
@@ -40,7 +49,6 @@ public class TrainerDao {
 		ps.setString(6, trainerDto.getTrainerBirth());
 		ps.setString(7, trainerDto.getTrainerSports());
 		ps.setString(8, trainerDto.getTrainerPhone());
-		ps.setInt(9, trainerDto.getTrainerPrice());
 		ps.execute();
 
 		con.close();
@@ -64,8 +72,8 @@ public class TrainerDao {
 			trainerDto.setTrainerGender(rs.getString("trainer_gender"));
 			trainerDto.setTrainerPhone(rs.getString("trainer_phone"));
 			trainerDto.setTrainerEmail(rs.getString("trainer_email"));
-			trainerDto.setTrainerJoindate(rs.getDate("member_joindate"));
-			trainerDto.setTrainerLogindate(rs.getDate("member_logindate"));
+			trainerDto.setTrainerJoindate(rs.getDate("trainer_joindate"));
+			trainerDto.setTrainerLogindate(rs.getDate("trainer_logindate"));
 			trainerDto.setTrainerPrice(rs.getInt("trainer_price"));
 		} else {
 			trainerDto = null;
@@ -75,7 +83,7 @@ public class TrainerDao {
 	}
 
 	// 삭제
-	public boolean exit(String id, String pw) throws Exception {
+	public boolean delete(String id, String pw) throws Exception {
 		Connection con = JdbcUtils.getConnection();
 		String sql = "delete trainer where trainer_id =? and trainer_pw=?";
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -105,14 +113,16 @@ public class TrainerDao {
 	//개인정보 변경 (전화번호, 이메일, 종목, 가격)
 	public boolean changeInformation(TrainerDto trainerDto) throws Exception {
 		Connection con = JdbcUtils.getConnection();
-		String sql = "update member set trainer_phone =?, trainer_email=?, "
-				+ " trainer_sports=?,trainer_price=? where trainer_id = ?";
+		String sql = "update member set trainer_phone =?, trainer_email=?,"
+				+ " trainer_sports=?,trainer_price=?, trainer_name=?, trainer_birth=? where trainer_id = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, trainerDto.getTrainerPhone());
 		ps.setString(2, trainerDto.getTrainerEmail());
 		ps.setString(3, trainerDto.getTrainerSports());
 		ps.setInt(4, trainerDto.getTrainerPrice());
-		ps.setString(5, trainerDto.getTrainerId());
+		ps.setString(5, trainerDto.getTrainerName());
+		ps.setString(6, trainerDto.getTrainerName());
+		ps.setString(7, trainerDto.getTrainerId());
 	
 		int count = ps.executeUpdate();
 
@@ -185,6 +195,48 @@ public class TrainerDao {
 		con.close();
 		return findDto;
 
+	}
+	public List<TrainerDto> selectListByPaging(int p, int s) throws Exception {
+		//시작지점, 종료지점 계산
+		int end = p * s;
+		int begin = end - ( s - 1 ); 
+		
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from ("
+								+ "select rownum rn, TMP.* from ("
+//									+ "select * from board order by board_no desc"
+									+ "select * from trainer "
+									+ "order trainer_logindate desc "
+								+ ") TMP"
+						+ ") where rn between ? and ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, begin);
+		ps.setInt(2, end);
+		ResultSet rs = ps.executeQuery();
+		
+		List<TrainerDto> list = new ArrayList<>();
+		while(rs.next()) {
+			TrainerDto trainerDto = new TrainerDto();
+			
+			trainerDto.setTrainerId(rs.getString("trainer_id"));
+			trainerDto.setTrainerName(rs.getString("trainer_name"));
+			trainerDto.setTrainerPw(rs.getString("trainer_pw"));
+			trainerDto.setTrainerPhone(rs.getString("trainer_phone"));
+			trainerDto.setTrainerBirth(rs.getString("trainer_birth"));
+			trainerDto.setTrainerSports(rs.getString("trainer_sports"));
+			trainerDto.setTrainerEmail(rs.getString("trainer_email"));
+			trainerDto.setTrainerGender(rs.getString("trainer_gender"));
+			trainerDto.setTrainerPrice(rs.getInt("trainer_price"));
+			trainerDto.setTrainerJoindate(rs.getDate("trainer_joindate"));
+			trainerDto.setTrainerLogindate(rs.getDate("trainer_logindate"));
+			trainerDto.setCenterNo(rs.getInt("center_no"));
+			list.add(trainerDto);
+		}
+		
+		con.close();
+		
+		return list;
 	}
 
 }
