@@ -12,6 +12,9 @@ public class CenterDto {
 	private String centerPhone;
 	private Date centerOpen;
 	private String centerIntroduction;
+	//비용, 개월 추가
+	private int centerPay;
+	private int centerMonth;
 	public CenterDto() {
 		super();
 	}
@@ -69,13 +72,19 @@ public class CenterDto {
 	public void setCenterIntroduction(String centerIntroduction) {
 		this.centerIntroduction = centerIntroduction;
 	}
-	@Override
-	public String toString() {
-		return "CenterDto [centerNo=" + centerNo + ", centerName=" + centerName + ", centerWeekStime=" + centerWeekStime
-				+ ", centerWeekFtime=" + centerWeekFtime + ", centerWkndStime=" + centerWkndStime + ", centerWkndFtime="
-				+ centerWkndFtime + ", centerPhone=" + centerPhone + ", centerOpen=" + centerOpen
-				+ ", centerIntroduction=" + centerIntroduction + "]";
+	public int getCenterPay() {
+		return centerPay;
 	}
+	public void setCenterPay(int centerPay) {
+		this.centerPay = centerPay;
+	}
+	public int getCenterMonth() {
+		return centerMonth;
+	}
+	public void setCenterMonth(int centerMonth) {
+		this.centerMonth = centerMonth;
+	}
+	
 	
 	
 }
