@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CenterDao {
-	//전체목록
+	//전체 목록
 	public List<CenterDto> selectList() throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		

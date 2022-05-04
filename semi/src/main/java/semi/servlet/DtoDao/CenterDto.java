@@ -12,6 +12,7 @@ public class CenterDto {
 	private String centerPhone;
 	private Date centerOpen;
 	private String centerIntroduction;
+	//비용, 개월 추가
 	private int centerPay;
 	private int centerMonth;
 	public CenterDto() {
