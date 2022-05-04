@@ -11,32 +11,37 @@ import javax.servlet.http.HttpServletResponse;
 import semi.servlet.DtoDao.TrainerDao;
 import semi.servlet.DtoDao.TrainerDto;
 
-
-@WebServlet(urlPatterns = "/trainer/insert.kh")
-public class TrainerInsertServlet extends HttpServlet{
+@WebServlet(urlPatterns ="/trainer/find_id.kh")
+public class TrainerFindIdServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try{
-			//준비: 아이디, 비번, 이름, 전화번호, 이메일, 생년월일, 가격, 성별, 종목
+		
+		try {
+			//준비
 			req.setCharacterEncoding("UTF-8");
-			TrainerDto trainerDto = new TrainerDto();
-			trainerDto.setTrainerId(req.getParameter("trainerId"));
-			trainerDto.setTrainerPw(req.getParameter("trainerPw"));
+			TrainerDto trainerDto =  new TrainerDto();
 			trainerDto.setTrainerName(req.getParameter("trainerName"));
 			trainerDto.setTrainerPhone(req.getParameter("trainerPhone"));
 			trainerDto.setTrainerEmail(req.getParameter("trainerEmail"));
-			trainerDto.setTrainerBirth(req.getParameter("trainerBirth"));
-			trainerDto.setTrainerGender(req.getParameter("trainerGender"));
-			trainerDto.setTrainerSports(req.getParameter("trainerSports"));
 			//처리
 			TrainerDao trainerDao = new TrainerDao();
-			trainerDao.insert(trainerDto);
-			//출력
-//			resp.sendRedirect(req.getContextPath()+"/trainer/join_finish.jsp");
+			String trainerId = trainerDao.findId(trainerDto);
 			
+			
+			if(trainerId==null) {
+				resp.sendRedirect("trainerFindId.jsp?error");
+			}else {
+				resp.sendRedirect("trainerFindIdResult.jsp?trainerId="+trainerId);
+			}
+		
 		}catch(Exception e) {
 			e.printStackTrace();
 			resp.sendError(500);
 		}
+
+		
+		
+		
+		//출력
 	}
 }

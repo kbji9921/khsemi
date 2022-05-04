@@ -35,7 +35,7 @@ public class TrainerDao {
 	}
 
 	// 강사 회원가입
-	public void insert(TrainerDto trainerDto) throws Exception {
+	public void join(TrainerDto trainerDto) throws Exception {
 		Connection con = JdbcUtils.getConnection();
 
 		String sql = "insert into trainer (trainer_id, trainer_pw, trainer_name, trainer_gender, trainer_email, trainer_birth, trainer_sports, trainer_phone) values "
@@ -145,11 +145,11 @@ public class TrainerDao {
 	//아이디 찾기
 	public String findId(TrainerDto trainerDto) throws Exception {
 		Connection con = JdbcUtils.getConnection();
-		String sql = "select trainer_id from trainer where trainer_name=? and trainer_phone =? and trainer_birth=?";
+		String sql = "select trainer_id from trainer where trainer_name=? and trainer_phone =? and trainer_email=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, trainerDto.getTrainerName());
 		ps.setString(2, trainerDto.getTrainerPhone());
-		ps.setString(3, trainerDto.getTrainerBirth());
+		ps.setString(3, trainerDto.getTrainerEmail());
 		ResultSet rs = ps.executeQuery();
 		// null or data
 		String trainerId;
