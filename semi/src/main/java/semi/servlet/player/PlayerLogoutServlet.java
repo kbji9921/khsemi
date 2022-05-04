@@ -14,7 +14,9 @@ public class PlayerLogoutServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			
+			req.getSession().removeAttribute("login");
 			
+			resp.sendRedirect("login.jsp");
 			
 		}catch(Exception e) {
 			e.printStackTrace();

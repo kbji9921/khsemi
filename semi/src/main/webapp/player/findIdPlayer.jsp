@@ -7,6 +7,7 @@
 <title>아이디 찾기</title>
 </head>
 <body>
+
 	<form action = "findId.player" method="post">
 		<label>
 			닉네임
@@ -17,6 +18,8 @@
 			전화번호
 			<input type="number" name="playerPhone" required placeholder="본인 전화번호">
 		</label>
+		<input type="submit" value="찾기"></input>
 	</form>
+	
 </body>
 </html>

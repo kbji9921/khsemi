@@ -18,9 +18,7 @@ public class PlayerDao {
 		ps.setDate(4, playerDto.getPlayerBirth());
 		ps.setInt(5, playerDto.getPlayerPhone());
 		ps.setString(6, playerDto.getPlayerEmail());
-		
-		
-		
+
 		ps.execute();
 		
 		con.close();
@@ -29,7 +27,7 @@ public class PlayerDao {
 	public PlayerDto selectOne(String playerId)throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select * form player where player_id = ?";
+		String sql = "select * from player where player_id = ?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		
@@ -39,15 +37,16 @@ public class PlayerDao {
 		PlayerDto playerDto = null;
 		if(rs.next()) {
 			playerDto = new PlayerDto();
-			playerDto.setPlayerId(rs.getString("playerId"));
-			playerDto.setPlayerName(rs.getString("playerName"));
-			playerDto.setPlayerBirth(rs.getDate("playerBirth"));
-			playerDto.setPlayerPhone(rs.getInt("playerPhone"));
-			playerDto.setPlayerEmail(rs.getString("PlayerEmail"));
-			playerDto.setPlayerGrade(rs.getString("playerGrade"));
-			playerDto.setPlayerPoint(rs.getInt("playerPoint"));
-			playerDto.setPlayerJoindate(rs.getDate("playerJoindate"));
-			playerDto.setPlayerLogindate(rs.getDate("playerLogindate"));
+			playerDto.setPlayerId(rs.getString("player_id"));
+			playerDto.setPlayerPw(rs.getString("player_pw"));
+			playerDto.setPlayerName(rs.getString("player_name"));
+			playerDto.setPlayerBirth(rs.getDate("player_birth"));
+			playerDto.setPlayerPhone(rs.getInt("player_phone"));
+			playerDto.setPlayerEmail(rs.getString("player_email"));
+			playerDto.setPlayerGrade(rs.getString("player_grade"));
+			playerDto.setPlayerPoint(rs.getInt("player_point"));
+			playerDto.setPlayerJoindate(rs.getDate("player_joindate"));
+			playerDto.setPlayerLogindate(rs.getDate("player_logindate"));
 			
 		}
 		
@@ -90,7 +89,7 @@ public class PlayerDao {
 	public boolean updateLogindate(String playerId)throws Exception {
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "update player set player_logindate = 'sysdate' where player_id = ?";
+		String sql = "update player set player_logindate = sysdate where player_id = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		ps.setString(1, playerId);
@@ -116,6 +115,36 @@ public class PlayerDao {
 		}
 		con.close();
 		return playerDto;
+	}
+
+	public PlayerDto findPw(PlayerDto playerDto)throws Exception {
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from player where player_id = ? and player_name = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, playerDto.getPlayerId());
+		ps.setString(2, playerDto.getPlayerName());
+		
+		ResultSet  rs = ps.executeQuery();
+		
+		PlayerDto findDto = null;
+		if(rs.next()) {
+			findDto = new PlayerDto();
+			playerDto.setPlayerId(rs.getString("player_id"));
+			playerDto.setPlayerPw(rs.getString("player_pw"));
+			playerDto.setPlayerName(rs.getString("player_name"));
+			playerDto.setPlayerBirth(rs.getDate("player_birth"));
+			playerDto.setPlayerPhone(rs.getInt("player_phone"));
+			playerDto.setPlayerEmail(rs.getString("player_email"));
+			playerDto.setPlayerGrade(rs.getString("player_grade"));
+			playerDto.setPlayerPoint(rs.getInt("player_point"));
+			playerDto.setPlayerJoindate(rs.getDate("player_joindate"));
+			playerDto.setPlayerLogindate(rs.getDate("player_logindate"));
+		}
+		
+		con.close();
+		return findDto;
 	}
 
 }

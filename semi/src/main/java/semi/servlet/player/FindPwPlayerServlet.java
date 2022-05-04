@@ -11,33 +11,27 @@ import javax.servlet.http.HttpServletResponse;
 import semi.servlet.DtoDao.PlayerDao;
 import semi.servlet.DtoDao.PlayerDto;
 
-@WebServlet(urlPatterns = "/player/login.player")
-public class PlayerLoginServlet extends HttpServlet{
+@WebServlet(urlPatterns = "/player/findPw.player")
+public class FindPwPlayerServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			
 			req.setCharacterEncoding("UTF-8");
-			String playerId = req.getParameter("playerId");
-			//String playerPw = req.getParameter("playerPw");
+			PlayerDto playerDto = new PlayerDto();
+			playerDto.setPlayerId(req.getParameter("playerId"));
+			playerDto.setPlayerName(req.getParameter("playerName"));
 			
 			PlayerDao playerDao = new PlayerDao();
-			PlayerDto playerDto = playerDao.selectOne(playerId);
+			PlayerDto findDto = playerDao.findPw(playerDto);
 			
-			boolean isLogin = playerDto != null;
-			
-			if(isLogin) {
-				playerDao.updateLogindate(playerId);
-				
-				req.getSession().setAttribute("login", playerId);
-				
-				resp.sendRedirect("loginSuccess.jsp");
-			}else {
-				resp.sendRedirect("login.jsp?error");
+			if(findDto != null) {
+				resp.sendRedirect(getServletInfo());
 			}
 			
 			
-		}catch(Exception e) {
+			
+		}catch(Exception e){
 			e.printStackTrace();
 			resp.sendError(500);
 		}
