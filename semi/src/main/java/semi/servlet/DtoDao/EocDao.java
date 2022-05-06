@@ -2,6 +2,9 @@ package semi.servlet.DtoDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EocDao {
 	//등록
@@ -44,4 +47,50 @@ public class EocDao {
 		
 		return count > 0;
 	}
+	//전체검색
+	public List<EocDto> selectList() throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from eoc order by eoc_no asc";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		
+		List<EocDto> list = new ArrayList<>();
+		while(rs.next()) {
+			EocDto eocDto = new EocDto();
+			eocDto.setEocNo(rs.getLong("eoc_no"));
+			eocDto.setEocExerciseName(rs.getString("exercise_name"));
+			eocDto.setEocCenterId(rs.getString("center_id"));
+			list.add(eocDto);
+		}
+		
+		con.close();
+		
+		return list;
+	}
+	//센터별 담당 운동 조회
+	public EocDto selectList (String centerId) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from eoc where center_id = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, centerId);
+		ResultSet rs = ps.executeQuery();
+		
+		EocDto eocDto = new EocDto();
+		if(rs.next()) {
+			eocDto = new EocDto();
+			eocDto.setEocNo(rs.getLong("eoc_no"));
+			eocDto.setEocExerciseName(rs.getString("exercise_name"));
+			eocDto.setEocCenterId(rs.getString("center_name"));
+		}
+		else {
+			eocDto = null;
+		}
+		
+		con.close();
+		
+		return eocDto;
+	}
+
 }

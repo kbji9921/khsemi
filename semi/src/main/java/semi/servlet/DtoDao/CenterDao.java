@@ -2,6 +2,9 @@ package semi.servlet.DtoDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CenterDao {
 	//센터 등록
@@ -61,5 +64,101 @@ public class CenterDao {
 		con.close();
 		
 		return count > 0;
+	}
+	//전체 검색
+	public List<CenterDto> selectList() throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from center order by center_name asc";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		
+		List<CenterDto> list = new ArrayList<>();
+		while(rs.next()) {
+			CenterDto centerDto = new CenterDto();
+			centerDto.setCenterId(rs.getString("center_id"));
+			centerDto.setCenterName(rs.getString("center_name"));
+			centerDto.setCenterPhone(rs.getString("center_phone"));
+			centerDto.setCenterWeektime(rs.getString("center_weektime"));
+			centerDto.setCenterWkndtime(rs.getString("center_wkndtime"));
+			centerDto.setCenterPost(rs.getString("center_post"));
+			centerDto.setCenterBasicAddress(rs.getString("center_basic_address"));
+			centerDto.setCenterDetailAddress(rs.getString("center_detail_address"));
+			centerDto.setCenterIntroduction(rs.getString("center_introduction"));
+			
+			list.add(centerDto);
+		}
+		
+		con.close();
+		
+		return list;
+	}
+	
+	//동,센터명 검색
+	public CenterDto selectList(String type,String keyword) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from center where instr(#1,?)>=2 order by center_name asc";
+		sql = sql.replace("#1", type);
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, keyword);
+		ResultSet rs = ps.executeQuery();
+		
+		CenterDto centerDto;
+		if(rs.next()) {
+			centerDto = new CenterDto();
+			centerDto.setCenterId(rs.getString("center_id"));
+			centerDto.setCenterName(rs.getString("center_name"));
+			centerDto.setCenterPhone(rs.getString("center_phone"));
+			centerDto.setCenterWeektime(rs.getString("center_weektime"));
+			centerDto.setCenterWkndtime(rs.getString("center_wkndtime"));
+			centerDto.setCenterPost(rs.getString("center_post"));
+			centerDto.setCenterBasicAddress(rs.getString("center_basic_address"));
+			centerDto.setCenterDetailAddress(rs.getString("center_detail_address"));
+			centerDto.setCenterIntroduction(rs.getString("center_introduction"));
+		}
+		else {
+			centerDto = null;
+		}
+		
+		con.close();
+		
+		return centerDto;
+	}
+	
+	//센터아이디,운동명 검색
+	public CenterDto selectList(String keyword) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select C.*, E.exercise_name from center C inner join eoc E on C.center_id = E.center_id "
+				+ "where E.exercise_name = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, keyword);
+		ResultSet rs = ps.executeQuery();
+		
+		CenterDto centerDto = new CenterDto();
+		EocDto eocDto = new EocDto();
+		
+		if(rs.next()) {
+			centerDto.setCenterId(rs.getString("center_id"));
+			centerDto.setCenterName(rs.getString("center_name"));
+			centerDto.setCenterPhone(rs.getString("center_phone"));
+			centerDto.setCenterWeektime(rs.getString("center_weektime"));
+			centerDto.setCenterWkndtime(rs.getString("center_wkndtime"));
+			centerDto.setCenterPost(rs.getString("center_post"));
+			centerDto.setCenterBasicAddress(rs.getString("center_basic_address"));
+			centerDto.setCenterDetailAddress(rs.getString("center_detail_address"));
+			centerDto.setCenterIntroduction(rs.getString("center_introduction"));
+			
+			eocDto.setEocExerciseName(rs.getString("exercise_name"));
+		}
+		else {
+			centerDto = null;
+			eocDto = null;
+		}
+		
+		con.close();
+		
+		return centerDto;
 	}
 }
