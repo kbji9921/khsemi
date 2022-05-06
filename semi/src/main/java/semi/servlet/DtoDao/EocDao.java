@@ -69,7 +69,7 @@ public class EocDao {
 		return list;
 	}
 	//센터별 담당 운동 조회
-	public EocDto selectList (String centerId) throws Exception{
+	public List<EocDto> selectList (String centerId) throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
 		String sql = "select * from eoc where center_id = ?";
@@ -77,20 +77,20 @@ public class EocDao {
 		ps.setString(1, centerId);
 		ResultSet rs = ps.executeQuery();
 		
-		EocDto eocDto = new EocDto();
-		if(rs.next()) {
+		List<EocDto>list = new ArrayList<>();
+		while(rs.next()) {
+			EocDto eocDto = new EocDto();
 			eocDto = new EocDto();
 			eocDto.setEocNo(rs.getLong("eoc_no"));
 			eocDto.setEocExerciseName(rs.getString("exercise_name"));
-			eocDto.setEocCenterId(rs.getString("center_name"));
-		}
-		else {
-			eocDto = null;
+			eocDto.setEocCenterId(rs.getString("center_id"));
+			
+			list.add(eocDto);
 		}
 		
 		con.close();
 		
-		return eocDto;
+		return list;
 	}
 
 }
