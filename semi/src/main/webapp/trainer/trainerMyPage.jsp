@@ -5,13 +5,13 @@
     pageEncoding="UTF-8"%>
         <%-- 준비 --%>
 <%
-String memberId= (String)session.getAttribute("login");
+String trainerId= "testuser1";
 %>    
     
     <%-- 처리 --%>
 <%
 TrainerDao trainerDao = new TrainerDao();
-TrainerDto trainerDto = trainerDao.selectOne(memberId);
+TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 %>    
 <div class="Container w400 m30">
 <div class="row"></div>
