@@ -11,21 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 import semi.servlet.DtoDao.TrainerDao;
 import semi.servlet.DtoDao.TrainerDto;
 
-@WebServlet(urlPatterns ="/trainer/information.kh")
+@WebServlet(urlPatterns ="/trainer/Information.kh")
 public class TrainerInformationServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			
 			 TrainerDto trainerDto = new TrainerDto();
-			 String id = (String)req.getSession().getAttribute("login");
-			 trainerDto.setTrainerId(id);
+//			 String id = (String)req.getSession().getAttribute("login");
+			 trainerDto.setTrainerId(req.getParameter("trainerId"));
+			 trainerDto.setTrainerName(req.getParameter("trainerName"));
 			 trainerDto.setTrainerPhone(req.getParameter("trainerPhone"));
 			 trainerDto.setTrainerSports(req.getParameter("trainerSports"));
 			 trainerDto.setTrainerEmail(req.getParameter("trainerEmail"));
-			 trainerDto.setTrainerPrice(Integer.parseInt("trainerPrice"));
-			 trainerDto.setTrainerName(req.getParameter("trainerName"));
+			 trainerDto.setTrainerPrice(Integer.parseInt(req.getParameter("trainerPrice")));
 			 trainerDto.setTrainerBirth(req.getParameter("trainerBirth"));
+			 trainerDto.setTrainerPw(req.getParameter("trainerPw"));
 			 
 			//처리
 			//1. 원래 db의 회원정보를 불러와서 비교
@@ -34,7 +35,7 @@ public class TrainerInformationServlet extends HttpServlet{
 			boolean isPasswordCorrect = trainerDto.getTrainerPw().equals(findDto.getTrainerPw());
 				
 			if(!isPasswordCorrect) {
-				resp.sendRedirect("information.jsp?error");
+				resp.sendRedirect("trainerChangeInformation.jsp?error");
 				return;
 			}
 			//2. 개인정보 변경
@@ -42,7 +43,7 @@ public class TrainerInformationServlet extends HttpServlet{
 				
 				
 			//출력
-			resp.sendRedirect("mypage.jsp");		 
+			resp.sendRedirect("trainerMyPage.jsp");		 
 			
 			
 			

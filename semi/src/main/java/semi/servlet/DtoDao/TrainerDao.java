@@ -68,6 +68,8 @@ public class TrainerDao {
 			trainerDto.setCenterNo(rs.getInt("center_no"));
 			trainerDto.setTrainerId(rs.getString("trainer_id"));
 			trainerDto.setTrainerPw(rs.getString("trainer_pw"));
+			trainerDto.setTrainerBirth(rs.getString("trainer_birth"));
+			trainerDto.setTrainerSports(rs.getString("trainer_sports"));;
 			trainerDto.setTrainerName(rs.getString("trainer_name"));
 			trainerDto.setTrainerGender(rs.getString("trainer_gender"));
 			trainerDto.setTrainerPhone(rs.getString("trainer_phone"));
@@ -113,17 +115,17 @@ public class TrainerDao {
 	//개인정보 변경 (전화번호, 이메일, 종목, 가격)
 	public boolean changeInformation(TrainerDto trainerDto) throws Exception {
 		Connection con = JdbcUtils.getConnection();
-		String sql = "update member set trainer_phone =?, trainer_email=?,"
-				+ " trainer_sports=?,trainer_price=?, trainer_name=?, trainer_birth=? where trainer_id = ?";
+		String sql = "update trainer set trainer_phone =?, trainer_email=?,"
+				+ " trainer_sports=?,trainer_price=?, trainer_name=?, trainer_birth=? where trainer_id = ? and trainer_pw=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, trainerDto.getTrainerPhone());
 		ps.setString(2, trainerDto.getTrainerEmail());
 		ps.setString(3, trainerDto.getTrainerSports());
 		ps.setInt(4, trainerDto.getTrainerPrice());
 		ps.setString(5, trainerDto.getTrainerName());
-		ps.setString(6, trainerDto.getTrainerName());
+		ps.setString(6, trainerDto.getTrainerBirth());
 		ps.setString(7, trainerDto.getTrainerId());
-	
+		ps.setString(8, trainerDto.getTrainerPw());
 		int count = ps.executeUpdate();
 
 		con.close();
