@@ -7,10 +7,10 @@
 main {
     width:1000px;
     margin:auto;
+    padding-top: 60px;
 }
 header {
     min-height: 120px;
-    padding: 20px;
     text-align:center;
 }
 .section {
@@ -19,5 +19,6 @@ header {
 footer {
     min-height: 120px;
     padding: 20px;
-    border-top: 3px solid gray;
+    border-top: 2px solid #eee;
+    
 }
