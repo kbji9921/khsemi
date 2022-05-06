@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class TrainerDto {
 	private String trainerId;
-	private int centerNo;
+	private String centerId;
 	private String trainerPw;
 	private String trainerName;
 	private String trainerGender;
@@ -21,11 +21,11 @@ public class TrainerDto {
 	public void setTrainerId(String trainerId) {
 		this.trainerId = trainerId;
 	}
-	public int getCenterNo() {
-		return centerNo;
+	public String getCenterId() {
+		return centerId;
 	}
-	public void setCenterNo(int centerNo) {
-		this.centerNo = centerNo;
+	public void setCenterId(String centerId) {
+		this.centerId = centerId;
 	}
 	public String getTrainerPw() {
 		return trainerPw;
