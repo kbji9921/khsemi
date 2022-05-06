@@ -33,3 +33,22 @@
        .trainer-name{
           text-decoration: none;
        }
+       
+       .list-image-area{
+            width: 30%;
+            margin: auto;
+        }
+        .list-center-area{
+            flex-grow: 1;
+            padding: 0.5em;
+        }
+        .list-center-listbox{
+            border: solid #efefef  0.1em;
+            border-radius: 0.5em;
+        }
+        .list-exercise-kinds{
+           width: 25%;
+           border: solid #343b6a 0.1em;
+           border-radius: 1em;
+           padding: 0.1em;
+       }
