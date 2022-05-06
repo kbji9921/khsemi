@@ -24,8 +24,7 @@ public class GradeDao {
 		ps.execute();
 		
 		con.close();
-	}
-	
+	}	
 	
 	//별점 조회
 	public GradeDto selectAvg(String gradeTarget, int gradeRate) throws Exception{
