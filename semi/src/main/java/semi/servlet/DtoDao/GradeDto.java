@@ -3,7 +3,6 @@ package semi.servlet.DtoDao;
 import java.sql.Date;
 
 public class GradeDto {
-	
 	private int gradeNo;
 	private String gradeTarget;
 	private String gradeWriter;

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GradeDao {
-	
 	//등록
 	public void insert(GradeDto gradeDto) throws Exception{
 		Connection con = JdbcUtils.getConnection();
