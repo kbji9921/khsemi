@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+ .image-area{
+            width: 25%;
+            margin: auto;
+        }
+        .content-area{
+            flex-grow: 1;
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+        }
+       .exercise-kinds{
+       	   display: inline-block;
+           width: 25%;
+           border: solid #343b6a 0.1em;
+           border-radius: 1em;
+           padding: 0.1em;
+       }
+       .center-introduction{
+           height: 150px;
+           border-radius: 0.5em;
+           border: solid #b2bec3 0.05em;
+           padding: 0.5em;
+       }
+       .trainer-introdution{
+           padding: 1em
+           
+       }
+       .trainer-list{
+           margin-left: 20px;
+           margin-right: 20px;
+       }
+       .trainer-name{
+          text-decoration: none;
+       }
