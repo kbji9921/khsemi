@@ -1,28 +1,23 @@
 package semi.servlet.DtoDao;
 
-import java.util.Date;
-
 public class CenterDto {
-	private long centerNo;
+	private String centerId;
 	private String centerName;
-	private String centerWeekStime;
-	private String centerWeekFtime;
-	private String centerWkndStime;
-	private String centerWkndFtime;
 	private String centerPhone;
-	private Date centerOpen;
+	private String centerWeektime;
+	private String centerWkndtime;
+	private String centerPost;
+	private String centerBasicAddress;
+	private String centerDetailAddress;
 	private String centerIntroduction;
-	//비용, 개월 추가
-	private int centerPay;
-	private int centerMonth;
 	public CenterDto() {
 		super();
 	}
-	public long getCenterNo() {
-		return centerNo;
+	public String getCenterId() {
+		return centerId;
 	}
-	public void setCenterNo(long centerNo) {
-		this.centerNo = centerNo;
+	public void setCenterId(String centerId) {
+		this.centerId = centerId;
 	}
 	public String getCenterName() {
 		return centerName;
@@ -30,59 +25,47 @@ public class CenterDto {
 	public void setCenterName(String centerName) {
 		this.centerName = centerName;
 	}
-	public String getCenterWeekStime() {
-		return centerWeekStime;
-	}
-	public void setCenterWeekStime(String centerWeekStime) {
-		this.centerWeekStime = centerWeekStime;
-	}
-	public String getCenterWeekFtime() {
-		return centerWeekFtime;
-	}
-	public void setCenterWeekFtime(String centerWeekFtime) {
-		this.centerWeekFtime = centerWeekFtime;
-	}
-	public String getCenterWkndStime() {
-		return centerWkndStime;
-	}
-	public void setCenterWkndStime(String centerWkndStime) {
-		this.centerWkndStime = centerWkndStime;
-	}
-	public String getCenterWkndFtime() {
-		return centerWkndFtime;
-	}
-	public void setCenterWkndFtime(String centerWkndFtime) {
-		this.centerWkndFtime = centerWkndFtime;
-	}
 	public String getCenterPhone() {
 		return centerPhone;
 	}
 	public void setCenterPhone(String centerPhone) {
 		this.centerPhone = centerPhone;
 	}
-	public Date getCenterOpen() {
-		return centerOpen;
+	public String getCenterWeektime() {
+		return centerWeektime;
 	}
-	public void setCenterOpen(Date centerOpen) {
-		this.centerOpen = centerOpen;
+	public void setCenterWeektime(String centerWeektime) {
+		this.centerWeektime = centerWeektime;
+	}
+	public String getCenterWkndtime() {
+		return centerWkndtime;
+	}
+	public void setCenterWkndtime(String centerWkndtime) {
+		this.centerWkndtime = centerWkndtime;
+	}
+	public String getCenterPost() {
+		return centerPost;
+	}
+	public void setCenterPost(String centerPost) {
+		this.centerPost = centerPost;
+	}
+	public String getCenterBasicAddress() {
+		return centerBasicAddress;
+	}
+	public void setCenterBasicAddress(String centerBasicAddress) {
+		this.centerBasicAddress = centerBasicAddress;
+	}
+	public String getCenterDetailAddress() {
+		return centerDetailAddress;
+	}
+	public void setCenterDetailAddress(String centerDetailAddress) {
+		this.centerDetailAddress = centerDetailAddress;
 	}
 	public String getCenterIntroduction() {
 		return centerIntroduction;
 	}
 	public void setCenterIntroduction(String centerIntroduction) {
 		this.centerIntroduction = centerIntroduction;
-	}
-	public int getCenterPay() {
-		return centerPay;
-	}
-	public void setCenterPay(int centerPay) {
-		this.centerPay = centerPay;
-	}
-	public int getCenterMonth() {
-		return centerMonth;
-	}
-	public void setCenterMonth(int centerMonth) {
-		this.centerMonth = centerMonth;
 	}
 	
 	
