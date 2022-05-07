@@ -11,5 +11,7 @@
 	<form action="logout.player" method="get">
 		<button type="submit">로그아웃</button>
 	</form>
+	<br><br>
+		<a href="mypage.jsp">내정보</a>
 </body>
 </html>
