@@ -1,0 +1,35 @@
+.display-center {
+    display: flex;
+    justify-content: center;/*display가 flex인 경우 가로 정렬 옵션 */
+    align-items: center;/*display가 flex인 경우 세로 정렬 옵션*/
+    }
+    
+    .sidebar{
+        position:fixed;
+        background-color: #343b6a;
+        top:0;
+        left:0;
+        bottom: 0;
+        width: 200px;
+        /*animation 설정*/
+        transition:left 0.4s ease-in-out;
+        
+    }
+    .toggle-sidebar:checked+.sidebar{
+        left: -200px;
+        margin-left: -200px;
+        z-index: 999;
+    }
+    .toggle-sidebar{
+        position: fixed;
+        top: 5px;
+        left: 5px;
+        z-index: 1000;
+        display: none;
+    }
+    .toggle-label{
+        position: fixed;
+        top: 5px;
+        left: 5px;
+        z-index: 1000;
+    }
