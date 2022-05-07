@@ -1,6 +1,7 @@
 package semi.servlet.player;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,29 +12,39 @@ import javax.servlet.http.HttpServletResponse;
 import semi.servlet.DtoDao.PlayerDao;
 import semi.servlet.DtoDao.PlayerDto;
 
-@WebServlet(urlPatterns = "/player/findId.player")
-public class FindIdPlayerServlet extends HttpServlet{
+@WebServlet(urlPatterns = "/player/chageinformation.player")
+public class PlayerChangeInformation extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			req.setCharacterEncoding("UTF-8");
+			
 			PlayerDto playerDto = new PlayerDto();
+			
+			playerDto.setPlayerId((String) req.getSession().getAttribute("login"));
+			
 			playerDto.setPlayerName(req.getParameter("playerName"));
+			playerDto.setPlayerBirth(Date.valueOf(req.getParameter("playerBirth")));
 			playerDto.setPlayerPhone(req.getParameter("playerPhone"));
+			playerDto.setPlayerEmail(req.getParameter("playerEmail"));
+			playerDto.setPlayerPw(req.getParameter("playerPw"));
 			
 			PlayerDao playerDao = new PlayerDao();
-			String playerId = playerDao.findId(playerDto);
 			
+			PlayerDto findDto = playerDao.selectOne(playerDto.getPlayerId());
+			boolean isPasswordCorrect = playerDto.getPlayerPw().equals(findDto.getPlayerPw());
 			
-			if(playerId == null) {
-				resp.sendRedirect("findIdPlayer.jsp?error");
-			}else {
-				resp.sendRedirect("idFindSuccess.jsp?playerId="+playerId);
+			if(!isPasswordCorrect) {
+				resp.sendRedirect("myinformation.jsp?error");
+				return;
 			}
 			
+			playerDao.changeInformation(playerDto);
+			
+			resp.sendRedirect("myinformation.jsp");
 		}catch(Exception e) {
 			e.printStackTrace();
 			resp.sendError(500);
 		}
+		
 	}
 }

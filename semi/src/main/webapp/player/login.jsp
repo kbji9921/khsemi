@@ -16,15 +16,21 @@
 		<br><br>
 		
 		<label>
-			아이디
+			비밀번호
 			<input type="password" name="playerPw" required >
 		</label>
-		
-		<br><br>
 		
 		<input type="submit" value="로그인">
 	
 	</form>
+	
+	<br><br>
+	
+	<label>
+		<a href="join.jsp">회원가입</a>
+	</label>
+	
+	<br><br>
 	
 	<label>
 		<a href="findIdPlayer.jsp">아이디 찾기</a>
