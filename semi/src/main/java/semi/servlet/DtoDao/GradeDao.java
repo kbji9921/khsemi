@@ -35,6 +35,7 @@ public class GradeDao {
 		ps.setInt(2, gradeRate);
 		ResultSet rs = ps.executeQuery();
 		GradeDto gradeDto = null;
+		
 		if(rs.next()) {
 			gradeDto = new GradeDto();
 			gradeDto.setGradeRate(rs.getInt("gradeRate"));
@@ -44,12 +45,12 @@ public class GradeDao {
 	}
 
 	//목록
-	public List<GradeDto> selectList(int gradeTarget) throws Exception {
+	public List<GradeDto> selectList(int gradeNo) throws Exception {
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select * from reply where grade_target = ? order by grade_no asc";
+		String sql = "select * from grade where grade_no = ? order by grade_target asc";
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setInt(1, gradeTarget);
+		ps.setInt(1, gradeNo);
 		ResultSet rs = ps.executeQuery();
 		
 		List<GradeDto> list = new ArrayList<>();
@@ -78,6 +79,7 @@ public class GradeDao {
 		
 		String sql= "select * from center where grade_target = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
+		
 		ps.setString(1, gradeTarget);
 		ResultSet rs = ps.executeQuery();
 		
@@ -99,14 +101,14 @@ public class GradeDao {
 	}
 	
 	
-	//삭제
-	public boolean delete(int gradeNo) throws Exception{
+	//삭제(gradeWriter 작성자)
+	public boolean delete(String gradeWriter) throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "delete grade where grade_no = ?";
+		String sql = "delete grade where grade_writer = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
-		ps.setInt(1, gradeNo);
+		ps.setString(1, gradeWriter);
 		int count = ps.executeUpdate();
 		
 		con.close();
