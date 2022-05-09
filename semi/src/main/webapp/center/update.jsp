@@ -16,19 +16,10 @@
   	CenterDto centerDto = centerDao.selectOne(centerId);
   %>
    <%--출력 --%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Center Update page</title>
 
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/reset.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/layout.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/commons.css">
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
 
-</head>
-<body>
 	 <form action="update.kh" method="post">
         <div class="container w400 m30">
             <div class="row center">
@@ -83,5 +74,4 @@
             </div>
         </div>
     </form>
-</body>
-</html>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
