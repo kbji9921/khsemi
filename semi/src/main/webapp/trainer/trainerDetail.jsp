@@ -40,7 +40,7 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 			<td><%=trainerDto.getTrainerSports()%></td>
 		</tr>
 		<tr>
-<<<<<<< HEAD
+
 		<th>가격</th>
 		<td><%=trainerDto.getTrainerPrice()%></td>
 	</tr>
@@ -49,19 +49,14 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 		<td><%=trainerDto.getTrainerSports()%></td>
 	</tr>
 	<tr>
-		<th>센터아이디</th>
-		<td><%=trainerDto.getCenterId()%></td>
-	</tr>
-</table>
-=======
 			<th>센터번호</th>
 			<td></td>
-		</tr>
+	</tr>
 	</table>
 	<br><br>
 	<a href="<%=request.getContextPath()%>/player/matchingInsert.jsp">매칭</a>
 	<br><br>
->>>>>>> refs/remotes/origin/project
+
 </div>
 <div class="row right">
 <button type="button" onclick="location.href='password1.jsp'" class="btn btn-hover btn-primary">비밀번호 변경</button>
