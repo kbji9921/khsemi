@@ -240,5 +240,32 @@ public class TrainerDao {
 		
 		return list;
 	}
+	//강사 찾기
+	public List<TrainerDto> selectTrainerList(String centerId) throws Exception {
+		Connection con = JdbcUtils.getConnection();
+		String sql = "select * from trainer where center_id =?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, centerId);
+		ResultSet rs = ps.executeQuery();
+		List<TrainerDto> list = new ArrayList<>();
+		while (rs.next()) {
+			TrainerDto trainerDto = new TrainerDto();
+			
+			trainerDto.setCenterId(rs.getString("center_id"));
+			trainerDto.setTrainerId(rs.getString("trainer_id"));
+			trainerDto.setTrainerPw(rs.getString("trainer_pw"));
+			trainerDto.setTrainerName(rs.getString("trainer_name"));
+			trainerDto.setTrainerBirth(rs.getString("trainer_birth"));
+			trainerDto.setTrainerGender(rs.getString("trainer_gender"));
+			trainerDto.setTrainerPhone(rs.getString("trainer_phone"));
+			trainerDto.setTrainerEmail(rs.getString("trainer_email"));
+			trainerDto.setTrainerJoindate(rs.getDate("trainer_joindate"));
+			trainerDto.setTrainerLogindate(rs.getDate("trainer_logindate"));
+			trainerDto.setTrainerPrice(rs.getInt("trainer_price"));
+			list.add(trainerDto);
+		}
+		con.close();
+		return list;
+	}
 
 }

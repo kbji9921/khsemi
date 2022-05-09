@@ -20,23 +20,20 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	try {
 		//준비
 		req.setCharacterEncoding("UTF-8");
-		String id = req.getParameter("trainerId");
-		String pw = req.getParameter("trainerPw");
+		String trainerId = req.getParameter("trainerId");
+		String trainerPw = req.getParameter("trainerPw");
 		
 		//처리
 		TrainerDao trainerDao = new TrainerDao();
-		TrainerDto trainerDto = trainerDao.selectOne(id);
-		boolean isLogin = trainerDto!=null&& trainerDto.getTrainerPw().equals(pw);
+		TrainerDto trainerDto = trainerDao.selectOne(trainerId);
+		boolean isLogin = trainerDto!=null&& trainerDto.getTrainerPw().equals(trainerPw);
 		
 		if(isLogin) {
-			//최종 로그인 시각 변경 처리
-			trainerDao.updateLogindate(id);
+			//로그인 시각 업데이트
+			trainerDao.updateLogindate(trainerId);
 			
-			//세션(httpSession)에 login 이라는 이름으로 사용자의 아이디를 저장해야한다. -> 로그인 처리
-//			req.getSession().setAttribute("login", id);
-			//세션에 사용자의 권한도 추가(auth)
-//			req.getSession().setAttribute("auth", trainerDto.getMemberGrade());
-			//리다이렉트
+			//로그인 처리
+			req.getSession().setAttribute("trainer", trainerId);
 			resp.sendRedirect(req.getContextPath());//메인페이지로 이동
 			
 

@@ -20,7 +20,11 @@
 		<div class="row center">
 		<h1>개인정보 변경</h1>
 		</div>
-				<div class="row">
+		<div class="row">
+		<label>프로필 사진</label>
+		<input type="file" name="trainerProfile" accept="jpg,png">
+		</div>
+		<div class="row">
 		<label>아이디</label>
 		<input type="hidden" name="trainerId" value="<%=trainerDto.getTrainerId()%>" required class="form-input full input-round" autocomplete="off">
 		</div>

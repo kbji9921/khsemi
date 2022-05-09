@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,10 +17,13 @@
     </style>
 </head>
 <body>
-    <form action="join.kh" method="post">
-    <div class="container w450 m30">
+    <form action="insert.kh" method="post" enctype="multipart/form-data">
+    <div class="container w450">
+  <!-- <div class="row center">
+         <img src="../images/ci_main_logo.png" width="165">
+        </div> --> 
         <div class="row center">
-            <img src="../image/살빠짐.png" width="165" height="32">
+        <h1>회원가입</h1>
         </div>
         <div class="row">
             <label>아이디</label>
@@ -64,6 +68,9 @@
                 <option>테니스</option>
             </select>
         </div>
+        <div class="row">
+        	<input type="file" name="attach">
+        </div>
         <div class="row m40">
             <input type="submit" class="btn btn-semi btn-round fill" value="가입하기">
         </div>
@@ -77,3 +84,4 @@
 </form>
 </body>
 </html>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
