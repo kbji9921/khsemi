@@ -13,12 +13,54 @@ header {
     min-height: 120px;
     text-align:center;
 }
-.section {
-    min-height: 450px;
+#logo{
+	display: block;
+	margin: 40px 0;
+    font-size: 3em;
+    font-weight: 600;
 }
-footer {
+#gnb {
+	display:flex;
+	justify-content: space-around;
+	height: 50px;
+    background-color: #343b6a;
+}
+#gnb li a {
+    font-weight: 600;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    font-size: 17px;
+    }
+#gnb li:first-child {
+	margin-right:500px;
+	    }
+
+.gnb-right{
+	display:flex;
+	justify-content: space-around;
+}
+.partition{
+	line-height: 47px;
+    color: #fff;
+    padding: 0 15px;
+}
+
+.wrap{
+	padding: 40px 0 130px 0;
+}
+
+.footer{
     min-height: 120px;
     padding: 20px;
     border-top: 2px solid #eee;
-    
+	color: #777;
+    font-size: 14px;
+}
+.footer p:nth-child(2){
+	margin: 20px 0;
+    line-height: 18px;
+}
+.footer-copyright{
+	font-size:11px;
 }
