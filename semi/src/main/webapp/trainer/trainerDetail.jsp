@@ -37,7 +37,7 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 		<td><%=trainerDto.getTrainerSports()%></td>
 	</tr>
 	<tr>
-		<th>센터번호</th>
+		<th>센터아이디</th>
 		<td><%=trainerDto.getCenterId()%></td>
 	</tr>
 </table>

@@ -6,8 +6,9 @@ public class PlayerDto {
 	private String playerId;
 	private String playerPw;
 	private String playerName;
+	private String playerGender;
 	private Date playerBirth;
-	private int playerPhone;
+	private String playerPhone;
 	private String playerEmail;
 	private String playerGrade;
 	private int playerPoint;
@@ -31,16 +32,22 @@ public class PlayerDto {
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
 	}
+	public String getPlayerGender() {
+		return playerGender;
+	}
+	public void setPlayerGender(String playerGender) {
+		this.playerGender = playerGender;
+	}
 	public Date getPlayerBirth() {
 		return playerBirth;
 	}
 	public void setPlayerBirth(Date playerBirth) {
 		this.playerBirth = playerBirth;
 	}
-	public int getPlayerPhone() {
+	public String getPlayerPhone() {
 		return playerPhone;
 	}
-	public void setPlayerPhone(int playerPhone) {
+	public void setPlayerPhone(String playerPhone) {
 		this.playerPhone = playerPhone;
 	}
 	public String getPlayerEmail() {
@@ -81,15 +88,4 @@ public class PlayerDto {
 	public PlayerDto() {
 		super();
 	}
-	
-	@Override
-	public String toString() {
-		return "PlayerDto [playerId=" + playerId + ", playerPw=" + playerPw + ", playerName=" + playerName
-				+ ", playerBirth=" + playerBirth + ", playerPhone=" + playerPhone + ", playerEmail=" + playerEmail
-				+ ", playerGrade=" + playerGrade + ", playerPoint=" + playerPoint + ", playerJoindate=" + playerJoindate
-				+ ", playerLogindate=" + playerLogindate + "]";
-	}
-	
-	
-	
 }

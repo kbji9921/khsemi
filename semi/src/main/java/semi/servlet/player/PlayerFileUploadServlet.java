@@ -43,7 +43,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		playerDto.setPlayerPw(mRequest.getParameter("playerPw"));
 		playerDto.setPlayerName(mRequest.getParameter("playerName"));
 		playerDto.setPlayerBirth(Date.valueOf(mRequest.getParameter("playerBirth")));
-		playerDto.setPlayerPhone(Integer.parseInt(mRequest.getParameter("playerPhone")));
+		playerDto.setPlayerPhone(mRequest.getParameter("playerPhone"));
 		playerDto.setPlayerEmail(mRequest.getParameter("playerEmail"));
 
 

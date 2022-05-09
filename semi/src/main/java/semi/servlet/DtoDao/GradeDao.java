@@ -24,8 +24,7 @@ public class GradeDao {
 		ps.execute();
 		
 		con.close();
-	}
-	
+	}	
 	
 	//별점 조회
 	public GradeDto selectAvg(String gradeTarget, int gradeRate) throws Exception{
@@ -72,6 +71,34 @@ public class GradeDao {
 		
 		return list;
 	}
+	
+	//상세조회(grade_target(trainer_id))
+	public GradeDto selectOne(String gradeTarget) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql= "select * from center where grade_target = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, gradeTarget);
+		ResultSet rs = ps.executeQuery();
+		
+		GradeDto gradeDto = new GradeDto();
+		if(rs.next()) {
+			gradeDto.setGradeNo(rs.getInt("grade_no"));
+			gradeDto.setGradeTarget(rs.getString("grade_target"));
+			gradeDto.setGradeWriter(rs.getString("grade_writer"));
+			gradeDto.setGradeTime(rs.getDate("grade_time"));
+			gradeDto.setGradeContent(rs.getString("grade_content"));
+			gradeDto.setGradeRate(rs.getInt("grade_rate"));
+		}
+		else {
+			gradeDto = null;
+		}
+		con.close();
+		
+		return gradeDto;
+	}
+	
+	
 	//삭제
 	public boolean delete(int gradeNo) throws Exception{
 		Connection con = JdbcUtils.getConnection();

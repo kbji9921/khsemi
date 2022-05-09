@@ -6,12 +6,42 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import oracle.jdbc.proxy.annotation.Pre;
+
 public class EocDao {
-	//등록
-	public void insert (EocDto eocDto) throws Exception{
+	//센터별운동 번호 시퀀스 생성
+	public long getSequence()throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "inset into eoc (eoc_no,exercise_name, center_id) values (eoc_seq.nexval,?,?);";
+		String sql = "select eoc_seq.nextval from dual";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		long eocNo = rs.getLong("nextval");
+		
+		con.close();
+		
+		return eocNo;
+	}
+	//시퀀스를 생성하는 등록
+	public void insert1 (EocDto eocDto) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "insert into eoc (eoc_no,exercise_name,center_id) values (?,?,?)";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setLong(1, eocDto.getEocNo());
+		ps.setString(2, eocDto.getEocExerciseName());
+		ps.setString(3, eocDto.getEocCenterId());
+		ps.execute();
+		
+		con.close();
+	}
+	
+	//시퀀스를 생성하지 않는 등록
+	public void insert2 (EocDto eocDto) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "insert into eoc (eoc_no,exercise_name, center_id) values (eoc_seq.nexval,?,?);";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, eocDto.getEocExerciseName());
 		ps.setString(2, eocDto.getEocCenterId());
@@ -80,7 +110,6 @@ public class EocDao {
 		List<EocDto>list = new ArrayList<>();
 		while(rs.next()) {
 			EocDto eocDto = new EocDto();
-			eocDto = new EocDto();
 			eocDto.setEocNo(rs.getLong("eoc_no"));
 			eocDto.setEocExerciseName(rs.getString("exercise_name"));
 			eocDto.setEocCenterId(rs.getString("center_id"));

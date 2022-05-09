@@ -19,11 +19,7 @@
 		</label>
 		<br><br>
 		
-		<input type="submit" value="제출">
-	
-		<% if(request.getParameter("error") != null){%>
-			<h3> 입력한 정보와 일치하는 데이터가 없습니다.</h3>
-		<%} %>
+		<input type="submit" value="찾기">
 	</form>
 </body>
 </html>

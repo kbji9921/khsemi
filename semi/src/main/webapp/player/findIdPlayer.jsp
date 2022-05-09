@@ -19,6 +19,12 @@
 			<input type="number" name="playerPhone" required placeholder="본인 전화번호">
 		</label>
 		<input type="submit" value="찾기"></input>
+	
+		<%if(request.getParameter("error") != null){ %>
+		
+			<h3 style="color:red;">정보가 일치하는 아이디가 존재하지 않습니다</h3>
+		
+		<%} %>
 	</form>
 	
 </body>
