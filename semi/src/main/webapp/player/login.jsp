@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>로그인</title>
-</head>
-<body>
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 	<form action="login.player" method="post">
 		<label>
 			아이디
@@ -41,5 +35,5 @@
 	<label>
 		<a href="findPwPlayer.jsp">비밀번호 찾기</a>
 	</label>
-</body>
-</html>
+
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>

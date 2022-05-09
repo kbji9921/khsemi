@@ -17,7 +17,7 @@ public class MatchingDeleteServlet extends HttpServlet{
 		try {
 			
 			String studentId = req.getParameter("playerId");
-			String coachId = req.getParameter("coachId");
+			String coachId = req.getParameter("trainerId");
 			
 			MatchingDao matchingDao = new MatchingDao();
 			matchingDao.delete(studentId, coachId);

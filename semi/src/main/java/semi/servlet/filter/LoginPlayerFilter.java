@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebFilter(filterName="f2", urlPatterns = {
-		"/player/loginSuccess.jsp"
+		"/player/loginSuccess.jsp","/player/logout.player",
+		"/player/changePw.jsp"
 })
 public class LoginPlayerFilter implements Filter{
 
