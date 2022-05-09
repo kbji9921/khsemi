@@ -349,6 +349,11 @@ textarea.form-input {
     border-color:#ae2223;
     background-color:#ae2223;
 }
+.btn.btn-semi{
+    border-color:#343b6a;
+    background-color:#343b6a;
+    color:white;
+}
 
 /*
     테이블 디자인

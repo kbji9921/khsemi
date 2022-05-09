@@ -17,7 +17,7 @@ public class TrainerDao {
 		while (rs.next()) {
 			TrainerDto trainerDto = new TrainerDto();
 			
-			trainerDto.setCenterNo(rs.getInt("center_no"));
+			trainerDto.setCenterId(rs.getString("center_id"));
 			trainerDto.setTrainerId(rs.getString("trainer_id"));
 			trainerDto.setTrainerPw(rs.getString("trainer_pw"));
 			trainerDto.setTrainerName(rs.getString("trainer_name"));
@@ -65,7 +65,7 @@ public class TrainerDao {
 
 		if (rs.next()) {
 			trainerDto = new TrainerDto();
-			trainerDto.setCenterNo(rs.getInt("center_no"));
+			trainerDto.setCenterId(rs.getString("center_id"));
 			trainerDto.setTrainerId(rs.getString("trainer_id"));
 			trainerDto.setTrainerPw(rs.getString("trainer_pw"));
 			trainerDto.setTrainerBirth(rs.getString("trainer_birth"));
@@ -179,7 +179,7 @@ public class TrainerDao {
 
 		if (rs.next()) {
 			findDto = new TrainerDto();
-			findDto.setCenterNo(rs.getInt("center_no"));
+			findDto.setCenterId(rs.getString("center_Id"));
 			findDto.setTrainerId(rs.getString("trainer_id"));
 			findDto.setTrainerPw(rs.getString("trainer_pw"));
 			findDto.setTrainerName(rs.getString("trainer_name"));
@@ -232,7 +232,7 @@ public class TrainerDao {
 			trainerDto.setTrainerPrice(rs.getInt("trainer_price"));
 			trainerDto.setTrainerJoindate(rs.getDate("trainer_joindate"));
 			trainerDto.setTrainerLogindate(rs.getDate("trainer_logindate"));
-			trainerDto.setCenterNo(rs.getInt("center_no"));
+			trainerDto.setCenterId(rs.getString("center_id"));
 			list.add(trainerDto);
 		}
 		
