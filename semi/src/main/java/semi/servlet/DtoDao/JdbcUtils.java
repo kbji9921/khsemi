@@ -8,7 +8,7 @@ public class JdbcUtils {
    public static Connection getConnection() throws Exception{
       Class.forName("oracle.jdbc.OracleDriver");
       
-      Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","kh","kh"); // 개인집
+      Connection con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.1.125:1521:xe","user1","user1234"); // 개인집
 
       //Connection con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.1.116:1521:xe","user1","user1234"); //할리스
       return con;

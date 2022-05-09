@@ -23,6 +23,7 @@ public class PlayerChangeInformation extends HttpServlet{
 			playerDto.setPlayerId((String) req.getSession().getAttribute("login"));
 			
 			playerDto.setPlayerName(req.getParameter("playerName"));
+			playerDto.setPlayerGender(req.getParameter("playerGender"));
 			playerDto.setPlayerBirth(Date.valueOf(req.getParameter("playerBirth")));
 			playerDto.setPlayerPhone(req.getParameter("playerPhone"));
 			playerDto.setPlayerEmail(req.getParameter("playerEmail"));
@@ -40,7 +41,7 @@ public class PlayerChangeInformation extends HttpServlet{
 			
 			playerDao.changeInformation(playerDto);
 			
-			resp.sendRedirect("myinformation.jsp");
+			resp.sendRedirect("mypage.jsp");
 		}catch(Exception e) {
 			e.printStackTrace();
 			resp.sendError(500);

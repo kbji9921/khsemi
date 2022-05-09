@@ -123,18 +123,18 @@
 <body>
 	<main>
 		<header>
-			<a href="#" id="logo">
+			<a href="<%=request.getContextPath()%>" id="logo">
 				<img src="/semi/images/ci_main_logo.png" width="270px" alt="살빠짐 홈으로 가기">
 			</a>
 			<nav>
 				<ul id="gnb">
-					<li><a href="#">Home</a></li>
+					<li><a href="<%=request.getContextPath()%>">Home</a></li>
 					<li><a href="#">고객의소리</a></li>
 					
 					<li class="gnb-right">
-						<a href="#">로그인</a>
+						<a href="<%=request.getContextPath()%>/player/selectLogin.jsp">로그인</a>
 						<span class="partition">|</span>
-						<a href="#">회원가입</a>
+						<a href="<%=request.getContextPath()%>/player/selectJoin.jsp">회원가입</a>
 					</li>
 					
 					<%-- 사용자 로그인 후

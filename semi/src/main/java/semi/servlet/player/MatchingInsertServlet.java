@@ -17,13 +17,16 @@ public class MatchingInsertServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			
+			MatchingDao matchingDao = new MatchingDao();
+			int matchingNo = matchingDao.getSequence();
+			
 			MatchingDto matchingDto = new MatchingDto();
-			matchingDto.setStudentId(req.getParameter("studentId"));
+			matchingDto.setMatchingNo(matchingNo);
+			matchingDto.setStudentId(req.getParameter("playerId"));
 			matchingDto.setCoachId(req.getParameter("coachId"));
 			matchingDto.setMatchingDays(Integer.parseInt(req.getParameter("matchingDays")));
 			
 			
-			MatchingDao matchingDao = new MatchingDao();
 			matchingDao.insert(matchingDto);
 			
 			resp.sendRedirect("matchingList.jsp");

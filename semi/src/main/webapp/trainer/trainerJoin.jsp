@@ -54,7 +54,7 @@
             <input type="tel" name="trainerPhone" required class="form-input fill input-round" autocomplete="off" placeholder="-제외하고 입력">
         </div>
         <div class="row">
-            <labe>운동종목</labe>
+            <label>운동종목</label>
             <select name="trainerSports" class="form-input fill input-round">
                 <option selected>선택</option>
                 <option>헬스</option>

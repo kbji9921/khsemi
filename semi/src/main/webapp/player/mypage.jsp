@@ -12,69 +12,68 @@
 %>
     
     
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>내정보</title>
-</head>
-<body>
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 	<h2>내정보</h2>
-	
+	<hr>
 	<label>
-		아이디
+		아이디 :
 		<%=playerDto.getPlayerId() %>
 	</label>
 	<br><br>
 	
 	<label>
-		닉네임
+		이름 :
 		<%=playerDto.getPlayerName() %>
 	</label>
 	<br><br>
 	
 	<label>
-		생년월일
+		성별 :
+		<%=playerDto.getPlayerGender() %>
+	</label>
+	<br><br>
+	
+	<label>
+		생년월일 :
 		<%=playerDto.getPlayerBirth() %>
 	</label>
 	<br><br>
 	
 	<label>
-		전화번호
+		전화번호 :
 		<%=playerDto.getPlayerPhone() %>
 	</label>
 	<br><br>
 	
 	<label>
-		이메일
+		이메일 :
 		<%=playerDto.getPlayerEmail() %>
 	</label>
 	<br><br>
 	
 	<label>
-		등급
+		등급 :
 		<%=playerDto.getPlayerGrade() %>
 	</label>
 	<br><br>
 	
 	<label>
-		포인트
+		포인트 :
 		<%=playerDto.getPlayerPoint() %>
 	</label>
 	<br><br>
 	
 	<label>
-		회원가입 일자
+		회원가입 일자 :
 		<%=playerDto.getPlayerJoindate() %>
 	</label>
 	<br><br>
 	
 	<label>
-		최근 접속일
+		최근 접속일 :
 		<%=playerDto.getPlayerLogindate() %>
 	</label>
-	<br><br>
-	
+	<hr>
 	<h2><a href="loginSuccess.jsp">로그인 메인</a></h2><br><br>
 	<h2><a href="changePw.jsp">비밀번호 변경</a></h2><br><br>
 	<h2><a href="changeInformation.jsp">개인정보 변경</a></h2><br><br>
@@ -82,5 +81,4 @@
 	<h2><a href="deletePlayer.jsp">탈퇴하기</a></h2><br><br>
 	
 	<h2><a href="matchingList.jsp?studentId=<%=playerId %>">내 일정</a></h2>
-</body>
-</html>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>

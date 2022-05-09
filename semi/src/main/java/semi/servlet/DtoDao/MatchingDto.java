@@ -3,13 +3,26 @@ package semi.servlet.DtoDao;
 import java.sql.Date;
 
 public class MatchingDto {
+	private int matchingNo;
 	private String studentId;
 	private String coachId;
-	private Date MatchingDate;
 	private int matchingDays;
+	private Date matchingDate;
+	private String matchingState;
+	
+	
+	public int getMatchingNo() {
+		return matchingNo;
+	}
+
+	public void setMatchingNo(int matchingNo) {
+		this.matchingNo = matchingNo;
+	}
+
 	public String getStudentId() {
 		return studentId;
 	}
+	
 	public void setStudentId(String studentId) {
 		this.studentId = studentId;
 	}
@@ -20,10 +33,10 @@ public class MatchingDto {
 		this.coachId = coachId;
 	}
 	public Date getMatchingDate() {
-		return MatchingDate;
+		return matchingDate;
 	}
 	public void setMatchingDate(Date matchingDate) {
-		MatchingDate = matchingDate;
+		this.matchingDate = matchingDate;
 	}
 	public int getMatchingDays() {
 		return matchingDays;
@@ -32,6 +45,12 @@ public class MatchingDto {
 		this.matchingDays = matchingDays;
 	}
 	
+	public String getMatchingState() {
+		return matchingState;
+	}
+	public void setMatchingState(String matchingState) {
+		this.matchingState = matchingState;
+	}
 	public MatchingDto() {
 		super();
 	}

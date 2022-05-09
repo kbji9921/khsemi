@@ -9,14 +9,7 @@
 	boolean type2 = error != null && error.equals("2");
 	boolean type3 = error != null && error.equals("3");
 %>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>비밀번호 변경</title>
-</head>
-<body>
-	
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 	 <h1>비밀번호 변경</h1>
 	 
 	 <form action="password.player" method="post">
@@ -54,8 +47,4 @@
 			
 			<%} %>
 	 </form>
-	 
-	 
-	 
-</body>
-</html>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
