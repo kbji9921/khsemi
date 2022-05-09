@@ -27,6 +27,7 @@ public class gradeInsertServlet extends HttpServlet{
 			GradeDao gradeDao = new GradeDao();
 			gradeDao.insert(gradeDto);
 			
+			//출력
 			//resp.getWriter().print("성공");
 			//resp.sendRedirect(req.getContextPath()+"/trainer/trainer_detail.jsp");
 
