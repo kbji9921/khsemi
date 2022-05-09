@@ -60,9 +60,9 @@
                 <input type="text" name="centerDetailAddress" autocomplete="off" class="form-input input-round fill">
             </div>
             <div class="row">
-                <label for="exercise-input">운동종류</label>
+                <label for="exercise-input">운동종목</label>
 
-                <input type="text" name="exerciseName" autocomplete="off" placeholder="헬스/수영/요가/필라테스/테니스/등" class="form-input input-round fill"
+                <input type="text" name="exerciseName" autocomplete="off" placeholder="2개 이상의 종목 추가는 마이페이지에서 가능합니다" class="form-input input-round fill"
                 id="exercise-input">
             </div>
             <div class="row">
