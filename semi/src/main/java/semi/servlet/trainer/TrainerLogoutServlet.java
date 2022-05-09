@@ -1,4 +1,4 @@
-package semi.servlet.player;
+package semi.servlet.trainer;
 
 import java.io.IOException;
 
@@ -8,20 +8,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/player/logout.player")
-public class PlayerLogoutServlet extends HttpServlet{
+@WebServlet(urlPatterns = "/trainer/logout.kh")
+public class TrainerLogoutServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
+			//logout
+			req.getSession().removeAttribute("login2");
 			
-			req.getSession().removeAttribute("login");
 			
-			//메인 페이지로 이동
+			//main 페이지로 이동
 			resp.sendRedirect(req.getContextPath());
 			
-		}catch(Exception e) {
-			e.printStackTrace();
-			resp.sendError(500);
+			
+			
+		}catch (Exception e) {
+			
 		}
 	}
+
 }

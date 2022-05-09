@@ -5,7 +5,8 @@
     pageEncoding="UTF-8"%>
         <%-- 준비 --%>
 <%
-String trainerId= "testuser6";
+String trainerId = "testuser6";
+//String trainerId= (String)request.getSession().getAttribute("login2");
 %>    
     
     <%-- 처리 --%>
@@ -13,6 +14,7 @@ String trainerId= "testuser6";
 TrainerDao trainerDao = new TrainerDao();
 TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 %>    
+    <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -55,7 +57,7 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 </head>
 <body>  
     <div class="row m30">
-        <label for ="tg" class="toggle-label"><img src="../image/메뉴 아이콘.png" width="30"></label>
+        <label for ="tg" class="toggle-label"><img src="../images/menu.png" width="30"></label>
         <input type="checkbox" class="toggle-sidebar" id="tg">
         <div class="sidebar">
             <div class="row m50">
@@ -70,7 +72,7 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
                 <button class="btn btn-round fill">비밀번호 변경</button>
             </div>
         <div class="row">
-            <button class="btn btn-round full btn-danger">회원 탈퇴</button>
+            <button class="btn btn-round fill btn-danger">회원 탈퇴</button>
         </div>
     </div>
 </div>
@@ -80,7 +82,7 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
         <div class="flex-container flex-vertical">
             <div class="flex-container">
             <div class="img-wrapper display-center">
-                <img src="../image/cat wallpaper.jpg" width="150px" height="150px" class="img img-circle">
+                <img src="../images/trainer_dummy/trainer_1.jpg" width="150px" height="150px" class="img img-circle">
             </div>
             <div class="contents-wrapper">
                 <div class="row center">
@@ -152,3 +154,4 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 </form>
 </body>
 </html>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>

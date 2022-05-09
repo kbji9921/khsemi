@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +19,12 @@
 </head>
 <body>
     <form action="insert.player" method="post">
-    <div class="container w450 m30">
-        <div class="row center">
-            <img src="../image/살빠짐.png" width="165" height="32">
+    <div class="container w450">
+  <!-- <div class="row center">
+         <img src="../images/ci_main_logo.png" width="165">
+        </div> --> 
+                <div class="row center">
+        <h1>회원가입</h1>
         </div>
         <div class="row">
             <label>아이디</label>
@@ -59,12 +63,16 @@
             <input type="submit" class="btn btn-semi btn-round fill" value="가입하기">
         </div>
         <div class="row center">
-            <a href="#" class="link">이용약관</a>|
-            <a href="#" class="link">개인정보 처리방침</a>|
+            <a href="#" class="link">이용약관</a>
+            <a href="#" class="link">개인정보 처리방침</a>
             <a href="#" class="link">회원정보 고객센터</a>
-            <p>Copyright 살빠짐 Corp. All Rights Reserved.</p>
+        
+        </div>
+        <div class="row center">
+        <p>Copyright 살빠짐 Corp. All Rights Reserved.</p>
         </div>
     </div>
 </form>
 </body>
 </html>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>

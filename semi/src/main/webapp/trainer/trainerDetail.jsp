@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
         <%-- 준비 --%>
 <%
-String trainerId= "testuser1";
+String trainerId= "testuser6";
 %>    
     
     <%-- 처리 --%>
@@ -38,7 +38,7 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 	</tr>
 	<tr>
 		<th>센터번호</th>
-		<td><%=trainerDto.getCenterNo()%></td>
+		<td><%=trainerDto.getCenterId()%></td>
 	</tr>
 </table>
 </div>
