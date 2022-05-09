@@ -12,41 +12,28 @@
  	String centerId = request.getParameter("centerId");
 
  %>
- <%--준비 --%>
+ <%--처리 --%>
   <%
   	CenterDao centerDao = new CenterDao();
   	CenterDto centerDto = centerDao.selectOne(centerId);
   	
   	EocDao eocDao = new EocDao();
   	List<EocDto> list = eocDao.selectList(centerId);
-  	
-    
+
   %>
- <%--준비 --%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/reset.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/layout.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/commons.css">
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
-
-</head>
-<body>
 	 <div class="container w600 m30">
         <!--제목-->
-        <div class="row center">
+        <div class="row center m30">
             <h2>Personal Training Center</h2>
         </div>
         <!--센터 정보-->
         <div class="flex-container flex-vertical">
             <div class="flex-container">
-                <div class="row">
+               
                     <img src="http://via.placeholder.com/250x250" class="img img-round">
-                </div>
+                
                 <div class="content-area">
                     <div class="row center">
                         <h1><%=centerDto.getCenterName() %></h1>
@@ -82,8 +69,8 @@
         <!--해당 센터 강사 목록-->
         <span>우리 센터의 강사</span>
         <div class="flex-container m10">
-           <div class="flex-container flex-vertical trainer-list">
-               <div class="row">
+           <div class="flex-container flex-vertical layer-3">
+               <div class="row center">
                   <a href="#"><img src="https://placeimg.com/150/150/people" class="img img-round img-hover"></a>
                </div>
                <div class="center">
@@ -91,8 +78,8 @@
                </div>
            </div>
 
-           <div class="flex-container flex-vertical trainer-list">
-            <div class="row">
+           <div class="flex-container flex-vertical layer-3">
+            <div class="row center">
                 <img src="https://placeimg.com/150/150/people" class="img img-round img-hover">
             </div>
             <div class="center">
@@ -100,8 +87,8 @@
             </div>
         </div>
 
-        <div class="flex-container flex-vertical trainer-list">
-            <div class="row">
+        <div class="flex-container flex-vertical layer-3">
+            <div class="row center">
                 <img src="https://placeimg.com/150/150/people" class="img img-round img-hover">
             </div>
             <div class="center">
@@ -116,5 +103,5 @@
             <button class="btn btn-primary fill">더보기</button>
         </div>
     </div>
-</body>
-</html>
+
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
