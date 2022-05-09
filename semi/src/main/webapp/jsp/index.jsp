@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/index.css">
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-
 
 			<article class="container">
 				<h3 class="contents-title">종목선택</h3>
