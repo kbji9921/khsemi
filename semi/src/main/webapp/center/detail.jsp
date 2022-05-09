@@ -69,7 +69,7 @@
                     </div>
                     <%} %>
                     <!--목록으로 돌아가기 버튼-->
-                    <a href="#" class="link link-btn fill">목록으로 돌아가기</a>
+                    <a href="/semi/center/list.jsp" class="link link-btn fill">목록으로 돌아가기</a>
                 </div>
 
             </div>

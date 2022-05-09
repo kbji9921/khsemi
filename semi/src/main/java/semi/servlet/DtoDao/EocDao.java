@@ -110,7 +110,6 @@ public class EocDao {
 		List<EocDto>list = new ArrayList<>();
 		while(rs.next()) {
 			EocDto eocDto = new EocDto();
-			eocDto = new EocDto();
 			eocDto.setEocNo(rs.getLong("eoc_no"));
 			eocDto.setEocExerciseName(rs.getString("exercise_name"));
 			eocDto.setEocCenterId(rs.getString("center_id"));
