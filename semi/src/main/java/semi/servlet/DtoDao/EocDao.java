@@ -53,7 +53,7 @@ public class EocDao {
 	public boolean update (EocDto eocDto) throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "update eoc set exercise_name=? center_id=? where eoc_no=?";
+		String sql = "update eoc set exercise_name=?,center_id=? where eoc_no=?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, eocDto.getEocExerciseName());
 		ps.setString(2, eocDto.getEocCenterId());
@@ -120,6 +120,30 @@ public class EocDao {
 		con.close();
 		
 		return list;
+	}
+	//운동종목별 조회
+	public EocDto selectOne(long eocNo) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from eoc where eoc_no=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setLong(1, eocNo);
+		ResultSet rs = ps.executeQuery();
+		
+		EocDto eocDto;
+		if(rs.next()) {
+			eocDto = new EocDto();
+			eocDto.setEocNo(rs.getLong("eoc_no"));
+			eocDto.setEocExerciseName(rs.getString("exercise_name"));
+			eocDto.setEocCenterId(rs.getString("center_id"));
+		}
+		else {
+			eocDto = null;
+		}
+		
+		con.close();
+		
+		return eocDto;
 	}
 
 }
