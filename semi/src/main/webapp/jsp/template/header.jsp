@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	//회원 검사
-	String playerId = (String) session.getAttribute("login");
-	boolean login = playerId != null;
-%>
+  //현재 접속한 사용자가 로그인 상태인지 아닌지를 판정하는 코드
 
+  //1. 세션에 login이라는 이름으로 저장된 데이터를 꺼낸다.
+  String playerId = (String)session.getAttribute("login");
+  String trainerId = (String)session.getAttribute("trainer");
+
+  //2. memberId가 있으면 로그인 상태라고 판정하고, 없으면 로그아웃 상태라고 판정한다.
+  boolean playerLogin = playerId != null;
+  boolean trainerLogin = trainerId != null;
+
+  //권한
+  String auth = (String)session.getAttribute("auth");
+  boolean admin = auth!=null&& auth.equals("관리자");
+    %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -27,7 +36,7 @@
 					<li><a href="#">고객의소리</a></li>
 					
 					<%-- 사용자 로그인 후 --%>
-					<%if(login){ %>
+					<%if(playerLogin){ %>
 						<li class="gnb-right">
 							<a href="<%=request.getContextPath()%>/player/matchingList.jsp?playerId=<%=playerId%>">내예약</a>
 							<span class="partition">|</span>
@@ -58,4 +67,5 @@
 	<%-- header end --%>
 	
 		
+
 	<section class="wrap">
