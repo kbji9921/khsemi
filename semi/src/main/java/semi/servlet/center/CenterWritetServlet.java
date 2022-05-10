@@ -14,7 +14,7 @@ import semi.servlet.DtoDao.EocDao;
 import semi.servlet.DtoDao.EocDto;
 
 @WebServlet(urlPatterns = "/center/write.kh")
-public class CenterInsertServlet extends HttpServlet{
+public class CenterWritetServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
