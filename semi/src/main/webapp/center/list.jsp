@@ -61,7 +61,7 @@
         <!--센터 목록-->
         <div class="flex-container flex-vertical">
         	<%for(CenterDto centerDto : centerList){ %>
-            <div class="flex-container list-center-listbox">
+            <div class="flex-container list-center-listbox m10">
                 <!--센터이미지-->
                 <div class="row center list-image-area">
                     <a href="/semi/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>">

@@ -1,3 +1,5 @@
+<%@page import="semi.servlet.DtoDao.TrainerDto"%>
+<%@page import="semi.servlet.DtoDao.TrainerDao"%>
 <%@page import="semi.servlet.DtoDao.EocDto"%>
 <%@page import="semi.servlet.DtoDao.EocDao"%>
 <%@page import="semi.servlet.DtoDao.CenterDto"%>
@@ -19,6 +21,9 @@
   	
   	EocDao eocDao = new EocDao();
   	List<EocDto> list = eocDao.selectList(centerId);
+  	
+  	TrainerDao trainerDao = new TrainerDao();
+  	List<TrainerDto> trainerList = trainerDao.selectTrainerList(centerId);
 
   %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
@@ -69,35 +74,32 @@
         <!--해당 센터 강사 목록-->
         <span>우리 센터의 강사</span>
         <div class="flex-container m10">
+		 <%for(TrainerDto trainerDto : trainerList){ %>
            <div class="flex-container flex-vertical layer-3">
                <div class="row center">
-                  <a href="#"><img src="https://placeimg.com/150/150/people" class="img img-round img-hover"></a>
+                  <a href="/semi/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>">
+                  <img src="https://placeimg.com/150/150/people" class="img img-round img-hover">
+                  </a>
                </div>
                <div class="center">
-                   <a href="#" class="trainer-name">황인빈 강사님</a>
+                   <a href="/semi/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>" class="trainer-name">
+                   <%=trainerDto.getTrainerName() %>
+                   </a>
                </div>
+			
            </div>
-
-           <div class="flex-container flex-vertical layer-3">
+        <%} %>
+        <!-- <div class="flex-container flex-vertical layer-3">
             <div class="row center">
                 <img src="https://placeimg.com/150/150/people" class="img img-round img-hover">
             </div>
             <div class="center">
                 <a href="#" class="trainer-name">황인빈 강사님</a>
             </div>
-        </div>
-
-        <div class="flex-container flex-vertical layer-3">
-            <div class="row center">
-                <img src="https://placeimg.com/150/150/people" class="img img-round img-hover">
-            </div>
-            <div class="center">
-                <a href="#" class="trainer-name">황인빈 강사님</a>
-            </div>
-        </div>
+        </div> -->
 
         </div>
-
+		
         <!--더보기 기능 구현해야함-->
         <div class="row m30">
             <button class="btn btn-primary fill">더보기</button>
