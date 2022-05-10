@@ -53,3 +53,6 @@
          .exercise-font-color{
             color: white;
         }
+         .table.exercise-stripe > thead > tr{
+            background-color: #343b6a;
+        }
