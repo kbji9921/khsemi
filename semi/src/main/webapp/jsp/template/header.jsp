@@ -50,4 +50,3 @@
 	
 		
 		<section class="wrap">
->>>>>>> refs/remotes/origin/project

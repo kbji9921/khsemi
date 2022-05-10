@@ -4,7 +4,7 @@
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
 
-	 <form action="insert.kh" method="post">
+	 <form action="write.kh" method="post">
         <div class="container w400 m30">
             <div class="row center">
                 <h1>센터등록</h1>
