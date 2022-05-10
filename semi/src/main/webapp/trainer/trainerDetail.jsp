@@ -17,7 +17,7 @@
  	TrainerDao trainerDao = new TrainerDao();
  	TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 	GradeDto gradeDto = new GradeDto();
-	//현재 글에 대한 평점 목록을 조회
+	//현재 글에 대한 평점 목록을 조회 
 	GradeDao gradeDao = new GradeDao();
 	List<GradeDto> GradeList = gradeDao.selectList(trainerId);
 
