@@ -1,4 +1,4 @@
-<%@page import="semi.servlet.DtoDao.ReservationDao"%>
+<!-- <%@page import="semi.servlet.DtoDao.ReservationDao"%>
 <%@page import="semi.servlet.DtoDao.ReservationDto"%>
 <%@page import="semi.servlet.DtoDao.PlayerDto"%>
 <%@page import="semi.servlet.DtoDao.PlayerDao"%>
@@ -17,7 +17,7 @@
     PlayerDto playerDto = playerDao.selectOne(playerId);
     
   
-    %>
+    %> -->
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,11 +70,32 @@
                 ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
                 ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
                 ,minDate: "+1D" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-                ,maxDate: "+7D" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                
+                ,maxDate: "+7D" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)   
+                ,onSelect:function(str, evt){
+                    $.ajax({
+                        //type: "POST",
+                        url: "http://localhost:8080/semi/reservedTime.kh?reservationDate="+str,
+                        success: function(resp){
+                            console.log(resp);
+                            //resp는 배열이고 그 안에 reservationTime이라는 항목이 시간 정보
+
+                            $("select[name=reservationTime] > option").prop("disabled", false);
+                            for(var i=0; i < resp.length; i++) {
+                                //console.log(resp[i].reservationTime);
+                                $("select[name=reservationTime] > option:contains("+resp[i].reservationTime+")")
+                                    .prop("disabled", true);
+                            }
+                        },
+                        error : function() {
+                            alert('URL호출 실패');
+                        }
+                    });
+                },             
             });                    
             
             //초기값을 오늘 날짜로 설정
             $('#datepicker').datepicker('+1D', '+7D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
+
        });
 
 
@@ -88,12 +109,12 @@
         </div>
         <div class="row">
             <label>강사</label>
-            <%=trainerDto.getTrainerName()%>
+            <!-- <%=trainerDto.getTrainerName()%> -->
             <input type="hidden" name="trainerId" value=<%=trainerDto.getTrainerId()%>>
         </div>
         <div class="row">
             <label>회원</label>
-            <%=playerDto.getPlayerName()%>
+            <!-- <%=playerDto.getPlayerName()%> -->
             <input type="hidden" name="playerId" value=<%=playerDto.getPlayerId()%>>
         </div>
         <div class="row">
@@ -103,6 +124,7 @@
         <div class="row">
           <label for="time">시간 선택</label>
       	 <select name="reservationTime" class="form-input input-round fill">
+            <option>시간선택</option>
       	 	<option>09:00AM</option>
       	 	<option>10:00AM</option>
       	 	<option>11:00AM</option>

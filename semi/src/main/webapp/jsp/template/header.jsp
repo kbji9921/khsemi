@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+  //현재 접속한 사용자가 로그인 상태인지 아닌지를 판정하는 코드
+
+  //1. 세션에 login이라는 이름으로 저장된 데이터를 꺼낸다.
+  String playerId = (String)session.getAttribute("login");
+  String trainerId = (String)session.getAttribute("trainer");
+
+  //2. memberId가 있으면 로그인 상태라고 판정하고, 없으면 로그아웃 상태라고 판정한다.
+  boolean isLogin= playerId!=null;
+
+
+  //권한
+  String auth = (String)session.getAttribute("auth");
+  boolean admin = auth!=null&& auth.equals("관리자");
+    %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
