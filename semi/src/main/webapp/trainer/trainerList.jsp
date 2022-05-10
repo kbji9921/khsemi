@@ -5,8 +5,9 @@
     pageEncoding="UTF-8"%>
 <% 
 request.setCharacterEncoding("UTF-8");
+String trainerSports = request.getParameter("trainerSport");
 TrainerDao trainerDao = new TrainerDao();
-List<TrainerDto> list = trainerDao.selectList();
+List<TrainerDto> list = trainerDao.selectTrainerSportsList(trainerSports);
 
 %>
 <table border ="1">
