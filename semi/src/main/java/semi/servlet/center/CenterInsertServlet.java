@@ -13,7 +13,7 @@ import semi.servlet.DtoDao.CenterDto;
 import semi.servlet.DtoDao.EocDao;
 import semi.servlet.DtoDao.EocDto;
 
-@WebServlet(urlPatterns = "/center/insert.kh")
+@WebServlet(urlPatterns = "/center/right.kh")
 public class CenterInsertServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

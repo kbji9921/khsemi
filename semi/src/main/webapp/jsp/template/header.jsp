@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	//회원 검사
+	String playerId = (String) session.getAttribute("login");
+	boolean login = playerId != null;
+%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -20,21 +26,24 @@
 					<li><a href="<%=request.getContextPath()%>">Home</a></li>
 					<li><a href="#">고객의소리</a></li>
 					
+					<%-- 사용자 로그인 후 --%>
+					<%if(login){ %>
+						<li class="gnb-right">
+							<a href="<%=request.getContextPath()%>/player/matchingList.jsp?playerId=<%=playerId%>">내예약</a>
+							<span class="partition">|</span>
+							<a href="<%=request.getContextPath()%>/player/mypage.jsp">내정보</a>
+							<span class="partition">|</span>
+							<a href="<%=request.getContextPath()%>/player/logout.player">로그아웃</a>
+						</li>
+					<%}else{ %>
 					<li class="gnb-right">
 						<a href="<%=request.getContextPath()%>/player/selectLogin.jsp">로그인</a>
-						<span class="partition">|</span>
+							<span class="partition">|</span>
 						<a href="<%=request.getContextPath()%>/player/selectJoin.jsp">회원가입</a>
 					</li>
+						
+					<%} %>
 					
-					<%-- 사용자 로그인 후
-					<li class="gnb-right">
-						<a href="#">내예약</a>
-						<span class="partition">|</span>
-						<a href="#">내정보</a>
-						<span class="partition">|</span>
-						<a href="#">로그아웃</a>
-					</li>
-					--%>
 					
 					<%-- 관리자 로그인 후
 					<li class="gnb-right">
@@ -49,5 +58,4 @@
 	<%-- header end --%>
 	
 		
-		<section class="wrap">
->>>>>>> refs/remotes/origin/project
+	<section class="wrap">

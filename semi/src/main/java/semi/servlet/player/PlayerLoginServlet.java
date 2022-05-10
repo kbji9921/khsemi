@@ -31,7 +31,7 @@ public class PlayerLoginServlet extends HttpServlet{
 				
 				req.getSession().setAttribute("login", playerId);
 				
-				resp.sendRedirect("loginSuccess.jsp");
+				resp.sendRedirect(req.getContextPath());
 			}else {
 				resp.sendRedirect("login.jsp?error");
 			}
