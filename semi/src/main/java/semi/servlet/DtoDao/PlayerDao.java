@@ -123,26 +123,37 @@ public class PlayerDao {
 		return playerId;
 	}
 	
-	public String findPw(PlayerDto playerDto)throws Exception {
+	public PlayerDto findPw(PlayerDto playerDto)throws Exception {
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select * from player where player_id = ? and player_name = ?";
+		String sql = "select * from player where player_id=? ";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		ps.setString(1, playerDto.getPlayerId());
-		ps.setString(2, playerDto.getPlayerName());
+		
 		
 		ResultSet  rs = ps.executeQuery();
 		
-		String playerId;
+		PlayerDto findDto;
 		if(rs.next()) {
-			playerId = rs.getString("player_id");
+			findDto = new PlayerDto();
+			findDto.setPlayerId(rs.getString("playerId"));
+			findDto.setPlayerPw(rs.getString("player_pw"));
+			findDto.setPlayerName(rs.getString("player_name"));
+			findDto.setPlayerGender(rs.getString("player_gender"));
+			findDto.setPlayerBirth(rs.getDate("player_birth"));
+			findDto.setPlayerPhone(rs.getString("player_phone"));
+			findDto.setPlayerEmail(rs.getString("player_email"));
+			findDto.setPlayerGrade(rs.getString("player_grade"));
+			findDto.setPlayerPoint(rs.getInt("player_point"));
+			findDto.setPlayerJoindate(rs.getDate("player_joindate"));
+			findDto.setPlayerLogindate(rs.getDate("player_logindate"));
 		}else {
-			playerId = null;
+			findDto = null;
 		}
 		
 		con.close();
-		return playerId;
+		return findDto;
 	}
 
 	public boolean changePassword(String playerId, String changePw)throws Exception {

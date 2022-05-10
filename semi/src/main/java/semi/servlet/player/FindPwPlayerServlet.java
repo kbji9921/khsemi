@@ -18,17 +18,21 @@ public class FindPwPlayerServlet extends HttpServlet {
 		try {
 			
 			req.setCharacterEncoding("UTF-8");
-			PlayerDto playerDto = new PlayerDto();
-			playerDto.setPlayerId(req.getParameter("playerId"));
-			playerDto.setPlayerName(req.getParameter("playerName"));
+			String playerId = req.getParameter("playerId");
+//			PlayerDto playerDto = new PlayerDto();
+//			playerDto.setPlayerId(req.getParameter("playerId"));
+//			playerDto.setPlayerName(req.getParameter("playerName"));
+//			playerDto.setPlayerPhone(req.getParameter("playerPhone"));
+			 
 			
 			PlayerDao playerDao = new PlayerDao();
-			String Id = playerDao.findPw(playerDto);
+			PlayerDto playerDto = playerDao.selectOne(playerId);
+//			PlayerDto findDto = playerDao.findPw(playerDto);
 			
+			boolean isPass =playerDto.getPlayerId() != null;
 			
-			
-			if(Id != null) {
-				resp.sendRedirect("set_pw.jsp?playerId="+Id);
+			if(isPass) {
+				resp.sendRedirect("set_pw.jsp?playerId="+playerDto.getPlayerId());
 			}else {
 				resp.sendRedirect("findPwPlayer.jsp?error");			
 			}

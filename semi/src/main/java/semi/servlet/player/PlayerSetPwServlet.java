@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.servlet.DtoDao.PlayerDao;
+import semi.servlet.DtoDao.PlayerDto;
 
 @WebServlet(urlPatterns = "/player/set_pw.player")
 public class PlayerSetPwServlet extends HttpServlet{
@@ -18,12 +19,21 @@ public class PlayerSetPwServlet extends HttpServlet{
 			
 			String playerId = req.getParameter("playerId");
 			String changePw = req.getParameter("changePw");
+			String checkPw = req.getParameter(changePw);	
 			
 			PlayerDao playerDao = new PlayerDao();
-			playerDao.changePassword(playerId, changePw);
+			PlayerDto playerDto = playerDao.selectOne(playerId);
+			
+			boolean isCheckPassword = changePw !=null && checkPw != null && changePw == checkPw;
+			
+			if(isCheckPassword) {
+				playerDao.changePassword(playerId, changePw);
+				resp.sendRedirect("set_pw_finish.jsp");
+			}else {
+				resp.sendRedirect("set_pw.jsp?error");
+			}
 			
 			
-			resp.sendRedirect("set_pw_finish.jsp");
 			
 		}catch(Exception e) {
 			e.printStackTrace();
