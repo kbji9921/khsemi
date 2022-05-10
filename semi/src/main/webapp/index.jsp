@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/index.css">
 
 			<article class="container">
 				<h3 class="contents-title">종목선택</h3>

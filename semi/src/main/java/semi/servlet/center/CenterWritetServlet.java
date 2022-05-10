@@ -13,8 +13,8 @@ import semi.servlet.DtoDao.CenterDto;
 import semi.servlet.DtoDao.EocDao;
 import semi.servlet.DtoDao.EocDto;
 
-@WebServlet(urlPatterns = "/center/insert.kh")
-public class CenterInsertServlet extends HttpServlet{
+@WebServlet(urlPatterns = "/center/write.kh")
+public class CenterWritetServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {

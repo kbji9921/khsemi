@@ -2,21 +2,14 @@
     pageEncoding="UTF-8"%>
 
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>포인트 충전</title>
-</head>
-<body>
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 	<h2>포인트 충전</h2>
 	<form action="chargePoint.player" method="post">
 		<label>
-			충전 포인트
+			충전 포인트:
 			<input type="number" name="playerPoint" required>
 		</label>
 		<br><br>
 		<input type="submit" value="충전">
 	</form>
-</body>
-</html>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>

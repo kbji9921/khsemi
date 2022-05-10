@@ -179,7 +179,7 @@ public class PlayerDao {
 	public boolean chargePoint(String playerId, int chargePoint)throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "update player set player_point = ? where player_id = ?";
+		String sql = "update player set player_point = player_point + ? where player_id = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		ps.setInt(1,chargePoint);
@@ -190,6 +190,17 @@ public class PlayerDao {
 		con.close();
 		return count > 0;
 	}
-	
+	public boolean minusPoint(String playerId, int minusPoint)throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "update player set player_point = player_point - ? where player_id=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, minusPoint);
+		ps.setString(2, playerId);
+
+		int count = ps.executeUpdate();
+		con.close();
+		return count > 0;
+	}
 	
 }

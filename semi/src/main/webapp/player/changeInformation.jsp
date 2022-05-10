@@ -11,40 +11,37 @@
 	PlayerDao playerDao = new PlayerDao();
 	PlayerDto playerDto = playerDao.selectOne(playerId);
 %>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>내정보 변경</title>
-</head>
-<body>
+
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 	 <h1>개인정보 변경</h1>
 	 
 	 <form action="chageinformation.player" method="Post">
 		 
 		 
 		 <label>
-		 	닉네임
+		 	이름:
 		    <input type="text" name="playerName" autocomplete="off" required  value="<%=playerDto.getPlayerName()%>">
 		</label><br><br>
-		
+		<label>
+			<input type="text" name="playerGender" required  placeholder="남/녀" value="<%=playerDto.getPlayerGender()%>">
+		</label>
 		 <label>
-		 	생년월일
+		 	생년월일:
 		    <input type="date" name="playerBirth" required value="<%=playerDto.getPlayerBirth()%>">
 		</label><br><br>
 		
 		<label>
-		 	전화번호
+		 	전화번호:
 		    <input type="number" name="playerPhone" required value="<%=playerDto.getPlayerPhone()%>">
 		</label><br><br>
 		
 		<label>
-		 	이메일
+		 	이메일:
 		    <input type="email" name="playerEmail" required value="<%=playerDto.getPlayerEmailString()%>">
 		</label><br><br>
 		
 		<label>
-		 	비밀번호 확인
+		 	비밀번호 확인:
 		    <input type="password" name="playerPw" required >
 		</label><br><br>
 		
@@ -55,5 +52,4 @@
 		<%} %>
 	
 	</form>
-</body>
-</html>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>

@@ -27,20 +27,10 @@
  		//eocList = eocDao.selectList(centerId);
  	}
  %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/reset.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/layout.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/commons.css">
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
 
-</head>
-<body>
-	 <div class="container w600 m30">
+	 <div class="container w650 m30">
 
         <div class="row center">
             <h1>살빠GYM CENTER</h1>
@@ -102,5 +92,5 @@
                     <%} %>
         </div>
     </div>
-</body>
-</html>
+
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>

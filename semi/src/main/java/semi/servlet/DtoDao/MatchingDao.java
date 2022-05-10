@@ -7,6 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MatchingDao {
+	public int getSequence() throws Exception{
+		      Connection con = JdbcUtils.getConnection();
+		      String sql = "select matching_seq.nextval from dual";
+		      PreparedStatement ps = con.prepareStatement(sql);
+		      ResultSet rs = ps.executeQuery();
+		      rs.next();
+		      int matchingNo = rs.getInt("nextval");
+		      
+		      con.close();
+		      
+		      return matchingNo;	
+	   }
+	
 	public List<MatchingDto> selectList(String playerId)throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
@@ -18,10 +31,12 @@ public class MatchingDao {
 		List<MatchingDto> list = new ArrayList<>();
 		while(rs.next()) {
 			MatchingDto matchingDto = new MatchingDto();
+			matchingDto.setMatchingNo(rs.getInt("matching_no"));
 			matchingDto.setStudentId(rs.getString("student_id"));
 			matchingDto.setCoachId(rs.getString("coach_id"));
-			matchingDto.setMatchingDate(rs.getDate("matching_date"));
 			matchingDto.setMatchingDays(rs.getInt("matching_days"));
+			matchingDto.setMatchingDate(rs.getDate("matching_date"));
+			matchingDto.setMatchingState(rs.getString("matching_state"));
 			
 			list.add(matchingDto);
 		}
@@ -32,12 +47,13 @@ public class MatchingDao {
 	public void insert(MatchingDto matchingDto)throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "insert into matching (student_id,coach_id,matching_date,matching_days) values(?,?,sysdate,?)";
+		String sql = "insert into matching (matching_no,student_id, coach_id, matching_days, matching_date, matching_state) values(?,?,?,?,sysdate,'임시')";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
-		ps.setString(1, matchingDto.getStudentId());
-		ps.setString(2, matchingDto.getCoachId());
-		ps.setInt(3, matchingDto.getMatchingDays());
+		ps.setInt(1, matchingDto.getMatchingNo());
+		ps.setString(2, matchingDto.getStudentId());
+		ps.setString(3, matchingDto.getCoachId());
+		ps.setInt(4, matchingDto.getMatchingDays());
 		
 		ps.execute();
 		
@@ -68,10 +84,12 @@ public class MatchingDao {
 		List<MatchingDto> list = new ArrayList<>();
 		while(rs.next()) {
 			MatchingDto matchingDto = new MatchingDto();
+			matchingDto.setMatchingNo(rs.getInt("matching_no"));
 			matchingDto.setStudentId(rs.getString("student_id"));
 			matchingDto.setCoachId(rs.getString("coach_id"));
-			matchingDto.setMatchingDate(rs.getDate("matching_date"));
 			matchingDto.setMatchingDays(rs.getInt("matching_days"));
+			matchingDto.setMatchingDate(rs.getDate("matching_date"));
+			matchingDto.setMatchingState(rs.getString("matching_state"));
 			
 			list.add(matchingDto);
 		}
@@ -99,6 +117,19 @@ public class MatchingDao {
 		con.close();
 		return Tpcount;
 	}
+
 	
+	public boolean changeMathcingState(String playerId, String trainerId)throws Exception {
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "update matching set matching_state = '결제완료' where student_id=? and coach_id=? ";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, playerId);
+		ps.setString(2, trainerId);
+		
+		int count = ps.executeUpdate();
+		con.close();
+		return count > 0;
+	}
 	
 }

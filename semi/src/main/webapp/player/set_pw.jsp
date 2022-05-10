@@ -3,13 +3,7 @@
 <%
 	String playerId = request.getParameter("playerId");
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>비밀번호 재설정</title>
-</head>
-<body>
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 	<form action="set_pw.player" method="post">
 		<input type="text" name="playerId" value="<%=playerId %>">
 		
@@ -17,5 +11,4 @@
 		<br><br>
 		<button type="submit">비밀번호 재설정</button>
 	</form>
-</body>
-</html>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
