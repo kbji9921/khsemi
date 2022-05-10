@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import semi.servlet.DtoDao.GradeDao;
 import semi.servlet.DtoDao.GradeDto;
-@WebServlet(urlPatterns = "/grade/update.grade")
+@WebServlet(urlPatterns = "/train/grade_update.grade")
 public class gradeUpdateServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -18,7 +18,7 @@ public class gradeUpdateServlet extends HttpServlet {
 			//준비 : 
 			GradeDto gradeDto = new GradeDto();
 			gradeDto.setGradeNo(Integer.parseInt(req.getParameter("grade_no")));
-			gradeDto.setGradeTarget(req.getParameter("gradeTarget"));
+			gradeDto.setGradeRate(Integer.parseInt(req.getParameter("grade_rate")));
 			gradeDto.setGradeContent(req.getParameter("gradeContent"));
 			
 			

@@ -19,7 +19,7 @@ import semi.servlet.DtoDao.CenterAttachmentDto;
 import semi.servlet.DtoDao.CenterDao;
 import semi.servlet.DtoDao.CenterDto;
 
-@WebServlet(urlPatterns ="/center/insert.kh")
+@WebServlet(urlPatterns ="/centerFile/insert.kh")
 public class CenterFileUploadServlet extends HttpServlet{
 @Override
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

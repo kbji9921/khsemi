@@ -69,6 +69,9 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
                 <button class="btn btn-round fill">정보 수정</button>
             </div>
             <div class="row">
+            <button class="btn btn-round fill btn-danger">스케쥴</button>
+        </div>
+            <div class="row">
                 <button class="btn btn-round fill">비밀번호 변경</button>
             </div>
         <div class="row">
