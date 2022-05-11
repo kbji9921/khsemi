@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import oracle.jdbc.proxy.annotation.Pre;
+
 public class CenterDao {
 	//센터 등록
 	public void insert(CenterDto centerDto) throws Exception{
@@ -187,5 +189,109 @@ public class CenterDao {
 		con.close();
 		
 		return centerDto;
+	}
+	
+	//센터 페이징 조회
+	public List<CenterDto> selectListByPaging(int p, int s) throws Exception{
+		int end = p *s;
+		int begin = end -(s-1);
+		
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from ("
+				+ "select rownum rn, TMP.* from ("
+				+ "select * from center order by center_name asc)TMP ) where rn between ? and ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, begin);
+		ps.setInt(2, end);
+		ResultSet rs = ps.executeQuery();
+		
+		List<CenterDto> list = new ArrayList<>();
+		while(rs.next()) {
+			CenterDto centerDto = new CenterDto();
+			centerDto.setCenterId(rs.getString("center_id"));
+			centerDto.setCenterName(rs.getString("center_name"));
+			centerDto.setCenterPhone(rs.getString("center_phone"));
+			centerDto.setCenterWeektime(rs.getString("center_weektime"));
+			centerDto.setCenterWkndtime(rs.getString("center_wkndtime"));
+			centerDto.setCenterPost(rs.getString("center_post"));
+			centerDto.setCenterBasicAddress(rs.getString("center_basic_address"));
+			centerDto.setCenterDetailAddress(rs.getString("center_detail_address"));
+			centerDto.setCenterIntroduction(rs.getString("center_introduction"));
+			
+			list.add(centerDto);
+		}
+				
+		con.close();
+		
+		return list;
+	}
+	
+	//센터 페이징 검색
+	public List<CenterDto> selectListByPaging(int p,int s, String type,String keyword) throws Exception{
+		int end = p*s;
+		int begin = end-(s-1);
+		
+		Connection con= JdbcUtils.getConnection();
+		
+		String sql = "select * from ("
+				+ "select rownum rn, TMP.* from ("
+				+ "select * from center where instr(#1,?)>0 order by center_name asc)TMP ) where rn between ? and ?";
+		sql = sql.replace("#1", type);
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, keyword);
+		ps.setInt(2, begin);
+		ps.setInt(3, end);
+		ResultSet rs = ps.executeQuery();
+		
+		List<CenterDto> list = new ArrayList<>();
+		while(rs.next()) {
+			CenterDto centerDto = new CenterDto();
+			centerDto.setCenterId(rs.getString("center_id"));
+			centerDto.setCenterName(rs.getString("center_name"));
+			centerDto.setCenterPhone(rs.getString("center_phone"));
+			centerDto.setCenterWeektime(rs.getString("center_weektime"));
+			centerDto.setCenterWkndtime(rs.getString("center_wkndtime"));
+			centerDto.setCenterPost(rs.getString("center_post"));
+			centerDto.setCenterBasicAddress(rs.getString("center_basic_address"));
+			centerDto.setCenterDetailAddress(rs.getString("center_detail_address"));
+			centerDto.setCenterIntroduction(rs.getString("center_introduction"));
+			
+			list.add(centerDto);
+		}
+		
+		con.close();
+		
+		return list;
+	}
+	//게시글 수(조회)
+	public int countByPaging() throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select count(*) from center";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int count = rs.getInt("count(*)");
+		
+		con.close();
+		
+		return count;
+	}
+	//게시글 수 검색
+	public int countByPaging(String type, String keyword) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select count(*) from center where instr (#1,?) > 0";
+		sql= sql.replace("#1", type);
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, keyword);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int count = rs.getInt("count(*)");
+		
+		con.close();
+		
+		return count;
 	}
 }
