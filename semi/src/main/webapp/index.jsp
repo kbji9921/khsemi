@@ -15,7 +15,7 @@
 				<div class="flex-container exercise">
 					<div class="content-box">
 						<div class="content exercise">
-							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?trainerSport=헬스">
+							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exercisName=헬스">
 								<img src="/semi/images/health_icon.png" width=45%>
 							</a>
 						</div>
@@ -143,3 +143,4 @@
 					</div>
 				</div>
 			</article>
+	 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>

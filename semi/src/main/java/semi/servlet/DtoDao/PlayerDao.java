@@ -105,11 +105,12 @@ public class PlayerDao {
 	public String findId(PlayerDto playerDto)throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select player_id from player where player_name=? and player_phone = ?";
+		String sql = "select player_id from player where player_name=? and player_phone = ? and player_birth =?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		ps.setString(1, playerDto.getPlayerName());
 		ps.setString(2, playerDto.getPlayerPhone());
+		ps.setDate(3, playerDto.getPlayerBirth());
 		
 		ResultSet rs = ps.executeQuery();
 		String playerId;
@@ -201,6 +202,7 @@ public class PlayerDao {
 		con.close();
 		return count > 0;
 	}
+	
 	public boolean minusPoint(String playerId, int minusPoint)throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
@@ -212,6 +214,35 @@ public class PlayerDao {
 		int count = ps.executeUpdate();
 		con.close();
 		return count > 0;
+	}
+
+	public PlayerDto selectPhone(String playerPhone)throws Exception {
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from player where player_phone=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, playerPhone);
+		
+		ResultSet rs = ps.executeQuery();
+		PlayerDto playerDto;
+		if(rs.next()) {
+			playerDto = new PlayerDto();
+			playerDto.setPlayerId(rs.getString("player_id"));
+			playerDto.setPlayerPw(rs.getString("player_pw"));
+			playerDto.setPlayerName(rs.getString("player_name"));
+			playerDto.setPlayerGender(rs.getString("player_gender"));
+			playerDto.setPlayerBirth(rs.getDate("player_birth"));
+			playerDto.setPlayerPhone(rs.getString("player_phone"));
+			playerDto.setPlayerEmail(rs.getString("player_email"));
+			playerDto.setPlayerGrade(rs.getString("player_grade"));
+			playerDto.setPlayerPoint(rs.getInt("player_point"));
+			playerDto.setPlayerJoindate(rs.getDate("player_joindate"));
+			playerDto.setPlayerLogindate(rs.getDate("player_logindate"));
+		}else {
+			playerDto = null;
+		}
+		con.close();
+		return playerDto;
 	}
 	
 }

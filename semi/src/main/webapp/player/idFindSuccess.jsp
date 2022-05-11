@@ -6,12 +6,15 @@
 %>
 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-
-	<h1>아이디 찾기 결과</h1><br><br>
-	<h1><%=playerId%></h1>
-	
-	<hr>
-	
-	<h2><a href="login.jsp">로그인</a></h2>
-	<h2><a href="<%=request.getContextPath() %>">메인</a></h2>
+	<div class="container w450 m30">
+        <div class="row m30 center">
+        	 <h1>아이디 찾기 결과</h1>
+        </div>
+        <div class="row center">
+        	 <h1><%=playerId %></h1>
+        </div>
+         <div class="row m40 center">
+	          <h2><a href="findPwPlayer.jsp?playerId=<%=playerId%>">비밀번호 찾기</a></h2>
+	      </div>
+    </div>
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>
