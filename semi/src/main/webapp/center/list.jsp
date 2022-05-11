@@ -79,9 +79,7 @@
 	<style>
 		.pagination {
 	    text-align: center;
-	    /* 이 설정을 하면 내부 항목의 줄바꿈이 일어나지 않는다 */
 	    white-space: nowrap;
-	    /* 영역을 넘어가는 내용에 대해 표시하지 않도록 설정한다 */
 	    overflow: hidden;            
 	}
 	.pagination > a {
@@ -89,7 +87,7 @@
 	    text-decoration: none;
 	
 	    display: inline-block;
-	    min-width:2em;
+	    min-width:1.7em;
 	    padding: 0.25em;
 	
 	    text-align: center;
@@ -139,7 +137,7 @@
                 <!--센터이미지-->
                 <div class="row c-list-img">
                     <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>">
-                    <img src="http://via.placeholder.com/170x170" class="c-img img-hover img-round" width="100%">
+                    <img src="https://placeimg.com/170/170/tech/grayscale" class="c-img img-shadow img-round" width="100%">
                     </a>
                 </div>
                 <div class="c-list-area">

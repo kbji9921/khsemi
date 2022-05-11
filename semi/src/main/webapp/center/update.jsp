@@ -20,7 +20,40 @@
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 
-	 <form action="update.kh" method="post">
+ <!-- jquery cdn -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+<script type="text/javascript">
+$(function(){
+
+    $(".regex-input").blur(regCheck);
+    $(".edit-form").submit(function(){
+        var judge1 = regCheck.call(document.querySelector("input[name=centerPhone]"));
+        var judge2 = regCheck.call(document.querySelector("input[name=centerWeektime]"));
+        var judge3 = regCheck.call(document.querySelector("input[name=centerWkndtime]"));
+
+        return judge1 && judge2 && judge3;
+    });
+
+    function regCheck(){
+        var regex = new RegExp($(this).data("regex"));
+        var value = $(this).val();
+        var judge = regex.test(value);
+
+        if(!judge){
+            $(this).next().css("color","red");
+            $(this).next().text($(this).data("fail-msg"));
+            return false;
+        }
+        else{
+            $(this).next().text("");
+            return true;
+        }
+    };
+});
+    </script>
+
+	 <form action="update.kh" method="post" class="edit-form"> 
         <div class="container w400 m30">
             <div class="row center">
                 <h1>센터정보 수정</h1>
@@ -33,20 +66,27 @@
             </div>
             
             <div class="row">
-                <label for="centername-input">센터이름</label>
+                <label>센터이름
                 <input type="text" name="centerName" value="<%=centerDto.getCenterName() %>" autocomplete="off" class="form-input inpur-round fill" id="centername-input">
+            	</label>
             </div>
             <div class="row">
-                <label for="centerphone-input">전화번호</label>
-                <input type="text" name="centerPhone" value="<%=centerDto.getCenterPhone() %>" autocomplete="off" class="form-input input-round fill" id="centerphone-input">
+                <label>전화번호
+                <input type="text" name="centerPhone" value="<%=centerDto.getCenterPhone() %>" autocomplete="off" class="form-input input-round fill regex-input" 
+                placeholder="-포함하여 입력하세요" data-regex="^0[0-6]{1,2}-[1-9][0-9]{2,3}-[0-9]{4}$" data-fail-msg="입력하신 내용이 올바르지 않습니다">
+            	<span></span></label>
             </div>
             <div class="row">
-                <label for="week-input">평일운영시간</label>
-                <input type="text" name="centerWeektime" value="<%=centerDto.getCenterWeektime() %>" autocomplete="off" class="form-input input-round fill" id="week-input">
+                <label>평일운영시간
+                <input type="text" name="centerWeektime" value="<%=centerDto.getCenterWeektime() %>" autocomplete="off" class="form-input input-round fill regex-input" 
+                placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" data-regex="^[가-힣0-9:~]+$" data-fail-msg="입력하신 내용이 올바르지 않습니다">
+            	<span></span></label>
             </div>
             <div class="row">
-                <label for="wknd-input">주말운영시간</label>
-                <input type="text" name="centerWkndtime" value="<%=centerDto.getCenterWkndtime() %>" autocomplete="off" class="form-input input-round fill" id="wknd-input">
+                <label>주말운영시간
+                <input type="text" name="centerWkndtime" value="<%=centerDto.getCenterWkndtime() %>" autocomplete="off" class="form-input input-round fill regex-input" 
+                placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" data-regex="^[가-힣0-9:~]+$" data-fail-msg="입력하신 내용이 올바르지 않습니다">
+            	<span></span></label>
             </div>
             <div class="row">
                 <label>주소</label><br>
@@ -61,8 +101,8 @@
             </div>
           
             <div class="row">
-                <label for="introduction-input">센터소개</label>
-                <textarea name="centerIntroduction" class="form-input input-round fill" rows="7"><%=centerDto.getCenterIntroduction() %></textarea>
+                <label>센터소개</label>
+                <textarea name="centerIntroduction" class="form-input input-round fill" rows="7" placeholder="센터소개 또는 비용 등에 대하여 작성해주세요"><%=centerDto.getCenterIntroduction() %></textarea>
             </div>
             <div class="row">
                 <label>센터대표사진</label>

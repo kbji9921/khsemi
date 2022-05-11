@@ -25,6 +25,11 @@
 	opacity: 1;
 }
 
+.c-img.img-shadow:hover{
+	border: none;
+	box-shadow: 0 0 2px 1px #CCCCCC;
+}
+
 .c-img.img-circle {
 	border-radius: 50%;
 }
@@ -103,7 +108,7 @@
 }
 
 .c-list-listbox {
-	border: solid #efefef 0.1em;
+	border: solid #cacaca 0.1em;
 	border-radius: 0.5em;
 }
 
