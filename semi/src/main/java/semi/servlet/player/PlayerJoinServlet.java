@@ -30,9 +30,22 @@ public class PlayerJoinServlet extends HttpServlet{
 			
 			
 			PlayerDao playerDao = new PlayerDao();
+			boolean phoneCheck = playerDto.getPlayerPhone().length() > 11;
+			
+			if(phoneCheck) {
+				resp.sendRedirect(req.getContextPath()+"/player/joing.jsp?error=1");
+				return;
+			}
+			
 			playerDao.insert(playerDto);
 			
-			resp.sendRedirect("joinSuccess.jsp");
+			boolean success = playerDao.selectOne(playerDto.getPlayerId()) != null;
+			if(success) {
+				resp.sendRedirect(req.getContextPath());
+			}else {
+				resp.sendRedirect(req.getContextPath()+"/player/joing.jsp?error=2");
+				return;
+			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();

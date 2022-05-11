@@ -24,7 +24,19 @@ MatchingDao matchingDao = new MatchingDao();
 Integer ptcount = matchingDao.selectOne(playerId, trainerId);
 %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-			<table border="1">
+		<div class="container w800 m30 center">
+		   <div class="row center">
+		   		<h2><%=trainerDto.getTrainerName() %> 강사 상세 매칭 정보</h2>
+		   </div>
+		   <div class="row right">
+			   <form action="matchingDelete.player" method="post">
+					<input type="hidden" name="playerId" value="<%=playerId%>">
+					<input type="hidden" name="trainerId" value="<%=trainerId%>">
+					<button type="submit">삭제</button>
+				</form>
+			</div>
+		<div class="row m30 center">
+	   		<table class="table table-border table-hover">
 				<tr>
 					<th>강사명</th>
 					<td><%=trainerDto.getTrainerName() %></td>
@@ -39,7 +51,7 @@ Integer ptcount = matchingDao.selectOne(playerId, trainerId);
 				</tr>
 				<tr>
 					<th>PT비용</th>
-					<td><input type="number" name="playerPoint" value="<%=trainerDto.getTrainerPrice() %>" readonly></td>
+					<td><input type="number" name="playerPoint" value="<%=trainerDto.getTrainerPrice() %>" disabled></td>
 				</tr>
 				<tr>
 					<th>연락처</th>
@@ -57,20 +69,15 @@ Integer ptcount = matchingDao.selectOne(playerId, trainerId);
 					<th>남은 PT 횟수</th>
 					<td><%=ptcount%></td>
 				</tr>
-			</table>
-		<form action="pay.player" method="post">
-			<input type="hidden" name="playerId" value="<%=playerId%>">
-			<input type="hidden" name="trainerId" value="<%=trainerId%>">
-			<input type="hidden" name="playerPoint" value="<%=trainerDto.getTrainerPrice() %>">
-			<button type="submit">결제하기</button>
-		</form>
-	<br><br>
-	<form action="matchingDelete.player" method="post">
-		<input type="hidden" name="playerId" value="<%=playerId%>">
-		<input type="hidden" name="trainerId" value="<%=trainerId%>">
-		<button type="submit">삭제</button>
-	</form>
-	<a href="<%=request.getContextPath()%>">메인</a>
-	<a href="matchingList.jsp">내 일정</a>
-	<a href="mypage.jsp">내정보</a>
+	   		</table>
+	   </div>
+	   <div class="row right">
+			<form action="pay.player" method="post">
+				<input type="hidden" name="playerId" value="<%=playerId%>">
+				<input type="hidden" name="trainerId" value="<%=trainerId%>">
+				<input type="hidden" name="playerPoint" value="<%=trainerDto.getTrainerPrice() %>">
+				<button type="submit">결제하기</button>
+			</form>
+	   </div>
+	</div>
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>

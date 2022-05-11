@@ -47,7 +47,7 @@ public class PlayerChagePwServlet  extends HttpServlet{
 			playerDao.changePassword(playerId, changePw);
 			
 			
-			resp.sendRedirect("loginSuccess.jsp");
+			resp.sendRedirect("set_pw_finish.jsp");
 		}catch(Exception e) {
 			e.printStackTrace();
 			resp.sendError(500);
