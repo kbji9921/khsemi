@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
- .image-area{
+ 		.image-area{
             width: 25%;
             margin: auto;
         }
@@ -52,4 +52,7 @@
        
          .exercise-font-color{
             color: white;
+        }
+         .table.exercise-stripe > thead > tr{
+            background-color: #343b6a;
         }

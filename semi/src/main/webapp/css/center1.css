@@ -1,0 +1,151 @@
+@charset "UTF-8";
+
+/*
+    center css입니다
+*/
+
+/* center detail page */
+.c-container {
+	margin: auto;
+}
+
+.c-img {
+	border: 2px solid transparent;
+}
+
+.c-img.img-round {
+	border-radius: 10px;
+}
+
+.c-img.img-hover {
+	opacity: 0.4;
+}
+
+.c-img.img-hover:hover {
+	opacity: 1;
+}
+
+.c-img.img-circle {
+	border-radius: 50%;
+}
+
+.flex-c-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
+.flex-c-container.flex-c-vertical {
+	flex-direction: column;
+}
+
+.display-c-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.image-c-area {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 250px;
+	height: 250px;
+}
+
+.content-c-area {
+	flex-grow: 1;
+	padding-left: 1.2em;
+	padding-right: 0.5em;
+}
+
+.exercise-kinds {
+	display: inline-block;
+	width: 25%;
+	border: solid #343b6a 0.1em;
+	border-radius: 1em;
+	padding: 0.1em;
+	margin-top: 10px;
+}
+
+.center-introbox {
+	height: 150px;
+	border-radius: 0.5em;
+	border: solid #b2bec3 0.05em;
+	padding: 0.5em;
+}
+
+.trainer-nameBox {
+	text-decoration: none;
+}
+
+.c-btn-list {
+	margin-left: auto;
+}
+
+.c-btn-list a {
+	margin-right: 5px;
+}
+
+/* center list page */
+.c-list-img {
+	width: 170px;
+	height: 170px;
+	margin: auto;
+}
+
+.c-list-area {
+	flex-grow: 1;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+.c-list-listbox {
+	border: solid #efefef 0.1em;
+	border-radius: 0.5em;
+}
+
+.list-exercise-kinds {
+	width: 25%;
+	border: solid #343b6a 0.1em;
+	border-radius: 1em;
+	padding: 0.1em;
+}
+
+/* exercise page */
+.c-table {
+	width: 100%;
+	border-collapse: separate
+}
+
+.c-table>thead>tr>th, .c-table>thead>tr>td, .c-table>tbody>tr>th,
+	.c-table>tbody>tr>td, .c-table>tfoot>tr>th, .c-table>tfoot>tr>td {
+	padding: 0.5em;
+	text-align: center;
+}
+
+.c-table>thead>tr>th {
+	background-color: #343b6a;
+	color: white;
+}
+
+.c-table.table-border>thead>tr>th, .c-table.table-border>thead>tr>td,
+	.c-table.table-border>tbody>tr>th, .c-table.table-border>tbody>tr>td,
+	.c-table.table-border>tfoot>tr>th, .c-table.table-border>tfoot>tr>td {
+	border: 1px solid #b2bec3;
+}
+
+.c-table.table-border>thead>tr>th {
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+
+.c-table.table-border>tbody>tr:last-child>td:first-child {
+	border-bottom-left-radius: 7px;
+}
+
+.c-table.table-border>tbody>tr:last-child>td:last-child {
+	border-bottom-right-radius: 7px;
+}

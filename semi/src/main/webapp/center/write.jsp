@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
  
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 
 	 <form action="write.kh" method="post">
         <div class="container w400 m30">
@@ -48,10 +48,15 @@
                 <input type="text" name="centerDetailAddress" autocomplete="off" class="form-input input-round fill">
             </div>
             <div class="row">
-                <label for="exercise-input">운동종목</label>
-
-                <input type="text" name="exerciseName" autocomplete="off" placeholder="2개 이상의 종목 추가는 마이페이지에서 가능합니다" class="form-input input-round fill"
-                id="exercise-input">
+                <label>운동종목</label>
+				<select name="exerciseName" class="form-input input-round fill" >
+					<option value="">선택하세요</option>
+					<option>헬스</option>
+					<option>필라테스</option>
+					<option>요가</option>
+					<option>테니스</option>
+					<option>수영</option>
+				</select>
             </div>
             <div class="row">
                 <label for="introduction-input">
@@ -64,7 +69,7 @@
                 <input type="file" name="centerPics" class="form-input input-round fill">
             </div>
             <div class="row right">
-                <button type="submit" class="btn btn-primary">등록</button>
+                <button type="submit" class="btn btn-semi">등록</button>
                 <a href="#" class="link link-btn">취소</a>
             </div>
         </div>
