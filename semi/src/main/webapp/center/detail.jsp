@@ -45,16 +45,25 @@
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 
+ <!-- jquery cdn -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+<script type="text/javascript">
+        $(function(){
+            $("#delete").click(function(){
+                return confirm("정말 삭제하시겠습니까?");
+            });
+        });
+    </script>
+
 	 <div class="c-container w650 m30">
         <!--제목-->
-        <div class="row center m20">
-            <h2>Personal Training Center</h2>
-        </div>
+        
         <!--센터 정보-->
-        <div class="flex-c-container flex-c-vertical">
+        <div class="flex-c-container flex-c-vertical m30">
             <div class="flex-c-container">
                <div class="row image-c-area">
-                    <img src="http://via.placeholder.com/250x250" class="c-img img-round">
+                    <img src="https://placeimg.com/250/250/tech/grayscale" class="c-img img-round">
                 </div>
                 <div class="content-c-area">
                     <div class="row center">
@@ -142,7 +151,7 @@
   			관리자이거나 강사로 로그인 되어 있으면서 현재 로그인 된 강사가 소속된 센터의 아이디가 같다면 -->
   			<%--<%if(admin||isOwnerCenter){ --%>
 			<a href="<%=request.getContextPath() %>/center/update.jsp?centerId=<%=centerDto.getCenterId()%>" class="link link-btn m10" width="30%">수정</a>
-			<a href="<%=request.getContextPath() %>/center/delete.kh?centerId=<%=centerDto.getCenterId()%>" class="link link-btn m10" width="30%">삭제</a>
+			<a href="<%=request.getContextPath() %>/center/delete.kh?centerId=<%=centerDto.getCenterId()%>" class="link link-btn m10" width="30%" id="delete">삭제</a>
    			<%--<%} --%>
    			<a href="<%=request.getContextPath() %>/center/list.jsp" class="link link-btn m10" width="30%">목록</a>
 		</div>    
