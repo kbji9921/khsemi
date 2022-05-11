@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
  
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 
 	 <form action="write.kh" method="post">
         <div class="container w400 m30">
@@ -69,7 +69,7 @@
                 <input type="file" name="centerPics" class="form-input input-round fill">
             </div>
             <div class="row right">
-                <button type="submit" class="btn btn-primary">등록</button>
+                <button type="submit" class="btn btn-semi">등록</button>
                 <a href="#" class="link link-btn">취소</a>
             </div>
         </div>
