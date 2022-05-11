@@ -199,8 +199,8 @@
 }
 .pagination > a:hover,
 .pagination > a.active {
-    color: red;
-    border-color: red;
+    color: #343B6A;
+    border-color: #343B6A;
 }
 
 /*
