@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+/*
+    center css입니다
+*/
+
+/* center detail page */
+.c-container{
+    margin: auto;
+}
+.c-img {
+    
+    border: 2px solid transparent;
+}
+
+.c-img.img-round {
+    border-radius: 10px;
+}
+.c-img.img-hover {
+    opacity: 0.4;
+}
+
+.c-img.img-hover:hover {
+    opacity: 1;
+}
+
+.flex-c-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.flex-c-container.flex-c-vertical {
+    flex-direction: column;
+}
+
+
+.display-c-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-c-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 250px;
+   
+}
+.content-c-area{
+    flex-grow: 1;
+    padding-left: 1em;
+    padding-right: 0.5em;
+   
+}
+.exercise-kinds{
+    display: inline-block;
+    width: 25%;
+    border: solid #343b6a 0.1em;
+    border-radius: 1em;
+    padding: 0.1em;
+}
+.center-introbox{
+   height: 150px;
+   border-radius: 0.5em;
+   border: solid #b2bec3 0.05em;
+   padding: 0.5em;
+}
+
+.trainer-nameBox{
+  text-decoration: none;
+}
+
+
+/* center list page */
+.c-list-img{
+    width: 170px;
+    height: 170px;
+    margin: auto;
+}
+.c-list-area{
+    flex-grow: 1;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+.c-list-listbox{
+    border: solid #efefef  0.1em;
+    border-radius: 0.5em;
+}
+.list-exercise-kinds{
+   width: 25%;
+   border: solid #343b6a 0.1em;
+   border-radius: 1em;
+   padding: 0.1em;
+}
+
+/* exercise page */
+.exercise-font-color{
+    color: white;
+}
+.table.exercise-stripe > thead > tr {
+    background-color: #343b6a;
+}

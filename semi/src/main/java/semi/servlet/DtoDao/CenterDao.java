@@ -98,7 +98,7 @@ public class CenterDao {
 	public List<CenterDto> selectList(String type,String keyword) throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select * from center where instr(#1,?)>=2 order by center_name asc";
+		String sql = "select * from center where instr(#1,upper(?))>=1 order by center_name asc";
 		sql = sql.replace("#1", type);
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, keyword);
