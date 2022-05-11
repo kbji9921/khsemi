@@ -28,16 +28,16 @@
  	}
  %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 
-	 <div class="container w650 m30">
+	 <div class="c-container w650 m30">
 
         <div class="row center">
             <h1>살빠GYM CENTER</h1>
         </div>
         <!--검색창-->
-        <div class="row center m30">
-            <form action="/semi/center/list.jsp" method="get">
+        <div class="row center m20">
+            <form action="<%=request.getContextPath() %>/center/list.jsp" method="get">
             <%if(type==null||type.equals("center_basic_address")){ %>
                 <select name="type" class="form-input input-round">
                     <option value="center_basic_address" selected >동이름</option>     
@@ -50,32 +50,32 @@
                 </select>
                 <%} %>
                 <%if(isSearch){ %>
-                	<input type="text" name="keyword" class="form-input input-round" placeholder="센터명 또는 OO동으로 검색" value="<%=keyword%>">
+                	<input type="text" name="keyword" class="form-input input-round layer-2"  placeholder="OO동 또는 센터명으로 검색하세요" autocomplete="off" value="<%=keyword%>">
                 <%} else{ %>
-                	<input type="text" name="keyword" class="form-input input-round" placeholder="센터명 또는 OO동으로 검색">
+                	<input type="text" name="keyword" class="form-input input-round layer-2"  placeholder="OO동 또는 센터명으로 검색하세요" autocomplete="off">
                 <%} %>
-                <button type="submit" class="btn btn-primary">검색</button>
+                <button type="submit" class="btn btn-semi">검색</button>
             </form>
         </div>
        
         <!--센터 목록-->
-        <div class="flex-container flex-vertical">
+        <div class="flex-c-container flex-c-vertical">
         	<%for(CenterDto centerDto : centerList){ %>
-            <div class="flex-container list-center-listbox m10">
+            <div class="flex-c-container c-list-listbox m10">
                 <!--센터이미지-->
-                <div class="row center list-image-area">
-                    <a href="/semi/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>">
-                    <img src="http://via.placeholder.com/150x150" class="img img-hover img-round">
+                <div class="row c-list-img">
+                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>">
+                    <img src="http://via.placeholder.com/170x170" class="c-img img-hover img-round" width="100%">
                     </a>
                 </div>
-                <div class="list-center-area">
+                <div class="c-list-area">
                     <div class="row m30">
-                    <a href="/semi/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>">
+                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>">
                         <h2><%=centerDto.getCenterName() %></h2>
                         </a>
                     </div>
                     <div class="row">
-                        <h4><%=centerDto.getCenterBasicAddress() %>&nbsp;<%=centerDto.getCenterDetailAddress() %></h4>
+                        <h3><%=centerDto.getCenterBasicAddress() %>&nbsp;<%=centerDto.getCenterDetailAddress() %></h3>
                     </div>
                     <%--센터 담당 운동 
                     <%for(EocDto eocDto : eocList){ %>
@@ -84,7 +84,7 @@
                     </div>
 					<%} %>--%>
                     <!--좋아요 수-->
-                    <div class="row right">
+                    <div class="row right m20">
                         <h4>[10]</h4>
                     </div>
                 </div>
