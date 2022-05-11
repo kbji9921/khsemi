@@ -18,7 +18,7 @@
    <%--출력 --%>
 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 
 	 <form action="update.kh" method="post">
         <div class="container w400 m30">
@@ -51,7 +51,7 @@
             <div class="row">
                 <label>주소</label><br>
                 <input type="text" name="centerPost" value="<%=centerDto.getCenterPost() %>" autocomplete="off" class="form-input input-round">
-                <a href="#" class="btn btn-primary">검색</a>
+                <a href="#" class="link link-btn">검색</a>
             </div>
             <div class="row">
                 <input type="text" name="centerBasicAddress" value="<%=centerDto.getCenterBasicAddress() %>" autocomplete="off" class="form-input input-round fill">
@@ -69,8 +69,8 @@
                 <%-- <input type="file" name="centerPics" value="?" accept=".jpg,.png" class="form-input input-round fill">--%>
 				</div>
             <div class="row right">
-                <button type="submit" class="btn btn-primary">수정</button>
-                <a href="/semi/center/detail.jsp?<%=centerDto.getCenterId() %>" class="link link-btn">취소</a>
+                <button type="submit" class="btn btn-semi">수정</button>
+                <a href="/semi/center/detail.jsp?centerId=<%=centerDto.getCenterId() %>" class="link link-btn">취소</a>
             </div>
         </div>
     </form>

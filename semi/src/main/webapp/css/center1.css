@@ -55,7 +55,7 @@
 
 .content-c-area {
 	flex-grow: 1;
-	padding-left: 1em;
+	padding-left: 1.2em;
 	padding-right: 0.5em;
 }
 
@@ -65,6 +65,7 @@
 	border: solid #343b6a 0.1em;
 	border-radius: 1em;
 	padding: 0.1em;
+	margin-top: 10px;
 }
 
 .center-introbox {
@@ -76,6 +77,14 @@
 
 .trainer-nameBox {
 	text-decoration: none;
+}
+
+.c-btn-list {
+	margin-left: auto;
+}
+
+.c-btn-list a {
+	margin-right: 5px;
 }
 
 /* center list page */
