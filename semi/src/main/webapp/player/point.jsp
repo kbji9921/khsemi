@@ -30,7 +30,7 @@ h2{
 		
 		<br><br>
 		
-		<div class="row m10">
+		<div class="row m10 center">
 		<input type="submit" class="btn btn-semi btn-round" value="충전">
 		</div>
 		</div>

@@ -1,0 +1,44 @@
+/*
+    메인페이지 > 종목 선택시 나오는 페이지 css
+    - [종목선택] 클릭시 이동 하는 페이지
+*/
+
+@charset "UTF-8";
+
+.container{
+    margin: 30px 0;
+    padding: 50px 0;
+}
+
+.container .contents-p{
+	font-weight: 550;
+    margin-bottom: 30px;
+    color: #343b6a;
+    font-size: 20px;
+    text-align: center;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.content-box{
+	text-align:center;
+}
+.content-box > a{
+	font-size: 20px;
+    font-weight: 600;
+    color: #343b6a;
+    text-decoration: none;
+}
+
+.content {
+    width: 200px;
+    height: 200px;
+    box-sizing: border-box;
+    margin: 10px;
+    border-radius: 20%;
+    overflow: hidden;
+}
