@@ -11,8 +11,6 @@
     String exerciseName = request.getParameter("exerciseName");
     String keyword = request.getParameter("keyword");
     
-    CenterDao centerDao = new CenterDao();
-    List <CenterDto> list = centerDao.selectList(keyword);
 
 %>
 
@@ -28,7 +26,7 @@
         <div class="flex-container">
             <div class="content-box">
                 <div class="content">                   
-                  <a href="<%=request.getContextPath()%>/center/list.jsp?trainerSports=<%=exerciseName%>">
+                  <a href="<%=request.getContextPath()%>/center/list.jsp?exerciseName=<%=exerciseName%>">
                   
                     <img src="/semi/images/main_center.jpg" width="100%" alt="센터 검색으로">
                   </a>
