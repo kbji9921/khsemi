@@ -50,29 +50,26 @@
  	
  %>
  
- <!-- 숫자(페이지네이션) 링크 -->
+ <!-- 페이지네이션 링크 -->
 <%
 	int count;
-	if(isSearch){//검색 결과 수 카운트
+	if(isSearch){
 		count = centerDao.countByPaging(type, keyword);
 	}
-	else{//목록 결과 수 카운트
+	else{
 		count = centerDao.countByPaging();
 	}
 	
-	//마지막 페이지 번호 계산
+	//마지막 페이지 번호 
 	int lastPage = (count + s - 1) / s;
 	
 	//블록 크기
 	int blockSize = 5;
 	
-	//시작블록 혹은 종료 블록 중 하나만 계산하면 반대편은 계산이 가능하다.
-	//종료블록에 영향을 미치는 데이터는 현재 페이지(p) 이다.
-	//하단 블록에는 반드시 현재페이지 번호가 포함되어야 하므로 이 번호를 기준으로 시작과 종료를 계산한다!
 	int endBlock = (p + blockSize - 1) / blockSize * blockSize;
 	int startBlock = endBlock - (blockSize - 1);
 	
-	//범위를 초과하는 문제를 해결(endBlock > lastPage)
+	//범위 초과 시(endBlock > lastPage)
 	if(endBlock > lastPage){
 		endBlock = lastPage;
 	}
@@ -123,6 +120,7 @@
                 <%if(isSearch){ %>
                 	<input type="text" name="keyword" class="form-input input-round layer-2"  placeholder="OO동 또는 센터명으로 검색하세요" autocomplete="off" value="<%=keyword%>">
                 <%}else{ %>
+                <input type="text" name="keyword" class="form-input input-round layer-2"  placeholder="OO동 또는 센터명으로 검색하세요" autocomplete="off" ">
                 <button type="submit" class="btn btn-semi">검색</button>
                 <%} %>
             </form>

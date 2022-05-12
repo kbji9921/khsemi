@@ -16,6 +16,17 @@ List<EocDto> list = eocDao.selectList(centerId);
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/center1.css">
 
+ <!-- jquery cdn -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+    <script type="text/javascript">
+        $(function(){
+            $(".delete-btn").click(function(){
+                return confirm("정말 삭제하시겠습니까?");
+            });
+        });
+    </script>
+
 <div class="c-container w300 m30">
 	<div class="row m20">
 		<table class="c-table table-border">
@@ -31,7 +42,7 @@ List<EocDto> list = eocDao.selectList(centerId);
 					<td><a href="<%=request.getContextPath() %>/eoc/edit.jsp?eocNo=<%=eocDto.getEocNo()%>" class="link">수정</a></td>
 					<td>
 					<a href="<%=request.getContextPath() %>/eoc/delete.kh?eocNo=<%=eocDto.getEocNo()%>&centerId=<%=eocDto.getEocCenterId()%>" 
-					class="link">삭제</a>
+					class="link delete-btn">삭제</a>
 					</td>
 				</tr>
 				<%}%>
