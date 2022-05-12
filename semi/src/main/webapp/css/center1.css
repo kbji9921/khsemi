@@ -37,11 +37,12 @@
 .flex-c-container {
 	display: flex;
 	flex-direction: row;
-	flex-wrap: nowrap;
+	flex-wrap: wrap;
 }
 
 .flex-c-container.flex-c-vertical {
 	flex-direction: column;
+	flex-wrap: nowrap;
 }
 
 .display-c-center {
