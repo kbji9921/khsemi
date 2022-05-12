@@ -43,7 +43,8 @@ public class CenterWritetServlet extends HttpServlet{
 			eocDao.insert1(eocDto);
 			
 			//출력
-			resp.sendRedirect("/semi/center/detail.jsp?centerId="+centerDto.getCenterId());
+//			resp.sendRedirect("/semi/center/detail.jsp?centerId="+centerDto.getCenterId());
+			resp.sendRedirect(req.getContextPath());
 			
 		}
 		catch(Exception e) {
