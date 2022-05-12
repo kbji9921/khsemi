@@ -35,6 +35,7 @@
  	CenterDao centerDao = new CenterDao();
  	EocDao eocDao = new EocDao();
  	boolean isSearch = type != null && !type.equals("") && keyword != null && !keyword.equals("");
+ 	
  	List<CenterDto> centerList;
  	List<EocDto> eocList;
  	if(isSearch){
@@ -45,6 +46,7 @@
  		centerList = centerDao.selectListByPaging(p,s);
  		//eocList = eocDao.selectList(centerId);
  	}
+ 	
  %>
  
  <!-- 숫자(페이지네이션) 링크 -->
@@ -119,17 +121,16 @@
                 <%} %>
                 <%if(isSearch){ %>
                 	<input type="text" name="keyword" class="form-input input-round layer-2"  placeholder="OO동 또는 센터명으로 검색하세요" autocomplete="off" value="<%=keyword%>">
-                <%} else{ %>
-                	<input type="text" name="keyword" class="form-input input-round layer-2"  placeholder="OO동 또는 센터명으로 검색하세요" autocomplete="off">
-                <%} %>
+                <%}else{ %>
                 <button type="submit" class="btn btn-semi">검색</button>
+                <%} %>
             </form>
         </div>
         <%if(centerList.isEmpty()){ %>
         	<div class="row center m30">
         		<h3>검색 정보가 없습니다.</h3>
         	</div>
-		<%} else {%>       
+		<%}else{ %>     
         <!--센터 목록-->
         <div class="flex-c-container flex-c-vertical">
         	<%for(CenterDto centerDto : centerList){ %>
@@ -161,7 +162,7 @@
                     </div>
                 </div>
             </div>
-                    <%} %>
+            <%} %>
         </div>
         <%} %>
         <!-- 페이지네이션 링크 -->
