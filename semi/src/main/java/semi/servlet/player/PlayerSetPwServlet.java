@@ -19,21 +19,23 @@ public class PlayerSetPwServlet extends HttpServlet{
 			
 			String playerId = req.getParameter("playerId");
 			String changePw = req.getParameter("changePw");
-			String checkPw = req.getParameter(changePw);	
+			String checkPw = req.getParameter("checkPw");	
 			
 			PlayerDao playerDao = new PlayerDao();
 			PlayerDto playerDto = playerDao.selectOne(playerId);
 			
-			boolean isCheckPassword = changePw !=null && checkPw != null && changePw == checkPw;
+			boolean isCheckPassword1 = playerDto.getPlayerPw() != changePw;
+			boolean isCheckPassword2 = changePw == checkPw;
 			
-			if(isCheckPassword) {
-				playerDao.changePassword(playerId, changePw);
-				resp.sendRedirect("set_pw_finish.jsp");
-			}else {
-				resp.sendRedirect("set_pw.jsp?error");
+			if(!isCheckPassword1) {
+				resp.sendRedirect("set_pw.jsp?error=1");
+				return;
 			}
 			
 			
+			
+			playerDao.changePassword(playerId, changePw);
+			resp.sendRedirect("set_pw_finish.jsp");
 			
 		}catch(Exception e) {
 			e.printStackTrace();

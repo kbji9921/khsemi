@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
+
+<%
+	String trainerSport = request.getParameter("trainerSport");
+%>
+
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/index.css">
 
 			<article class="container">
@@ -10,7 +15,7 @@
 				<div class="flex-container exercise">
 					<div class="content-box">
 						<div class="content exercise">
-							<a href="#">
+							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exercisName=헬스">
 								<img src="/semi/images/health_icon.png" width=45%>
 							</a>
 						</div>
@@ -18,7 +23,7 @@
 					</div>
 					<div class="content-box">
 						<div class="content exercise">
-							<a href="#">
+							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exercisName='필라테스'">
 								<img src="/semi/images/pilates_icon.png" width=45%>
 							</a>
 						</div>
@@ -26,7 +31,7 @@
 					</div>
 					<div class="content-box">
 						<div class="content exercise">
-							<a href="#">
+							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exercisName='요가'">
 								<img src="/semi/images/yoga_icon.png" width=35%>
 							</a>
 						</div>
@@ -34,7 +39,7 @@
 					</div>
 					<div class="content-box">
 						<div class="content exercise">
-							<a href="#">
+							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exercisName='테니스'">
 								<img src="/semi/images/tennis_icon.png" width=45%>
 							</a>
 						</div>
@@ -42,7 +47,7 @@
 					</div>
 					<div class="content-box">
 						<div class="content exercise">
-							<a href="#">
+							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exercisName='수영'">
 								<img src="/semi/images/swim_icon.png" width=45%>
 							</a>
 						</div>

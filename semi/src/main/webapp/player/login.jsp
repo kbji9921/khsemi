@@ -5,6 +5,9 @@
 	<form action="login.player" method="post">
 	
 		<div class="container w450 m30 center">
+		<div class="row m30 center">
+			<h2>일반회원 로그인</h2>
+        </div>
         <div class="row m30">
             <label>아이디</label>
             	<input type="text" name="playerId" required autocomplete="off" class="form-input fill input-round" >
@@ -14,7 +17,7 @@
             <input type="password" name="playerPw" required class="form-input fill input-round">
         </div>
       <div class="row m40">
-            <input type="submit" class="btn btn-semi btn-round fill" value="가입하기">
+            <input type="submit" class="btn btn-semi btn-round fill" value="로그인">
         </div>
       </div>  
       <div class="row center">
@@ -24,10 +27,8 @@
 	</div>
     </form>
 	<div class ="row center m30">
-	<h3><a href="findIdPlayer.jsp">아이디 찾기</a></h3>
+		<h3><a href="findIdPlayer.jsp">아이디 찾기</a> <span> / </span> <a href="findPwPlayer.jsp">비밀번호 찾기</a></h3>
 	</div>
-	<div class="row center">
-		<h3><a href="findPwPlayer.jsp">비밀번호 찾기</a></h3>
-	</div>
+	
 	
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>

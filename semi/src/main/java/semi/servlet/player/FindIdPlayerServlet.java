@@ -1,6 +1,7 @@
 package semi.servlet.player;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,15 +21,15 @@ public class FindIdPlayerServlet extends HttpServlet{
 			PlayerDto playerDto = new PlayerDto();
 			playerDto.setPlayerName(req.getParameter("playerName"));
 			playerDto.setPlayerPhone(req.getParameter("playerPhone"));
+			playerDto.setPlayerBirth(Date.valueOf(req.getParameter("playerBirth")));
 			
 			PlayerDao playerDao = new PlayerDao();
 			String playerId = playerDao.findId(playerDto);
 			
-			
 			if(playerId == null) {
 				resp.sendRedirect("findIdPlayer.jsp?error");
 			}else {
-				resp.sendRedirect("idFindSuccess.jsp?playerId="+playerId);
+				resp.sendRedirect("idFindSuccess.jsp?playerId="+ playerId);
 			}
 			
 		}catch(Exception e) {

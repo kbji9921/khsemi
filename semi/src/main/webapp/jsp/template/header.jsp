@@ -34,8 +34,9 @@
             <ul id="gnb">
                <li><a href="<%=request.getContextPath()%>">Home</a></li>
                <li><a href="#">고객의소리</a></li>
+
                <%if(trainerLogin||playerLogin){ %>
-               <%if(trainerLogin){ %>
+              		 <%if(trainerLogin){ %>
                   <li class="gnb-right">
                      <a href="<%=request.getContextPath()%>/player/matchingList.jsp?playerId=<%=playerId%>">내예약</a>
                      <span class="partition">|</span>
@@ -43,9 +44,9 @@
                      <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/trainer/logout.trainer">로그아웃</a>
                   </li>
-               <%} %>
+               		<%} %>
                <%-- 사용자 로그인 후 --%>
-               <%if(playerLogin){ %>
+              		 <%if(playerLogin){ %>
                   <li class="gnb-right">
                      <a href="<%=request.getContextPath()%>/player/matchingList.jsp?playerId=<%=playerId%>">내예약</a>
                      <span class="partition">|</span>
@@ -53,7 +54,8 @@
                      <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/player/logout.player">로그아웃</a>
                   </li>
-                  <%} %>
+                  	<%} %>
+
                <%}else{ %>
                <li class="gnb-right">
                   <a href="<%=request.getContextPath()%>/player/selectLogin.jsp">로그인</a>

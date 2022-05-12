@@ -13,7 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebFilter(filterName="f2", urlPatterns = {
 		"/player/loginSuccess.jsp","/player/logout.player",
-		"/player/changePw.jsp"
+		"/player/changePw.jsp","/player/changeInformation.jsp",
+		"/player/deletePlayer.jsp","/player/matchingDetail.jsp",
+		"/player/matchingInsert.jsp","/player/mypage.jsp",
+		"/player/point.jsp","/player.insert.kh","/player/matchingDelete.player",
+		"/player/matching.insert","/player/pay.player","/player/password.player",
+		"/player/chageinformation.player","/player/chargePoint.player"
+		
 })
 public class LoginPlayerFilter implements Filter{
 
