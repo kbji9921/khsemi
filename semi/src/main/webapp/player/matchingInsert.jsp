@@ -11,7 +11,6 @@
 <%
 	PlayerDao playerDao = new PlayerDao();
 	PlayerDto playerDto = playerDao.selectOne(playerId);
-
 	TrainerDao trainerDao = new TrainerDao();
 	List<TrainerDto> list = trainerDao.selectList();
 %>
@@ -57,7 +56,5 @@
             	<input type="submit" class="btn btn-semi btn-round fill" value="신청">
         	</div>
         </div>
-        
-		
 	</form>
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>

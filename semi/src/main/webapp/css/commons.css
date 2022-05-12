@@ -504,7 +504,7 @@ textarea.form-input {
     width:100%;
 }
 .layer-2 {
-    width:50%;
+    width:49%;
 }
 .layer-3 {
     width:33.3333%;
@@ -515,6 +515,7 @@ textarea.form-input {
 .layer-5 {
     width:20%;
 }
+
 
 /*
     로딩화면을 만드는 이유 2가지

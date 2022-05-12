@@ -21,7 +21,7 @@ public class FindIdPlayerServlet extends HttpServlet{
 			PlayerDto playerDto = new PlayerDto();
 			playerDto.setPlayerName(req.getParameter("playerName"));
 			playerDto.setPlayerPhone(req.getParameter("playerPhone"));
-			playerDto.setPlayerBirth(Date.valueOf(req.getParameter("playerBirth")));
+			playerDto.setPlayerEmail(req.getParameter("playerEmail"));
 			
 			PlayerDao playerDao = new PlayerDao();
 			String playerId = playerDao.findId(playerDto);
