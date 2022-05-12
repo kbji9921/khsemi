@@ -267,6 +267,40 @@ public class TrainerDao {
 		con.close();
 		return list;
 	}
+
+	public List<TrainerDto> selectList(String type,String keyword) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from trainer where instr(#1,?)>=2 order by trainer_id asc";
+		sql = sql.replace("#1", type);
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, keyword);
+		ResultSet rs = ps.executeQuery();
+		
+		List<TrainerDto> list = new ArrayList<>();
+		while(rs.next()) {
+			TrainerDto trainerDto = new TrainerDto();
+			
+			trainerDto.setCenterId(rs.getString("center_id"));
+			trainerDto.setTrainerId(rs.getString("trainer_id"));
+			trainerDto.setTrainerPw(rs.getString("trainer_pw"));
+			trainerDto.setTrainerName(rs.getString("trainer_name"));
+			trainerDto.setTrainerBirth(rs.getString("trainer_birth"));
+			trainerDto.setTrainerGender(rs.getString("trainer_gender"));
+			trainerDto.setTrainerPhone(rs.getString("trainer_phone"));
+			trainerDto.setTrainerEmail(rs.getString("trainer_email"));
+			trainerDto.setTrainerJoindate(rs.getDate("trainer_joindate"));
+			trainerDto.setTrainerLogindate(rs.getDate("trainer_logindate"));
+			trainerDto.setTrainerPrice(rs.getInt("trainer_price"));
+			list.add(trainerDto);
+		}
+		
+		
+		con.close();
+		
+		return list;
+	}
+
 	
 	//운동 종목(trainerSports)으로 찾기
 	public List<TrainerDto> selectTrainerSportsList(String trainerSports) throws Exception {

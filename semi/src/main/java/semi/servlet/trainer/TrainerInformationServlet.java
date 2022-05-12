@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import semi.servlet.DtoDao.TrainerDao;
 import semi.servlet.DtoDao.TrainerDto;
 
-@WebServlet(urlPatterns ="/trainer/Information.kh")
+@WebServlet(urlPatterns ="/trainer/Information.trainer")
 public class TrainerInformationServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

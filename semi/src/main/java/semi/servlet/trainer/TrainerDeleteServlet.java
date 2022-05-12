@@ -12,7 +12,7 @@ import semi.servlet.DtoDao.TrainerDao;
 import semi.servlet.DtoDao.TrainerDto;
 
 
-@WebServlet(urlPatterns = "/trainer/delete.kh")
+@WebServlet(urlPatterns = "/trainer/delete.trainer")
 public class TrainerDeleteServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,7 +21,7 @@ public class TrainerDeleteServlet extends HttpServlet{
 			//준비
 			req.setCharacterEncoding("UTF-8");
 			String trainerPw = req.getParameter("trainerPw");
-			String trainerId = (String)req.getSession().getAttribute("login");
+			String trainerId = (String)req.getSession().getAttribute("trainer");
 			
 			//처리
 			TrainerDao trainerDao = new TrainerDao();
@@ -37,7 +37,7 @@ public class TrainerDeleteServlet extends HttpServlet{
 			req.getSession().removeAttribute("login"); 
 			req.getSession().removeAttribute("auth");
 			//출력
-			resp.sendRedirect("exit_finish.jsp");
+			resp.sendRedirect(req.getContextPath());
 			
 		}catch(Exception e) {
 			e.printStackTrace();

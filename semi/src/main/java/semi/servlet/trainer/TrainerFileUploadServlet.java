@@ -19,7 +19,7 @@ import semi.servlet.DtoDao.TrainerAttachmentDto;
 import semi.servlet.DtoDao.TrainerDao;
 import semi.servlet.DtoDao.TrainerDto;
 
-@WebServlet(urlPatterns ="/trainer/insert.kh")
+@WebServlet(urlPatterns ="/trainer/insert.trainer")
 public class TrainerFileUploadServlet extends HttpServlet{
 @Override
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
