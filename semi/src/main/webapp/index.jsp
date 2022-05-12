@@ -4,7 +4,6 @@
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 
 <%
-	String trainerSport = request.getParameter("trainerSport");
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/index.css">
@@ -15,7 +14,7 @@
 				<div class="flex-container exercise">
 					<div class="content-box">
 						<div class="content exercise">
-							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exercisName='헬스'">
+							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exerciseName='헬스'">
 								<img src="/semi/images/health_icon.png" width=45%>
 							</a>
 						</div>
@@ -23,7 +22,7 @@
 					</div>
 					<div class="content-box">
 						<div class="content exercise">
-							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exercisName='필라테스'">
+							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exerciseName='필라테스'">
 								<img src="/semi/images/pilates_icon.png" width=45%>
 							</a>
 						</div>
