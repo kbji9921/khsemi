@@ -105,12 +105,12 @@ public class PlayerDao {
 	public String findId(PlayerDto playerDto)throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select player_id from player where player_name=? and player_phone = ? and player_birth =?";
+		String sql = "select player_id from player where player_name=? and player_phone = ? and player_email =?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		ps.setString(1, playerDto.getPlayerName());
 		ps.setString(2, playerDto.getPlayerPhone());
-		ps.setDate(3, playerDto.getPlayerBirth());
+		ps.setString(3, playerDto.getPlayerEmail());
 		
 		ResultSet rs = ps.executeQuery();
 		String playerId;
@@ -127,18 +127,20 @@ public class PlayerDao {
 	public PlayerDto findPw(PlayerDto playerDto)throws Exception {
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select * from player where player_id=? ";
+		String sql = "select * from player where player_id=? and player_name=? and player_birth=? and player_phone =?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		ps.setString(1, playerDto.getPlayerId());
-		
+		ps.setString(2, playerDto.getPlayerName());
+		ps.setDate(3, playerDto.getPlayerBirth());
+		ps.setString(4, playerDto.getPlayerPhone());
 		
 		ResultSet  rs = ps.executeQuery();
 		
 		PlayerDto findDto;
 		if(rs.next()) {
 			findDto = new PlayerDto();
-			findDto.setPlayerId(rs.getString("playerId"));
+			findDto.setPlayerId(rs.getString("player_id"));
 			findDto.setPlayerPw(rs.getString("player_pw"));
 			findDto.setPlayerName(rs.getString("player_name"));
 			findDto.setPlayerGender(rs.getString("player_gender"));
@@ -244,5 +246,6 @@ public class PlayerDao {
 		con.close();
 		return playerDto;
 	}
+	
 	
 }

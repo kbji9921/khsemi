@@ -11,9 +11,9 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebFilter(filterName="f3", urlPatterns = {
-//		"/trainer/trainerLogin.jsp","/trainer/trainerLogout.jsp"
-})
+//@WebFilter(filterName="f3", urlPatterns = {
+////		"/trainer/trainerLogin.jsp","/trainer/trainerLogout.jsp"
+//})
 public class LoginTrainerFilter implements Filter{
 
 	@Override
