@@ -329,5 +329,41 @@ public class TrainerDao {
 		con.close();
 		return list;
 	}	
+	//센터 상세페이지 내 강사 페이징
+	public List<TrainerDto> centerTrainerByPaging(int p, int s, String centerId) throws Exception{
+		int end = p * s;
+		int begin = end -(s-1);
+		
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from ("
+				+ "select rownum rn, TMP.* from ("
+				+ "select * from trainer where center_id =? order by trainer_name asc)TMP ) where rn between ? and ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, centerId);
+		ps.setInt(2, begin);
+		ps.setInt(3, end);
+		ResultSet rs = ps.executeQuery();
+		List<TrainerDto> list = new ArrayList<>();
+		while(rs.next()) {
+			TrainerDto trainerDto = new TrainerDto();
+			trainerDto.setCenterId(rs.getString("center_id"));
+			trainerDto.setTrainerId(rs.getString("trainer_id"));
+			trainerDto.setTrainerPw(rs.getString("trainer_pw"));
+			trainerDto.setTrainerName(rs.getString("trainer_name"));
+			trainerDto.setTrainerBirth(rs.getString("trainer_birth"));
+			trainerDto.setTrainerGender(rs.getString("trainer_gender"));
+			trainerDto.setTrainerPhone(rs.getString("trainer_phone"));
+			trainerDto.setTrainerEmail(rs.getString("trainer_email"));
+			trainerDto.setTrainerJoindate(rs.getDate("trainer_joindate"));
+			trainerDto.setTrainerLogindate(rs.getDate("trainer_logindate"));
+			trainerDto.setTrainerPrice(rs.getInt("trainer_price"));
+			list.add(trainerDto);
+		}
+		
+		con.close();
+		
+		return list;
+	}
 
 }
