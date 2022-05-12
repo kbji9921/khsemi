@@ -60,7 +60,7 @@
 
   	
 	TrainerDao trainerDao = new TrainerDao();
-  	List<TrainerDto> trainerList = trainerDao.centerTrainerByPaging(p, s, centerId);
+	List<TrainerDto> trainerList = trainerDao.centerTrainerByPaging(p, s, centerId);
   	
   	//강사 본인의 센터인지 판정 강사로 로그인 되어 있으면서 현재 로그인 된 강사가 소속된 센터의 아이디가 같다면
   	TrainerDto trainerDto = trainerDao.selectOne(trainerId);
