@@ -285,20 +285,5 @@ public class CenterDao {
 		
 		return count;
 	}
-	//게시글 수 검색
-	public int countByPaging(String type, String keyword) throws Exception{
-		Connection con = JdbcUtils.getConnection();
-		
-		String sql = "select count(*) from center where instr (#1,?) > 0";
-		sql= sql.replace("#1", type);
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, keyword);
-		ResultSet rs = ps.executeQuery();
-		rs.next();
-		int count = rs.getInt("count(*)");
-		
-		con.close();
-		
-		return count;
-	}
+
 }
