@@ -17,7 +17,7 @@ $(function(){
 	$("textarea[name=boardContent]").summernote({
 		placeholer : "내용입력",
 		height : 400
-	});
+});
 })
 </script>
 
