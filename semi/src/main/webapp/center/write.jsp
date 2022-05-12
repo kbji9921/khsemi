@@ -6,6 +6,7 @@
 
     <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <script type="text/javascript">
         $(function(){
 			
@@ -105,7 +106,47 @@
 				}
 			})
 			
+			
         })
+    </script>
+    
+  <script>
+    //Kakao 우편 API
+      function findAddress() {
+          new daum.Postcode({
+              oncomplete: function(data) {
+                  var addr = ''; 
+                  var extraAddr = ''; 
+                  if (data.userSelectedType === 'R') { 
+                      addr = data.roadAddress;
+                  } else { 
+                      addr = data.jibunAddress;
+                  }
+                  if(data.userSelectedType === 'R'){
+                      if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                          extraAddr += data.bname;
+                      }
+                      if(data.buildingName !== '' && data.apartment === 'Y'){
+                          extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                      }
+                      if(extraAddr !== ''){
+                          extraAddr = ' (' + extraAddr + ')';
+                      }
+                  
+                  } else {
+                  }
+                  $("input[name=centerPost]").val(data.zonecode);
+                  $("input[name=centerBasicAddress]").val(addr);
+                  $("input[name=centerDetailAddress]").focus();
+              }
+          }).open();
+      }
+  </script>
+  
+  <script type="text/javascript">
+        $(function(){
+            $(".address-find-btn").click(findAddress)
+        });
     </script>
     
 	 <form action="write.kh" method="post" class="join-form">
@@ -147,7 +188,7 @@
                 <label>주소</label><br>
                 <input type="text" name="centerPost" class="form-input input-round">
 
-                <a href="#" class="link link-btn">검색</a>
+                <a href="#" class="link link-btn address-find-btn">검색</a>
             </div>
             <div class="row">
                 <input type="text" name="centerBasicAddress" autocomplete="off" class="form-input input-round fill">
