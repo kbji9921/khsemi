@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/trainer/logout.kh")
+@WebServlet(urlPatterns = "/trainer/logout.trainer")
 public class TrainerLogoutServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			//logout
-			req.getSession().removeAttribute("login2");
+			req.getSession().removeAttribute("trainer");
 			
 			
 			//main 페이지로 이동

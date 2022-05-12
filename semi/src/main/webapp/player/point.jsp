@@ -27,6 +27,7 @@ h2{
 		
 		<div class="row m50 center">
 		<input type="submit" class="btn btn-semi btn-round w300" value="충전">
+		<br><br>
 		</div>
 		</div>
 	</form>

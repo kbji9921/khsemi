@@ -85,24 +85,24 @@ public class ReservationDao {
 	}
 	
 	//강사 일정
-	public ReservationDto selectTrainer(String trainerId)throws Exception{
+	public List<ReservationDto> selectTrainer(String trainerId)throws Exception{
 		Connection con = JdbcUtils.getConnection();
-		String sql = "select * from reservation where trainer_id =?";
+		String sql = "select * from reservation where trainer_id =? order by reservation_date desc, reservation_time desc";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, trainerId);
 		ResultSet rs = ps.executeQuery();
-		ReservationDto reservationDto = new ReservationDto();
-		if(rs.next()) {
+		List<ReservationDto> list = new ArrayList<>();
+		while(rs.next()) {
+			ReservationDto reservationDto = new ReservationDto();
 			reservationDto.setReservationNo(rs.getInt("reservation_no"));
 			reservationDto.setPlayerId(rs.getString("player_id"));
 			reservationDto.setTrainerId(rs.getString("trainer_id"));
 			reservationDto.setReservationDate(rs.getDate("reservation_date"));
 			reservationDto.setReservationTime(rs.getNString("reservation_time"));
-		}else {
-			reservationDto =null;
+			list.add(reservationDto);
 		}
 		con.close();
-		return reservationDto;
+		return list;
 	}
 	//수정
 	public boolean update (ReservationDto reservationDto) throws Exception{

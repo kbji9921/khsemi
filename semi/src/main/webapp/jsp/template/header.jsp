@@ -20,6 +20,9 @@
 <head>
 <meta charset="UTF-8">
 <title>살빠GYM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/reset.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/layout.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/commons.css">
@@ -34,16 +37,29 @@
             <ul id="gnb">
                <li><a href="<%=request.getContextPath()%>">Home</a></li>
                <li><a href="#">고객의소리</a></li>
-               
-               <%-- 사용자 로그인 후 --%>
-               <%if(playerLogin){ %>
+
+               <%if(trainerLogin||playerLogin){ %>
+              		 <%if(trainerLogin){ %>
                   <li class="gnb-right">
                      <a href="<%=request.getContextPath()%>/player/matchingList.jsp">매칭정보</a>
+                     <a href="<%=request.getContextPath()%>/player/matchingList.jsp">내예약</a>
+                     <span class="partition">|</span>
+                     <a href="<%=request.getContextPath()%>/trainer/trainerMyPage.jsp">내정보</a>
+                     <span class="partition">|</span>
+                     <a href="<%=request.getContextPath()%>/trainer/logout.trainer">로그아웃</a>
+                  </li>
+               		<%} %>
+               <%-- 사용자 로그인 후 --%>
+              		 <%if(playerLogin){ %>
+                  <li class="gnb-right">
+                     <a href="<%=request.getContextPath()%>/player/matchingList.jsp">내예약</a>
                      <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/player/mypage.jsp">내정보</a>
                      <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/player/logout.player">로그아웃</a>
                   </li>
+                  	<%} %>
+
                <%}else{ %>
                <li class="gnb-right">
                   <a href="<%=request.getContextPath()%>/player/selectLogin.jsp">로그인</a>

@@ -4,36 +4,144 @@
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 
-	 <form action="write.kh" method="post">
+    <!-- jquery cdn -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+ <script type="text/javascript">
+        $(function(){
+			
+        	
+            //아이디 검사(형식,중복)
+            $("input[name=centerId]").blur(function(){
+            	var regex= /[a-z][a-z0-9]{4,19}/;
+                var centerId = $(this).val();
+                var span = $(this).next("span");
+                var judge = regex.test(centerId);
+                
+                console.log("judge="+judge);
+
+                if(!judge){
+                	span.css("color","red");
+                	span.text($(this).data("fail-msg"));
+                	return false;
+                }
+            var that =this;
+
+            $.ajax({
+                url:"http://localhost:8080/semi/ajax/center-id.kh",
+                type: "post",
+                data: {
+                    centerId : centerId
+                },
+                success:function(resp){
+                    if(resp==="YY"){
+                        $(that).next("span").css("color","green");
+                        $(that).next("span").text("사용 가능한 아이디입니다");
+                        return true;
+                    }
+                    else if(resp==="NN"){
+                        $(that).next("span").css("color","red");
+                        $(that).next("span").text("이미 사용중인 아이디입니다");
+                        return false;
+                    }
+                }
+            });
+            })
+            
+
+            //전화번호 정규표현식
+            $("input[name=centerPhone]").blur(function(){
+            	var regex = /0[0-6]{1,2}-[1-9][0-9]{2,3}-[0-9]{4}/;
+                var value = $(this).val();
+                span = $(this).next("span");
+
+                var judge = regex.test(value);
+                if(judge){
+                    span.css("color","green");
+                    span.text($(this).data("success-msg"));
+                    return true;
+                }
+                else{
+                    span.css("color","red");
+                    span.text($(this).data("fail-msg"));
+                    return false;
+                }
+            })
+            
+            //평일운영시간 검사
+            $("input[name=centerWeektime]").blur(function(){
+            	var regex = /^[가-힣0-9:~]+$/;
+            	var value = $(this).val();
+            	var span = $(this).next("span");
+            	var judge = regex.test(value);
+            	
+            	if(judge){
+            		span.css("color","green")
+            		span.text("");
+            		return true;
+            	}
+            	else{
+            		span.css("color","red");
+            		span.text($(this).data("fail-msg"));
+            		return false;
+            	}
+            })
+         
+            
+			//주말운영시간 검사
+			$("input[name=centerWkndtime]").blur(function(){
+				var regex = /^[가-힣0-9:~]+$/;
+				var value = $(this).val();
+				var span = $(this).next("span");
+				var judge = regex.test(value);
+				
+				if(judge){
+					span.text("");
+					return true;
+				}
+				else{
+					span.css("color","red");
+					span.text($(this).data("fail-msg"));
+					return false;
+				}
+			})
+			
+        })
+    </script>
+    
+	 <form action="write.kh" method="post" class="join-form">
         <div class="container w400 m30">
             <div class="row center">
                 <h1>센터등록</h1>
             </div>
 
             <div class="row">
-                <label for="centerid-input">센터아이디</label>
-                <input type="text" name="centerId" placeholder="영문소문자,숫자 5~20글자" autocomplete="off" class="form-input input-round fill"
-                 id="centerid-input"> 
+                <label for="centerid-input">센터아이디
+                <input type="text" name="centerId" placeholder="영문소문자,숫자 5~20글자내로 입력하세요" autocomplete="off" class="form-input input-round fill"
+                data-fail-msg="아이디의 형식이 올바르지 않습니다">
+                 <span></span> </label>
             </div>
 
             <div class="row">
-                <label for="centername-input">센터이름</label>
-                <input type="text" name="centerName" autocomplete="off" class="form-input input-round fill" id="centername-input">
+                <label for="centername-input">센터이름
+                <input type="text" name="centerName" autocomplete="off" class="form-input input-round fill"></label>
             </div>
             <div class="row">
-                <label for="centerphone-input">전화번호</label>
-                <input type="text" name="centerPhone" autocomplete="off" placeholder="-포함하여 입력하세요" class="form-input input-round fill"
-                id="centerphone-input">
+                <label>전화번호
+                <input type="text" name="centerPhone" autocomplete="off" placeholder="-포함하여 입력하세요" class="form-input input-round fill regex-input"
+                data-success-msg="올바른 전화번호 입니다" data-fail-msg="-를 포함하여 입력하세요">
+                 <span></span></label>
             </div>
             <div class="row">
-                <label for="week-input">평일운영시간</label>
-                <input type="text" name="centerWeektime" placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" autocomplete="off" class="form-input input-round fill"
-                id="week-input">
+                <label>평일운영시간
+                <input type="text" name="centerWeektime" placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" autocomplete="off" class="form-input input-round fill regex-input"
+               	 data-fail-msg="입력하신 시간을 다시 확인해주세요">
+               	<span></span></label>
             </div>
             <div class="row">
-                <label for="wkndtime-input">주말운영시간</label>
-                <input type="text" name="centerWkndtime" placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" autocomplete="off" class="form-input input-round fill"
-                id="wkndtime-input">
+                <label>주말운영시간
+                <input type="text" name="centerWkndtime" placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" autocomplete="off" class="form-input input-round fill regex-input"
+                 data-fail-msg="입력하신 시간을 다시 확인해주세요">
+                <span></span></label>
             </div>
             <div class="row">
                 <label>주소</label><br>
@@ -49,8 +157,8 @@
             </div>
             <div class="row">
                 <label>운동종목</label>
-				<select name="exerciseName" class="form-input input-round fill" >
-					<option value="">선택하세요</option>
+				<select name="exerciseName" class="form-input input-round fill">
+					<option selected disabled>주종목 외 운동은 내 정보에서 추가 가능합니다</option>
 					<option>헬스</option>
 					<option>필라테스</option>
 					<option>요가</option>

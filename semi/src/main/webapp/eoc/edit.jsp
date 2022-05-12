@@ -81,7 +81,7 @@
             <%} %>
         </div>
         <div class="row center">
-            <button type="submit" class="btn btn-primary">수정</button>
+            <button type="submit" class="btn btn-semi">수정</button>
             <a href="/semi/eoc/detail.jsp?centerId=<%=eocDto.getEocCenterId() %>" class="link link-btn">취소</a>
         </div>
     </div>

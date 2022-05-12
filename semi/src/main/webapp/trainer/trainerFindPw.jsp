@@ -3,6 +3,8 @@
     <%
     request.setCharacterEncoding("UTF-8");
     %>
+    
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <h1>비밀번호 찾기</h1>
 <form action = "find_pw.kh" method="post">
 <table>
@@ -37,5 +39,5 @@
 	</tr>
 </table>
 </form>
-
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
 
