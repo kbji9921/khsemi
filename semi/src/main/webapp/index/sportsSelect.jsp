@@ -10,7 +10,6 @@
 	
     String exerciseName = request.getParameter("exerciseName");
     String keyword = request.getParameter("keyword");
-    
 
 %>
 
