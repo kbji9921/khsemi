@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.servlet.DtoDao.GradeDao;
-@WebServlet("/trainer/grade_delete.grade")
+@WebServlet(urlPatterns ="/trainer/grade_delete.grade")
 public class gradeDeleteServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

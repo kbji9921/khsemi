@@ -9,21 +9,21 @@
     
  <%--준비 --%>
  <%
- 	String centerId = request.getParameter("centerId");
+    String centerId = request.getParameter("centerId");
 
  %>
  <%--처리 --%>
   <%
-  	CenterDao centerDao = new CenterDao();
-  	CenterDto centerDto = centerDao.selectOne(centerId);
-  	
-  	EocDao eocDao = new EocDao();
-  	List<EocDto> list = eocDao.selectList(centerId);
+     CenterDao centerDao = new CenterDao();
+     CenterDto centerDto = centerDao.selectOne(centerId);
+     
+     EocDao eocDao = new EocDao();
+     List<EocDto> list = eocDao.selectList(centerId);
 
   %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
-	 <div class="container w600 m30">
+    <div class="container w600 m30">
         <!--제목-->
         <div class="row center m30">
             <h2>Personal Training Center</h2>

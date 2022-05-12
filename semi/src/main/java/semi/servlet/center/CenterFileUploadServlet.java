@@ -1,4 +1,4 @@
-package semi.servlet.player;
+package semi.servlet.center;
 
 import java.io.File;
 import java.io.IOException;

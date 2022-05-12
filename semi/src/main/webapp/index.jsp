@@ -138,3 +138,5 @@
 					</div>
 				</div>
 			</article>
+
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
