@@ -6,7 +6,7 @@
         <%-- 준비 --%>
 <%
 String trainerId = "testuser6";
-//String trainerId= (String)request.getSession().getAttribute("login2");
+//String trainerId= (String)request.getSession().getAttribute("trainer");
 %>    
     
     <%-- 처리 --%>
@@ -14,7 +14,7 @@ String trainerId = "testuser6";
 TrainerDao trainerDao = new TrainerDao();
 TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 %>    
-    <jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -37,6 +37,14 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
         .container{
             border:1px solid black;
         }
+        .list-center-area{
+        width:100%;}
+        .hide{
+            display:none;
+        }
+        input:disabled{
+            background-color: #F0F0F0;
+        }
     </style>
     <!-- 구글 폰트 cdn -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +52,7 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../css/commons.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
     <link rel="stylesheet" type="text/css" href="../css/sidebar.css">
     <!-- <link rel="stylesheet" type="text/css" href="../css/test.css"> -->
 
@@ -52,7 +60,16 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script type="text/javascript">
-
+    $(function(){
+        $(".input-dis").attr("disabled", true);
+    	$("#btn").  click(function(event){
+            $(".input-dis").attr("disabled", false);
+            event.preventDefault();
+            $("#btn").addClass("hide")
+            $('#btn2').removeClass("hide")
+            
+    	});
+    })
     </script>
 </head>
 <body>  
@@ -63,96 +80,82 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
             <div class="row m50">
             </div>
             <div class="row">
-                <button class="btn btn-round fill">홈으로</button>
+                <button class="btn btn-round fill" onclick="location.href='<%=request.getContextPath()%>'">홈으로</button>
             </div>
             <div class="row">
-                <button class="btn btn-round fill">정보 수정</button>
+                <button class="btn btn-round fill" onclick="location.href='trainerChangeInformation.jsp'">변경</button>
             </div>
             <div class="row">
-            <button class="btn btn-round fill btn-danger">스케쥴</button>
+            <button class="btn btn-round fill" onclick="location.href='<%=request.getContextPath()%>/reservation/reservationList.jsp?trainerId=<%=trainerId%>'">스케쥴</button>
         </div>
             <div class="row">
-                <button class="btn btn-round fill">비밀번호 변경</button>
+                <button class="btn btn-round fill" onclick="location.href='trainerSetPw.jsp?trainerId=<%=trainerId%>'">비밀번호 변경</button>
             </div>
         <div class="row">
-            <button class="btn btn-round fill btn-danger">회원 탈퇴</button>
+            <button class="btn btn-round fill btn-danger" onclick="location.href='trainerDelete.jsp?trainerId=<%=trainerId%>'">회원 탈퇴</button>
         </div>
     </div>
 </div>
 
 <form>
     <div class="container w600 m30">
-        <div class="flex-container flex-vertical">
-            <div class="flex-container">
-            <div class="img-wrapper display-center">
-                <img src="../images/trainer_dummy/trainer_1.jpg" width="150px" height="150px" class="img img-circle">
-            </div>
-            <div class="contents-wrapper">
-                <div class="row center">
-                    <h2><%=trainerDto.getTrainerName()%>님</h2>
+            <div class="flex-container flex-vertical">
+            <div class="flex-container list-center-listbox">
+                <!--센터이미지-->
+                <div class="row center list-image-area">
+                    <img src="http://via.placeholder.com/150x150" class="img img-hover img-round">
                 </div>
-            </div>
-            <div>
+                <div class="list-center-area display-center">
+					<div class="row center">
+					<h2><%=trainerDto.getTrainerName()%>님	</h2>
+					</div>
+					</div>
+                </div>
+      
             </div>
         </div>
-        </div>
+        <!--  -->
+  <div class="container w600 m30">
         <div class="row">
-            <table class="table">
-            	 <tr>
-                    <th>아이디</th>
-                    <td >
-                        <%=trainerDto.getTrainerId()%>
-                    </td>
-                </tr>
-                <tr>
-                    <th>이름</th>
-                    <td >
-                        <%=trainerDto.getTrainerName()%>
-                    </td>
-                </tr>
-                <tr>
-                    <th>생년월일</th>
-                    <td>
-                        <%=trainerDto.getTrainerBirth() %>
-                    </td>
-                </tr>
-                <tr>
-                    <th>전화번호</th>
-                    <td>
-                        <%=trainerDto.getTrainerPhone()%>
-                    </td>
-                </tr>
-                <tr>
-                    <th>이메일</th>
-                    <td>
-                       <%=trainerDto.getTrainerEmail() %>
-                    </td>
-                </tr>
-                    <th>종목</th>
-                    <td>
-                      <%=trainerDto.getTrainerSports() %>
-                    </td>
-                </tr>
-                <tr>
-                    <th>성별</th>
-                    <td>
-                        <%=trainerDto.getTrainerGender() %>
-                    </td>
-                </tr>
-                <tr>
-                    <th>회원가입일</th>
-                    <td>
-                       <%=trainerDto.getTrainerJoindate()%>
-                    </td>
-                </tr>
-                <tr>
-                    <th>최근접속일</th>
-                    <td>
-                        <%=trainerDto.getTrainerLogindate()%>
-                    </td>
-                </tr>
-            </table>
+            	 <div class="row">
+                    <label>아이디</label>
+                    <input type="text" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerId()%>" >
+            	 </div>
+	 				<div class="row">
+                    <label>이름</label>
+                    <input type="text" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerName()%>">
+            	 </div>
+ 	 				<div class="row">
+                    <label>생년월일</label>
+                    <input type="date" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerBirth()%>">
+            	 </div>
+            	 <div class="row">
+                    <label>전화번호</label>
+                    <input type="tel" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerPhone()%>">
+            	 </div>
+ 	 			<div class="row">
+                    <label>이메일</label>
+                    <input type="email" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerEmail()%>">
+      	 		<div class="row">
+                    <label>운동종목</label>
+                    <input type="text" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerSports()%>">
+            	 </div>
+       	 		<div class="row">
+                    <label>성별</label>
+                    <input type="text" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerGender()%>">
+            	 </div>
+    	 		<div class="row">
+                    <label>가입일</label>
+                    <input type="text" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerJoindate()%>">
+            	 </div>
+              	 <div class="row">
+                    <label>최근접속일</label>
+                    <input type="text" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerLogindate()%>">
+            	 </div>
         </div>
+    </div>
+    <button class="btn btn-semi full" id="btn">수정</button>
+    <button class="btn btn-semi full hide" id="btn2" >변경완료</button>
     </div>
 </form>
 </body>

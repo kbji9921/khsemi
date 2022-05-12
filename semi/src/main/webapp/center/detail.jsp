@@ -11,9 +11,11 @@
     
  <%--준비 --%>
  <%
- 	String centerId = request.getParameter("centerId");
- 
+
+    String centerId = request.getParameter("centerId");
+
  //현재 접속한 사용자가 로그인 상태인지 아닌지를 판정하는 코드
+
 
  //1. 세션에 login이라는 이름으로 저장된 데이터를 꺼낸다.
  String playerId = (String)session.getAttribute("login");
@@ -48,20 +50,29 @@
 	}
 %>
   <%
-  	CenterDao centerDao = new CenterDao();
-  	CenterDto centerDto = centerDao.selectOne(centerId);
-  	
-  	EocDao eocDao = new EocDao();
-  	List<EocDto> list = eocDao.selectList(centerId);
+
+     CenterDao centerDao = new CenterDao();
+     CenterDto centerDto = centerDao.selectOne(centerId);
+     
+     EocDao eocDao = new EocDao();
+     List<EocDto> list = eocDao.selectList(centerId);
+
+
   	
 	TrainerDao trainerDao = new TrainerDao();
   	List<TrainerDto> trainerList = trainerDao.centerTrainerByPaging(p, s, centerId);
   	
   	//강사 본인의 센터인지 판정 강사로 로그인 되어 있으면서 현재 로그인 된 강사가 소속된 센터의 아이디가 같다면
+
   	TrainerDto trainerDto = trainerDao.selectOne(trainerId);
   	boolean isOwnerCenter = trainerDto!=null && trainerDto.getCenterId().equals(centerDto.getCenterId());
+
   %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
+
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
+    <div class="container w600 m30">
+
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 
  <!-- jquery cdn -->

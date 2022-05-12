@@ -14,43 +14,44 @@
     TrainerDto trainerDto = trainerDao.selectOne(trainerId); 
 
 %>
-
-<form action="Information.kh" method="post">
-<div class="Container w500">
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<form action="Information.trainer" method="post" enctype="multipart/form-data">
+<div class="container w500">
 		<div class="row center">
 		<h1>개인정보 변경</h1>
 		</div>
 		<div class="row">
 		<label>프로필 사진</label>
+		<%=trainerDto.getTrainerId()%>
 		<input type="file" name="trainerProfile" accept="jpg,png">
 		</div>
 		<div class="row">
 		<label>아이디</label>
-		<input type="hidden" name="trainerId" value="<%=trainerDto.getTrainerId()%>" required class="form-input full input-round" autocomplete="off">
+		<input type="hidden" name="trainerId" value="<%=trainerDto.getTrainerId()%>" required class="form-input fill input-round" autocomplete="off">
 		</div>
 		<div class="row">
 		<label>이름</label>
-		<input type="text" name="trainerName" value="<%=trainerDto.getTrainerName()%>" required class="form-input full input-round" autocomplete="off">
+		<input type="text" name="trainerName" value="<%=trainerDto.getTrainerName()%>" required class="form-input fill input-round" autocomplete="off">
 		</div>
 		<div class="row">
 		<label>생년월일</label>
-		<input type="date" name="trainerBirth" value="<%=trainerDto.getTrainerBirth()%>" required class="form-input full input-round" autocomplete="off">
+		<input type="date" name="trainerBirth" value="<%=trainerDto.getTrainerBirth()%>" required class="form-input fill input-round" autocomplete="off">
 		</div>
 		<div class="row">
 		<label>전화번호</label>
-		<input type="tel" name="trainerPhone" value="<%=trainerDto.getTrainerPhone()%>" required class="form-input full input-round" autocomplete="off">
+		<input type="tel" name="trainerPhone" value="<%=trainerDto.getTrainerPhone()%>" required class="form-input fill input-round" autocomplete="off">
 		</div>
 		<div class="row">
 		<label>이메일</label>
-		<input type= "email" name="trainerEmail" value="<%=trainerDto.getTrainerEmail()%>" class="form-input full input-round" autocomplete="off">
+		<input type= "email" name="trainerEmail" value="<%=trainerDto.getTrainerEmail()%>" class="form-input fill input-round" autocomplete="off">
 		</div>
 		<div class="row">
 		<label>가격</label>
-		<input type="number" name="trainerPrice" value="<%=trainerDto.getTrainerPrice()%>" required class="form-input full input-round" autocomplete="off">
+		<input type="number" name="trainerPrice" value="<%=trainerDto.getTrainerPrice()%>" required class="form-input fill input-round" autocomplete="off">
 		</div>
 		<div class= "row">
 		<label>운동종목</label>
-		<select name="trainerSports" required class="form-input full input-round">
+		<select name="trainerSports" required class="form-input fill input-round">
 			<option>선택</option>
 			<%if(trainerDto.getTrainerSports().equals("헬스")){%>
 			<option value="헬스" selected>헬스</option>
@@ -80,13 +81,14 @@
 		</select>
 		</div>
 		<label>비밀번호</label>
-			<input type="password" name="trainerPw" required class="form-input full input-round" autocomplete="off">
+			<input type="password" name="trainerPw" required class="form-input fill input-round" autocomplete="off">
 		</div>
         <div class="row">
-            <input type="submit" class="btn btn-primary btn-round full" value="변경">
+            <input type="submit" class="btn btn-primary btn-round fill" value="변경">
         </div>
 </div>
 </form>
 <%if(request.getParameter("error")!=null){ %>
 <h3>비밀번호가 일치하지 않습니다.</h3>
 <%} %>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
