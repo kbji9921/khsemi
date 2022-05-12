@@ -7,6 +7,7 @@
     pageEncoding="UTF-8"%>
  <%--준비 --%>
  <%
+ 	String exerciseName = request.getParameter("exerciseName");
  	String type = request.getParameter("type");
  	String keyword = request.getParameter("keyword");
  %>
@@ -43,7 +44,7 @@
  		//eocList = eocDao.selectList(centerId);
  	}
  	else{
- 		centerList = centerDao.selectListByPaging(p,s);
+ 		centerList = centerDao.selectList(p,s,exerciseName);
  		//eocList = eocDao.selectList(centerId);
  	}
  	

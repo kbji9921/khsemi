@@ -63,21 +63,15 @@
   	List<TrainerDto> trainerList = trainerDao.centerTrainerByPaging(p, s, centerId);
   	
   	//강사 본인의 센터인지 판정 강사로 로그인 되어 있으면서 현재 로그인 된 강사가 소속된 센터의 아이디가 같다면
-
   	TrainerDto trainerDto = trainerDao.selectOne(trainerId);
   	boolean isOwnerCenter = trainerDto!=null && trainerDto.getCenterId().equals(centerDto.getCenterId());
 
   %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
-    <div class="container w600 m30">
-
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 
  <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
 <script type="text/javascript">
         $(function(){
             $("#delete").click(function(){
@@ -133,7 +127,7 @@
            <div class="flex-c-container flex-c-vertical layer-3">
                <div class="row center">
                   <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>">
-                  <img src="https://placeimg.com/150/150/people" class="c-img img-round img-hover">
+                  <img src="https://placeimg.com/150/150/people" class="c-img img-circle img-hover">
                   </a>
                </div>
                <div class="center">

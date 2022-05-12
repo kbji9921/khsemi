@@ -128,14 +128,21 @@ public class CenterDao {
 		return list;
 	}
 	
-	//센터 담당 운동명으로 찾기
-	public List<CenterDto> selectList(String keyword) throws Exception{
+	//센터 담당 운동명으로 찾기-
+	public List<CenterDto> selectList(int p, int s,String exerciseName) throws Exception{
+		int end = p *s;
+		int begin = end -(s-1);
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select C.*, E.exercise_name from center C inner join eoc E on C.center_id = E.center_id "
-				+ "where E.exercise_name = ?";
+		String sql = "select * from ("
+		+ "select rownum rn, TMP.* from ("
+		+ "select C.*,E.exercise_name from center C inner join eoc E on "
+		+ "C.center_id = E.center_id where E.exercise_name=? order by center_name asc)TMP ) where rn between ? and ?";
+		
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, keyword);
+		ps.setString(1, exerciseName);
+		ps.setInt(2, begin);
+		ps.setInt(3, end);
 		ResultSet rs = ps.executeQuery();
 		
 		List<CenterDto> list = new ArrayList<>(); 
