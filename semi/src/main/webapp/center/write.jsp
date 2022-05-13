@@ -165,21 +165,21 @@
         });
     </script>
     
-	 <form action="write.kh" method="post" class="join-form">
+	 <form action="write.kh" method="post" enctype="multipart/form-data" class="join-form">
         <div class="container w400 m30">
             <div class="row center">
                 <h1>센터등록</h1>
             </div>
 
             <div class="row">
-                <label for="centerid-input">센터아이디
+                <label>센터아이디
                 <input type="text" name="centerId" placeholder="영문소문자,숫자 5~20글자내로 입력하세요" autocomplete="off" class="form-input input-round fill"
                 data-fail-msg="아이디의 형식이 올바르지 않습니다">
                  <span></span> </label>
             </div>
 
             <div class="row">
-                <label for="centername-input">센터이름
+                <label>센터이름
                 <input type="text" name="centerName" autocomplete="off" class="form-input input-round fill"></label>
             </div>
             <div class="row">
@@ -235,7 +235,7 @@
             </div>
             <div class="row right">
                 <button type="submit" class="btn btn-semi">등록</button>
-                <a href="#" class="link link-btn">취소</a>
+                <a href="<%=request.getContextPath()%>/index.jsp" class="link link-btn">취소</a>
             </div>
         </div>
     </form>

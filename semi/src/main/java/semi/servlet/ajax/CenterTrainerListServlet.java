@@ -31,6 +31,7 @@ public class CenterTrainerListServlet extends HttpServlet{
 			//출력
 			ObjectMapper mapper = new ObjectMapper();
 			String jsonString = mapper.writeValueAsString(trainerList);
+			
 			resp.setContentType("application/json;,charset=UTF-8");
 			resp.getWriter().print(jsonString);
 		}
