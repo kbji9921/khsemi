@@ -1,3 +1,5 @@
+<%@page import="semi.servlet.DtoDao.TrainerDao"%>
+<%@page import="semi.servlet.DtoDao.TrainerDto"%>
 <%@page import="java.util.List"%>
 <%@page import="semi.servlet.DtoDao.CenterDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -8,8 +10,9 @@
 
 <%	
     String trainerId = request.getParameter("trainerId");
-    
     String centerId = request.getParameter("centerId");
+    
+    
 %>
 
 
@@ -65,6 +68,7 @@
 		<%-- sports e --%>
 		
 		<%-- trainer s --%>
+
 			<article class="container">
 				<h3 class="contents-title">우리동네 인기 강사</h3>
 				<p class="contents-info">클릭하여 강사님의 이력을 확인해보세요!</p>
@@ -80,7 +84,7 @@
 					</div>
 					<div class="content-box">
 						<div class="content trainer">
-							<a href="<%=request.getContextPath()%>/trainer/trainerDetail.jsp?centerId=test4">
+							<a href="<%=request.getContextPath()%>/trainer/trainerDetail.jsp?centerId=test3">
 								<img src="/semi/images/trainer_dummy/trainer_2.jpg" width=100%>
 							</a>
 						</div>
@@ -108,6 +112,7 @@
 					</div>
 				</div>
 			</article>
+
 		<%-- trainer e --%>
 		
 		<%-- center s --%>
@@ -118,6 +123,8 @@
 					<div class="content-box">
 						<div class="content center">
 						
+						<!-- likeCount 을 가져와서 출력 -->
+						
 						<a href="<%=request.getContextPath()%>/center/detail.jsp?centerId=<%=centerId%>"> 
 							
 								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
@@ -126,28 +133,28 @@
 					</div>
 					<div class="content-box">
 						<div class="content center">
-							<a href="#">
+							<a href="<%=request.getContextPath()%>/center/detail.jsp?centerId=test1">
 								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
 							</a>
 						</div>
 					</div>
 					<div class="content-box">
 						<div class="content center">
-							<a href="#">
+							<a href="<%=request.getContextPath()%>/center/detail.jsp?centerId=test2">
 								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
 							</a>
 						</div>
 					</div>
 					<div class="content-box">
 						<div class="content center">
-							<a href="#">
+							<a href="<%=request.getContextPath()%>/center/detail.jsp?centerId=test3">
 								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
 							</a>
 						</div>
 					</div>
 					<div class="content-box">
 						<div class="content center">
-							<a href="#">
+							<a href="<%=request.getContextPath()%>/center/detail.jsp?centerId=test4">
 								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
 							</a>
 						</div>

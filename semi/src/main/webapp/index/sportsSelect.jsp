@@ -8,10 +8,6 @@
 <%
 	String trainerSports = request.getParameter("exerciseName");
     String exerciseName = request.getParameter("exerciseName");
-    
-
-
-
 %>
 
 <%--메인 화면 -> 종목 선택 후 선택된 종목의 센터 리스트, 강사 리스트 페이지...  --%>
