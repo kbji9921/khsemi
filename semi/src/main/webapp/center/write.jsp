@@ -10,9 +10,24 @@
  <script type="text/javascript">
         $(function(){
 			
+        	$("input[name=centerId]").blur(idCheck);
+        	$("input[name=centerPhone]").blur(phoneCheck);
+        	$("input[name=centerWeektime]").blur(weekCheck);
+        	$("input[name=centerWkndtime]").blur(wkndCheck);
+        	
+        	var judgeObject = {
+        			id:false,
+        			phone:false,
+        			week:false,
+        			wknd:false
+        	};
+        	
+        	$(".join-form").submit(function(){
+                return judgeObject.id && judgeObject.phone && judgeObject.week && judgeObject.wknd;
+			})
         	
             //아이디 검사(형식,중복)
-            $("input[name=centerId]").blur(function(){
+            function idCheck(){
             	var regex= /[a-z][a-z0-9]{4,19}/;
                 var centerId = $(this).val();
                 var span = $(this).next("span");
@@ -23,34 +38,35 @@
                 if(!judge){
                 	span.css("color","red");
                 	span.text($(this).data("fail-msg"));
-                	return false;
+                	judgeObject.id = false;
+                	return;
                 }
-            var that =this;
-
-            $.ajax({
-                url:"http://localhost:8080/semi/ajax/center-id.kh",
-                type: "post",
-                data: {
-                    centerId : centerId
-                },
-                success:function(resp){
-                    if(resp==="YY"){
-                        $(that).next("span").css("color","green");
-                        $(that).next("span").text("사용 가능한 아이디입니다");
-                        return true;
-                    }
-                    else if(resp==="NN"){
-                        $(that).next("span").css("color","red");
-                        $(that).next("span").text("이미 사용중인 아이디입니다");
-                        return false;
-                    }
-                }
-            });
-            })
+	            var that =this;
+	
+	            $.ajax({
+	                url:"http://localhost:8080/semi/ajax/center-id.kh",
+	                type: "post",
+	                data: {
+	                    centerId : centerId
+	                },
+	                success:function(resp){
+	                    if(resp==="YY"){
+	                        $(that).next("span").css("color","green");
+	                        $(that).next("span").text("사용 가능한 아이디입니다");
+	                        judgeObject.id = true;
+	                    }
+	                    else if(resp==="NN"){
+	                        $(that).next("span").css("color","red");
+	                        $(that).next("span").text("이미 사용중인 아이디입니다");
+	                        judgeObject.id = false;
+	                    }
+	                }
+	            });
+            }
             
 
             //전화번호 정규표현식
-            $("input[name=centerPhone]").blur(function(){
+            function phoneCheck(){
             	var regex = /0[0-6]{1,2}-[1-9][0-9]{2,3}-[0-9]{4}/;
                 var value = $(this).val();
                 span = $(this).next("span");
@@ -59,17 +75,17 @@
                 if(judge){
                     span.css("color","green");
                     span.text($(this).data("success-msg"));
-                    return true;
+                    judgeObject.phone = true;
                 }
                 else{
                     span.css("color","red");
                     span.text($(this).data("fail-msg"));
-                    return false;
+                    judgeObject.phone = false;
                 }
-            })
+            }
             
             //평일운영시간 검사
-            $("input[name=centerWeektime]").blur(function(){
+            function weekCheck(){
             	var regex = /^[가-힣0-9:~]+$/;
             	var value = $(this).val();
             	var span = $(this).next("span");
@@ -78,18 +94,18 @@
             	if(judge){
             		span.css("color","green")
             		span.text("");
-            		return true;
+            		judgeObject.week = true;
             	}
             	else{
             		span.css("color","red");
             		span.text($(this).data("fail-msg"));
-            		return false;
+            		judgeObject.week = false;
             	}
-            })
+            }
          
             
 			//주말운영시간 검사
-			$("input[name=centerWkndtime]").blur(function(){
+			function wkndCheck(){
 				var regex = /^[가-힣0-9:~]+$/;
 				var value = $(this).val();
 				var span = $(this).next("span");
@@ -97,15 +113,15 @@
 				
 				if(judge){
 					span.text("");
-					return true;
+					judgeObject.wknd = true;
 				}
 				else{
 					span.css("color","red");
 					span.text($(this).data("fail-msg"));
-					return false;
+					judgeObject.wknd = false;
 				}
-			})
-			
+			}
+		
 			
         })
     </script>

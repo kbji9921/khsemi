@@ -373,6 +373,7 @@ public class TrainerDao {
 		return list;
 	}	
 
+
 	//게시글 수(조회)
 	public int countByPaging() throws Exception{
 		Connection con = JdbcUtils.getConnection();
