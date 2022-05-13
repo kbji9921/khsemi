@@ -11,9 +11,10 @@
 	PlayerDao playerDao = new PlayerDao();
 	PlayerDto playerDto = playerDao.selectOne(playerId);
 %> 
-
+<jsp:include page="/jsp/template/header.jsp"></jsp:include> 
 <link rel="stylesheet" type="text/css" href="../css/reset.css">
 <link rel="stylesheet" type="text/css" href="../css/commons.css">
+
 <style>
     .h1{
        font-weight: 500;
@@ -22,7 +23,7 @@
     }
     
 </style>
-<jsp:include page="/jsp/template/header.jsp"></jsp:include> 
+
 	 <form action="chageinformation.player" method="Post">
 	   <div class="container w600 m30 center"> 
 	   
