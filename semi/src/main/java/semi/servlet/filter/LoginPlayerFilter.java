@@ -18,7 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 		"/player/matchingInsert.jsp","/player/mypage.jsp",
 		"/player/point.jsp","/player.insert.kh","/player/matchingDelete.player",
 		"/player/matching.insert","/player/pay.player","/player/password.player",
-		"/player/chageinformation.player","/player/chargePoint.player"
+		"/player/chageinformation.player","/player/chargePoint.player",
+		"/player/macthingList.jsp"
 		
 })
 public class LoginPlayerFilter implements Filter{

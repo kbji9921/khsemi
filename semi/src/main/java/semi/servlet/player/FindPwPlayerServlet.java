@@ -1,6 +1,7 @@
 package semi.servlet.player;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import oracle.sql.DATE;
 import semi.servlet.DtoDao.PlayerDao;
 import semi.servlet.DtoDao.PlayerDto;
 
@@ -18,21 +20,22 @@ public class FindPwPlayerServlet extends HttpServlet {
 		try {
 			
 			req.setCharacterEncoding("UTF-8");
-			String playerId = req.getParameter("playerId");
-//			PlayerDto playerDto = new PlayerDto();
-//			playerDto.setPlayerId(req.getParameter("playerId"));
-//			playerDto.setPlayerName(req.getParameter("playerName"));
-//			playerDto.setPlayerPhone(req.getParameter("playerPhone"));
+			//String playerId = req.getParameter("playerId");
+			PlayerDto playerDto = new PlayerDto();
+			playerDto.setPlayerId(req.getParameter("playerId"));
+			playerDto.setPlayerName(req.getParameter("playerName"));
+			playerDto.setPlayerBirth(Date.valueOf(req.getParameter("playerBirth")));
+			playerDto.setPlayerPhone(req.getParameter("playerPhone"));
 			 
 			
 			PlayerDao playerDao = new PlayerDao();
-			PlayerDto playerDto = playerDao.selectOne(playerId);
+			PlayerDto findDto = playerDao.findPw(playerDto);
 //			PlayerDto findDto = playerDao.findPw(playerDto);
 			
-			boolean isPass =playerDto.getPlayerId() != null;
+			boolean isPass =findDto != null;
 			
 			if(isPass) {
-				resp.sendRedirect("set_pw.jsp?playerId="+playerDto.getPlayerId());
+				resp.sendRedirect("set_pw.jsp?playerId="+findDto.getPlayerId());
 			}else {
 				resp.sendRedirect("findPwPlayer.jsp?error");			
 			}

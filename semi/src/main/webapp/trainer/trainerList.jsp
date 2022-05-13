@@ -73,11 +73,8 @@
 	if(endBlock > lastPage){
 		endBlock = lastPage;
 	}
-%>
-<%
-//센터 이름 불러오기
-
-%>
+ %>
+ 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 	<style>
@@ -105,8 +102,6 @@
 	}
 	</style>
 	 <div class="c-container w650 m30">
-
-        
         <!--검색창-->
         <div class="row center m20">
             <form action="<%=request.getContextPath() %>/trainer/trainerList.jsp" method="post">
@@ -122,7 +117,9 @@
                 </select>
                 <%} %>
                 <%if(isSearch){ %>
+
                 	<input type="text" name="keyword" class="form-input input-round layer-2"  placeholder="센터아이디 또는 강사명 검색하세요" autocomplete="off" value="<%=keyword%>">
+
                 <%} else{ %>
                 	<input type="text" name="keyword" class="form-input input-round layer-2"  placeholder="센터아이디 또는 강사명 검색하세요" autocomplete="off">
                 <%} %>
@@ -130,6 +127,7 @@
             </form>
         </div>
         <%if(trainerList.isEmpty()){ %>
+
         	<div class="row center m30">
         		<h3>검색 정보가 없습니다.</h3>
         	</div>
@@ -157,7 +155,7 @@
                     <div class="row center list-exercise-kinds">
                         <h4><%=eocDto.getEocExerciseName() %></h4>
                     </div>
-					<%} %>--%>
+               <%} %>--%>
                     <!--좋아요 수-->
                     <div class="row right m20">
                         <h4>[10]</h4>
@@ -169,59 +167,60 @@
         <%} %>
         <!-- 페이지네이션 링크 -->
        
-		<div class="row center pagination">
-		<!-- 이전 버튼 -->
-		<%if(p > 1){ %>
-			<%if(isSearch){ %>
-			<a href="trainerList.jsp?p=1&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&laquo;</a>
-			<%} else { %>
-			<a href="trainerList.jsp?p=1&s=<%=s%>">&laquo;</a>
-			<%} %>
-		<%} %>
-		
-		<%if(startBlock > 1){ %>
-			<%if(isSearch){ %>
-			<a href="trainerList.jsp?p=<%=startBlock-1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&lt;</a>
-			<%} else { %>
-			<a href="trainerList.jsp?p=<%=startBlock-1%>&s=<%=s%>">&lt;</a>
-			<%} %>
-		<%} %>
-		
-		<!-- 숫자 링크 영역 -->
-		<%for(int i=startBlock; i <= endBlock; i++){ %>
-			<%if(isSearch){ %>
-				<%if(i == p){ %>
-				<a class="active" href="trainerList.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>	
-				<%} else { %>
-				<a href="trainerList.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>
-				<%} %>
-			<%} else { %>
-				<%if(i == p){ %>
-				<a class="active" href="trainerList.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>	
-				<%} else { %>
-				<a href="trainerList.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>
-				<%} %>
-			<%} %>
-		<%} %>
-		
-		<!-- 다음 버튼 영역 -->
-		<%if(endBlock < lastPage){ %>
-			<%if(isSearch){ %>
-			<a href="trainerList.jsp?p=<%=endBlock+1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&gt;</a>
-			<%} else { %>
-			<a href="trainerList.jsp?p=<%=endBlock+1%>&s=<%=s%>">&gt;</a>
-			<%} %>
-		<%} %>
-		
-		<%if(p < lastPage){ %>
-			<%if(isSearch){ %>
-			<a href="trainerList.jsp?p=<%=lastPage%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&raquo;</a>
-			<%} else { %>
-			<a href="trainerList.jsp?p=<%=lastPage%>&s=<%=s%>">&raquo;</a>
-			<%} %>
-			<%} %>
-	</div>
-	
+      <div class="row center pagination">
+      <!-- 이전 버튼 -->
+      <%if(p > 1){ %>
+         <%if(isSearch){ %>
+         <a href="trainerList.jsp?p=1&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&laquo;</a>
+         <%} else { %>
+         <a href="trainerList.jsp?p=1&s=<%=s%>">&laquo;</a>
+         <%} %>
+      <%} %>
+      
+      <%if(startBlock > 1){ %>
+         <%if(isSearch){ %>
+         <a href="trainerList.jsp?p=<%=startBlock-1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&lt;</a>
+         <%} else { %>
+         <a href="trainerList.jsp?p=<%=startBlock-1%>&s=<%=s%>">&lt;</a>
+         <%} %>
+      <%} %>
+      
+      <!-- 숫자 링크 영역 -->
+      <%for(int i=startBlock; i <= endBlock; i++){ %>
+         <%if(isSearch){ %>
+            <%if(i == p){ %>
+            <a class="active" href="trainerList.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>   
+            <%} else { %>
+            <a href="trainerList.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>
+            <%} %>
+         <%} else { %>
+            <%if(i == p){ %>
+            <a class="active" href="trainerList.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>   
+            <%} else { %>
+            <a href="trainerList.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>
+            <%} %>
+         <%} %>
+      <%} %>
+      
+      <!-- 다음 버튼 영역 -->
+      <%if(endBlock < lastPage){ %>
+         <%if(isSearch){ %>
+         <a href="trainerList.jsp?p=<%=endBlock+1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&gt;</a>
+         <%} else { %>
+         <a href="trainerList.jsp?p=<%=endBlock+1%>&s=<%=s%>">&gt;</a>
+         <%} %>
+      <%} %>
+      
+      <%if(p < lastPage){ %>
+         <%if(isSearch){ %>
+         <a href="trainerList.jsp?p=<%=lastPage%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&raquo;</a>
+         <%} else { %>
+         <a href="trainerList.jsp?p=<%=lastPage%>&s=<%=s%>">&raquo;</a>
+         <%} %>
+         <%} %>
+   </div>
+   
+
     </div>
 
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>

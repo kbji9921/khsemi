@@ -29,7 +29,26 @@
  String auth = (String)session.getAttribute("auth");
  boolean admin = auth!=null&& auth.equals("관리자");
  %> 
-
+<%--페이징 관련 파라미터 수신 --%>
+<%
+	int p;
+	try{
+		p = Integer.parseInt(request.getParameter("p"));
+		throw new Exception();
+	}
+	catch(Exception e){
+		p = 1;
+	}
+	
+	int s;
+	try{
+		s = Integer.parseInt(request.getParameter("s"));
+		throw new Exception();
+	}
+	catch(Exception e){
+		s = 3;
+	}
+%>
   <%
 
      CenterDao centerDao = new CenterDao();
@@ -40,24 +59,19 @@
 
 
   	
-	//TrainerDao trainerDao = new TrainerDao();
-  	//List<TrainerDto> trainerList = trainerDao.selectTrainerList(centerId);
+	TrainerDao trainerDao = new TrainerDao();
+	List<TrainerDto> trainerList = trainerDao.centerTrainerByPaging(p, s, centerId);
   	
   	//강사 본인의 센터인지 판정 강사로 로그인 되어 있으면서 현재 로그인 된 강사가 소속된 센터의 아이디가 같다면
-  	//TrainerDto trainerDto = trainerDao.selectOne(trainerId);
-  	//boolean isOwnerCenter = trainerLogin && trainerDto.getCenterId().equals(centerDto.getCenterId());
+  	TrainerDto trainerDto = trainerDao.selectOne(trainerId);
+  	boolean isOwnerCenter = trainerDto!=null && trainerDto.getCenterId().equals(centerDto.getCenterId());
 
   %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
-    <div class="container w600 m30">
-
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 
  <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
 <script type="text/javascript">
         $(function(){
             $("#delete").click(function(){
@@ -67,7 +81,6 @@
     </script>
 
 	 <div class="c-container w650 m30">
->>>>>>> refs/remotes/origin/main
         <!--제목-->
         
         <!--센터 정보-->
@@ -110,22 +123,21 @@
         <!--해당 센터 강사 목록-->
         <span>우리 센터의 강사</span>
         <div class="flex-c-container m10">
-		 <%--<%for(TrainerDto trainerDto : trainerList){ %>
+		 <%for(TrainerDto trainerDTo : trainerList){ %>
            <div class="flex-c-container flex-c-vertical layer-3">
                <div class="row center">
                   <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>">
-                  <img src="https://placeimg.com/150/150/people" class="c-img img-round img-hover">
+                  <img src="https://placeimg.com/150/150/people" class="c-img img-circle img-hover">
                   </a>
                </div>
                <div class="center">
                    <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>" class="trainer-nameBox">
-                   <%=trainerDto.getTrainerName() %>
+                   <%=trainerDTo.getTrainerName() %>
                    </a>
                </div>
-			
            </div>
-        <%} %> --%>
-        <div class="flex-c-container flex-c-vertical layer-3">
+        <%} %>
+        <%--<div class="flex-c-container flex-c-vertical layer-3">
             <div class="row center">
                 <a href="#"><img src="https://placeimg.com/150/150/people" class="c-img img-circle img-hover"></a>
             </div>
@@ -148,7 +160,7 @@
             <div class="center">
                 <a href="#" class="trainer-nameBox">황인빈 강사님</a>
             </div>
-        </div> 
+        </div> --%>
 
         </div>
 		
@@ -160,10 +172,10 @@
         <div class="row right">
             <!--강사 본인의 센터인지 판정
   			관리자이거나 강사로 로그인 되어 있으면서 현재 로그인 된 강사가 소속된 센터의 아이디가 같다면 -->
-  			<%--<%if(admin||isOwnerCenter){ --%>
+  			<%if(admin||(trainerLogin&&isOwnerCenter)){ %>
 			<a href="<%=request.getContextPath() %>/center/update.jsp?centerId=<%=centerDto.getCenterId()%>" class="link link-btn m10" width="30%">수정</a>
 			<a href="<%=request.getContextPath() %>/center/delete.kh?centerId=<%=centerDto.getCenterId()%>" class="link link-btn m10" width="30%" id="delete">삭제</a>
-   			<%--<%} --%>
+   			<%}%>
    			<a href="<%=request.getContextPath() %>/center/list.jsp" class="link link-btn m10" width="30%">목록</a>
 		</div>    
     </div>
