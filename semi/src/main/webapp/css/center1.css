@@ -67,11 +67,12 @@
 
 .exercise-kinds {
 	display: inline-block;
-	width: 25%;
+	width: 20%;
 	border: solid #343b6a 0.1em;
 	border-radius: 1em;
 	padding: 0.1em;
-	margin-top: 10px;
+	/*margin-top: 10px;*/
+	margin-right: 5px;
 }
 
 .center-introbox {

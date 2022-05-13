@@ -6,12 +6,28 @@
 
     <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <script type="text/javascript">
         $(function(){
 			
+        	$("input[name=centerId]").blur(idCheck);
+        	$("input[name=centerPhone]").blur(phoneCheck);
+        	$("input[name=centerWeektime]").blur(weekCheck);
+        	$("input[name=centerWkndtime]").blur(wkndCheck);
+        	
+        	var judgeObject = {
+        			id:false,
+        			phone:false,
+        			week:false,
+        			wknd:false
+        	};
+        	
+        	$(".join-form").submit(function(){
+                return judgeObject.id && judgeObject.phone && judgeObject.week && judgeObject.wknd;
+			})
         	
             //아이디 검사(형식,중복)
-            $("input[name=centerId]").blur(function(){
+            function idCheck(){
             	var regex= /[a-z][a-z0-9]{4,19}/;
                 var centerId = $(this).val();
                 var span = $(this).next("span");
@@ -22,34 +38,35 @@
                 if(!judge){
                 	span.css("color","red");
                 	span.text($(this).data("fail-msg"));
-                	return false;
+                	judgeObject.id = false;
+                	return;
                 }
-            var that =this;
-
-            $.ajax({
-                url:"http://localhost:8080/semi/ajax/center-id.kh",
-                type: "post",
-                data: {
-                    centerId : centerId
-                },
-                success:function(resp){
-                    if(resp==="YY"){
-                        $(that).next("span").css("color","green");
-                        $(that).next("span").text("사용 가능한 아이디입니다");
-                        return true;
-                    }
-                    else if(resp==="NN"){
-                        $(that).next("span").css("color","red");
-                        $(that).next("span").text("이미 사용중인 아이디입니다");
-                        return false;
-                    }
-                }
-            });
-            })
+	            var that =this;
+	
+	            $.ajax({
+	                url:"http://localhost:8080/semi/ajax/center-id.kh",
+	                type: "post",
+	                data: {
+	                    centerId : centerId
+	                },
+	                success:function(resp){
+	                    if(resp==="YY"){
+	                        $(that).next("span").css("color","green");
+	                        $(that).next("span").text("사용 가능한 아이디입니다");
+	                        judgeObject.id = true;
+	                    }
+	                    else if(resp==="NN"){
+	                        $(that).next("span").css("color","red");
+	                        $(that).next("span").text("이미 사용중인 아이디입니다");
+	                        judgeObject.id = false;
+	                    }
+	                }
+	            });
+            }
             
 
             //전화번호 정규표현식
-            $("input[name=centerPhone]").blur(function(){
+            function phoneCheck(){
             	var regex = /0[0-6]{1,2}-[1-9][0-9]{2,3}-[0-9]{4}/;
                 var value = $(this).val();
                 span = $(this).next("span");
@@ -58,17 +75,17 @@
                 if(judge){
                     span.css("color","green");
                     span.text($(this).data("success-msg"));
-                    return true;
+                    judgeObject.phone = true;
                 }
                 else{
                     span.css("color","red");
                     span.text($(this).data("fail-msg"));
-                    return false;
+                    judgeObject.phone = false;
                 }
-            })
+            }
             
             //평일운영시간 검사
-            $("input[name=centerWeektime]").blur(function(){
+            function weekCheck(){
             	var regex = /^[가-힣0-9:~]+$/;
             	var value = $(this).val();
             	var span = $(this).next("span");
@@ -77,18 +94,18 @@
             	if(judge){
             		span.css("color","green")
             		span.text("");
-            		return true;
+            		judgeObject.week = true;
             	}
             	else{
             		span.css("color","red");
             		span.text($(this).data("fail-msg"));
-            		return false;
+            		judgeObject.week = false;
             	}
-            })
+            }
          
             
 			//주말운영시간 검사
-			$("input[name=centerWkndtime]").blur(function(){
+			function wkndCheck(){
 				var regex = /^[가-힣0-9:~]+$/;
 				var value = $(this).val();
 				var span = $(this).next("span");
@@ -96,33 +113,73 @@
 				
 				if(judge){
 					span.text("");
-					return true;
+					judgeObject.wknd = true;
 				}
 				else{
 					span.css("color","red");
 					span.text($(this).data("fail-msg"));
-					return false;
+					judgeObject.wknd = false;
 				}
-			})
+			}
+		
 			
         })
     </script>
     
-	 <form action="write.kh" method="post" class="join-form">
+  <script>
+    //Kakao 우편 API
+      function findAddress() {
+          new daum.Postcode({
+              oncomplete: function(data) {
+                  var addr = ''; 
+                  var extraAddr = ''; 
+                  if (data.userSelectedType === 'R') { 
+                      addr = data.roadAddress;
+                  } else { 
+                      addr = data.jibunAddress;
+                  }
+                  if(data.userSelectedType === 'R'){
+                      if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                          extraAddr += data.bname;
+                      }
+                      if(data.buildingName !== '' && data.apartment === 'Y'){
+                          extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                      }
+                      if(extraAddr !== ''){
+                          extraAddr = ' (' + extraAddr + ')';
+                      }
+                  
+                  } else {
+                  }
+                  $("input[name=centerPost]").val(data.zonecode);
+                  $("input[name=centerBasicAddress]").val(addr);
+                  $("input[name=centerDetailAddress]").focus();
+              }
+          }).open();
+      }
+  </script>
+  
+  <script type="text/javascript">
+        $(function(){
+            $(".address-find-btn").click(findAddress)
+        });
+    </script>
+    
+	 <form action="write.kh" method="post" enctype="multipart/form-data" class="join-form">
         <div class="container w400 m30">
             <div class="row center">
                 <h1>센터등록</h1>
             </div>
 
             <div class="row">
-                <label for="centerid-input">센터아이디
+                <label>센터아이디
                 <input type="text" name="centerId" placeholder="영문소문자,숫자 5~20글자내로 입력하세요" autocomplete="off" class="form-input input-round fill"
                 data-fail-msg="아이디의 형식이 올바르지 않습니다">
                  <span></span> </label>
             </div>
 
             <div class="row">
-                <label for="centername-input">센터이름
+                <label>센터이름
                 <input type="text" name="centerName" autocomplete="off" class="form-input input-round fill"></label>
             </div>
             <div class="row">
@@ -147,7 +204,7 @@
                 <label>주소</label><br>
                 <input type="text" name="centerPost" class="form-input input-round">
 
-                <a href="#" class="link link-btn">검색</a>
+                <a href="#" class="link link-btn address-find-btn">검색</a>
             </div>
             <div class="row">
                 <input type="text" name="centerBasicAddress" autocomplete="off" class="form-input input-round fill">
@@ -178,7 +235,7 @@
             </div>
             <div class="row right">
                 <button type="submit" class="btn btn-semi">등록</button>
-                <a href="#" class="link link-btn">취소</a>
+                <a href="<%=request.getContextPath()%>/index.jsp" class="link link-btn">취소</a>
             </div>
         </div>
     </form>

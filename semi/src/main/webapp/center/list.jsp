@@ -1,3 +1,6 @@
+<%@page import="semi.servlet.DtoDao.AttachmentDto"%>
+<%@page import="semi.servlet.DtoDao.AttachmentDao"%>
+<%@page import="semi.servlet.DtoDao.CenterAttachmentDao"%>
 <%@page import="semi.servlet.DtoDao.EocDto"%>
 <%@page import="semi.servlet.DtoDao.EocDao"%>
 <%@page import="semi.servlet.DtoDao.CenterDao"%>
@@ -33,14 +36,16 @@
  %>
  <%--처리 --%>
  <%
+
  	CenterDao centerDao = new CenterDao();
  	EocDao eocDao = new EocDao();
+ 	
  	boolean isSearch = type != null && !type.equals("") && keyword != null && !keyword.equals("");
  	
  	List<CenterDto> centerList;
- 	List<EocDto> eocList;
+ 	
  	if(isSearch){
- 		centerList = centerDao.selectListByPaging(p,s,type, keyword);
+ 		centerList = centerDao.selectList(type, keyword, p, s, exerciseName);
  		//eocList = eocDao.selectList(centerId);
  	}
  	else{
@@ -48,28 +53,29 @@
  		//eocList = eocDao.selectList(centerId);
  	}
  	
+ 	
  %>
+ 	
  
  <!-- 페이지네이션 링크 -->
 <%
 	int count;
-	if(isSearch){
-		count = centerDao.countByPaging(type, keyword);
+	if(isSearch){//검색 결과 수 카운트
+		count = centerDao.countByPaging(type, keyword,exerciseName);
 	}
-	else{
-		count = centerDao.countByPaging();
+	else{//목록 결과 수 카운트
+		count = centerDao.countByPaging(exerciseName);
 	}
 	
-	//마지막 페이지 번호 
+	//마지막 페이지 번호 계산
 	int lastPage = (count + s - 1) / s;
 	
 	//블록 크기
-	int blockSize = 5;
+	int blockSize = 10;
 	
 	int endBlock = (p + blockSize - 1) / blockSize * blockSize;
 	int startBlock = endBlock - (blockSize - 1);
 	
-	//범위 초과 시(endBlock > lastPage)
 	if(endBlock > lastPage){
 		endBlock = lastPage;
 	}
@@ -106,6 +112,7 @@
         <!--검색창-->
         <div class="row center m20">
             <form action="<%=request.getContextPath() %>/center/list.jsp" method="get">
+            <input type="hidden" name="exerciseName" value="<%=exerciseName %>">
             <%if(type==null||type.equals("center_basic_address")){ %>
                 <select name="type" class="form-input input-round">
                     <option value="center_basic_address" selected >동이름</option>     
@@ -120,43 +127,56 @@
                 <%if(isSearch){ %>
                 	<input type="text" name="keyword" class="form-input input-round layer-2"  placeholder="OO동 또는 센터명으로 검색하세요" autocomplete="off" value="<%=keyword%>">
                 <%}else{ %>
-                <input type="text" name="keyword" class="form-input input-round layer-2"  placeholder="OO동 또는 센터명으로 검색하세요" autocomplete="off" ">
-                <button type="submit" class="btn btn-semi">검색</button>
+                <input type="text" name="keyword" class="form-input input-round layer-2"  placeholder="OO동 또는 센터명으로 검색하세요" autocomplete="off" >
                 <%} %>
+                <button type="submit" class="btn btn-semi">검색</button>
             </form>
         </div>
         <%if(centerList.isEmpty()){ %>
         	<div class="row center m30">
-        		<h3>검색 정보가 없습니다.</h3>
+        		<h3>검색 결과가 존재하지 않습니다.</h3>
         	</div>
 		<%}else{ %>     
         <!--센터 목록-->
         <div class="flex-c-container flex-c-vertical">
         	<%for(CenterDto centerDto : centerList){ %>
+        	<%CenterAttachmentDao centerAttachmentDao = new CenterAttachmentDao();
+ 			int attachmentNo = centerAttachmentDao.selectOne(centerDto.getCenterId());
+ 	
+ 			AttachmentDao attachmentDao = new AttachmentDao();
+ 			AttachmentDto attachmentDto = attachmentDao.selectOne(attachmentNo);%>
             <div class="flex-c-container c-list-listbox m10">
                 <!--센터이미지-->
                 <div class="row c-list-img">
-                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>">
-                    <img src="https://placeimg.com/170/170/tech/grayscale" class="c-img img-shadow img-round" width="100%">
+                	<%if(attachmentDto==null){ %>
+                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>&exerciseName=<%=exerciseName%>">
+                    <img src="https://placeimg.com/170/170/tech/grayscale" class="c-img img-shadow img-round" width="170px" height="170px">
                     </a>
+                    <%} else{ %>
+                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>&exerciseName=<%=exerciseName%>">
+                    <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentNo%>" class="c-img img-shadow img-round" width="170px" height="170px">
+                    </a>
+                    <%} %>
                 </div>
                 <div class="c-list-area">
-                    <div class="row m30">
-                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>">
+                    <div class="row m20">
+                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>&exerciseName=<%=exerciseName%>">
                         <h2><%=centerDto.getCenterName() %></h2>
                         </a>
                     </div>
                     <div class="row">
                         <h3><%=centerDto.getCenterBasicAddress() %>&nbsp;<%=centerDto.getCenterDetailAddress() %></h3>
                     </div>
-                    <%--센터 담당 운동 
+                    <%--센터 담당 운동 --%>
+                    <%List<EocDto> eocList; %>
+                    <%eocList= eocDao.selectList(centerDto.getCenterId()); %>
                     <%for(EocDto eocDto : eocList){ %>
-                    <div class="row center list-exercise-kinds">
+                    <div class="center exercise-kinds">
                         <h4><%=eocDto.getEocExerciseName() %></h4>
                     </div>
-					<%} %>--%>
+					<%} %>
                     <!--좋아요 수-->
-                    <div class="row right m20">
+                    <div class="row right">
                         <h4>[10]</h4>
                     </div>
                 </div>
@@ -170,17 +190,17 @@
 		<!-- 이전 버튼 -->
 		<%if(p > 1){ %>
 			<%if(isSearch){ %>
-			<a href="list.jsp?p=1&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&laquo;</a>
+			<a href="list.jsp?p=1&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>">&laquo;</a>
 			<%} else { %>
-			<a href="list.jsp?p=1&s=<%=s%>">&laquo;</a>
+			<a href="list.jsp?p=1&s=<%=s%>&exerciseName=<%=exerciseName%>">&laquo;</a>
 			<%} %>
 		<%} %>
 		
 		<%if(startBlock > 1){ %>
 			<%if(isSearch){ %>
-			<a href="list.jsp?p=<%=startBlock-1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&lt;</a>
+			<a href="list.jsp?p=<%=startBlock-1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>">&lt;</a>
 			<%} else { %>
-			<a href="list.jsp?p=<%=startBlock-1%>&s=<%=s%>">&lt;</a>
+			<a href="list.jsp?p=<%=startBlock-1%>&s=<%=s%>&exerciseName=<%=exerciseName%>">&lt;</a>
 			<%} %>
 		<%} %>
 		
@@ -188,15 +208,15 @@
 		<%for(int i=startBlock; i <= endBlock; i++){ %>
 			<%if(isSearch){ %>
 				<%if(i == p){ %>
-				<a class="active" href="list.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>	
+				<a class="active" href="list.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>"><%=i%></a>	
 				<%} else { %>
-				<a href="list.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>
+				<a href="list.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>"><%=i%></a>
 				<%} %>
 			<%} else { %>
 				<%if(i == p){ %>
-				<a class="active" href="list.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>	
+				<a class="active" href="list.jsp?p=<%=i%>&s=<%=s%>&exerciseName=<%=exerciseName%>"><%=i%></a>	
 				<%} else { %>
-				<a href="list.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>
+				<a href="list.jsp?p=<%=i%>&s=<%=s%>&exerciseName=<%=exerciseName%>"><%=i%></a>
 				<%} %>
 			<%} %>
 		<%} %>
@@ -204,17 +224,17 @@
 		<!-- 다음 버튼 영역 -->
 		<%if(endBlock < lastPage){ %>
 			<%if(isSearch){ %>
-			<a href="list.jsp?p=<%=endBlock+1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&gt;</a>
+			<a href="list.jsp?p=<%=endBlock+1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>">&gt;</a>
 			<%} else { %>
-			<a href="list.jsp?p=<%=endBlock+1%>&s=<%=s%>">&gt;</a>
+			<a href="list.jsp?p=<%=endBlock+1%>&s=<%=s%>&exerciseName=<%=exerciseName%>">&gt;</a>
 			<%} %>
 		<%} %>
 		
 		<%if(p < lastPage){ %>
 			<%if(isSearch){ %>
-			<a href="list.jsp?p=<%=lastPage%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&raquo;</a>
+			<a href="list.jsp?p=<%=lastPage%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>">&raquo;</a>
 			<%} else { %>
-			<a href="list.jsp?p=<%=lastPage%>&s=<%=s%>">&raquo;</a>
+			<a href="list.jsp?p=<%=lastPage%>&s=<%=s%>&exerciseName=<%=exerciseName%>">&raquo;</a>
 			<%} %>
 		<%} %>
 	</div>

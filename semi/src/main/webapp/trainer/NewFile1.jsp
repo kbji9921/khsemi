@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<a href="download.kh?attachmentNo=6"></a>
+<img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=2">
 </body>
 </html>

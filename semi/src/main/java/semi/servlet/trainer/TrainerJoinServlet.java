@@ -1,4 +1,4 @@
-package semi.servlet.trainer;
+	package semi.servlet.trainer;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ import semi.servlet.DtoDao.TrainerDao;
 import semi.servlet.DtoDao.TrainerDto;
 
 
-@WebServlet(urlPatterns = "/trainer/join.kh")
+@WebServlet(urlPatterns = "/trainer/join.trainer")
 public class TrainerJoinServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,7 +32,7 @@ public class TrainerJoinServlet extends HttpServlet{
 			TrainerDao trainerDao = new TrainerDao();
 			trainerDao.join(trainerDto);
 			//출력
-//			resp.sendRedirect(req.getContextPath()+"/trainer/join_finish.jsp");
+			resp.sendRedirect(req.getContextPath()+"/trainer/trainerJoinSuccess.jsp?trainerId="+trainerDto.getTrainerId());
 			
 		}catch(Exception e) {
 			e.printStackTrace();
