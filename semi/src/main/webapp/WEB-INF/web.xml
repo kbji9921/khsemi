@@ -15,7 +15,7 @@
 	</error-page>
 	<!--  세션 유지시간 설정 -->
 	<session-config>
-		<session-timeout>60</session-timeout>
+		<session-timeout>120</session-timeout>
 	</session-config>
     
     <welcome-file-list>

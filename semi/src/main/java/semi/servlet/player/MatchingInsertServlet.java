@@ -23,14 +23,16 @@ public class MatchingInsertServlet extends HttpServlet{
 			MatchingDto matchingDto = new MatchingDto();
 			matchingDto.setMatchingNo(matchingNo);
 			matchingDto.setStudentId(req.getParameter("playerId"));
-			matchingDto.setCoachId(req.getParameter("coachId"));
+			matchingDto.setCoachId(req.getParameter("trainerId"));
 			matchingDto.setMatchingDays(Integer.parseInt(req.getParameter("matchingDays")));
 			
-			
-			matchingDao.insert(matchingDto);
-			
-			resp.sendRedirect("matchingList.jsp");
-			
+			boolean isEmpty = matchingDao.selectOne(matchingDto) == null;
+			if(!isEmpty) {
+				resp.sendRedirect("matchingInsert.jsp?error");
+			}else {
+				matchingDao.insert(matchingDto);
+				resp.sendRedirect("matchingList.jsp");
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			resp.sendError(500);

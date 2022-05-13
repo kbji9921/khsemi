@@ -126,12 +126,13 @@
 		 <%for(TrainerDto trainerDTo : trainerList){ %>
            <div class="flex-c-container flex-c-vertical layer-3">
                <div class="row center">
-                  <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>">
+                  <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>&trainerId=<%=trainerDTo.getTrainerId() %>">
                   <img src="https://placeimg.com/150/150/people" class="c-img img-circle img-hover">
                   </a>
                </div>
                <div class="center">
-                   <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>" class="trainer-nameBox">
+                   <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId()%>&trainerId=<%=trainerDTo.getTrainerId() %>" class="trainer-nameBox">
+                   
                    <%=trainerDTo.getTrainerName() %>
                    </a>
                </div>

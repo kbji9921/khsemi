@@ -153,5 +153,49 @@ public class ReservationDao {
 		con.close();
 		return list;
 	}
+	public List<ReservationDto> select(String playerId, String trainerId)throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from reservation where player_id =? and trainer_id=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, playerId);
+		ps.setString(2, trainerId);
+		
+		ResultSet rs = ps.executeQuery();
+		List<ReservationDto> list = new ArrayList<>();
+		while(rs.next()) {
+			ReservationDto reservationDto = new ReservationDto();
+			reservationDto.setReservationNo(rs.getInt("reservation_no"));
+			reservationDto.setPlayerId(rs.getString("player_id"));
+			reservationDto.setTrainerId(rs.getString("trainer_id"));
+			reservationDto.setReservationDate(rs.getDate("reservation_date"));
+			reservationDto.setReservationTime(rs.getString("reservation_time"));
+			list.add(reservationDto);
+		}
+		con.close();
+		return list;
+	}
+	public List<ReservationDto> selectOnePlayer(String playerId)throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from reservation where player_id =?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, playerId);
+		
+		
+		ResultSet rs = ps.executeQuery();
+		List<ReservationDto> list = new ArrayList<>();
+		while(rs.next()) {
+			ReservationDto reservationDto = new ReservationDto();
+			reservationDto.setReservationNo(rs.getInt("reservation_no"));
+			reservationDto.setPlayerId(rs.getString("player_id"));
+			reservationDto.setTrainerId(rs.getString("trainer_id"));
+			reservationDto.setReservationDate(rs.getDate("reservation_date"));
+			reservationDto.setReservationTime(rs.getString("reservation_time"));
+			list.add(reservationDto);
+		}
+		con.close();
+		return list;
+	}
 				
 }
