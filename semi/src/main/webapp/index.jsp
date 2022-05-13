@@ -5,9 +5,6 @@
 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 
-<%
-
-%>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/index.css">
 
@@ -50,6 +47,7 @@
 					<div class="content-box">
 						<div class="content exercise">
 							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exerciseName=수영">
+
 								<img src="/semi/images/swim_icon.png" width=45%>
 							</a>
 						</div>

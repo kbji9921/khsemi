@@ -4,18 +4,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-<%	
-    String exerciseName = request.getParameter("exerciseName");
 
+<%
+	String trainerSports = request.getParameter("exerciseName");
+    String exerciseName = request.getParameter("exerciseName");
     
-    String trainerSports = request.getParameter("trainerSports");
-    String type = request.getParameter("type");
+
+
 
 %>
-
-
-
-
 
 <%--메인 화면 -> 종목 선택 후 선택된 종목의 센터 리스트, 강사 리스트 페이지...  --%>
 
@@ -27,6 +24,7 @@
          <p class="contents-p">선택하신 종목의 센터 또는 강사로 찾으실 수 있습니다</p>
          
          <br>
+
 
         <div class="flex-container">
             <div class="content-box">

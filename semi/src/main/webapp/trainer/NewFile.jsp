@@ -1,29 +1,19 @@
-<%@page import="semi.servlet.DtoDao.AttachmentDto"%>
-<%@page import="semi.servlet.DtoDao.AttachmentDao"%>
-<%@page import="semi.servlet.DtoDao.TrainerAttachmentDto"%>
-<%@page import="semi.servlet.DtoDao.TrainerAttachmentDao"%>
-<%@page import="semi.servlet.DtoDao.TrainerDto"%>
+	<%@page import="semi.servlet.DtoDao.TrainerDto"%>
 <%@page import="semi.servlet.DtoDao.TrainerDao"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%-- 준비 --%>
 <%
-String trainerId = "testuser6";
-//String trainerId= (String)request.getSession().getAttribute("trainer");
+//String trainerId = "testuser6";
+String trainerId= (String)request.getSession().getAttribute("trainer");
 %>    
     
     <%-- 처리 --%>
 <%
 TrainerDao trainerDao = new TrainerDao();
 TrainerDto trainerDto = trainerDao.selectOne(trainerId);
-
-TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao();
-int attach = trainerAttachmentDao.selectOne(trainerId);
-
-AttachmentDao attachmentDao = new AttachmentDao();
-AttachmentDto attachmentDto = attachmentDao.selectOne(attach);
-%>
+%> 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html lang="ko">
@@ -53,7 +43,7 @@ AttachmentDto attachmentDto = attachmentDao.selectOne(attach);
         .hide{
             display:none;
         }
-        input:readonly{
+        input:disabled{
             background-color: #F0F0F0;
         }
         .btn{
@@ -82,9 +72,6 @@ AttachmentDto attachmentDto = attachmentDao.selectOne(attach);
         ul.menu a:hover{
             color: red !important;
         }
-        .asdf{
-        	width:100%;'
-        }
     </style>
     <!-- 구글 폰트 cdn -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -92,24 +79,24 @@ AttachmentDto attachmentDto = attachmentDao.selectOne(attach);
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../css/commons.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
     <!-- <link rel="stylesheet" type="text/css" href="../css/test.css"> -->
-	
+
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script type="text/javascript">
     $(function(){
-        $(".input-dis").attr("readonly", true);
+        $(".input-dis").attr("disabled", true);
     	$("#btn").click(function(event){
-            $(".input-dis").attr("readonly", false);
+            $(".input-dis").attr("disabled", false);
             $("#btn").addClass("hide")
             $('#btn2').removeClass("hide")
             $('#btn3').removeClass("hide")
             event.preventDefault();
     	});
         $('#btn3').click(function(event){
-            $(".input-dis").attr("readonly", true);
+            $(".input-dis").attr("disabled", true);
             $("#btn").removeClass("hide")
             $('#btn2').addClass('hide')
             $('#btn3').addClass('hide')
@@ -118,10 +105,9 @@ AttachmentDto attachmentDto = attachmentDao.selectOne(attach);
     </script>
 </head>
 <body>  
-<%=attach %>
-<form class="join-form" method="post" enctype="multipart/form-data" action="profile.trainer">
+<form class="join-form">
     <div class="color">
-        <a href="메인페이지 이동"></a>
+        <a href="메인페이지 이동"><img src="../image/ci_main_logo.png"></a>
         <ul class="menu">
             <li><a herf="#">정보 수정</a></li>
             <li><a href="#">이력 관리</a></li>
@@ -134,9 +120,7 @@ AttachmentDto attachmentDto = attachmentDao.selectOne(attach);
             <div class="flex-container list-center-listbox">
                 <!--센터이미지-->
                 <div class="row center list-image-area">
-                    <a href="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attach%>"></a>
-                    <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attach%>" class="asdf">
-                    <input type="file" accept="jpg,png" class="input-dis" name="trainerAttachment" value="<%=attachmentDto.getAttachmentNo()%>">
+                    <img src="http://via.placeholder.com/150x150" class="img img-hover img-round">
                 </div>
                 <div class="list-center-area display-center">
 					<div class="row center">
@@ -152,31 +136,31 @@ AttachmentDto attachmentDto = attachmentDao.selectOne(attach);
         <div class="row">
             	 <div class="row">
                     <label>아이디</label>
-                    <input type="text" class="form-input input-round full" value="<%=trainerDto.getTrainerId()%>" readonly name="trainerId">
+                    <input type="text" class="form-input input-round fill" value="<%=trainerDto.getTrainerId()%>" disabled>
                     <span></span>
             	 </div>
 	 				<div class="row">
                     <label>이름</label>
-                    <input type="text" class="form-input input-round full input-dis" value="<%=trainerDto.getTrainerName()%>" name="trainerName">
+                    <input type="text" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerName()%>">
                     <span></span>
             	 </div>
  	 				<div class="row">
                     <label>생년월일</label>
-                    <input type="date" class="form-input input-round full input-dis" value="<%=trainerDto.getTrainerBirth()%>" name="trainerBirth">
+                    <input type="date" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerBirth()%>">
                     <span></span>
             	 </div>
             	 <div class="row ">
                     <label>전화번호</label>
-                    <input type="tel" class="form-input input-round full input-dis" value="<%=trainerDto.getTrainerPhone()%>" name="trainerPhone">
+                    <input type="tel" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerPhone()%>">
                     <span></span>
             	 </div>
  	 			<div class="row ">
                     <label>이메일</label>
-                    <input type="email" class="form-input input-round full input-dis" value="<%=trainerDto.getTrainerEmail()%>" name="trainerEmail">
+                    <input type="email" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerEmail()%>">
                     <span></span>
       	 		<div class="row ">
                     <label>운동종목</label>
-                    <select class="form-input input-round full input-dis" name="trainerSports">
+                    <select class="form-input input-round full input-dis">
                         <option value="<%=trainerDto.getTrainerSports()%>" >선택</option>
                         <option>요가</option>
                         <option>헬스</option>
@@ -187,32 +171,27 @@ AttachmentDto attachmentDto = attachmentDao.selectOne(attach);
             	 </div>
        	 		<div class="row ">
                     <label>성별</label>
-                    <input type="text" class="form-input input-round full input-dis" value="<%=trainerDto.getTrainerGender()%>" name="trainerGender">
+                    <input type="text" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerGender()%>">
                     <span></span>
             	 </div>
     	 		<div class="row ">
                     <label for="logindate">가입일</label>
-                    <input type="text" class="form-input input-round full input-dis" value="<%=trainerDto.getTrainerJoindate()%>" id="logindate" name="trainertrainerJoindate">
+                    <input type="text" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerJoindate()%>" id="logindate">
                     <span></span>
             	 </div>
               	 <div class="row ">
                     <label>최근접속일</label>
-                    <input type="text" class="form-input input-round full input-dis" value="<%=trainerDto.getTrainerLogindate()%>" name="trainerLoindate">
-                    <span></span>   
-            	 </div>
-            	   	 <div class="row ">
-                    <label>비밀번호</label>
-                    <input type="password" class="form-input input-round full input-dis" name="trainerPw">
+                    <input type="text" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerLogindate()%>">
                     <span></span>   
             	 </div>
         </div>
     </div>
     <div class="row">
-        <button class="btn btn-semi full" id="btn">수정</button>
-        <button class="btn btn-semi full hide" id="btn2" >변경완료</button>
+        <button class="btn btn-semi fill" id="btn">수정</button>
+        <button class="btn btn-semi fill hide" id="btn2" >변경완료</button>
     </div>
     <div class="row">
-        <button class="btn btn-secondary full hide" id="btn3">취소</button>
+        <button class="btn btn-secondary fill hide" id="btn3">취소</button>
     </div>
     </div>
 </form>

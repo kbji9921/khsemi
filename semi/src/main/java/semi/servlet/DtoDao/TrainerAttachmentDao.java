@@ -2,6 +2,7 @@ package semi.servlet.DtoDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class TrainerAttachmentDao {
 	
@@ -15,6 +16,25 @@ public class TrainerAttachmentDao {
 		
 		
 		con.close();
+	}
+	public int selectOne(String trainerId) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		String sql = "select attachment_no from trainer_attachment where trainer_id = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, trainerId);
+		ResultSet rs = ps.executeQuery();
+		
+		int attachmentNo;
+		if(rs.next()) {;
+		attachmentNo= rs.getInt("attachment_no");
+		}
+		else {
+			attachmentNo = 0;
+		}
+		con.close();
+		
+		return attachmentNo;
 	}
 }
 

@@ -11,49 +11,35 @@ import javax.servlet.http.HttpServletResponse;
 import semi.servlet.DtoDao.TrainerDao;
 import semi.servlet.DtoDao.TrainerDto;
 
-
-@WebServlet(urlPatterns = "/member/password1.kh")
-public class TrainerFindPwServlet extends HttpServlet{
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			try {
-				
-				//준비
-				req.setCharacterEncoding("UTF-8");
-
-				String currentPw = req.getParameter("currentPw");
-				String changePw = req.getParameter("changePw");
-				
-
-				String trainerId = (String)req.getSession().getAttribute("login");
-				
-				//처리
-				//1. 기존 비밀번호와 변경할 비밀번호가 일치하는지 검사
-				boolean isSamePassword = currentPw==null||changePw==null || currentPw.equals(changePw);
-				if(isSamePassword) {
-					 resp.sendRedirect("password.jsp?error=1");
-					 return;
-				}
-				//2. 현재 비밀번호가 db의 비밀번호와 일치하는지 검사
-				TrainerDao trainerDao = new TrainerDao();
-				TrainerDto trainerDto = trainerDao.selectOne(trainerId);
-				
-				boolean isCorrectPassword = currentPw.equals(trainerDto.getTrainerPw());
-				if(!isCorrectPassword) {
-					resp.sendRedirect("trainerSetPw.jsp?error=2");
-				}
-				//3. 변경할 비밀번호가 적합한 형식인지 검사(생략)
-				//4. 비밀번호 변경 - 000의 비밀번호를 000로 바꿔
-				trainerDao.changePassword(trainerId, changePw);
-				
-				//출력
-				resp.sendRedirect("trainerMyPage.jsp");
-				
-				
-				
-			}catch(Exception e) {
-				e.printStackTrace();
-				resp.sendError(500);
-			}
-	}
+@WebServlet(urlPatterns = "/trainer/findPw.trainer")
+public class TrainerFindPwServlet extends HttpServlet {
+   @Override
+   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      try {
+         
+         req.setCharacterEncoding("UTF-8");
+         String trainerId = req.getParameter("trainerId");
+//         PlayerDto playerDto = new PlayerDto();
+//         playerDto.setPlayerId(req.getParameter("playerId"));
+//         playerDto.setPlayerName(req.getParameter("playerName"));
+//         playerDto.setPlayerPhone(req.getParameter("playerPhone"));
+          
+         
+         TrainerDao trainerDao = new TrainerDao();
+         TrainerDto trainerDto = trainerDao.selectOne(trainerId);
+//         PlayerDto findDto = playerDao.findPw(playerDto);
+         
+         boolean isPass =trainerDto.getTrainerId() != null;
+         
+         if(isPass) {
+            resp.sendRedirect("trainerSetPw2.jsp?trainerId="+trainerDto.getTrainerId());
+         }else {
+            resp.sendRedirect("trainerFindPw.jsp?error");         
+         }
+         
+      }catch(Exception e){
+         e.printStackTrace();
+         resp.sendError(500);
+      }
+   }
 }
