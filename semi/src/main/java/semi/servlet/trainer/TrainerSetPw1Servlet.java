@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import semi.servlet.DtoDao.TrainerDao;
 import semi.servlet.DtoDao.TrainerDto;
 
-@WebServlet(urlPatterns = "/trainer/setPw.trainer")
-public class TrainerSetPwServlet extends HttpServlet{
+@WebServlet(urlPatterns = "/trainer/setPw1.trainer")
+public class TrainerSetPw1Servlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			try {
@@ -28,19 +28,14 @@ public class TrainerSetPwServlet extends HttpServlet{
 				String trainerId = (String)req.getSession().getAttribute("trainer");
 				
 				//처리
-				//1. 기존 비밀번호와 변경할 비밀번호가 일치하는지 검사
-				boolean isSamePassword = currentPw==null||changePw1==null || changePw2==null && changePw1.equals(changePw2);
-				if(isSamePassword) {
-					 resp.sendRedirect("password.jsp?error=1");
-					 return;
-				}
+			
 				//2. 현재 비밀번호가 db의 비밀번호와 일치하는지 검사
 				TrainerDao trainerDao = new TrainerDao();
 				TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 				
 				boolean isCorrectPassword = currentPw.equals(trainerDto.getTrainerPw());
 				if(!isCorrectPassword) {
-					resp.sendRedirect("setPw.jsp?error=2");
+					resp.sendRedirect("trainerSetPw2.jsp?error");
 				}
 				//3. 변경할 비밀번호가 적합한 형식인지 검사(생략)
 				//4. 비밀번호 변경 - 000의 비밀번호를 000로 바꿔

@@ -5,6 +5,7 @@
 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 
+
 <%	
     String trainerId = request.getParameter("trainerId");
     

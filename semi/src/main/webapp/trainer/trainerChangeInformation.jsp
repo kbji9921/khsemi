@@ -15,14 +15,13 @@
 
 %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-<form action="Information.trainer" method="post" enctype="multipart/form-data">
+<form action="profile.trainer" method="post" enctype="multipart/form-data">
 <div class="container w500">
 		<div class="row center">
 		<h1>개인정보 변경</h1>
 		</div>
 		<div class="row">
 		<label>프로필 사진</label>
-		<%=trainerDto.getTrainerId()%>
 		<input type="file" name="trainerProfile" accept="jpg,png">
 		</div>
 		<div class="row">
