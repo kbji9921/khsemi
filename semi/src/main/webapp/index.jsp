@@ -1,9 +1,12 @@
+<%@page import="java.util.List"%>
+<%@page import="semi.servlet.DtoDao.CenterDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 
 <%
+
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/index.css">
@@ -63,7 +66,9 @@
 				<div class="flex-container">
 					<div class="content-box">
 						<div class="content trainer">
+						
 							<a href="#">
+						
 								<img src="/semi/images/trainer_dummy/trainer_1.jpg" width=100%>
 							</a>
 						</div>
@@ -107,36 +112,38 @@
 				<div class="flex-container">
 					<div class="content-box">
 						<div class="content center">
-							<a href="#">
-								<img src="" width=100%>
+						
+						<a href=""> 
+							
+								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
 							</a>
 						</div>
 					</div>
 					<div class="content-box">
 						<div class="content center">
 							<a href="#">
-								<img src="" width=100%>
+								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
 							</a>
 						</div>
 					</div>
 					<div class="content-box">
 						<div class="content center">
 							<a href="#">
-								<img src="" width=100%>
+								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
 							</a>
 						</div>
 					</div>
 					<div class="content-box">
 						<div class="content center">
 							<a href="#">
-								<img src="" width=100%>
+								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
 							</a>
 						</div>
 					</div>
 					<div class="content-box">
 						<div class="content center">
 							<a href="#">
-								<img src="" width=100%>
+								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
 							</a>
 						</div>
 					</div>
