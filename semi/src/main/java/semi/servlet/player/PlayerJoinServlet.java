@@ -41,7 +41,7 @@ public class PlayerJoinServlet extends HttpServlet{
 			
 			boolean success = playerDao.selectOne(playerDto.getPlayerId()) != null;
 			if(success) {
-				resp.sendRedirect(req.getContextPath());
+				resp.sendRedirect(req.getContextPath()+"/player/joinSuccess.jsp?playerId="+playerDto.getPlayerId());
 			}else {
 				resp.sendRedirect(req.getContextPath()+"/player/joing.jsp?error=2");
 				return;

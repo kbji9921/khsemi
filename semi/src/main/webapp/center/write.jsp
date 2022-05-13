@@ -4,37 +4,27 @@
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 
-<!-- jquery cdn -->
+    <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <script type="text/javascript">
         $(function(){
-        	 $("input[name=centerId]").blur(idCheck);
-        	 var judge1 = idCheck.call(document.querySelector("input[name=centerId]"));
-             //정규표현식 합쳐서 검사
-             $(".regex-input").blur(regCheck);
-             //form 전송
-             $(".join-form").submit(function(){
-                 judge1
-                 var judge2 = regCheck.call(document.querySelector("input[name=centerPhone]"));
-                 var judge3 = regCheck.call(document.querySelector("input[name=centerWeektime]"));
-                 var judge4 = regCheck.call(document.querySelector("input[name=centerWkndtime]"));
-                 
-                 return judge1 && judge2 && judge3 && judge4;
-             });
-          
+			
+        	
             //아이디 검사(형식,중복)
-            function idCheck(){
-                var regex= /[a-z][a-z0-9]{4,19}/;
+            $("input[name=centerId]").blur(function(){
+            	var regex= /[a-z][a-z0-9]{4,19}/;
                 var centerId = $(this).val();
                 var span = $(this).next("span");
                 var judge = regex.test(centerId);
+                
+                console.log("judge="+judge);
 
                 if(!judge){
-                    span.css("color","red");
-                    span.text("아이디의 형식을 바르게 작성하세요");
-                    return false;
+                	span.css("color","red");
+                	span.text($(this).data("fail-msg"));
+                	return false;
                 }
-
             var that =this;
 
             $.ajax({
@@ -56,12 +46,12 @@
                     }
                 }
             });
-            };
+            })
+            
 
-
-            //정규표현식 함수
-            function regCheck(){
-                var regex = new RegExp($(this).data("regex"));
+            //전화번호 정규표현식
+            $("input[name=centerPhone]").blur(function(){
+            	var regex = /0[0-6]{1,2}-[1-9][0-9]{2,3}-[0-9]{4}/;
                 var value = $(this).val();
                 span = $(this).next("span");
 
@@ -69,16 +59,94 @@
                 if(judge){
                     span.css("color","green");
                     span.text($(this).data("success-msg"));
-					return true;
+                    return true;
                 }
                 else{
                     span.css("color","red");
                     span.text($(this).data("fail-msg"));
                     return false;
                 }
-            }
-
+            })
+            
+            //평일운영시간 검사
+            $("input[name=centerWeektime]").blur(function(){
+            	var regex = /^[가-힣0-9:~]+$/;
+            	var value = $(this).val();
+            	var span = $(this).next("span");
+            	var judge = regex.test(value);
+            	
+            	if(judge){
+            		span.css("color","green")
+            		span.text("");
+            		return true;
+            	}
+            	else{
+            		span.css("color","red");
+            		span.text($(this).data("fail-msg"));
+            		return false;
+            	}
+            })
+         
+            
+			//주말운영시간 검사
+			$("input[name=centerWkndtime]").blur(function(){
+				var regex = /^[가-힣0-9:~]+$/;
+				var value = $(this).val();
+				var span = $(this).next("span");
+				var judge = regex.test(value);
+				
+				if(judge){
+					span.text("");
+					return true;
+				}
+				else{
+					span.css("color","red");
+					span.text($(this).data("fail-msg"));
+					return false;
+				}
+			})
+			
+			
         })
+    </script>
+    
+  <script>
+    //Kakao 우편 API
+      function findAddress() {
+          new daum.Postcode({
+              oncomplete: function(data) {
+                  var addr = ''; 
+                  var extraAddr = ''; 
+                  if (data.userSelectedType === 'R') { 
+                      addr = data.roadAddress;
+                  } else { 
+                      addr = data.jibunAddress;
+                  }
+                  if(data.userSelectedType === 'R'){
+                      if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                          extraAddr += data.bname;
+                      }
+                      if(data.buildingName !== '' && data.apartment === 'Y'){
+                          extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                      }
+                      if(extraAddr !== ''){
+                          extraAddr = ' (' + extraAddr + ')';
+                      }
+                  
+                  } else {
+                  }
+                  $("input[name=centerPost]").val(data.zonecode);
+                  $("input[name=centerBasicAddress]").val(addr);
+                  $("input[name=centerDetailAddress]").focus();
+              }
+          }).open();
+      }
+  </script>
+  
+  <script type="text/javascript">
+        $(function(){
+            $(".address-find-btn").click(findAddress)
+        });
     </script>
     
 	 <form action="write.kh" method="post" class="join-form">
@@ -89,7 +157,8 @@
 
             <div class="row">
                 <label for="centerid-input">센터아이디
-                <input type="text" name="centerId" placeholder="영문소문자,숫자 5~20글자내로 입력하세요" autocomplete="off" class="form-input input-round fill">
+                <input type="text" name="centerId" placeholder="영문소문자,숫자 5~20글자내로 입력하세요" autocomplete="off" class="form-input input-round fill"
+                data-fail-msg="아이디의 형식이 올바르지 않습니다">
                  <span></span> </label>
             </div>
 
@@ -100,26 +169,26 @@
             <div class="row">
                 <label>전화번호
                 <input type="text" name="centerPhone" autocomplete="off" placeholder="-포함하여 입력하세요" class="form-input input-round fill regex-input"
-                data-regex="^0[0-6]{1,2}-[1-9][0-9]{2,3}-[0-9]{4}$" data-success-msg="올바른 전화번호 입니다" data-fail-msg="-를 포함하여 입력하세요">
+                data-success-msg="올바른 전화번호 입니다" data-fail-msg="-를 포함하여 입력하세요">
                  <span></span></label>
             </div>
             <div class="row">
                 <label>평일운영시간
                 <input type="text" name="centerWeektime" placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" autocomplete="off" class="form-input input-round fill regex-input"
-               	data-regex="^[가-힣0-9:~]+$" data-success-msg="" data-fail-msg="입력하신 시간을 다시 확인해주세요">
+               	 data-fail-msg="입력하신 시간을 다시 확인해주세요">
                	<span></span></label>
             </div>
             <div class="row">
                 <label>주말운영시간
                 <input type="text" name="centerWkndtime" placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" autocomplete="off" class="form-input input-round fill regex-input"
-                data-regex="^[가-힣0-9:~]+$" data-success-msg="" data-fail-msg="입력하신 시간을 다시 확인해주세요">
+                 data-fail-msg="입력하신 시간을 다시 확인해주세요">
                 <span></span></label>
             </div>
             <div class="row">
                 <label>주소</label><br>
                 <input type="text" name="centerPost" class="form-input input-round">
 
-                <a href="#" class="link link-btn">검색</a>
+                <a href="#" class="link link-btn address-find-btn">검색</a>
             </div>
             <div class="row">
                 <input type="text" name="centerBasicAddress" autocomplete="off" class="form-input input-round fill">

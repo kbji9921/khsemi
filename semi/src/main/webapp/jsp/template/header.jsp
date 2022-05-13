@@ -41,7 +41,8 @@
                <%if(trainerLogin||playerLogin){ %>
               		 <%if(trainerLogin){ %>
                   <li class="gnb-right">
-                     <a href="<%=request.getContextPath()%>/player/matchingList.jsp?playerId=<%=playerId%>">내예약</a>
+                     <a href="<%=request.getContextPath()%>/player/matchingList.jsp">매칭정보</a>
+                     <a href="<%=request.getContextPath()%>/player/matchingList.jsp">내예약</a>
                      <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/trainer/trainerMyPage.jsp">내정보</a>
                      <span class="partition">|</span>
@@ -51,7 +52,7 @@
                <%-- 사용자 로그인 후 --%>
               		 <%if(playerLogin){ %>
                   <li class="gnb-right">
-                     <a href="<%=request.getContextPath()%>/player/matchingList.jsp?playerId=<%=playerId%>">내예약</a>
+                     <a href="<%=request.getContextPath()%>/player/matchingList.jsp">내예약</a>
                      <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/player/mypage.jsp">내정보</a>
                      <span class="partition">|</span>

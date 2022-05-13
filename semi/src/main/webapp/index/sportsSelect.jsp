@@ -6,6 +6,7 @@
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <%	
     String exerciseName = request.getParameter("exerciseName");
+
     
     String trainerSports = request.getParameter("trainerSports");
     String type = request.getParameter("type");

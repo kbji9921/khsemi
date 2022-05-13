@@ -97,13 +97,23 @@ public class CenterDao {
 	}
 	
 	//동,센터명 검색
-	public List<CenterDto> selectList(String type,String keyword) throws Exception{
+	public List<CenterDto> selectList(String type,String keyword,int p, int s,String exerciseName) throws Exception{
 		Connection con = JdbcUtils.getConnection();
+		int end = p *s;
+		int begin = end -(s-1);
 		
-		String sql = "select * from center where instr(#1,upper(?))>=1 order by center_name asc";
+		String sql = "select * from ("
+				+ "select rownum rn, TMP.* from (select * from ("
+				+ "select C.*,E.exercise_name from center C inner join eoc E on C.center_id = E.center_id "
+				+ "where E.exercise_name= ? order by center_name asc) where "
+				+ "instr(#1,upper(?))>=1 )TMP)where rn between ? and ?";
+		
 		sql = sql.replace("#1", type);
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, keyword);
+		ps.setString(1, exerciseName);
+		ps.setString(2, keyword);
+		ps.setInt(3, begin);
+		ps.setInt(4, end);
 		ResultSet rs = ps.executeQuery();
 		
 		List<CenterDto> list = new ArrayList<>();
@@ -135,9 +145,9 @@ public class CenterDao {
 		Connection con = JdbcUtils.getConnection();
 		
 		String sql = "select * from ("
-		+ "select rownum rn, TMP.* from ("
-		+ "select C.*,E.exercise_name from center C inner join eoc E on "
-		+ "C.center_id = E.center_id where E.exercise_name=? order by center_name asc)TMP ) where rn between ? and ?";
+				+ "select rownum rn, TMP.* from ("
+				+ "select C.*,E.exercise_name from center C inner join eoc E on "
+				+ "C.center_id = E.center_id where E.exercise_name=? order by center_name asc)TMP ) where rn between ? and ?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, exerciseName);
@@ -271,12 +281,15 @@ public class CenterDao {
 		
 		return list;
 	}
-	//게시글 수(조회)
-	public int countByPaging() throws Exception{
+	//센터 전체 개수
+	public int countByPaging(String exerciseName) throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select count(*) from center";
+		String sql = "select count(*) from ("
+				+ "select C.*,E.exercise_name from center C inner join eoc E on C.center_id = E.center_id "
+				+ "where E.exercise_name=? order by center_name asc)";
 		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, exerciseName);
 		ResultSet rs = ps.executeQuery();
 		rs.next();
 		int count = rs.getInt("count(*)");
@@ -285,5 +298,62 @@ public class CenterDao {
 		
 		return count;
 	}
+
+	//센터 검색 개수
+	public int countByPaging(String type, String keyword, String exerciseName) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select count(*) from ("
+				+ "select C.*,E.exercise_name from center C inner join eoc E on C.center_id = E.center_id "
+				+ "where E.exercise_name= ? order by center_name asc) where instr(#1,upper(?))>=1";
+		sql= sql.replace("#1", type);
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, exerciseName);
+		ps.setString(2, keyword);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int count = rs.getInt("count(*)");
+		
+		con.close();
+		
+		return count;
+	}
+	
+	//센터 상세페이지 내 강사 페이징
+		public List<TrainerDto> centerTrainerByPaging(int p, int s, String centerId) throws Exception{
+			int end = p * s;
+			int begin = end -(s-1);
+			
+			Connection con = JdbcUtils.getConnection();
+			
+			String sql = "select * from ("
+					+ "select rownum rn, TMP.* from ("
+					+ "select * from trainer where center_id =? order by trainer_name asc)TMP ) where rn between ? and ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, centerId);
+			ps.setInt(2, begin);
+			ps.setInt(3, end);
+			ResultSet rs = ps.executeQuery();
+			List<TrainerDto> list = new ArrayList<>();
+			while(rs.next()) {
+				TrainerDto trainerDto = new TrainerDto();
+				trainerDto.setCenterId(rs.getString("center_id"));
+				trainerDto.setTrainerId(rs.getString("trainer_id"));
+				trainerDto.setTrainerPw(rs.getString("trainer_pw"));
+				trainerDto.setTrainerName(rs.getString("trainer_name"));
+				trainerDto.setTrainerBirth(rs.getString("trainer_birth"));
+				trainerDto.setTrainerGender(rs.getString("trainer_gender"));
+				trainerDto.setTrainerPhone(rs.getString("trainer_phone"));
+				trainerDto.setTrainerEmail(rs.getString("trainer_email"));
+				trainerDto.setTrainerJoindate(rs.getDate("trainer_joindate"));
+				trainerDto.setTrainerLogindate(rs.getDate("trainer_logindate"));
+				trainerDto.setTrainerPrice(rs.getInt("trainer_price"));
+				list.add(trainerDto);
+			}
+			
+			con.close();
+			
+			return list;
+		}
 
 }

@@ -19,6 +19,7 @@
 	
 	PlayerDao playerDao = new PlayerDao();
 	PlayerDto playerDto = playerDao.selectOne(playerId);
+	
 %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 	<div class="container w800 m30 center">
@@ -43,11 +44,11 @@
 	   			</thead>
 	   			<tbody>
 	   					<%for(MatchingDto matchingDto  : list){ %>
-						<%
-						TrainerDao trainerDao = new TrainerDao();
-						TrainerDto trainerDto = trainerDao.selectOne(matchingDto.getCoachId());
-						%>
 						<tr>
+							<%
+								TrainerDao trainerDao = new TrainerDao();
+								TrainerDto trainerDto = trainerDao.selectOne(matchingDto.getCoachId()); 
+							%>
 							<td><%=matchingDto.getMatchingNo() %></td>
 							<td><%=playerDto.getPlayerName() %></td>
 							<td><%=trainerDto.getTrainerName() %></td>
