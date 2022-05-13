@@ -10,6 +10,14 @@ public class CenterDto {
 	private String centerBasicAddress;
 	private String centerDetailAddress;
 	private String centerIntroduction;
+	private int centerLikeCount;
+	
+	public int getCenterLikeCount() {
+		return centerLikeCount;
+	}
+	public void setCenterLikeCount(int centerLikeCount) {
+		this.centerLikeCount = centerLikeCount;
+	}
 	public CenterDto() {
 		super();
 	}

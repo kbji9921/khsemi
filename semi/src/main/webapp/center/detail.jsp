@@ -13,6 +13,7 @@
  <%
 
     String centerId = request.getParameter("centerId");
+ 	String exerciseName =request.getParameter("exerciseName");
 
  //현재 접속한 사용자가 로그인 상태인지 아닌지를 판정하는 코드
 
@@ -74,6 +75,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
         $(function(){
+        	//좋아요
+        	
+        	
+        	
+        	//센터 삭제
             $("#delete").click(function(){
                 return confirm("정말 삭제하시겠습니까?");
             });
@@ -90,8 +96,20 @@
                     <img src="https://placeimg.com/250/250/tech/grayscale" class="c-img img-round">
                 </div>
                 <div class="content-c-area">
+                	 <!--좋아요-->
+                    <div class="row flex-c-container">
+                        <div style="margin-left: auto;">
+                            <img src="<%=request.getContextPath() %>/images/center_dummy/dislike.png"
+                            style="width:30px; height:30px" id="like-img">
+                        </div>
+                        <div style="margin-top: 6px;">
+                            <h4 id="like-count">[<%=centerDto.getCenterLikeCount() %>]</h4>
+                        </div>
+                        <input type="hidden" name="likeCheck" value="?" id="like-check">
+                    </div>
+                    
                     <div class="row center">
-                        <h1 class="m20"><%=centerDto.getCenterName() %></h1>
+                        <h1><%=centerDto.getCenterName() %></h1>
                     </div><hr>
                     <div class="row">
                         <h4>[주 소] :&nbsp;<%=centerDto.getCenterBasicAddress() %>&nbsp;<%=centerDto.getCenterDetailAddress() %></h4>
@@ -110,7 +128,6 @@
                         <h4><%=eocDto.getEocExerciseName() %></h4>
                     </div>
                     <%} %>
-                    <!--버튼-->
                 </div>
 
             </div>
@@ -176,7 +193,7 @@
 			<a href="<%=request.getContextPath() %>/center/update.jsp?centerId=<%=centerDto.getCenterId()%>" class="link link-btn m10" width="30%">수정</a>
 			<a href="<%=request.getContextPath() %>/center/delete.kh?centerId=<%=centerDto.getCenterId()%>" class="link link-btn m10" width="30%" id="delete">삭제</a>
    			<%}%>
-   			<a href="<%=request.getContextPath() %>/center/list.jsp" class="link link-btn m10" width="30%">목록</a>
+   			<a href="<%=request.getContextPath() %>/center/list.jsp?exerciseName=<%=exerciseName%>" class="link link-btn m10" width="30%">목록</a>
 		</div>    
     </div>
 
