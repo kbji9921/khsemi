@@ -6,6 +6,13 @@
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 
 
+<%	
+    String trainerId = request.getParameter("trainerId");
+    
+    String centerId = request.getParameter("centerId");
+%>
+
+
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/index.css">
 
 			<article class="container">
@@ -65,7 +72,7 @@
 					<div class="content-box">
 						<div class="content trainer">
 						
-							<a href="#">
+							<a href="<%=request.getContextPath()%>/trainer/trainerDetail.jsp?trainerId=<%=trainerId%>">
 						
 								<img src="/semi/images/trainer_dummy/trainer_1.jpg" width=100%>
 							</a>
@@ -73,14 +80,14 @@
 					</div>
 					<div class="content-box">
 						<div class="content trainer">
-							<a href="#">
+							<a href="<%=request.getContextPath()%>/trainer/trainerDetail.jsp?centerId=test4">
 								<img src="/semi/images/trainer_dummy/trainer_2.jpg" width=100%>
 							</a>
 						</div>
 					</div>
 					<div class="content-box">
 						<div class="content trainer">
-							<a href="#">
+							<a href="<%=request.getContextPath()%>/trainer/trainerDetail.jsp?centerId=<%=centerId%>">
 								<img src="/semi/images/trainer_dummy/trainer_3.jpg" width=100%>
 							</a>
 						</div>
@@ -111,7 +118,7 @@
 					<div class="content-box">
 						<div class="content center">
 						
-						<a href=""> 
+						<a href="<%=request.getContextPath()%>/center/detail.jsp?centerId=<%=centerId%>"> 
 							
 								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
 							</a>
