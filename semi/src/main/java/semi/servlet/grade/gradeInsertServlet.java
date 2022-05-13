@@ -30,7 +30,7 @@ public class gradeInsertServlet extends HttpServlet{
 			
 			//출력
 			//resp.getWriter().print("성공");
-			//resp.sendRedirect(req.getContextPath()+"/trainer/trainer_detail.jsp");
+			resp.sendRedirect(req.getContextPath()+"/trainer/trainerDetail.jsp?trainerId="+gradeDto.getGradeTarget());
 
 		} catch (Exception e) {
 			e.printStackTrace();

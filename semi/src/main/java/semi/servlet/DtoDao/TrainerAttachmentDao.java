@@ -36,5 +36,19 @@ public class TrainerAttachmentDao {
 		
 		return attachmentNo;
 	}
+	public boolean delete(int attachmentNo) throws Exception {
+		Connection con = JdbcUtils.getConnection();
+
+		String sql = "delete from trainer_attachment where attachment_no= ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+
+		ps.setInt(1, attachmentNo);
+		int count = ps.executeUpdate();
+
+		con.close();
+
+		return count > 0;
+
+	}
 }
 

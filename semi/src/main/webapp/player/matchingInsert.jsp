@@ -7,7 +7,8 @@
     pageEncoding="UTF-8"%>
 <%
 	String playerId = (String) session.getAttribute("login");
- 	String trainerId = request.getParameter("trainerId");
+	String trainerId = request.getParameter("trainerId");
+	//String trainerName = request.getParameter("trainerName");
 %>
 <%
 	PlayerDao playerDao = new PlayerDao();
@@ -30,6 +31,14 @@
 	        				<th>학생명</th>
 	        				<td><input type="text" name="playerName" value="<%=playerDto.getPlayerName()%>" readonly></td>
 	        			</tr>
+<<<<<<< HEAD
+
+	        					<tr>
+	        				<th>강사ID</th>
+	        				<td>
+								<input type="text" class="input-round form-input"value="<%=trainerId%>" readonly >
+							</td>
+=======
 	        			<tr>
 	        				<th>강사명</th>
 	        				<td><input type="text" name="trainerName" value="<%=trainerDto.getTrainerName() %>" readonly></td>
@@ -49,6 +58,7 @@
 	        			<tr>
 	        				<th>이메일</th>
 	        				<td><input type="text" name="trainerSport" value="<%=trainerDto.getTrainerEmail()%>"></td>
+>>>>>>> refs/remotes/origin/main
 	        			</tr>
 	        			<tr>
 	        				<th>PT 횟수</th>
@@ -63,7 +73,7 @@
 	        	</table>
 	        </div>
 	        <div class="row m40 right">
-            	<input type="submit" class="btn btn-semi btn-round fill" value="신청">
+            	<input type="submit" class="btn btn-semi btn-round fill" value="신청" name="<%=trainerId%>">
         	</div>
         	<div class="row center">
 				<%if(request.getParameter("error") != null){ %>

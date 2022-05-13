@@ -16,11 +16,10 @@ import semi.servlet.DtoDao.AttachmentDao;
 import semi.servlet.DtoDao.AttachmentDto;
 import semi.servlet.DtoDao.TrainerAttachmentDao;
 import semi.servlet.DtoDao.TrainerAttachmentDto;
-import semi.servlet.DtoDao.TrainerDao;
 import semi.servlet.DtoDao.TrainerDto;
 
-@WebServlet(urlPatterns ="/trainer/profile.trainer")
-public class TrainerFileUploadServlet extends HttpServlet{
+@WebServlet(urlPatterns ="/profile/profile.insert")
+public class TrainerProfileInsertServlet extends HttpServlet{
 @Override
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	try {
@@ -39,17 +38,6 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		
 		TrainerDto trainerDto = new TrainerDto();
 		trainerDto.setTrainerId(mRequest.getParameter("trainerId"));
-		trainerDto.setTrainerPw(mRequest.getParameter("trainerPw"));
-		trainerDto.setTrainerName(mRequest.getParameter("trainerName"));
-		trainerDto.setTrainerPhone(mRequest.getParameter("trainerPhone"));
-		trainerDto.setTrainerEmail(mRequest.getParameter("trainerEmail"));
-		trainerDto.setTrainerBirth(mRequest.getParameter("trainerBirth"));
-		trainerDto.setTrainerGender(mRequest.getParameter("trainerGender"));
-		trainerDto.setTrainerSports(mRequest.getParameter("trainerSports"));
-
-		//처리
-		TrainerDao trainerDao = new TrainerDao();
-		trainerDao.changeInformation(trainerDto);
 		
 		//첨부파일 정보 추가
 		if(mRequest.getFile("trainerAttachment")!=null) {
@@ -71,15 +59,13 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 			
 			TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao();
 			trainerAttachmentDao.insert(trainerAttachmentDto);
-		}
 		
 		
-		
-//		TrainerDao trainerDao = new TrainerDao();
-//		trainerDao.join(trainerDto);
 		//출력
-		resp.sendRedirect(req.getContextPath()+"/trainer/trainerJoinSucces.jsp");
-		
+			resp.sendRedirect(req.getContextPath()+"/trainer/trainerMyPage.jsp?trainerId="+trainerDto.getTrainerId());
+		}else{
+	         resp.sendRedirect(req.getContextPath()+"/profile/profileInsert.jsp?error"); //로그인 페이지(+에러표시)
+	   }
 		
 		
 	}catch(Exception e) {

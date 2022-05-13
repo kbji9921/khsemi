@@ -15,26 +15,25 @@ import semi.servlet.DtoDao.TrainerDto;
 @WebServlet(urlPatterns = "/trainer/delete.trainer")
 public class TrainerDeleteServlet extends HttpServlet{
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			
 			//준비
 			req.setCharacterEncoding("UTF-8");
 			String trainerPw = req.getParameter("trainerPw");
-			String trainerId = (String)req.getSession().getAttribute("trainer");
-			
+			String trainerId = req.getParameter("trainerId");
 			//처리
 			TrainerDao trainerDao = new TrainerDao();
 			TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 			boolean isPasswordCorrect = trainerPw!=null && trainerPw.equals(trainerDto.getTrainerPw());
 			if(!isPasswordCorrect) {
-				resp.sendRedirect("delete.jsp?error");
+				resp.sendRedirect("trainerDelete.jsp?error");
 				return;
 			}
 			
 			trainerDao.delete(trainerId,trainerPw); //삭제
 			//로그아웃
-			req.getSession().removeAttribute("login"); 
+			req.getSession().removeAttribute("trainer"); 
 			req.getSession().removeAttribute("auth");
 			//출력
 			resp.sendRedirect(req.getContextPath());

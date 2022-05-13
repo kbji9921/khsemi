@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 
 <%
-    String trainerId= (String)request.getSession().getAttribute("trainer");
+
     
    String playerId = request.getParameter("playerId");
    String trainerId = request.getParameter("trainerId");
