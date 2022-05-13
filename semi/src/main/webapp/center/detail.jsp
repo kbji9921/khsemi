@@ -163,6 +163,7 @@
                <div class="row center">
                <%if(trainerAttachmentDto==null){ %>
                   <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?trainerId=<%=trainerDTo.getTrainerId() %>">
+                  <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>&trainerId=<%=trainerDTo.getTrainerId() %>">
                   <img src="https://placeimg.com/150/150/people" class="c-img img-circle img-hover">
                   </a>
                   <%} else { %>
@@ -173,6 +174,8 @@
                </div>
                <div class="center">
                    <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?trainerId=<%=trainerDTo.getTrainerId() %>" class="trainer-nameBox">
+                   <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId()%>&trainerId=<%=trainerDTo.getTrainerId() %>" class="trainer-nameBox">
+                   
                    <%=trainerDTo.getTrainerName() %>
                    </a>
                </div>

@@ -3,29 +3,13 @@
 <%@page import="semi.servlet.DtoDao.ReservationDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%
-
-    
-   String playerId = request.getParameter("playerId");
-   String trainerId = request.getParameter("trainerId");
-
-    ReservationDao reservationDao = new ReservationDao();
-
-    List<ReservationDto> list = reservationDao.selectTrainer(trainerId);
-
-//     List<ReservationDto> list = reservationDao.select(playerId, trainerId);
-    
-%>
-
- 
-<jsp:include page="/jsp/template/header.jsp"></jsp:include>
-
+    <%
+	    String trainerId = request.getParameter("trainerId");
+	    ReservationDao reservationDao = new ReservationDao();
+	    List<ReservationDto> list = reservationDao.selectTrainer(trainerId);
+    %>
     <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+
 <title>Insert title here</title>
 <style>
 .list-center-area{
@@ -43,7 +27,7 @@ width:100%;
             <div class="flex-container list-center-listbox">
                 <!--센터이미지-->
                 <div class="row center list-image-area">
-                    <a href="<%=request.getContextPath() %>/semi/center/detail.jsp?centerId=<%=reservationDto.getReservationNo()%>">
+                    <a href="/semi/center/detail.jsp?centerId=<%=reservationDto.getReservationNo()%>">
                     <img src="http://via.placeholder.com/150x150" class="img img-hover img-round">
                     </a>
                 </div>
@@ -67,12 +51,7 @@ width:100%;
                 </div>
       
             </div>
-                    <%} %>
-                    
-                   
-                    
+         <%} %>
         </div>
     </div>
-</body>
-</html>
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>
