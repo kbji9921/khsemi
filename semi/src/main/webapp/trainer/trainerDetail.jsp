@@ -14,11 +14,14 @@
     
  <%--준비 --%>
  <%
-	//세션
- 	String playerId = (String)session.getAttribute("login");
-	//	String playerId = "test1234";
- 	String trainerId = request.getParameter("trainerId");
-	//String trainerId = "testuser6";
+
+
+ String playerId = (String)session.getAttribute("login");
+//	String playerId = "test1234";
+ String trainerId = request.getParameter("trainerId");
+
+
+
 	TrainerDao trainerDao = new TrainerDao();
 	TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 
@@ -40,13 +43,8 @@
 	CenterDao centerDao = new CenterDao();
 	CenterDto centerDto = centerDao.selectOne(trainerDto.getCenterId());
 %>
-
-
-  <%
-
-
-  %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
  <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -125,6 +123,7 @@
 	<div class="row">
 	<table class="table table-border">
 	<tr>
+
 	<th>평균점수</th>
 	<th>평가자수</th>
 	</tr>
@@ -137,8 +136,17 @@
 	<%} %>
 <%} %>
 	</table>
+
+	<br><br>
+	<%if(playerId != null){ %>
+		<a href="<%=request.getContextPath()%>/player/matchingInsert.jsp?palyerid=<%=playerId%>&trainerId=<%=trainerId%>">매칭</a>
+	<%}%>
+	<br><br>
+</div>
+
 	</div>
 	<!-- 평점 작성 -->
+
 	<%if(isPlayer){ %>
 	<div class="row">
 	<form action="insert.grade" method="post">

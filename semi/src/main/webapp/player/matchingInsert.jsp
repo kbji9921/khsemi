@@ -14,12 +14,13 @@
 	PlayerDao playerDao = new PlayerDao();
 	PlayerDto playerDto = playerDao.selectOne(playerId);
 	TrainerDao trainerDao = new TrainerDao();
-	List<TrainerDto> list = trainerDao.selectList();
+	TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 %>
 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 	<form action="matching.insert" method="post">
 		<input type="hidden" name="playerId" value="<%=playerId%>">
+		<input type="hidden" name="trainerId" value="<%=trainerId%>">
 		<div class="container w450 m30 center">
 			<div class="row m30 center">
 	           	<h2>새 매칭</h2>
@@ -28,20 +29,41 @@
 	        	<table class="table table-border">
 	        			<tr>
 	        				<th>학생명</th>
-	        				<td width=50%;>  <input type="text" name="playerName" value="<%=playerDto.getPlayerName()%>" readonly></td>
+	        				<td><input type="text" name="playerName" value="<%=playerDto.getPlayerName()%>" readonly></td>
 	        			</tr>
+<<<<<<< HEAD
 
 	        					<tr>
 	        				<th>강사ID</th>
 	        				<td>
 								<input type="text" class="input-round form-input"value="<%=trainerId%>" readonly >
 							</td>
+=======
+	        			<tr>
+	        				<th>강사명</th>
+	        				<td><input type="text" name="trainerName" value="<%=trainerDto.getTrainerName() %>" readonly></td>
+	        			</tr>
+	        			<tr>
+	        				<th>종목</th>
+	        				<td><input type="text" name="trainerSport" value="<%=trainerDto.getTrainerSports()%>"></td>
+	        			</tr>
+	        			<tr>
+	        				<th>성별</th>
+	        				<td><input type="text" name="trainerSport" value="<%=trainerDto.getTrainerGender()%>"></td>
+	        			</tr>
+	        			<tr>
+	        				<th>전화번호</th>
+	        				<td><input type="text" name="trainerSport" value="<%=trainerDto.getTrainerPhone()%>"></td>
+	        			</tr>
+	        			<tr>
+	        				<th>이메일</th>
+	        				<td><input type="text" name="trainerSport" value="<%=trainerDto.getTrainerEmail()%>"></td>
+>>>>>>> refs/remotes/origin/main
 	        			</tr>
 	        			<tr>
 	        				<th>PT 횟수</th>
 	        				<td>
 								<select name="matchingDays">
-									<option value="">선택하세요</option>	
 									<option>10</option>		
 									<option>20</option>	
 									<option>30</option>	
@@ -53,6 +75,11 @@
 	        <div class="row m40 right">
             	<input type="submit" class="btn btn-semi btn-round fill" value="신청" name="<%=trainerId%>">
         	</div>
+        	<div class="row center">
+				<%if(request.getParameter("error") != null){ %>
+					<h3 style="color:red;">이미 매칭이 잡힌 아이디입니다.</h3>
+				<%} %>
+			</div>
         </div>
 	</form>
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>

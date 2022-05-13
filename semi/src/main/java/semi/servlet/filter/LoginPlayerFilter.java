@@ -19,7 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 		"/player/point.jsp","/player.insert.kh","/player/matchingDelete.player",
 		"/player/matching.insert","/player/pay.player","/player/password.player",
 		"/player/chageinformation.player","/player/chargePoint.player",
-		"/player/macthingList.jsp"
+		"/player/matchingList.jsp","/reservation/reservationListPlayer.jsp"
+		
 		
 })
 public class LoginPlayerFilter implements Filter{
@@ -35,7 +36,7 @@ public class LoginPlayerFilter implements Filter{
 			String playerId = (String) req.getSession().getAttribute("login");
 			
 			if(playerId == null) {
-				resp.sendRedirect("login.jsp");
+				resp.sendRedirect(req.getContextPath()+"/player/login.jsp");
 			}else {
 				chain.doFilter(req, resp);
 			}

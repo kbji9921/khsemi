@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import semi.servlet.DtoDao.CenterDao;
 import semi.servlet.DtoDao.TrainerDao;
 import semi.servlet.DtoDao.TrainerDto;
 @WebServlet(urlPatterns = "/ajax/center-trainer.kh")
@@ -30,6 +31,7 @@ public class CenterTrainerListServlet extends HttpServlet{
 			//출력
 			ObjectMapper mapper = new ObjectMapper();
 			String jsonString = mapper.writeValueAsString(trainerList);
+			
 			resp.setContentType("application/json;,charset=UTF-8");
 			resp.getWriter().print(jsonString);
 		}

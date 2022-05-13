@@ -44,6 +44,30 @@ public class MatchingDao {
 		return list;
 	}
 	
+	public List<MatchingDto> selectAllList(String trainerId)throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from matching where coach_id = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, trainerId);
+		ResultSet rs = ps.executeQuery();
+		List<MatchingDto> list = new ArrayList<>();
+		while(rs.next()) {
+			MatchingDto matchingDto = new MatchingDto();
+			matchingDto.setMatchingNo(rs.getInt("matching_no"));
+			matchingDto.setStudentId(rs.getString("student_id"));
+			matchingDto.setCoachId(rs.getString("coach_id"));
+			matchingDto.setMatchingDays(rs.getInt("matching_days"));
+			matchingDto.setMatchingDate(rs.getDate("matching_date"));
+			matchingDto.setMatchingState(rs.getString("matching_state"));
+			
+			list.add(matchingDto);
+		}
+		con.close();
+		return list;
+	}
+	
 	public void insert(MatchingDto matchingDto)throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
@@ -118,6 +142,78 @@ public class MatchingDao {
 		return Tpcount;
 	}
 
+	public MatchingDto selectOne(MatchingDto matchingDto)throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from matching where student_id =? and coach_id =?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, matchingDto.getStudentId());
+		ps.setString(2, matchingDto.getCoachId());
+		
+		ResultSet rs = ps.executeQuery();
+		MatchingDto findDto;
+		if(rs.next()) {
+			findDto = new MatchingDto();
+			findDto.setMatchingNo(rs.getInt("matching_no"));
+			findDto.setStudentId(rs.getString("student_id"));
+			findDto.setCoachId(rs.getString("coach_id"));
+			findDto.setMatchingDays(rs.getInt("matching_days"));
+			findDto.setMatchingState(rs.getString("matching_state"));
+			findDto.setMatchingDate(rs.getDate("matching_date"));
+		}else {
+			findDto = null;
+		}
+		con.close();
+		return findDto;
+	}
+	
+	public MatchingDto selectCheck(String playerId)throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from matching where student_id = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, playerId);
+
+		ResultSet rs = ps.executeQuery();
+		MatchingDto matchingDto;
+		if(rs.next()) {
+			matchingDto = new MatchingDto();
+			matchingDto.setMatchingNo(rs.getInt("matching_no"));
+			matchingDto.setStudentId(rs.getString("student_id"));
+			matchingDto.setCoachId(rs.getString("coach_id"));
+			matchingDto.setMatchingDays(rs.getInt("matching_days"));
+			matchingDto.setMatchingState(rs.getString("matching_state"));
+			matchingDto.setMatchingDate(rs.getDate("matching_date"));
+		}else {
+			matchingDto =  null;
+		}
+		con.close();
+		return matchingDto;
+	}
+	public MatchingDto selectCheck(String playerId,String coachId)throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from matching where student_id = ?and coach_id =?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, playerId);
+		ps.setString(2, coachId);
+
+		ResultSet rs = ps.executeQuery();
+		MatchingDto matchingDto;
+		if(rs.next()) {
+			matchingDto = new MatchingDto();
+			matchingDto.setMatchingNo(rs.getInt("matching_no"));
+			matchingDto.setStudentId(rs.getString("student_id"));
+			matchingDto.setCoachId(rs.getString("coach_id"));
+			matchingDto.setMatchingDays(rs.getInt("matching_days"));
+			matchingDto.setMatchingState(rs.getString("matching_state"));
+			matchingDto.setMatchingDate(rs.getDate("matching_date"));
+		}else {
+			matchingDto =  null;
+		}
+		con.close();
+		return matchingDto;
+	}
 	
 	public boolean changeMathcingState(String playerId, String trainerId)throws Exception {
 		Connection con = JdbcUtils.getConnection();
@@ -131,5 +227,20 @@ public class MatchingDao {
 		con.close();
 		return count > 0;
 	}
+
+	public boolean updatePtcount(String playerId, String trainerId)throws Exception {
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "update matching set matching_days =  matching_days -1 where student_id =? and coach_id =?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, playerId);
+		ps.setString(2, trainerId);
+		
+		int count = ps.executeUpdate();
+		
+		con.close();
+		return count > 0;
+	}
+
 	
 }
