@@ -4,16 +4,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-   String playerId = request.getParameter("playerId");
-   String trainerId = request.getParameter("trainerId");
-    ReservationDao reservationDao = new ReservationDao();
-    List<ReservationDto> list = reservationDao.select(playerId, trainerId);
+	    String trainerId = request.getParameter("trainerId");
+	    ReservationDao reservationDao = new ReservationDao();
+	    List<ReservationDto> list = reservationDao.selectTrainer(trainerId);
     %>
     <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+
 <title>Insert title here</title>
 <style>
 .list-center-area{
@@ -55,9 +51,7 @@ width:100%;
                 </div>
       
             </div>
-                    <%} %>
+         <%} %>
         </div>
     </div>
-</body>
-</html>
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>
