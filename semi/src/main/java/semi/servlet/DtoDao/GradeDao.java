@@ -60,6 +60,7 @@ public class GradeDao {
 
 		return list;
 	}
+	
 	//목록
 	public List<GradeDto> selectList(String gradeTarget) throws Exception {
 		Connection con = JdbcUtils.getConnection();
@@ -92,7 +93,7 @@ public class GradeDao {
 	public GradeDto selectOne(String gradeTarget) throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql= "select * from center where grade_target = ?";
+		String sql= "select * from grade where grade_target = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		ps.setString(1, gradeTarget);
@@ -115,6 +116,27 @@ public class GradeDao {
 		return gradeDto;
 	}
 	
+	//상세조회(grade_target(trainer_id))
+	public String selectTarget(String trainerId) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql= "select grade_target from grade where grade_target = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, trainerId);
+		ResultSet rs = ps.executeQuery();
+		
+		String gradeTarget;
+		if(rs.next()) {;
+			gradeTarget= rs.getString("grade_target");
+		}
+		else {
+			gradeTarget = null;
+		}
+		con.close();
+		
+		return gradeTarget;
+	}
 	
 	//삭제(gradeWriter 작성자)
 	public boolean delete(int gradeNo) throws Exception{

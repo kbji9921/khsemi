@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import semi.servlet.DtoDao.TrainerDao;
 import semi.servlet.DtoDao.TrainerDto;
 
-@WebServlet(urlPatterns ="/trainer/find_id.kh")
+@WebServlet(urlPatterns ="/trainer/findId.trainer")
 public class TrainerFindIdServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,7 +31,7 @@ public class TrainerFindIdServlet extends HttpServlet{
 			if(trainerId==null) {
 				resp.sendRedirect("trainerFindId.jsp?error");
 			}else {
-				resp.sendRedirect("trainerFindIdResult.jsp?trainerId="+trainerId);
+				resp.sendRedirect(req.getContextPath()+"/trainer/trainerFindIdResult.jsp?trainerId="+trainerId);
 			}
 		
 		}catch(Exception e) {

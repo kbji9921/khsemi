@@ -46,7 +46,7 @@ public class FileDownloadServlet extends HttpServlet{
 			//= 이름에 유니코드가 있을수 있으므로 URLEncoder로 변환해야 한다.
 			String filename = URLEncoder.encode(attachmentDto.getAttachmentUploadName(),"UTF-8");
 			resp.setHeader("Content-Disposition","attachment; filename=\""+filename+"\"");
-			
+
 			
 			//출력
 			//사용자에게 파일을 출력
