@@ -15,10 +15,11 @@
  <%--준비 --%>
  <%
 //세션
+
  String playerId = (String)session.getAttribute("login");
 //	String playerId = "test1234";
  String trainerId = request.getParameter("trainerId");
-	//String trainerId = "testuser6";
+
 
 	TrainerDao trainerDao = new TrainerDao();
 	TrainerDto trainerDto = trainerDao.selectOne(trainerId);
@@ -38,13 +39,31 @@
 	CenterDao centerDao = new CenterDao();
 	CenterDto centerDto = centerDao.selectOne(trainerDto.getCenterId());
 %>
-
-
-  <%
-
-
-  %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
+
+
+</head>
+<body>
+<div class="row center">
+<h1> 강사 상세 </h1>
+</div>
+<div class="row">
+	<table class="table table-border table-stripe">
+	<tr>
+		<th>아이디</th>
+		<td><%=trainerDto.getTrainerId()%></td>
+	</tr>
+		<tr>
+		<th>이름</th>
+		<td><%=trainerDto.getTrainerName()%></td>
+	</tr>
+		<tr>
+		<th>가격</th>
+		<td><%=trainerDto.getTrainerPrice()%></td>
+	</tr>
+		<tr>
+		<th>운동종목</th>
+		<td><%=trainerDto.getTrainerSports()%></td>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
     <div class="container w600 m30">
@@ -107,8 +126,14 @@
 		<th>평균점수</th>
 		<th>최저점</th>
 		<th>최고점</th>
+
 	</tr>
 	<tr>
+
+		<th>센터번호</th>
+		<td></td>
+	</tr>
+
 	<%if(isRight){ %>
 		<%for(StatisticVO rateDto : rate){%>
 			<td><%=rateDto.getCount()%></td>
@@ -118,9 +143,19 @@
 		<%} %>
 		<%} %>
 		</tr>
+
 	</table>
+
+	<br><br>
+	<%if(playerId != null){ %>
+		<a href="<%=request.getContextPath()%>/player/matchingInsert.jsp?palyerid=<%=playerId%>&trainerId=<%=trainerId%>">매칭</a>
+	<%}%>
+	<br><br>
+</div>
+
 	</div>
 	<!-- 평점 작성 -->
+
 	<div class="row">
 	<form action="insert.grade" method="post">
 	<div>

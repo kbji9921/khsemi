@@ -1,3 +1,6 @@
+<%@page import="semi.servlet.DtoDao.AttachmentDto"%>
+<%@page import="semi.servlet.DtoDao.AttachmentDao"%>
+<%@page import="semi.servlet.DtoDao.CenterAttachmentDao"%>
 <%@page import="semi.servlet.DtoDao.EocDto"%>
 <%@page import="semi.servlet.DtoDao.EocDao"%>
 <%@page import="semi.servlet.DtoDao.CenterDao"%>
@@ -33,8 +36,10 @@
  %>
  <%--처리 --%>
  <%
+
  	CenterDao centerDao = new CenterDao();
  	EocDao eocDao = new EocDao();
+ 	
  	boolean isSearch = type != null && !type.equals("") && keyword != null && !keyword.equals("");
  	
  	List<CenterDto> centerList;
@@ -48,7 +53,9 @@
  		//eocList = eocDao.selectList(centerId);
  	}
  	
+ 	
  %>
+ 	
  
  <!-- 페이지네이션 링크 -->
 <%
@@ -135,16 +142,32 @@
         <!--센터 목록-->
         <div class="flex-c-container flex-c-vertical">
         	<%for(CenterDto centerDto : centerList){ %>
+        	<%CenterAttachmentDao centerAttachmentDao = new CenterAttachmentDao();
+ 			int attachmentNo = centerAttachmentDao.selectOne(centerDto.getCenterId());
+ 	
+ 			AttachmentDao attachmentDao = new AttachmentDao();
+ 			AttachmentDto attachmentDto = attachmentDao.selectOne(attachmentNo);%>
             <div class="flex-c-container c-list-listbox m10">
                 <!--센터이미지-->
                 <div class="row c-list-img">
-                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>">
-                    <img src="https://placeimg.com/170/170/tech/grayscale" class="c-img img-shadow img-round" width="100%">
+                	<%if(attachmentDto==null){ %>
+                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>&exerciseName=<%=exerciseName%>">
+                    <img src="https://placeimg.com/170/170/tech/grayscale" class="c-img img-shadow img-round" width="170px" height="170px">
                     </a>
+                    <%} else{ %>
+                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>&exerciseName=<%=exerciseName%>">
+                    <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentNo%>" class="c-img img-shadow img-round" width="170px" height="170px">
+                    </a>
+                    <%} %>
                 </div>
                 <div class="c-list-area">
+
                     <div class="row m30">
                     <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>">
+
+                    <div class="row m20">
+                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>&exerciseName=<%=exerciseName%>">
+
                         <h2><%=centerDto.getCenterName() %></h2>
                         </a>
                     </div>
