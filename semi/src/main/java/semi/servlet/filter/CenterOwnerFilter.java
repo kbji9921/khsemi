@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import semi.servlet.DtoDao.TrainerDao;
 import semi.servlet.DtoDao.TrainerDto;
-@WebFilter(filterName = "f4",urlPatterns = {
-		"/center/edit.jsp","/center/edit.kh",
-		"/center/delete.kh","/eoc/*"
-})
+//@WebFilter(filterName = "f4",urlPatterns = {
+//		"/center/update.jsp","/center/update.kh",
+//		"/center/delete.kh","/eoc/*"
+//})
 public class CenterOwnerFilter implements Filter{
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -25,8 +25,8 @@ public class CenterOwnerFilter implements Filter{
 		HttpServletResponse resp = (HttpServletResponse) response;
 		
 		try {
-			String centerGrade = (String)req.getSession().getAttribute("auth");
-			if(centerGrade.equals("관리자")) {
+			String playerGrade = (String)req.getSession().getAttribute("auth");
+			if(playerGrade.equals("관리자")) {
 				chain.doFilter(req, resp);
 				return;
 			}
