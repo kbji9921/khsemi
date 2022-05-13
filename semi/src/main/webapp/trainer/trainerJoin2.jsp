@@ -40,45 +40,16 @@
 
             $(".join-form").submit(function(){
                 //함수이름을 적고 call() 이라고 부르면 this 를 바꿔서 부를 수 있다
-                var judge1 = regexCheckId.call(document.querySelector("input[name=trainerId]"));
+
                 var judge2 = regexCheckPw.call(document.querySelector("input[name=trainerPw]"));
                 var judge3 = regexCheckName.call(document.querySelector("input[name=trainerName]"));
                 var judge4 = regexCheckPhone.call(document.querySelector("input[name=trainerPhone]"));
                 var judge5 = regexCheckEmail.call(document.querySelector("input[name=trainerEmail]"));
                 var judge6 = passwordCheck.call(document.querySelector("#password-check"));
-                return judge1 && judge2 && judge3 && judge4 && judge5 && judge6;
+                return  judge2 && judge3 && judge4 && judge5 && judge6;
             });
 
-            //아이디 정규표현식
-            function regexCheckId(){
-                var regex =  /[a-z][a-z0-9]{7,19}/;
-                var trainerId = $(this).val();
-                var span = $(this).next("span");
 
-                var judge = regex.test(trainerId);
-                if(!judge){
-                    span.text("형식에 맞는 닉네임을 사용하세요");
-                    return false;
-                } 
-
-                $.ajax({
-                    url:"http://localhost:8080/semi/trainerId.check?trainerId="+trainerId,
-                    type:"post",
-                    data:{
-                        trainerId : trainerId
-                    },
-                    success:function(resp) {
-                        if(resp === "Y") {
-                            span.text("사용 가능한 닉네임입니다");
-                            return true;                      
-                        }
-                        else if(resp === "N") {
-                            span.text("사용 불가능한 닉네임입니다");
-                            return false;
-                        }
-                    }
-                });
-            }
             //비밀번호 정규표현식
             function regexCheckPw(){
                 //var regex = this.dataset.regex;
@@ -182,7 +153,7 @@
     <div class="color">
         <a href="메인페이지 이동"><img src="../image/ci_main_logo.png"></a>
     </div>
-    <form action="join.trainer" class="join-form" method="post">
+    <form action="profile.trainer" class="join-form" method="post" enctype="multipart/form-data" action="profile.trainer">
     <div class="Container w450 m30">
         <div class="row center">
             <img src="../image/ci_main_logo.png" width="200">
@@ -238,6 +209,9 @@
                 <option>테니스</option>
             </select>
             <span></span>
+        </div>
+        <div class="row">
+        	<input type="file" name="trainerAttachment">
         </div>
         <div class="row m20">
             <button type="submit" class="btn btn-semi btn-round full pw-btn">가입하기</button>

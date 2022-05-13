@@ -298,6 +298,7 @@ public class CenterDao {
 		
 		return count;
 	}
+
 	//센터 검색 개수
 	public int countByPaging(String type, String keyword, String exerciseName) throws Exception{
 		Connection con = JdbcUtils.getConnection();
@@ -318,5 +319,8 @@ public class CenterDao {
 		return count;
 	}
 	
-	
-}
+
+
+		}
+
+
