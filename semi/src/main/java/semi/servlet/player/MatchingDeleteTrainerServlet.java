@@ -11,24 +11,24 @@ import javax.servlet.http.HttpServletResponse;
 import semi.servlet.DtoDao.MatchingDao;
 import semi.servlet.DtoDao.MatchingDto;
 
-@WebServlet(urlPatterns = "/player/matchingDelete.player")
-public class MatchingDeleteServlet extends HttpServlet{
+@WebServlet(urlPatterns = "/player/deleteTrainer.matching")
+public class MatchingDeleteTrainerServlet extends HttpServlet{
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			
-			String studentId = req.getParameter("playerId");
-			String coachId = req.getParameter("trainerId");
+			String playerId = req.getParameter("playerId");
+			String trainerId = req.getParameter("trainerId");
 			
 			MatchingDao matchingDao = new MatchingDao();
+			MatchingDto matchingDto = matchingDao.selectCheck(playerId, trainerId);
 			
-			MatchingDto matchingDto = matchingDao.selectCheck(studentId, coachId);
 			boolean matchingStateCheck = matchingDto.getMatchingState().length() == 4;
 			if(!matchingStateCheck) {
-				matchingDao.delete(studentId, coachId);
-				resp.sendRedirect("matchingList.jsp");
+				matchingDao.delete(playerId,trainerId);
+				resp.sendRedirect("allMatchingList.jsp");
 			}else {
-				resp.sendRedirect("matchingList.jsp?error");
+				resp.sendRedirect("allMatchingList.jsp?error");
 			}
 			
 		}catch(Exception e) {

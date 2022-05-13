@@ -1,4 +1,5 @@
-<!-- <%@page import="semi.servlet.DtoDao.ReservationDao"%>
+<%@page import="semi.servlet.DtoDao.MatchingDao"%>
+<%@page import="semi.servlet.DtoDao.ReservationDao"%>
 <%@page import="semi.servlet.DtoDao.ReservationDto"%>
 <%@page import="semi.servlet.DtoDao.PlayerDto"%>
 <%@page import="semi.servlet.DtoDao.PlayerDao"%>
@@ -7,16 +8,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-   	// String playerId=(String)request.getSession().getAttribute("login");
-    String playerId="test1234";
-    //String trainerId=request.getParameter("trainerId");
-    String trainerId="testuser6";
+   	String playerId = request.getParameter("playerId");
+    String trainerId = request.getParameter("trainerId");
     TrainerDao trainerDao = new TrainerDao();
     TrainerDto trainerDto = trainerDao.selectOne(trainerId);
     PlayerDao playerDao = new PlayerDao();
     PlayerDto playerDto = playerDao.selectOne(playerId);
     
-    %> -->
+    %>
+   
+  
+  
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +79,6 @@
                         success: function(resp){
                             console.log(resp);
                             //resp는 배열이고 그 안에 reservationTime이라는 항목이 시간 정보
-
                             $("select[name=reservationTime] > option").prop("disabled", false);
                             for(var i=0; i < resp.length; i++) {
                                 //console.log(resp[i].reservationTime);
@@ -94,10 +95,7 @@
             
             //초기값을 오늘 날짜로 설정
             $('#datepicker').datepicker('+1D', '+7D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
-
        });
-
-
   </script>
 </head>
 <body>
@@ -106,21 +104,22 @@
         <div class="row center">
         <h1>예약</h1>
         </div>
-        <div class="row">
+        <div class="row m30">
             <label>강사</label>
-            <!-- <%=trainerDto.getTrainerName()%> -->
-            <input type="hidden" name="trainerId" value=<%=trainerDto.getTrainerId()%>>
+            <input type="text" name="trainerName" value="<%=trainerDto.getTrainerName() %>" class="form-input input-round  fill" readonly>
+            <input type="hidden" name="trainerId" value="<%=trainerDto.getTrainerId()%>">
         </div>
-        <div class="row">
+        <div class="row m30">
             <label>회원</label>
-            <!-- <%=playerDto.getPlayerName()%> -->
-            <input type="hidden" name="playerId" value=<%=playerDto.getPlayerId()%>>
+            <input type="text" name="playerName" value="<%=playerDto.getPlayerName() %>" class="form-input input-round fill" readonly>
+            <input type="hidden" name="playerId" value="<%=playerDto.getPlayerId()%>">
         </div>
-        <div class="row">
+        
+        <div class="row m30">
         <label>날짜 선택</label>
             <input id="datepicker" name="reservationDate" class="form-input input-round fill">
         </div>
-        <div class="row">
+        <div class="row m30">
           <label for="time">시간 선택</label>
       	 <select name="reservationTime" class="form-input input-round fill">
             <option>시간선택</option>
