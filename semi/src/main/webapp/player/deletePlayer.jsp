@@ -33,7 +33,7 @@ h1{
      </div>
 
      <div class="row m30 center">
-	       <input type="submit" class="btn btn-semi btn-round w300" value="탈퇴하기">
+	       <input type="submit" class="btn btn-round btn-danger w300" value="탈퇴하기">
      </div>		
    </div>
 </form>
