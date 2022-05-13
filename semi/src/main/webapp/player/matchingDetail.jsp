@@ -26,7 +26,7 @@ Integer ptcount = matchingDao.selectOne(playerId, trainerId);
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 		<div class="container w800 m30 center">
 		   <div class="row center">
-		   		<h2><%=trainerDto.getTrainerName() %> 강사 상세 매칭 정보</h2>
+<%-- 		   		<h2><%=trainerDto.getTrainerName() %> 강사 상세 매칭 정보</h2> --%>
 		   </div>
 		   <div class="row right">
 			   <form action="matchingDelete.player" method="post">

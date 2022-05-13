@@ -42,16 +42,18 @@ public class GradeDao {
 	public List<StatisticVO> statistic() throws Exception {
 		Connection con = JdbcUtils.getConnection();
 
-		String sql = "select grade_target, count(*) 숫자, min(grade_rate) 최저점, max(grade_rate) 최고점, avg(grade_rate) 평균점수 from grade group by grade_target";
+		String sql = "select grade_target, count(*) 평가자수, min(grade_rate) 최저점, max(grade_rate) 최고점, avg(grade_rate) 평균점 from grade group by grade_target";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
+
 		List<StatisticVO> list = new ArrayList<>();
 		while (rs.next()) {
 			StatisticVO statisticVO = new StatisticVO();
-			statisticVO.setCount(rs.getInt("숫자"));// 별칭 사용
+			statisticVO.setType(rs.getString("grade_target"));
+			statisticVO.setCount(rs.getInt("평가자수"));// 별칭 사용
 			statisticVO.setMin(rs.getInt("최저점"));// 별칭 사용
 			statisticVO.setMax(rs.getInt("최고점"));// 별칭 사용
-			statisticVO.setAverage(rs.getDouble("평균점수"));// 별칭 사용
+			statisticVO.setAverage(rs.getDouble("평균점"));// 별칭 사용
 
 			list.add(statisticVO);
 		}

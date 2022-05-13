@@ -20,14 +20,6 @@
             height: 650px;
             flex-direction: column;
         }   
-        .color{
-            background-color: #343b6a;
-            height: 50px;
-        }
-        .color img{
-            padding-left: 1em;
-            height:50px;
-        }
         input,
         .pw-btn{
             width: 350px !important;
@@ -43,7 +35,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/commons.css">
     <!-- <link rel="stylesheet" type="text/css" href="../css/test.css"> -->
 
     <!-- jquery cdn -->
@@ -104,9 +96,6 @@
 </head>
 <body>
 <form class="join-form" action="setPw1.trainer" method="post">
-    <div class="color">
-        <a href="메인페이지 이동"><img src="../image/ci_main_logo.png"></a>
-    </div>
     <div class="container w400 m50">
         <div class="row center m50">
             <h2>비밀번호 재설정</h2>

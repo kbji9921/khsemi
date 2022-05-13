@@ -7,6 +7,8 @@
     pageEncoding="UTF-8"%>
 <%
 	String playerId = (String) session.getAttribute("login");
+	String trainerId = request.getParameter("trainerId");
+	//String trainerName = request.getParameter("trainerName");
 %>
 <%
 	PlayerDao playerDao = new PlayerDao();
@@ -28,15 +30,11 @@
 	        				<th>학생명</th>
 	        				<td width=50%;>  <input type="text" name="playerName" value="<%=playerDto.getPlayerName()%>" readonly></td>
 	        			</tr>
-	        			<tr>
+
+	        					<tr>
 	        				<th>강사ID</th>
 	        				<td>
-								<select name="coachId">
-									<option value="">강사선택</option>
-									<%for(TrainerDto trainerDto : list){ %>
-										<option><%=trainerDto.getTrainerId() %></option>
-									<%} %>
-								</select>
+								<input type="text" class="input-round form-input"value="<%=trainerId%>" readonly >
 							</td>
 	        			</tr>
 	        			<tr>
@@ -53,7 +51,7 @@
 	        	</table>
 	        </div>
 	        <div class="row m40 right">
-            	<input type="submit" class="btn btn-semi btn-round fill" value="신청">
+            	<input type="submit" class="btn btn-semi btn-round fill" value="신청" name="<%=trainerId%>">
         	</div>
         </div>
 	</form>

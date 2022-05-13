@@ -10,6 +10,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String playerId = (String)session.getAttribute("login");
+	String trainerId = request.getParameter("trainerId");
 %>
 
 <%
@@ -35,7 +36,7 @@
 	   				<tr>
 						<th>매칭번호</th>
 						<th>학생이름</th>
-						<th>강사이름</th>
+<!-- 						<th>강사이름</th> -->
 						<th>메칭일</th>
 						<th>교육수</th>
 						<th>상태</th>
@@ -48,6 +49,7 @@
 							<%
 								TrainerDao trainerDao = new TrainerDao();
 								TrainerDto trainerDto = trainerDao.selectOne(matchingDto.getCoachId()); 
+								TrainerDto trainerInfo = trainerDao.selectOne(trainerId);
 							%>
 							<td><%=matchingDto.getMatchingNo() %></td>
 							<td><%=playerDto.getPlayerName() %></td>
