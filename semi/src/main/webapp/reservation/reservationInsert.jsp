@@ -1,4 +1,4 @@
-<!-- <%@page import="semi.servlet.DtoDao.ReservationDao"%>
+<%@page import="semi.servlet.DtoDao.ReservationDao"%>
 <%@page import="semi.servlet.DtoDao.ReservationDto"%>
 <%@page import="semi.servlet.DtoDao.PlayerDto"%>
 <%@page import="semi.servlet.DtoDao.PlayerDao"%>
@@ -17,7 +17,7 @@
     PlayerDto playerDto = playerDao.selectOne(playerId);
     
   
-    %> -->
+    %> 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html lang="en">
