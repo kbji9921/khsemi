@@ -24,7 +24,7 @@
 <body>
 	<div class="container w600 m30">
 		<div class="row center">
-			<h2>내 예약 정보 </h2>
+			<h2>나의 예약 정보 </h2>
 		</div>
 	        <div class="flex-container flex-r-vertical display-center">
         	<%for(ReservationDto reservationDto : list){ %>
