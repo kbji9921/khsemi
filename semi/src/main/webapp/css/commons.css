@@ -702,3 +702,15 @@ ul.menu a {
     justify-content: center;/*display가 flex인 경우 가로 정렬 옵션 */
     align-items: center;/*display가 flex인 경우 세로 정렬 옵션*/
 }
+
+
+/* 
+   예약 > 내 예약 테두리 필요해서 만듦
+   reservationListPlayer.jsp 에서 사용
+   확장 스타일 : 세로배치 
+
+*/
+.flex-container.flex-r-vertical {
+    flex-direction: column;
+    border: 3px solid #7f7e80;
+}

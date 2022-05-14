@@ -14,32 +14,28 @@
 	    ReservationDao reservationDao = new ReservationDao();
 	    List<ReservationDto> list = reservationDao.selectOnePlayer(playerId);
     %>
-
+    
+<title>회원 예약 리스트</title>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
-
-<style>
-
-</style>
 
 <body>
-	<div class=" c-container w600 m30">
+	<div class="container w600 m30">
 		<div class="row center">
-			<h2>내 예약 정보 </h2>
+			<h2>나의 예약 정보 </h2>
 		</div>
-	        <div class="flex-c-container.flex-c-vertical">
+	        <div class="flex-container flex-r-vertical display-center">
         	<%for(ReservationDto reservationDto : list){ %>
-            <div class="flex-c-container list-exercise-kinds m10">
+            <div class="flex-container row m10">
                 <!--센터이미지-->
-                <div class="row center list-image-area">
+                <div class="row center">
                     <a href="/semi/center/detail.jsp?centerId=<%=reservationDto.getReservationNo()%>">
                     <img src="http://via.placeholder.com/200x200" class="img img-hover img-round">
                     </a>
                 </div>
                 <div class="list-center-area">
                     <div class="row m30 center">
-                    <a href="/semi/center/detail.jsp?centerId=<%=reservationDto.getReservationDate()%>"></a>
+                    	<a href="/semi/center/detail.jsp?centerId=<%=reservationDto.getReservationDate()%>"></a>
+                    </div>
                    	<div class="row m10 center">
                        <h2><%=reservationDto.getReservationDate()%></h2>
                     </div>
@@ -63,11 +59,9 @@
 					<%} %>--%>
                     <!--좋아요 수-->
                 </div>
-      
             </div>
          <%} %>
         </div>
     </div>
     </body>
-    
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>

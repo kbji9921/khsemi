@@ -20,6 +20,7 @@
 
  
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
+
 <!DOCTYPE html>
 <html>
 <head>

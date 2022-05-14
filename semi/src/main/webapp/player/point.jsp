@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href="../css/reset.css">
-<link rel="stylesheet" type="text/css" href="../css/commons.css">
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <style>
 h2{
    font-weight: 600;
@@ -9,7 +8,6 @@ h2{
    font-size: 20px;
 }
 </style>
-<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 
     <form action="chargePoint.player" method="post">
     
