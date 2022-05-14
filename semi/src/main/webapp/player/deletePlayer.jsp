@@ -3,7 +3,8 @@
 <%
 	String playerId = (String) session.getAttribute("login");
 %>
-<link rel="stylesheet" type="text/css" href="../css/commons.css">
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
+
 <style>
 h1{
    font-weight: 500;
@@ -11,8 +12,6 @@ h1{
    font-size: 20px;
 }
 </style>
-
-<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 	
 <form action="delete.player" method="post">
 	<input type="hidden" name="playerId" value="<%=playerId %>">

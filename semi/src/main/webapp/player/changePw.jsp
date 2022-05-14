@@ -10,9 +10,6 @@
 	boolean type3 = error != null && error.equals("3");
 %>    
 
-
-<link rel="stylesheet" type="text/css" href="../css/reset.css">
-<link rel="stylesheet" type="text/css" href="../css/commons.css">
 <style>
     h1{
        font-weight: 500;
