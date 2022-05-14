@@ -33,7 +33,7 @@ public class ReservationInsertServlet extends HttpServlet{
 			reservationDao.insert(reservationDto);
 			matchingDao.updatePtcount(reservationDto.getPlayerId(),reservationDto.getTrainerId());
 			
-			resp.sendRedirect("reservationList.jsp?playerId="+reservationDto.getPlayerId()+"&trainerId="+reservationDto.getTrainerId());
+			resp.sendRedirect("reservationListPlayer.jsp?playerId="+reservationDto.getPlayerId());
 			
 			
 			

@@ -32,7 +32,7 @@ public class CenterTrainerListServlet extends HttpServlet{
 			ObjectMapper mapper = new ObjectMapper();
 			String jsonString = mapper.writeValueAsString(trainerList);
 			
-			resp.setContentType("application/json;,charset=UTF-8");
+			resp.setContentType("application/json; charset=UTF-8");
 			resp.getWriter().print(jsonString);
 		}
 		catch(Exception e) {
