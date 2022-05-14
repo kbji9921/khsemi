@@ -1,3 +1,6 @@
+<%@page import="semi.servlet.DtoDao.AttachmentDto"%>
+<%@page import="semi.servlet.DtoDao.AttachmentDao"%>
+<%@page import="semi.servlet.DtoDao.TrainerAttachmentDao"%>
 <%@page import="semi.servlet.DtoDao.TrainerDto"%>
 <%@page import="semi.servlet.DtoDao.TrainerDao"%>
 <%@page import="semi.servlet.DtoDao.EocDto"%>
@@ -141,18 +144,31 @@
         <span>우리 센터의 강사</span>
         <div class="flex-c-container m10">
 		 <%for(TrainerDto trainerDTo : trainerList){ %>
+		 <%
+	     trainerDto = trainerDao.selectOne(trainerDto.getTrainerId());
+
+     	TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao();
+     	int attachmentNo = trainerAttachmentDao.selectOne(trainerDto.getTrainerId());
+
+     	AttachmentDao attachmentDao = new AttachmentDao();
+     	AttachmentDto attachmentDto = attachmentDao.selectOne(attachmentNo);
+		 
+		 %>
+		 <%if(attachmentDto==null){ %>
            <div class="flex-c-container flex-c-vertical layer-3">
                <div class="row center">
                   <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>&trainerId=<%=trainerDTo.getTrainerId() %>">
                   <img src="https://placeimg.com/150/150/people" class="c-img img-circle img-hover">
-                  </a>
+                 </a>
+                 <%}else{ %>
                </div>
                <div class="center">
                    <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId()%>&trainerId=<%=trainerDTo.getTrainerId() %>" class="trainer-nameBox">
-                   
+                   <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentNo%>" class="c-img img-shadow img-round">
                    <%=trainerDTo.getTrainerName() %>
                    </a>
                </div>
+               <%} %>
            </div>
         <%} %>
         <%--<div class="flex-c-container flex-c-vertical layer-3">

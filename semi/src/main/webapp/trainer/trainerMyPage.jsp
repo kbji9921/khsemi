@@ -136,14 +136,14 @@ boolean noPic = attachmentDto==null;
             <ul class="menu">
              	<li>센터
              		<ul>
-             			<li><a>센터등록</a></li>
-             			<li><a>센터수정</a></li>
-             			<li><a>센터삭제</a></li>
+             			<li><a href="<%=request.getContextPath()%>/center/write.jsp">센터등록</a></li>
+             			<li><a href="<%=request.getContextPath()%>/center/update.jsp">센터수정</a></li>
+             			<li><a href="<%=request.getContextPath()%>/center/write.jsp">센터</a></li>
              		</ul>
              	</li>
              	<li>일정
              		<ul>
-             			<li><a href="<%=request.getContextPath()%>/reservation/reservationList.jsp">일정 목록</a></li>
+             			<li><a href="<%=request.getContextPath()%>/reservation/reservationListTrainer.jsp">일정 목록</a></li>
              		</ul>
              	</li>
                 <li class="right-menu">
@@ -214,19 +214,47 @@ boolean noPic = attachmentDto==null;
                     <span></span>
       	 		<div class="row ">
                     <label>운동종목</label>
-                    <select class="form-input input-round fill input-dis" name="trainerSports" value="<%=trainerDto.getTrainerSports()%>">
-                        <option>요가</option>
-                        <option>헬스</option>
-                        <option>필라테스</option>
-                        <option>수영</option>
-                        <option>테니스</option>
+                    <select class="form-input input-round fill input-dis" name="trainerSports">
+          					<%if(trainerDto.getTrainerSports().equals("요가")){%>
+							<option value="요가" selected>요가</option>
+							<%}else{ %>
+							<option value="요가">요가</option>
+							<%} %>
+							<%if(trainerDto.getTrainerSports().equals("필라테스")){%>
+							<option value="필라테스" selected>필라테스</option>
+							<%}else{ %>
+							<option value="필라테스">필라테스</option>
+							<%} %>
+							<%if(trainerDto.getTrainerSports().equals("수영")){%>
+							<option value="수영" selected>수영</option>
+							<%}else{ %>
+							<option value="수영">수영</option>
+							<%} %>
+							<%if(trainerDto.getTrainerSports().equals("테니스")){%>
+							<option value="테니스" selected>테니스</option>
+							<%}else{ %>
+							<option value="테니스">테니스</option>
+							<%} %>
+							<%if(trainerDto.getTrainerSports().equals("헬스")){%>
+							<option value="헬스" selected>헬스</option>
+							<%}else{ %>
+							<option value="헬스">헬스</option>
+							<%} %>
                     </select>
             	 </div>
        	 		<div class="row ">
                     <label>성별</label>
-                    <select class="form-input input-round fill input-dis" name="trainerGender" value="<%=trainerDto.getTrainerGender()%>">
-                        <option>남</option>
-                        <option>여</option>
+                    <select class="form-input input-round fill input-dis" name="trainerGender">
+                       		<%if(trainerDto.getTrainerGender().equals("여자")){%>
+							<option value="여자" selected>여자</option>
+							<%}else{ %>
+							<option value="여자">여자</option>
+							<%} %>
+							<%if(trainerDto.getTrainerGender().equals("남자")){%>
+							<option value="남자" selected>"남자"</option>
+							<%}else{ %>
+							<option value="남자">남자</option>
+							<%} %>
                     </select>
             	 </div>
             	 <div class="row ">

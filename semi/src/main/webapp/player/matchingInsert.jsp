@@ -31,14 +31,11 @@
 	        				<th>학생명</th>
 	        				<td><input type="text" name="playerName" value="<%=playerDto.getPlayerName()%>" readonly></td>
 	        			</tr>
-<<<<<<< HEAD
-
 	        					<tr>
 	        				<th>강사ID</th>
 	        				<td>
 								<input type="text" class="input-round form-input"value="<%=trainerId%>" readonly >
 							</td>
-=======
 	        			<tr>
 	        				<th>강사명</th>
 	        				<td><input type="text" name="trainerName" value="<%=trainerDto.getTrainerName() %>" readonly></td>
@@ -58,7 +55,6 @@
 	        			<tr>
 	        				<th>이메일</th>
 	        				<td><input type="text" name="trainerSport" value="<%=trainerDto.getTrainerEmail()%>"></td>
->>>>>>> refs/remotes/origin/main
 	        			</tr>
 	        			<tr>
 	        				<th>PT 횟수</th>
