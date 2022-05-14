@@ -17,9 +17,6 @@
     
 <title>회원 예약 리스트</title>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
-
 
 <body>
 	<div class="container w600 m30">
