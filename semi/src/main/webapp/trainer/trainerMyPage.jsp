@@ -187,7 +187,7 @@ boolean noPic = attachmentDto==null;
 				<%}else{ %>
 				<a href="<%=request.getContextPath()%>/profile/trainerProfileInsert.jsp" class="link link-btn">프로필 등록</a>
 				<%} %>
-				</div>
+				</div> 
         </div>
         <!--  -->
   <div class="container w500 m30">
