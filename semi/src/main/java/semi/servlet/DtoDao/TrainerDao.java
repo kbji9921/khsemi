@@ -274,7 +274,7 @@ public class TrainerDao {
          
          String sql = "select * from ("
                + "select rownum rn, TMP.* from ("
-               + "select * from trainer where instr(#1,?)>0 order by trainer_name asc)TMP ) where rn between ? and ?";
+               + "select * from trainer where instr(#1,?)>0 order by trainer_id desc)TMP ) where rn between ? and ?";
          sql = sql.replace("#1", type);
          PreparedStatement ps = con.prepareStatement(sql);
          ps.setString(1, keyword);

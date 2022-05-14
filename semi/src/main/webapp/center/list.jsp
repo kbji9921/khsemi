@@ -54,7 +54,6 @@
        //eocList = eocDao.selectList(centerId);
     }
     
-    
  %>
     
  
@@ -108,8 +107,6 @@
    }
    </style>
     <div class="c-container w650 m30">
-
-        
         <!--검색창-->
         <div class="row center m20">
             <form action="<%=request.getContextPath() %>/center/list.jsp" method="get">
@@ -154,7 +151,6 @@
                     <img src="https://placeimg.com/170/170/tech/grayscale" class="c-img img-shadow img-round">
                     </a>
                     <%} else{ %>
-                    	
                     <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>&exerciseName=<%=exerciseName%>">
                     <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentDto.getAttachmentNo()%>" class="c-img img-shadow img-round" width="170px" height="170px">
                     </a>

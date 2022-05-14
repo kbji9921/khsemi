@@ -104,7 +104,6 @@ public class AttachmentDao {
 
 	}
 	
-	
 	//센터 상세 페이지 이미지(단일조회)(객체로 안되면 삭제....)
 		public AttachmentDto selectCenterOne(CenterAttachmentDto centerAttachmentDto) throws Exception{
 			Connection con = JdbcUtils.getConnection();
@@ -183,4 +182,5 @@ public class AttachmentDao {
 			
 			return list;
 		}
+
 }
