@@ -1,3 +1,4 @@
+<%@page import="semi.servlet.DtoDao.CenterAttachmentDto"%>
 <%@page import="semi.servlet.DtoDao.AttachmentDto"%>
 <%@page import="semi.servlet.DtoDao.AttachmentDao"%>
 <%@page import="semi.servlet.DtoDao.CenterAttachmentDao"%>
@@ -19,10 +20,10 @@
   	CenterDto centerDto = centerDao.selectOne(centerId);
   	
   	CenterAttachmentDao centerAttachmentDao = new CenterAttachmentDao();
-  	int attachmentNo = centerAttachmentDao.selectOne(centerId);
+  	CenterAttachmentDto centerAttachmentDto = centerAttachmentDao.selectCenterAttachNo(centerId);
   	
   	AttachmentDao attachmentDao = new AttachmentDao();
-  	AttachmentDto attachmentDto = attachmentDao.selectOne(attachmentNo);
+  	AttachmentDto attachmentDto = attachmentDao.selectCenterOne(centerAttachmentDto);
   %>
    <%--출력 --%>
 

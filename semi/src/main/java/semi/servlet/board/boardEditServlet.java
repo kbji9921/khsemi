@@ -15,8 +15,8 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import semi.servlet.DtoDao.BoardDao;
 import semi.servlet.DtoDao.BoardDto;
 
-@WebServlet(urlPatterns = "/board/write.kh")
-public class boardWriteServlet extends HttpServlet{
+@WebServlet(urlPatterns = "/board/edit.kh")
+public class boardEditServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
@@ -35,19 +35,15 @@ public class boardWriteServlet extends HttpServlet{
 			boardDto.setBoardType(mRequest.getParameter("boardType"));
 			boardDto.setBoardTitle(mRequest.getParameter("boardTitle"));
 			boardDto.setBoardContent(mRequest.getParameter("boardContent"));
-			boardDto.setBoardWriter(mRequest.getParameter("boardWriter"));
+			boardDto.setBoardNo(Integer.parseInt(mRequest.getParameter("boardNo")));
 		
 			BoardDao boardDao = new BoardDao();
-			boardDto.setBoardNo(Integer.parseInt(mRequest.getParameter("boardNo")));
-			boardDao.insert(boardDto);
+			boardDao.update(boardDto);
 			
 			resp.sendRedirect("boardDetail.jsp?boardNo="+boardDto.getBoardNo());
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 			resp.sendError(500);
 		}
 	}
 }
-
-	
