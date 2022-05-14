@@ -138,23 +138,26 @@
         <!--센터 목록-->
         <div class="flex-c-container flex-c-vertical">
            <%for(CenterDto centerDto : centerList){ %>
-           		<%CenterAttachmentDao centerAttachmentDao = new CenterAttachmentDao();%>
-          		<%CenterAttachmentDto centerAttachmentDto = centerAttachmentDao.selectCenterAttachNo(centerDto.getCenterId()); %>
-		        <%AttachmentDao attachmentDao = new AttachmentDao();%>
-		        <%List<AttachmentDto> centerImgList = attachmentDao.selectCenter(centerAttachmentDto);%>
+           		<%
+           			centerDto = centerDao.selectOne(centerDto.getCenterId());
+           			CenterAttachmentDao centerAttachmentDao = new CenterAttachmentDao();
+           			int attachmentNo = centerAttachmentDao.selectOne(centerDto.getCenterId());
+
+                	AttachmentDao attachmentDao = new AttachmentDao();
+                	AttachmentDto attachmentDto = attachmentDao.selectOne(attachmentNo);
+                	boolean noPic = attachmentDto==null;
+           		%>
             <div class="flex-c-container c-list-listbox m10">
                 <!--센터이미지-->
                 <div class="row c-list-img">
-                <%for(AttachmentDto attachmentDto : centerImgList){ %>
-                   <%if(attachmentDto==null){ %>
+                <%if(noPic){ %>
                     <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>&exerciseName=<%=exerciseName%>">
                     <img src="https://placeimg.com/170/170/tech/grayscale" class="c-img img-shadow img-round">
                     </a>
-                    <%} else{ %>
+                     <%} else{ %>
                     <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>&exerciseName=<%=exerciseName%>">
                     <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentDto.getAttachmentNo()%>" class="c-img img-shadow img-round" width="170px" height="170px">
                     </a>
-                    	 <%} %>
                     <%} %>
                 </div>
                 <div class="c-list-area">
