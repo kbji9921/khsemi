@@ -19,7 +19,7 @@ import semi.servlet.DtoDao.TrainerAttachmentDto;
 import semi.servlet.DtoDao.TrainerDao;
 import semi.servlet.DtoDao.TrainerDto;
 
-@WebServlet(urlPatterns ="/trainer/insert.trainer")
+@WebServlet(urlPatterns ="/trainer/profile.trainer")
 public class TrainerFileUploadServlet extends HttpServlet{
 @Override
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,18 +49,18 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 
 		//처리
 		TrainerDao trainerDao = new TrainerDao();
-		trainerDao.join(trainerDto);
+		trainerDao.changeInformation(trainerDto);
 		
 		//첨부파일 정보 추가
-		if(mRequest.getFile("trainerProfile")!=null) {
+		if(mRequest.getFile("trainerAttachment")!=null) {
 			//첨부파일 등록
 			AttachmentDao attachmentDao = new AttachmentDao();
 			AttachmentDto attachmentDto = new AttachmentDto();
 			attachmentDto.setAttachmentNo(attachmentDao.getSequence());
-			attachmentDto.setAttachmentUploadName(mRequest.getOriginalFileName("trainerProfile"));
-			attachmentDto.setAttachmentSavename(mRequest.getFilesystemName("trainerProfile"));
-			attachmentDto.setAttachmentType(mRequest.getContentType("trainerProfile"));
-			File target = mRequest.getFile("trainerProfile");
+			attachmentDto.setAttachmentUploadName(mRequest.getOriginalFileName("trainerAttachment"));
+			attachmentDto.setAttachmentSavename(mRequest.getFilesystemName("trainerAttachment"));
+			attachmentDto.setAttachmentType(mRequest.getContentType("trainerAttachment"));
+			File target = mRequest.getFile("trainerAttachment");
 			attachmentDto.setAttachmentSize(target.length());
 			
 			attachmentDao.insert(attachmentDto);
@@ -78,7 +78,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 //		TrainerDao trainerDao = new TrainerDao();
 //		trainerDao.join(trainerDto);
 		//출력
-//		resp.sendRedirect(req.getContextPath()+"/trainer/join_finish.jsp");
+		resp.sendRedirect(req.getContextPath()+"/trainer/trainerJoinSucces.jsp");
 		
 		
 		

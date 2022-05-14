@@ -34,7 +34,6 @@ public class CenterEditServlet extends HttpServlet{
 			
 			//출력
 			if(success) {
-				
 				resp.sendRedirect("/semi/center/detail.jsp?centerId="+centerDto.getCenterId());
 			}
 			else {

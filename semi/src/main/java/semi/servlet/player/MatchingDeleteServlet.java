@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.servlet.DtoDao.MatchingDao;
+import semi.servlet.DtoDao.MatchingDto;
 
 @WebServlet(urlPatterns = "/player/matchingDelete.player")
 public class MatchingDeleteServlet extends HttpServlet{
@@ -20,9 +21,15 @@ public class MatchingDeleteServlet extends HttpServlet{
 			String coachId = req.getParameter("trainerId");
 			
 			MatchingDao matchingDao = new MatchingDao();
-			matchingDao.delete(studentId, coachId);
 			
-			resp.sendRedirect("matchingList.jsp");
+			MatchingDto matchingDto = matchingDao.selectCheck(studentId, coachId);
+			boolean matchingStateCheck = matchingDto.getMatchingState().length() == 4;
+			if(!matchingStateCheck) {
+				matchingDao.delete(studentId, coachId);
+				resp.sendRedirect("matchingList.jsp");
+			}else {
+				resp.sendRedirect("matchingList.jsp?error");
+			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();

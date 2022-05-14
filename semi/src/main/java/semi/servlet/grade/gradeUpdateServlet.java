@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import semi.servlet.DtoDao.GradeDao;
 import semi.servlet.DtoDao.GradeDto;
-@WebServlet(urlPatterns = "/train/grade_update.grade")
+@WebServlet(urlPatterns = "/grade/gradeUpdate.grade")
 public class gradeUpdateServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

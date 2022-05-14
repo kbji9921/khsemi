@@ -42,16 +42,18 @@ public class GradeDao {
 	public List<StatisticVO> statistic() throws Exception {
 		Connection con = JdbcUtils.getConnection();
 
-		String sql = "select grade_target, count(*) 숫자, min(grade_rate) 최저점, max(grade_rate) 최고점, avg(grade_rate) 평균점수 from grade group by grade_target";
+		String sql = "select grade_target, count(*) 평가자수, min(grade_rate) 최저점, max(grade_rate) 최고점, avg(grade_rate) 평균점 from grade group by grade_target";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
+
 		List<StatisticVO> list = new ArrayList<>();
 		while (rs.next()) {
 			StatisticVO statisticVO = new StatisticVO();
-			statisticVO.setCount(rs.getInt("숫자"));// 별칭 사용
+			statisticVO.setType(rs.getString("grade_target"));
+			statisticVO.setCount(rs.getInt("평가자수"));// 별칭 사용
 			statisticVO.setMin(rs.getInt("최저점"));// 별칭 사용
 			statisticVO.setMax(rs.getInt("최고점"));// 별칭 사용
-			statisticVO.setAverage(rs.getDouble("평균점수"));// 별칭 사용
+			statisticVO.setAverage(rs.getDouble("평균점"));// 별칭 사용
 
 			list.add(statisticVO);
 		}
@@ -60,6 +62,7 @@ public class GradeDao {
 
 		return list;
 	}
+	
 	//목록
 	public List<GradeDto> selectList(String gradeTarget) throws Exception {
 		Connection con = JdbcUtils.getConnection();
@@ -88,33 +91,48 @@ public class GradeDao {
 		return list;
 	}
 	
-	//상세조회(grade_target(trainer_id))
-	public GradeDto selectOne(String gradeTarget) throws Exception{
+	//trainerId 로 댓글 작성자 확인
+	public String selectGradeWriter(String trainerId) throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql= "select * from center where grade_target = ?";
+		String sql= "select grade_writer from grade where grade_target = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
-		ps.setString(1, gradeTarget);
+		ps.setString(1, trainerId);
 		ResultSet rs = ps.executeQuery();
 		
-		GradeDto gradeDto = new GradeDto();
+		String gradeWriter;
 		if(rs.next()) {
-			gradeDto.setGradeNo(rs.getInt("grade_no"));
-			gradeDto.setGradeTarget(rs.getString("grade_target"));
-			gradeDto.setGradeWriter(rs.getString("grade_writer"));
-			gradeDto.setGradeTime(rs.getDate("grade_time"));
-			gradeDto.setGradeContent(rs.getString("grade_content"));
-			gradeDto.setGradeRate(rs.getInt("grade_rate"));
-		}
-		else {
-			gradeDto = null;
+			gradeWriter =rs.getString("grade_writer");
+		}else {
+			gradeWriter = null;
 		}
 		con.close();
 		
-		return gradeDto;
+		return gradeWriter;
 	}
 	
+	//회원 아이디로 trainer 조회
+	public String selectGradeTarget(String playerId) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql= "select grade_target from grade where grade_writer = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setString(1, playerId);
+		ResultSet rs = ps.executeQuery();
+		
+		String gradeTarget;
+		if(rs.next()) {;
+			gradeTarget= rs.getString("grade_target");
+		}
+		else {
+			gradeTarget = null;
+		}
+		con.close();
+		
+		return gradeTarget;
+	}
 	
 	//삭제(gradeWriter 작성자)
 	public boolean delete(int gradeNo) throws Exception{

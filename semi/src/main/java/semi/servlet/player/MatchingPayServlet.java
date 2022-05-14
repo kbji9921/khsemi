@@ -28,21 +28,17 @@ public class MatchingPayServlet extends HttpServlet{
 			MatchingDao matchingDao = new MatchingDao();
 			
 			
-			boolean isIdCheck = playerId != null;
+			
 			boolean isPayCheck = playerDto.getPlayerPoint() >= minusPoint;
 			
 			
-			
-			if(isIdCheck && isPayCheck) {
+			if(!isPayCheck){
+				resp.sendRedirect("matchingDetail.jsp?playerId="+playerId+"&coachId="+trainerId+"&error");
+			}else if( isPayCheck) {
 				playerDao.minusPoint(playerId, minusPoint);
 				matchingDao.changeMathcingState(playerId,trainerId);
 				resp.sendRedirect("matchingList.jsp");
-			}else if(isIdCheck && !isPayCheck){
-				resp.sendRedirect("matchingDetail.jsp?error=1");
-			}else {
-				resp.sendRedirect("matchingDetail.jsp?error=2");
 			}
-			
 			
 		}catch(Exception e) {
 			e.printStackTrace();

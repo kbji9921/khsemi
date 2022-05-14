@@ -1,3 +1,7 @@
+<%@page import="semi.servlet.DtoDao.CenterAttachmentDto"%>
+<%@page import="semi.servlet.DtoDao.AttachmentDto"%>
+<%@page import="semi.servlet.DtoDao.AttachmentDao"%>
+<%@page import="semi.servlet.DtoDao.CenterAttachmentDao"%>
 <%@page import="semi.servlet.DtoDao.EocDto"%>
 <%@page import="java.util.List"%>
 <%@page import="semi.servlet.DtoDao.EocDao"%>
@@ -14,6 +18,12 @@
   <%
   	CenterDao centerDao = new CenterDao();
   	CenterDto centerDto = centerDao.selectOne(centerId);
+  	
+  	CenterAttachmentDao centerAttachmentDao = new CenterAttachmentDao();
+  	CenterAttachmentDto centerAttachmentDto = centerAttachmentDao.selectCenterAttachNo(centerId);
+  	
+  	AttachmentDao attachmentDao = new AttachmentDao();
+  	AttachmentDto attachmentDto = attachmentDao.selectCenterOne(centerAttachmentDto);
   %>
    <%--출력 --%>
 
@@ -25,35 +35,81 @@
 
 <script type="text/javascript">
 $(function(){
+	
+		$("input[name=centerPhone]").blur(phoneCheck);
+		$("input[name=centerWeektime]").blur(weekCheck);
+		$("input[name=centerWkndtime]").blur(wkndCheck);
+		
+		var judgeObject = {
+				phone:false,
+				week:false,
+				wknd:false
+		};
+		
+		$(".edit-form").submit(function(){
+	        return judgeObject.phone && judgeObject.week && judgeObject.wknd;
+		})
+	
+    
 
-    $(".regex-input").blur(regCheck);
-    $(".edit-form").submit(function(){
-        var judge1 = regCheck.call(document.querySelector("input[name=centerPhone]"));
-        var judge2 = regCheck.call(document.querySelector("input[name=centerWeektime]"));
-        var judge3 = regCheck.call(document.querySelector("input[name=centerWkndtime]"));
-
-        return judge1 && judge2 && judge3;
-    });
-
-    function regCheck(){
-        var regex = new RegExp($(this).data("regex"));
-        var value = $(this).val();
-        var judge = regex.test(value);
-
-        if(!judge){
-            $(this).next().css("color","red");
-            $(this).next().text($(this).data("fail-msg"));
-            return false;
-        }
-        else{
-            $(this).next().text("");
-            return true;
-        }
-    };
+	    //전화번호 정규표현식
+	    function phoneCheck(){
+	    	var regex = /0[0-6]{1,2}-[1-9][0-9]{2,3}-[0-9]{4}/;
+	        var value = $(this).val();
+	        span = $(this).next("span");
+	
+	        var judge = regex.test(value);
+	        if(judge){
+	        	span.text("");
+	            judgeObject.phone = true;
+	        }
+	        else{
+	            span.css("color","red");
+	            span.text($(this).data("fail-msg"));
+	            judgeObject.phone = false;
+	        }
+	    }
+	    
+	    //평일운영시간 검사
+	    function weekCheck(){
+	    	var regex = /^[가-힣0-9:~]+$/;
+	    	var value = $(this).val();
+	    	var span = $(this).next("span");
+	    	var judge = regex.test(value);
+	    	
+	    	if(judge){
+	    		span.text("");
+	    		judgeObject.week = true;
+	    	}
+	    	else{
+	    		span.css("color","red");
+	    		span.text($(this).data("fail-msg"));
+	    		judgeObject.week = false;
+	    	}
+	    }
+	 
+	    
+		//주말운영시간 검사
+		function wkndCheck(){
+			var regex = /^[가-힣0-9:~]+$/;
+			var value = $(this).val();
+			var span = $(this).next("span");
+			var judge = regex.test(value);
+			
+			if(judge){
+				span.text("");
+				judgeObject.wknd = true;
+			}
+			else{
+				span.css("color","red");
+				span.text($(this).data("fail-msg"));
+				judgeObject.wknd = false;
+			}
+		}
 });
     </script>
 
-	 <form action="update.kh" method="post" class="edit-form"> 
+	 <form action="update.kh" method="post"  class="edit-form"> 
         <div class="container w400 m30">
             <div class="row center">
                 <h1>센터정보 수정</h1>
@@ -73,19 +129,19 @@ $(function(){
             <div class="row">
                 <label>전화번호
                 <input type="text" name="centerPhone" value="<%=centerDto.getCenterPhone() %>" autocomplete="off" class="form-input input-round fill regex-input" 
-                placeholder="-포함하여 입력하세요" data-regex="^0[0-6]{1,2}-[1-9][0-9]{2,3}-[0-9]{4}$" data-fail-msg="입력하신 내용이 올바르지 않습니다">
+                placeholder="-포함하여 입력하세요" data-fail-msg="입력하신 내용이 올바르지 않습니다">
             	<span></span></label>
             </div>
             <div class="row">
                 <label>평일운영시간
                 <input type="text" name="centerWeektime" value="<%=centerDto.getCenterWeektime() %>" autocomplete="off" class="form-input input-round fill regex-input" 
-                placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" data-regex="^[가-힣0-9:~]+$" data-fail-msg="입력하신 내용이 올바르지 않습니다">
+                placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" data-fail-msg="입력하신 내용이 올바르지 않습니다">
             	<span></span></label>
             </div>
             <div class="row">
                 <label>주말운영시간
                 <input type="text" name="centerWkndtime" value="<%=centerDto.getCenterWkndtime() %>" autocomplete="off" class="form-input input-round fill regex-input" 
-                placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" data-regex="^[가-힣0-9:~]+$" data-fail-msg="입력하신 내용이 올바르지 않습니다">
+                placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" data-fail-msg="입력하신 내용이 올바르지 않습니다">
             	<span></span></label>
             </div>
             <div class="row">
@@ -102,12 +158,13 @@ $(function(){
           
             <div class="row">
                 <label>센터소개</label>
-                <textarea name="centerIntroduction" class="form-input input-round fill" rows="7" placeholder="센터소개 또는 비용 등에 대하여 작성해주세요"><%=centerDto.getCenterIntroduction() %></textarea>
+                <pre><textarea name="centerIntroduction" class="form-input input-round fill" rows="7" placeholder="센터소개 또는 비용 등에 대하여 작성해주세요">
+                <%=centerDto.getCenterIntroduction() %></textarea></pre>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <label>센터대표사진</label>
-                <%-- <input type="file" name="centerPics" value="?" accept=".jpg,.png" class="form-input input-round fill">--%>
-				</div>
+                <input type="file" name="centerPics" class="form-input input-round fill">
+				</div> -->
             <div class="row right">
                 <button type="submit" class="btn btn-semi">수정</button>
                 <a href="/semi/center/detail.jsp?centerId=<%=centerDto.getCenterId() %>" class="link link-btn">취소</a>

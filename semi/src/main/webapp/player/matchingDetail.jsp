@@ -22,19 +22,16 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 
 MatchingDao matchingDao = new MatchingDao();
 Integer ptcount = matchingDao.selectOne(playerId, trainerId);
+MatchingDto matchingDto = matchingDao.selectCheck(playerId, trainerId);
+boolean statecheck = matchingDto.getMatchingState().length() == 4;
 %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
+
 		<div class="container w800 m30 center">
 		   <div class="row center">
-		   		<h2><%=trainerDto.getTrainerName() %> 강사 상세 매칭 정보</h2>
+<%-- 		   		<h2><%=trainerDto.getTrainerName() %> 강사 상세 매칭 정보</h2> --%>
 		   </div>
-		   <div class="row right">
-			   <form action="matchingDelete.player" method="post">
-					<input type="hidden" name="playerId" value="<%=playerId%>">
-					<input type="hidden" name="trainerId" value="<%=trainerId%>">
-					<button type="submit">삭제</button>
-				</form>
-			</div>
+		   
 		<div class="row m30 center">
 	   		<table class="table table-border table-hover">
 				<tr>
@@ -51,7 +48,11 @@ Integer ptcount = matchingDao.selectOne(playerId, trainerId);
 				</tr>
 				<tr>
 					<th>PT비용</th>
-					<td><input type="number" name="playerPoint" value="<%=trainerDto.getTrainerPrice() %>" disabled></td>
+					<td><input type="number" name="playerPoint" value="<%=trainerDto.getTrainerPrice() %>" readonly></td>
+				</tr>
+				<tr>
+					<th>상태</th>
+					<td><%=matchingDto.getMatchingState() %></td>
 				</tr>
 				<tr>
 					<th>연락처</th>
@@ -71,7 +72,8 @@ Integer ptcount = matchingDao.selectOne(playerId, trainerId);
 				</tr>
 	   		</table>
 	   </div>
-	   <div class="row right">
+	   <%if(!statecheck){ %>
+	   	 <div class="row right">
 			<form action="pay.player" method="post">
 				<input type="hidden" name="playerId" value="<%=playerId%>">
 				<input type="hidden" name="trainerId" value="<%=trainerId%>">
@@ -79,5 +81,18 @@ Integer ptcount = matchingDao.selectOne(playerId, trainerId);
 				<button type="submit">결제하기</button>
 			</form>
 	   </div>
+	   <%}else{%>
+		   <div class="row center m50">	
+		   		<a href="<%=request.getContextPath()%>/reservation/reservationInsert.jsp?playerId=<%=playerId%>&trainerId=<%=trainerId %>" class="btn fill  m30">예약하기</a>
+		   		<span>&nbsp;&nbsp;</span>
+		   		<a href="matchingList.jsp" class="btn  fill m30">확인</a>
+	   		</div>
+	   <%} %>
+	   <div class="row center">
+			<%if(request.getParameter("error") != null){ %>
+				<h3 style="color:red;">지불할 포인트가 부족합니다.</h3><br><br>
+				<a href="<%=request.getContextPath()%>/player/point.jsp">포인트 충전</a>
+			<%} %>
+		</div>
 	</div>
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>

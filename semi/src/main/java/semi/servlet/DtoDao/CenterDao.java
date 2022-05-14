@@ -97,13 +97,23 @@ public class CenterDao {
 	}
 	
 	//동,센터명 검색
-	public List<CenterDto> selectList(String type,String keyword) throws Exception{
+	public List<CenterDto> selectList(String type,String keyword,int p, int s,String exerciseName) throws Exception{
 		Connection con = JdbcUtils.getConnection();
+		int end = p *s;
+		int begin = end -(s-1);
 		
-		String sql = "select * from center where instr(#1,upper(?))>=1 order by center_name asc";
+		String sql = "select * from ("
+				+ "select rownum rn, TMP.* from (select * from ("
+				+ "select C.*,E.exercise_name from center C inner join eoc E on C.center_id = E.center_id "
+				+ "where E.exercise_name= ? order by center_name asc) where "
+				+ "instr(#1,upper(?))>=1 )TMP)where rn between ? and ?";
+		
 		sql = sql.replace("#1", type);
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, keyword);
+		ps.setString(1, exerciseName);
+		ps.setString(2, keyword);
+		ps.setInt(3, begin);
+		ps.setInt(4, end);
 		ResultSet rs = ps.executeQuery();
 		
 		List<CenterDto> list = new ArrayList<>();
@@ -128,14 +138,21 @@ public class CenterDao {
 		return list;
 	}
 	
-	//센터 담당 운동명으로 찾기
-	public List<CenterDto> selectList(String keyword) throws Exception{
+	//센터 담당 운동명으로 찾기-
+	public List<CenterDto> selectList(int p, int s,String exerciseName) throws Exception{
+		int end = p *s;
+		int begin = end -(s-1);
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select C.*, E.exercise_name from center C inner join eoc E on C.center_id = E.center_id "
-				+ "where E.exercise_name = ?";
+		String sql = "select * from ("
+				+ "select rownum rn, TMP.* from ("
+				+ "select C.*,E.exercise_name from center C inner join eoc E on "
+				+ "C.center_id = E.center_id where E.exercise_name=? order by center_name asc)TMP ) where rn between ? and ?";
+		
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, keyword);
+		ps.setString(1, exerciseName);
+		ps.setInt(2, begin);
+		ps.setInt(3, end);
 		ResultSet rs = ps.executeQuery();
 		
 		List<CenterDto> list = new ArrayList<>(); 
@@ -264,12 +281,15 @@ public class CenterDao {
 		
 		return list;
 	}
-	//게시글 수(조회)
-	public int countByPaging() throws Exception{
+	//센터 전체 개수
+	public int countByPaging(String exerciseName) throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select count(*) from center";
+		String sql = "select count(*) from ("
+				+ "select C.*,E.exercise_name from center C inner join eoc E on C.center_id = E.center_id "
+				+ "where E.exercise_name=? order by center_name asc)";
 		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, exerciseName);
 		ResultSet rs = ps.executeQuery();
 		rs.next();
 		int count = rs.getInt("count(*)");
@@ -278,14 +298,18 @@ public class CenterDao {
 		
 		return count;
 	}
-	//게시글 수 검색
-	public int countByPaging(String type, String keyword) throws Exception{
+
+	//센터 검색 개수
+	public int countByPaging(String type, String keyword, String exerciseName) throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select count(*) from center where instr (#1,?) > 0";
+		String sql = "select count(*) from ("
+				+ "select C.*,E.exercise_name from center C inner join eoc E on C.center_id = E.center_id "
+				+ "where E.exercise_name= ? order by center_name asc) where instr(#1,upper(?))>=1";
 		sql= sql.replace("#1", type);
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, keyword);
+		ps.setString(1, exerciseName);
+		ps.setString(2, keyword);
 		ResultSet rs = ps.executeQuery();
 		rs.next();
 		int count = rs.getInt("count(*)");
@@ -294,4 +318,9 @@ public class CenterDao {
 		
 		return count;
 	}
-}
+	
+
+
+		}
+
+

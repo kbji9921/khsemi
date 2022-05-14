@@ -180,7 +180,7 @@ boolean type2 = error != null && error.equals("2");
         </div>
         <div class="row">
             <label>생년월일</label><br>
-            <input type="date" name="playerBirth" required class="form-input input-round" autocomplete="off" placeholder="YYYY-MM-DD">
+            <input type="date" name="playerBirth" required class="form-input input-round fill" autocomplete="off" placeholder="YYYY-MM-DD">
         </div>
         <div class="row ">
             <label>성별</label>

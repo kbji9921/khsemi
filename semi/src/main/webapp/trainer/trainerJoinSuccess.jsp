@@ -3,10 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    String trainerId = "testuser6";
+    String trainerId = request.getParameter("trainerId");
     TrainerDao trainerDao = new TrainerDao();
     TrainerDto trainerDto = trainerDao.selectOne(trainerId);
     %>
+    <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -31,10 +32,7 @@
     </script>
 </head>
 <body>
-    <div class="container w500 m30">
-        <div class="row center">
-            <img src="../image/살빠짐.png" width="200">
-        </div>
+    <div class="container w300 m30">
         <div class="row center m50">
             <h1>환영합니다.</h1>
         </div>
@@ -44,9 +42,7 @@
         <div class="row center">
             살빠Gym 새로운 아이디는 <%=trainerDto.getTrainerId()%>입니다.
         </div>
-        <div class="row m50">
-            <button class="btn btn-semi fill">시작하기</button>
-        </div>
     </div>
 </body>
 </html>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
