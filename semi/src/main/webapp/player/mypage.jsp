@@ -253,6 +253,6 @@
 		<%if(request.getParameter("error") != null){ %>
 			<h3 style="color:red;">비밀번호가 일치하지 않습니다.</h3>
 		<%} %>
-	</div>
+	</div>"src/main/webapp/player/matchingDetail.jsp"
 
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>
