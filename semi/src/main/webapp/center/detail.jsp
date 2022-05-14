@@ -57,26 +57,28 @@
    }
 %>
   <%
-   //센터 상세 정보
+
      CenterDao centerDao = new CenterDao();
      CenterDto centerDto = centerDao.selectOne(centerId);
     //운동종목 상세 정보
      EocDao eocDao = new EocDao();
      List<EocDto> list = eocDao.selectList(centerId);
-   //센터 소속 강사 정보(이름)
-   TrainerDao trainerDao = new TrainerDao();
-   List<TrainerDto> trainerList = trainerDao.centerTrainerByPaging(p, s, centerId);
-   //센터 첨부파일 번호 조회
-    CenterAttachmentDao centerAttachmentDao = new CenterAttachmentDao();
-   CenterAttachmentDto centerAttachmentDto = centerAttachmentDao.selectCenterAttachNo(centerId);
-   //센터 상세페이지 이미지 
-   AttachmentDao attachmentDao = new AttachmentDao();
-   AttachmentDto attachmentDto1 = attachmentDao.selectCenterOne(centerAttachmentDto);
-     
-     //강사 본인의 센터인지 판정 강사로 로그인 되어 있으면서 현재 로그인 된 강사가 소속된 센터의 아이디가 같다면
-     //TrainerDto trainerDto = trainerDao.selectOne(trainerId);
-     //boolean isOwnerCenter = trainerDto!=null && trainerDto.getCenterId().equals(centerDto.getCenterId());
 
+	//센터 소속 강사 정보(이름)
+	TrainerDao trainerDao = new TrainerDao();
+	List<TrainerDto> trainerList = trainerDao.centerTrainerByPaging(p, s, centerId);
+	//센터 첨부파일 번호 조회
+ 	CenterAttachmentDao centerAttachmentDao = new CenterAttachmentDao();
+	CenterAttachmentDto centerAttachmentDto = centerAttachmentDao.selectCenterAttachNo(centerId);
+	//센터 상세페이지 이미지 
+	AttachmentDao attachmentDao = new AttachmentDao();
+	AttachmentDto attachmentDto1 = attachmentDao.selectCenterOne(centerAttachmentDto);
+  	
+  	//강사 본인의 센터인지 판정 강사로 로그인 되어 있으면서 현재 로그인 된 강사가 소속된 센터의 아이디가 같다면
+  	//TrainerDto trainerDto = trainerDao.selectOne(trainerId);
+  	//boolean isOwnerCenter = trainerDto!=null && trainerDto.getCenterId().equals(centerDto.getCenterId());
+
+   
   %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
@@ -85,11 +87,12 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
         $(function(){
-           //좋아요
-           
-           
-           
-           //센터 삭제
+        	//좋아요
+        	
+        	
+        	
+        	//센터 삭제
+
             //$("#delete").click(function(){
              //   return confirm("정말 삭제하시겠습니까?");
            // });
@@ -155,22 +158,22 @@
         <span>우리 센터의 강사</span>
         <div class="flex-c-container m10">
         <%--강사 이름 출력 --%>
-       <%for(TrainerDto trainerDto : trainerList){ %>
-          <%-- 강사 이미지 조회--%>
-          <%TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao(); %>
-          <%TrainerAttachmentDto trainerAttachmentDto = trainerAttachmentDao.selectTrainerAttachNo(trainerDto.getTrainerId());%>
-          <%List<AttachmentDto> trainerImgList =  attachmentDao.selectTrainer(trainerAttachmentDto); %>
+		 <%for(TrainerDto trainerDto : trainerList){ %>
+		 	<%-- 강사 이미지 조회--%>
+		 	<%TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao(); %>
+		 	<%TrainerAttachmentDto trainerAttachmentDto = trainerAttachmentDao.selectTrainerAttachNo(trainerDto.getTrainerId());%>
+		 	<%List<AttachmentDto> trainerImgList =  attachmentDao.selectTrainer(trainerAttachmentDto); %>
            <div class="flex-c-container flex-c-vertical layer-3">
                  <%--강사 이미지 출력--%>
                <div class="row center">
-                  <%for(AttachmentDto attachmentDto2 : trainerImgList){ %>
-                     <%if(attachmentDto2 == null){ %>
-                        <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>&trainerId=<%=trainerDto.getTrainerId() %>">
-                        <img src="https://placeimg.com/150/150/tech/grayscale" class="c-img img-circle img-hover"></a>
-                     <%} else {%>
-                        <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>&trainerId=<%=trainerDto.getTrainerId() %>">
-                        <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentDto2.getAttachmentNo()%>" class="c-img img-circle img-hover" width="150px" height="150px"></a>
-                     <%} %>
+               	<%for(AttachmentDto attachmentDto2 : trainerImgList){ %>
+               		<%if(attachmentDto2 == null){ %>
+	                  	<a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>&trainerId=<%=trainerDto.getTrainerId() %>">
+	                  	<img src="https://placeimg.com/150/150/tech/grayscale" class="c-img img-circle img-hover"></a>
+                  	<%} else {%>
+                  		<a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>&trainerId=<%=trainerDto.getTrainerId() %>">
+                  		<img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentDto2.getAttachmentNo()%>" class="c-img img-circle img-hover" width="150px" height="150px"></a>
+                  	<%} %>
                   <%} %>
                </div>
                <%--강사 이름 --%>
