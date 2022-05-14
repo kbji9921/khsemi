@@ -19,7 +19,6 @@
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/commons.css">
 
 
 <body>
