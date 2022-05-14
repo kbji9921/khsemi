@@ -14,7 +14,7 @@ header {
     text-align:center;
 }
 #logo{
-	display: block;
+	display: inline-block;
 	margin: 40px 0;
     font-size: 3em;
     font-weight: 600;

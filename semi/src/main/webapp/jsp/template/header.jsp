@@ -1,20 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-  //현재 접속한 사용자가 로그인 상태인지 아닌지를 판정하는 코드
-
-  //1. 세션에 login이라는 이름으로 저장된 데이터를 꺼낸다.
+  //로그인확인
   String playerId = (String)session.getAttribute("login");
   String trainerId = (String)session.getAttribute("trainer");
-
-  //2. memberId가 있으면 로그인 상태라고 판정하고, 없으면 로그아웃 상태라고 판정한다.
   boolean playerLogin = playerId != null;
   boolean trainerLogin = trainerId != null;
-
-  //권한
-  String auth = (String)session.getAttribute("auth");
-  boolean admin = auth!=null&& auth.equals("관리자");
-    %>
+%>
+    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -36,41 +29,36 @@
          <nav>
             <ul id="gnb">
                <li><a href="<%=request.getContextPath()%>">Home</a></li>
-               <li><a href="#">고객의소리</a></li>
-               <%if(trainerLogin||playerLogin){ %>
-                     <%if(trainerLogin){ %>
+               <%if(playerLogin){ %>
+               <li><a href="/semi/board/boardList.jsp">이용문의</a></li>
+               <%} %>
+
+               <%--강사 로그인 후 --%>
+              		 <%if(trainerLogin){ %>
                   <li class="gnb-right">
-                     <a href="<%=request.getContextPath()%>/player/allMatchingList.jsp?trainerId=<%=trainerId%>">매칭정보</a>
-                      <span class="partition">|</span>
-                     <a href="<%=request.getContextPath()%>/reservation/reservationListTrainer.jsp?trainerId=<%=trainerId%>">내예약</a>
+                     <a href="<%=request.getContextPath()%>/player/matchingList.jsp?playerId=<%=playerId%>">내예약</a>
                      <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/trainer/trainerMyPage.jsp">내정보</a>
                      <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/trainer/logout.trainer">로그아웃</a>
                   </li>
-                     <%} %>
                <%-- 사용자 로그인 후 --%>
-                     <%if(playerLogin){ %>
+              		 <%}else if(playerLogin){ %>
                   <li class="gnb-right">
-                     <a href="<%=request.getContextPath()%>/player/matchingList.jsp">매칭정보</a>
-                     <span class="partition">|</span>
-                     <a href="<%=request.getContextPath()%>/reservation/reservationListPlayer.jsp?playerId=<%=playerId%>">내예약</a>
+                     <a href="<%=request.getContextPath()%>/player/matchingList.jsp?playerId=<%=playerId%>">내예약</a>
                      <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/player/mypage.jsp">내정보</a>
                      <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/player/logout.player">로그아웃</a>
                   </li>
-                     <%} %>
-
+				<%-- 로그인 전 --%>
                <%}else{ %>
                <li class="gnb-right">
                   <a href="<%=request.getContextPath()%>/player/selectLogin.jsp">로그인</a>
                      <span class="partition">|</span>
                   <a href="<%=request.getContextPath()%>/player/selectJoin.jsp">회원가입</a>
                </li>
-                  
                <%} %>
-               
                
                <%-- 관리자 로그인 후
                <li class="gnb-right">
@@ -79,6 +67,7 @@
                   <a href="#">로그아웃</a>
                </li>
                --%>
+               
             </ul>
          </nav>
       </header>
