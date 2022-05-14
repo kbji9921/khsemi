@@ -12,6 +12,8 @@
     String trainerId = request.getParameter("trainerId");
     String centerId = request.getParameter("centerId");
     
+   
+    
     
 %>
 
@@ -122,8 +124,6 @@
 				<div class="flex-container">
 					<div class="content-box">
 						<div class="content center">
-						
-						<!-- likeCount 을 가져와서 출력 -->
 						
 						<a href="<%=request.getContextPath()%>/center/detail.jsp?centerId=<%=centerId%>"> 
 							
