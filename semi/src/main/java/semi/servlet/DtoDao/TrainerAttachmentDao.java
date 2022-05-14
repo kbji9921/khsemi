@@ -36,6 +36,8 @@ public class TrainerAttachmentDao {
 		
 		return attachmentNo;
 	}
+	
+	
 	public boolean delete(int attachmentNo) throws Exception {
 		Connection con = JdbcUtils.getConnection();
 
@@ -50,27 +52,29 @@ public class TrainerAttachmentDao {
 		return count > 0;
 
 	}
+	
 	//센터 상세페이지 강사 첨부파일을 위한 조회
-    public TrainerAttachmentDto selectTrainerAttachNo(String trainerId) throws Exception{
-       Connection con = JdbcUtils.getConnection();
-       
-       String sql = "select attachment_no from trainer_attachment where trainer_id = ?";
-       PreparedStatement ps = con.prepareStatement(sql);
-       ps.setString(1, trainerId);
-       ResultSet rs = ps.executeQuery();
-       
-       TrainerAttachmentDto trainerAttachmentDto;
-       if(rs.next()) {
-          trainerAttachmentDto = new TrainerAttachmentDto();
-          trainerAttachmentDto.setAttachmentNo(rs.getInt("attachment_no"));
-       }
-       else {
-          trainerAttachmentDto = null;
-       }
-       
-       con.close();
-       
-       return trainerAttachmentDto;
-    }
+		public TrainerAttachmentDto selectTrainerAttachNo(String trainerId) throws Exception{
+			Connection con = JdbcUtils.getConnection();
+			
+			String sql = "select attachment_no from trainer_attachment where trainer_id = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, trainerId);
+			ResultSet rs = ps.executeQuery();
+			
+			TrainerAttachmentDto trainerAttachmentDto;
+			if(rs.next()) {
+				trainerAttachmentDto = new TrainerAttachmentDto();
+				trainerAttachmentDto.setAttachmentNo(rs.getInt("attachment_no"));
+			}
+			else {
+				trainerAttachmentDto = null;
+			}
+			
+			con.close();
+			
+			return trainerAttachmentDto;
+		}
+
 }
 
