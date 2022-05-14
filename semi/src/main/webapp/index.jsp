@@ -13,8 +13,6 @@
     String centerId = request.getParameter("centerId");
     
    
-    
-    
 %>
 
 

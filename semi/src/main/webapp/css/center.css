@@ -44,7 +44,8 @@
             border-radius: 0.5em;
         }
         .list-exercise-kinds{
-           width: 25%;
+        /* 내예약정보에서 사용 : 원래 width: 25% */
+           width: 100%;
            border: solid #343b6a 0.1em;
            border-radius: 1em;
            padding: 0.1em;

@@ -8,7 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-   	String playerId = request.getParameter("playerId");
+      String playerId = request.getParameter("playerId");
     String trainerId = request.getParameter("trainerId");
     TrainerDao trainerDao = new TrainerDao();
     TrainerDto trainerDto = trainerDao.selectOne(trainerId);
@@ -31,25 +31,25 @@
     }
     </style>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-	<link rel="stylesheet" href="/resources/demos/style.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
- 
+   <link rel="stylesheet" href="/resources/demos/style.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+   <link rel="stylesheet" type="text/css" href="../css/common.css">
+   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 <script>
          $(function() {
               $("#time1").timepicker({
-        		timeFormat: 'h:mm p',
-        		interval: 60,
-        		minTime: '09',
-        		maxTime: '10:00pm',
-      		 	defaultTime: '09',
-       			startTime: '09:00',
-        		dynamic: false,
-        		dropdown: true,
-        		scrollbar: true        
-    		});
+              timeFormat: 'h:mm p',
+              interval: 60,
+              minTime: '09',
+              maxTime: '10:00pm',
+                defaultTime: '09',
+                startTime: '09:00',
+              dynamic: false,
+              dropdown: true,
+              scrollbar: true        
+          });
             $("#datepicker").datepicker({
                 dateFormat: 'yy-mm-dd' //Input Display Format 변경
                 ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
@@ -115,23 +115,23 @@
         </div>
         <div class="row m30">
           <label for="time">시간 선택</label>
-      	 <select name="reservationTime" class="form-input input-round fill">
+          <select name="reservationTime" class="form-input input-round fill">
             <option>시간선택</option>
-      	 	<option>09:00AM</option>
-      	 	<option>10:00AM</option>
-      	 	<option>11:00AM</option>
-      	 	<option>12:00PM</option>
-      	 	<option>01:00PM</option>
-      	 	<option>02:00PM</option>
-      	 	<option>03:00PM</option>
-      	 	<option>04:00PM</option>
-      	 	<option>05:00PM</option>
-      	 	<option>06:00PM</option>
-      	 	<option>07:00PM</option>
-      	 	<option>08:00PM</option>
-      	 	<option>09:00PM</option>
-      	 	
-      	 </select>
+             <option>09:00AM</option>
+             <option>10:00AM</option>
+             <option>11:00AM</option>
+             <option>12:00PM</option>
+             <option>01:00PM</option>
+             <option>02:00PM</option>
+             <option>03:00PM</option>
+             <option>04:00PM</option>
+             <option>05:00PM</option>
+             <option>06:00PM</option>
+             <option>07:00PM</option>
+             <option>08:00PM</option>
+             <option>09:00PM</option>
+             
+          </select>
         </div>
         <div class="row m40">
             <input type="submit" class="btn btn-semi btn-round fill" value="예약">

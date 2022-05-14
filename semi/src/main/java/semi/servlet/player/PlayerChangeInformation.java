@@ -20,13 +20,12 @@ public class PlayerChangeInformation extends HttpServlet{
 			
 			PlayerDto playerDto = new PlayerDto();
 			
-			playerDto.setPlayerId((String) req.getSession().getAttribute("login"));
-			
+			playerDto.setPlayerId(req.getParameter("playerId"));
 			playerDto.setPlayerName(req.getParameter("playerName"));
-			playerDto.setPlayerGender(req.getParameter("playerGender"));
 			playerDto.setPlayerBirth(Date.valueOf(req.getParameter("playerBirth")));
 			playerDto.setPlayerPhone(req.getParameter("playerPhone"));
 			playerDto.setPlayerEmail(req.getParameter("playerEmail"));
+			playerDto.setPlayerGender(req.getParameter("playerGender"));
 			playerDto.setPlayerPw(req.getParameter("playerPw"));
 			
 			PlayerDao playerDao = new PlayerDao();
@@ -35,7 +34,7 @@ public class PlayerChangeInformation extends HttpServlet{
 			boolean isPasswordCorrect = playerDto.getPlayerPw().equals(findDto.getPlayerPw());
 			
 			if(!isPasswordCorrect) {
-				resp.sendRedirect("myinformation.jsp?error");
+				resp.sendRedirect("mypage.jsp?error");
 				return;
 			}
 			

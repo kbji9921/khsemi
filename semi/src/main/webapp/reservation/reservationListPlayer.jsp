@@ -18,6 +18,7 @@
 <title>회원 예약 리스트</title>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 
+
 <body>
 	<div class="container w600 m30">
 		<div class="row center">
