@@ -315,7 +315,7 @@ public class TrainerDao {
   		
   		String sql = "select * from ("
   				+ "select rownum rn, TMP.* from ("
-  				+ "select * from trainer where center_id =? order by trainer_name asc)TMP ) where rn between ? and ?";
+  				+ "select * from trainer where center_id =? order by trainer_id desc)TMP ) where rn between ? and ?";
   		PreparedStatement ps = con.prepareStatement(sql);
   		ps.setString(1, centerId);
   		ps.setInt(2, begin);
