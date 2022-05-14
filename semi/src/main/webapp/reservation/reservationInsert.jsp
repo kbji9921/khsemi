@@ -16,9 +16,6 @@
     PlayerDto playerDto = playerDao.selectOne(playerId);
     
     %>
-   
-  
-  
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html lang="en">

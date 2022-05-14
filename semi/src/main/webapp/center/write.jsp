@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
+
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 
@@ -225,8 +225,8 @@
             </div>
             <div class="row">
                 <label for="introduction-input">
-                    <textarea name="centerIntroduction" class="form-input input-round fill" rows="7" autocomplete="off" 
-                    placeholder="센터소개 또는 비용 등에 대하여 작성해주세요"></textarea>
+                    <pre><textarea name="centerIntroduction" class="form-input input-round fill" rows="7" autocomplete="off" 
+                    placeholder="센터소개 또는 비용 등에 대하여 작성해주세요"></textarea></pre>
                 </label>
             </div>
             <div class="row">

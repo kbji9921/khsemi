@@ -37,4 +37,26 @@ public class CenterAttachmentDao {
 		
 		return attachmentNo;
 	}
+	public CenterAttachmentDto selectCenterAttachNo(String centerId) throws Exception{
+	      Connection con= JdbcUtils.getConnection();
+	      
+	      String sql = "select attachment_no from center_attachment where center_id = ?";
+	      PreparedStatement ps = con.prepareStatement(sql);
+	      ps.setString(1, centerId);
+	      ResultSet rs = ps.executeQuery();
+	      
+	      CenterAttachmentDto centerAttachmentDto;
+	      if(rs.next()) {
+	         centerAttachmentDto = new CenterAttachmentDto();
+	         centerAttachmentDto.setAttachmentNo(rs.getInt("attachment_no"));
+	      }
+	      else {
+	         centerAttachmentDto = null;
+	      }
+	      
+	      con.close();
+	      
+	      return centerAttachmentDto;
+	      
+	   }
 }
