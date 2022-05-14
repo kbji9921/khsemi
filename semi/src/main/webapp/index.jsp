@@ -11,8 +11,6 @@
 <%	
     String trainerId = request.getParameter("trainerId");
     String centerId = request.getParameter("centerId");
-    
-    
 %>
 
 

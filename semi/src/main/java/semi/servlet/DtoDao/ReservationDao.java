@@ -66,7 +66,7 @@ public class ReservationDao {
    //이용자 일정   
    public ReservationDto selectPlayer(String playerId)throws Exception{
       Connection con = JdbcUtils.getConnection();
-      String sql = "select * from reservation where player_id =?";
+      String sql = "select * from reservation where player_id =? order by reservation_no desc";
       PreparedStatement ps = con.prepareStatement(sql);
       ps.setString(1, playerId);
       ResultSet rs = ps.executeQuery();

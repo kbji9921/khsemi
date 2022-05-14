@@ -1,17 +1,34 @@
+<%@page import="semi.servlet.DtoDao.AttachmentDto"%>
+<%@page import="semi.servlet.DtoDao.AttachmentDao"%>
+<%@page import="semi.servlet.DtoDao.PlayerAttachmentDao"%>
+<%@page import="semi.servlet.DtoDao.PlayerDto"%>
+<%@page import="semi.servlet.DtoDao.PlayerDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
- String playerId = (String)request.getSession().getAttribute("login"); %>
-
-
+	String playerId = request.getParameter("playerId");
+%>
+<%
+	PlayerDao playerDao = new PlayerDao();
+	PlayerDto playerDto = playerDao.selectOne(playerId);
+	
+	PlayerAttachmentDao playerAttachmentDao = new PlayerAttachmentDao();
+	int attach = playerAttachmentDao.selectOne(playerId);
+	
+	AttachmentDao attachmentDao = new AttachmentDao();
+	AttachmentDto attachmentDto = attachmentDao.selectOne(attach);
+	
+	boolean noPic = attachmentDto==null;
+%>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>프로필 사진 등록</title>
     <style>
+    .img{
+    width:100%;}
         .box{
             padding:39px ,40px, 20px;
             font:12px;
@@ -46,40 +63,30 @@
     </script>
 </head>
 <body>
-<form class="join-form" action="profileInsert.player" method="post" enctype="multipart/form-data">
+<form class="join-form" action="profileDelete.player" method="get">
     <div class="container w400 m50">
         <div class="row center m50">
-            <h2>프로필 등록</h2>
+            <h2>프로필 삭제</h2>
         </div>
         <div class="row m40">
             <hr>
         </div>
         <div class="box">
             <div class="row center">
-            <ul>
-                <li>
-                    프로필 사진을 등록하세요.
-                </li>
-                <li>
-                    jpg, png 파일만 등록이 가능합니다.
-                </li>
-                <li>
-                    크기는 2mb 이내로 등록하세요
-                </li>
-            </ul>
+				<a href="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attach%>"></a>
+                <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attach%>" class="img img-circle asdf">
             </div>
-            <div  class="row center m30">
-           	<img src="<%=request.getContextPath()%>/images/profile.png" width="80%">
-     	 <div  class="row center">
-        	<input type="file" accept="jpg,png" name="playerAttachment" class="form-input input-round">
-        	<input type="hidden" name="playerId" value="<%=playerId%>">
-       	</div>
-	       	<button type="submit" class="btn btn-semi">등록하기</button>
-	       	<a href="<%=request.getContextPath()%>/player/mypage.jsp?playerId=<%=playerId%>" class="link link-btn">취소</a>
+           	 <div  class="row center">
+	        	<input type="hidden" name="playerId" value="<%=playerId%>">
+	        	<input type="hidden" name="attachmentNo" value="<%=attach%>">
+	       	</div>
+       		<button type="submit" class="btn btn-semi">삭제하기</button>
+       		<a href="<%=request.getContextPath()%>/player/mypage.jsp?playerId=<%=playerId%>" class="link link-btn">취소</a>
         </div>
-                
-        </div>
-        </div>
+       </div>
         <!-- 버튼-->
 </form>
+</body>
+</html>
+
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>

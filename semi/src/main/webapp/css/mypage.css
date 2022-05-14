@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.mypage-nickname{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin-left: 20px;
+}
