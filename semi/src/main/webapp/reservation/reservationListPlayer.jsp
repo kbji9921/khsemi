@@ -19,13 +19,12 @@
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/commons.css">
 
 
 <body>
 	<div class="container w600 m30">
 		<div class="row center">
-			<h2>내 예약 정보 </h2>
+			<h2>나의 예약 정보 </h2>
 		</div>
 	        <div class="flex-container flex-r-vertical display-center">
         	<%for(ReservationDto reservationDto : list){ %>
