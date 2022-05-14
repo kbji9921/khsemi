@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/commons.css">
     <!-- <link rel="stylesheet" type="text/css" href="../css/test.css"> -->
 
     <!-- jquery cdn -->
@@ -179,57 +180,54 @@
     </script>
 </head>
 <body>
-    <div class="color">
-        <a href="메인페이지 이동"><img src="../image/ci_main_logo.png"></a>
-    </div>
-    <form action="join.trainer" class="join-form" method="post">
-    <div class="Container w450 m30">
-        <div class="row center">
-            <img src="../image/ci_main_logo.png" width="200">
-        </div>
+    <form action="profile.trainer" class="join-form" method="post" enctype="multipart/form-data">
+    <div class="container w450 m30">
         <div class="row">
             <label>아이디</label>
-            <input type="text" name="trainerId"  autocomplete="off" class="form-input full input-round" >
+            <input type="text" name="trainerId"  autocomplete="off" class="form-input fill input-round" >
             <span></span>
         </div>
         <div class="row">
             <label>비밀번호</label>
-            <input type="password" name="trainerPw"  class="form-input full input-round">
+            <input type="password" name="trainerPw"  class="form-input fill input-round">
             <span></span>
         </div>
         <div class="row">
         <label>비밀번호 재확인</label>
-            <input type="password" id="password-check"  class="form-input full input-round">
+            <input type="password" id="password-check"  class="form-input fill input-round">
             <span></span>
         </div>
         <div class="row">
         <label>이름</label>
-            <input type="text" name="trainerName"  autocomplete="off"class="form-input full input-round">
+            <input type="text" name="trainerName"  autocomplete="off"class="form-input fill input-round">
             <span></span>
         </div>
         <div class="row">
             <label>생년월일</label><br>
-            <input type="date" name="trainerBirth"  class="form-input input-round" autocomplete="off" placeholder="YYYY-MM-DD">
+            <input type="date" name="trainerBirth"  class="form-input input-round fill" autocomplete="off" placeholder="YYYY-MM-DD">
             <span></span>
         </div>
         <div class="row">
             <label>성별</label>
-            <input type="text" name="trainerGender"  class="form-input full input-round" autocomplete="off" placeholder="남/여">
-            <span></span>
+                <select name="trainerGender" class="form-input fill input-round">
+                <option selected value="">선택</option>
+                <option>남</option>
+                <option>여</option>
+                </select>
         </div>
         <div class="row">
             <label>이메일</label>
-            <input type="email" name="trainerEmail"  class="form-input full input-round" autocomplete="off">
+            <input type="email" name="trainerEmail"  class="form-input fill input-round" autocomplete="off">
             <span></span>
         </div>
         <div class="row">
             <label>전화번호</label>
-            <input type="tel" name="trainerPhone" class="form-input full input-round" autocomplete="off" placeholder="-제외하고 입력">
+            <input type="tel" name="trainerPhone" class="form-input fill input-round" autocomplete="off" placeholder="-제외하고 입력">
             <span></span>
         </div>
         <div class="row">
             <labe>운동종목</labe>
-            <select name="trainerSports" class="form-input full input-round">
+            <select name="trainerSports" class="form-input fill input-round">
                 <option selected value="">선택</option>
                 <option>헬스</option>
                 <option>필라테스</option>
@@ -238,6 +236,9 @@
                 <option>테니스</option>
             </select>
             <span></span>
+        </div>
+        <div class="row">
+        	<input type="file" accept="jpg,png" placeholder="프로필 사진 선택" name="trainerAttachment">
         </div>
         <div class="row m20">
             <button type="submit" class="btn btn-semi btn-round full pw-btn">가입하기</button>
@@ -253,3 +254,4 @@
 </form>
 </body>
 </html>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>

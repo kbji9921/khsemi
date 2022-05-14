@@ -30,7 +30,7 @@ boolean statecheck = matchingDto.getMatchingState().length() == 4;
     <link rel="stylesheet" type="text/css" href="../css/commons.css">
 		<div class="container w800 m30 center">
 		   <div class="row center">
-		   		<h2><%=trainerDto.getTrainerName() %> 강사 상세 매칭 정보</h2>
+<%-- 		   		<h2><%=trainerDto.getTrainerName() %> 강사 상세 매칭 정보</h2> --%>
 		   </div>
 		   
 		<div class="row m30 center">

@@ -10,6 +10,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String playerId = (String)session.getAttribute("login");
+	String trainerId = request.getParameter("trainerId");
 %>
 
 <%
@@ -34,16 +35,16 @@
 	   <div class="row m30 center">
 	   		<table class="table table-border table-hover">
 	   			<thead>
-		   				<tr>
-							<th>매칭번호</th>
-							<th>학생이름</th>
-							<th>강사이름</th>
-							<th>메칭일</th>
-							<th>교육수</th>
-							<th>상태</th>
-							<th>결제</th>
-							<th>비고</th>
-						</tr>
+	   				<tr>
+						<th>매칭번호</th>
+						<th>학생이름</th>
+						<th>강사이름</th>
+						<th>메칭일</th>
+						<th>교육수</th>
+						<th>상태</th>
+						<th>결제</th>
+						<th>비고</th>
+					</tr>
 	   			</thead>
 	   			<tbody>
 	   					<%for(MatchingDto matchingDto  : list){ %>
@@ -51,6 +52,7 @@
 							<%
 								TrainerDao trainerDao = new TrainerDao();
 								TrainerDto trainerDto = trainerDao.selectOne(matchingDto.getCoachId()); 
+								TrainerDto trainerInfo = trainerDao.selectOne(trainerId);
 							%>
 							<td><%=matchingDto.getMatchingNo() %></td>
 							<td><%=playerDto.getPlayerName() %></td>

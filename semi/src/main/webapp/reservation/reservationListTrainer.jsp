@@ -15,6 +15,9 @@
 .list-center-area{
 width:100%;
 }
+.reservation-box{
+    border: 1px solid #333;
+}
 </style>
 </head>
 <body>
@@ -24,7 +27,7 @@ width:100%;
 		</div>
 	        <div class="flex-container flex-vertical">
         	<%for(ReservationDto reservationDto : list){ %>
-            <div class="flex-container list-center-listbox">
+            <div class="flex-container list-center-listbox reservation-box">
                 <!--센터이미지-->
                 <div class="row center list-image-area">
                     <a href="/semi/center/detail.jsp?centerId=<%=reservationDto.getReservationNo()%>">

@@ -38,7 +38,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
          
 
       }else {
-         resp.sendRedirect("trainerlogin.jsp?error"); //로그인 페이지(+에러표시)
+         resp.sendRedirect("trainerLogin.jsp?error"); //로그인 페이지(+에러표시)
       }
    
    } catch (Exception e) {

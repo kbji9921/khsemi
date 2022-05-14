@@ -1,3 +1,6 @@
+<%@page import="semi.servlet.DtoDao.AttachmentDto"%>
+<%@page import="semi.servlet.DtoDao.AttachmentDao"%>
+<%@page import="semi.servlet.DtoDao.TrainerAttachmentDao"%>
 <%@page import="semi.servlet.DtoDao.TrainerDto"%>
 <%@page import="semi.servlet.DtoDao.TrainerDao"%>
 <%@page import="semi.servlet.DtoDao.EocDto"%>
@@ -135,12 +138,29 @@
         <!--센터 목록-->
         <div class="flex-c-container flex-c-vertical">
         	<%for(TrainerDto trainerDto : trainerList){ %>
+        	<%
+        	
+        	trainerDto = trainerDao.selectOne(trainerDto.getTrainerId());
+
+        	TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao();
+        	int attachmentNo = trainerAttachmentDao.selectOne(trainerDto.getTrainerId());
+
+        	AttachmentDao attachmentDao = new AttachmentDao();
+        	AttachmentDto attachmentDto = attachmentDao.selectOne(attachmentNo);
+
+        	boolean noPic = attachmentDto==null; %>
             <div class="flex-c-container c-list-listbox m10">
                 <!--센터이미지-->
                 <div class="row c-list-img">
+                <%if(noPic){ %>
                     <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?trainerId=<%=trainerDto.getTrainerId()%>">
-                    <img src="https://placeimg.com/170/170/tech/grayscale" class="c-img img-shadow img-round" width="100%">
+                    <img src="<%=request.getContextPath()%>/images/profile.png" class="c-img img-shadow img-round" width="100%">
                     </a>
+                <%}else{ %>
+                	<a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?trainerId=<%=trainerDto.getTrainerId()%>">
+                	 <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentNo%>" class="c-img img-shadow img-round" width="100%">
+                    </a>
+                <%} %>
                 </div>
                 <div class="c-list-area">
                     <div class="row m30">
@@ -148,7 +168,7 @@
                         </a>
                     </div>
                     <div class="row">
-                        <h3><%=trainerDto.getTrainerName()%>&nbsp;<%=trainerDto.getTrainerGender() %></h3>
+                         <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?trainerId=<%=trainerDto.getTrainerId()%>"><h3><%=trainerDto.getTrainerName()%><a/>&nbsp;<%=trainerDto.getTrainerGender() %></h3>
                     </div>
                     <%--센터 담당 운동 
                     <%for(EocDto eocDto : eocList){ %>

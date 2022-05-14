@@ -14,8 +14,7 @@
     TrainerDto trainerDto = trainerDao.selectOne(trainerId);
     PlayerDao playerDao = new PlayerDao();
     PlayerDto playerDto = playerDao.selectOne(playerId);
-   
-  
+    
     %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <!DOCTYPE html>
@@ -77,7 +76,6 @@
                         success: function(resp){
                             console.log(resp);
                             //resp는 배열이고 그 안에 reservationTime이라는 항목이 시간 정보
-
                             $("select[name=reservationTime] > option").prop("disabled", false);
                             for(var i=0; i < resp.length; i++) {
                                 //console.log(resp[i].reservationTime);
@@ -94,10 +92,7 @@
             
             //초기값을 오늘 날짜로 설정
             $('#datepicker').datepicker('+1D', '+7D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
-
        });
-
-
   </script>
 </head>
 <body>

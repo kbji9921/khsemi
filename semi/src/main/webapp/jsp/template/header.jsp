@@ -38,19 +38,19 @@
                <li><a href="<%=request.getContextPath()%>">Home</a></li>
                <li><a href="#">고객의소리</a></li>
                <%if(trainerLogin||playerLogin){ %>
-              		 <%if(trainerLogin){ %>
+                     <%if(trainerLogin){ %>
                   <li class="gnb-right">
                      <a href="<%=request.getContextPath()%>/player/allMatchingList.jsp?trainerId=<%=trainerId%>">매칭정보</a>
                       <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/reservation/reservationListTrainer.jsp?trainerId=<%=trainerId%>">내예약</a>
                      <span class="partition">|</span>
-                     <a href="<%=request.getContextPath()%>/trainer/NewFile.jsp">내정보</a>
+                     <a href="<%=request.getContextPath()%>/trainer/trainerMyPage.jsp">내정보</a>
                      <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/trainer/logout.trainer">로그아웃</a>
                   </li>
-               		<%} %>
+                     <%} %>
                <%-- 사용자 로그인 후 --%>
-              		 <%if(playerLogin){ %>
+                     <%if(playerLogin){ %>
                   <li class="gnb-right">
                      <a href="<%=request.getContextPath()%>/player/matchingList.jsp">매칭정보</a>
                      <span class="partition">|</span>
@@ -60,7 +60,7 @@
                      <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/player/logout.player">로그아웃</a>
                   </li>
-                  	<%} %>
+                     <%} %>
 
                <%}else{ %>
                <li class="gnb-right">

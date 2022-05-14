@@ -14,15 +14,17 @@
     
  <%--준비 --%>
  <%
-//세션
+
 
  String playerId = (String)session.getAttribute("login");
 //	String playerId = "test1234";
  String trainerId = request.getParameter("trainerId");
 
 
+
 	TrainerDao trainerDao = new TrainerDao();
 	TrainerDto trainerDto = trainerDao.selectOne(trainerId);
+
 	GradeDto gradeDto = new GradeDto();
 	//현재 글에 대한 평점 목록을 조회 
 	GradeDao gradeDao = new GradeDao();
@@ -32,44 +34,18 @@
 	boolean isGradeWriter= playerId!=null && playerId.equals(gradeDto.getGradeWriter());
 	boolean isRight = gradeTarget!=null && trainerId.equals(gradeTarget);
 	//boolean isAdmin = auth!=null && auth.equals("관리자");
-	List<StatisticVO> rate = gradeDao.statistic();
-	
+	List<StatisticVO> list = gradeDao.statistic();
+	boolean isNoGrade = list!=null;
+	//회원으로 로그인 했다면
+	boolean isPlayer= playerId!=null;
 	
 	//센터 정보 출력
 	CenterDao centerDao = new CenterDao();
 	CenterDto centerDto = centerDao.selectOne(trainerDto.getCenterId());
 %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-
-
-</head>
-<body>
-<div class="row center">
-<h1> 강사 상세 </h1>
-</div>
-<div class="row">
-	<table class="table table-border table-stripe">
-	<tr>
-		<th>아이디</th>
-		<td><%=trainerDto.getTrainerId()%></td>
-	</tr>
-		<tr>
-		<th>이름</th>
-		<td><%=trainerDto.getTrainerName()%></td>
-	</tr>
-		<tr>
-		<th>가격</th>
-		<td><%=trainerDto.getTrainerPrice()%></td>
-	</tr>
-		<tr>
-		<th>운동종목</th>
-		<td><%=trainerDto.getTrainerSports()%></td>
-
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
-    <div class="container w600 m30">
-
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
-
  <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
@@ -95,6 +71,7 @@
                         <h1 class="m20"><%=trainerDto.getTrainerName() %></h1>
                     </div><hr>
                     <div class="row">
+                    <%if(trainerDto.getCenterId()!=null){ %>
                         <h4>[주 소] :&nbsp;<%=centerDto.getCenterBasicAddress() %>&nbsp;<%=centerDto.getCenterDetailAddress() %></h4>
                     </div>
                     <div class="row">
@@ -105,7 +82,20 @@
                     </div>
                     <div class="row">
                         <h4>[주 말] :&nbsp;<%=centerDto.getCenterWkndtime() %> </h4>
-                    </div><hr>      
+                    </div><hr>
+                    <%}else{%>
+                    <h4>[주 소] :&nbsp;&nbsp;</h4>
+                    </div>
+                    <div class="row">
+                        <h4>[전화번호] :&nbsp;</h4>
+                    </div><hr>
+                    <div class="row">
+                        <h4>[평 일] :&nbsp;</h4>
+                    </div>
+                    <div class="row">
+                        <h4>[주 말] :&nbsp;</h4>
+                    </div><hr>
+                    <%} %>
                     <div class="center exercise-kinds">
                         <h4><%=trainerDto.getTrainerSports()%></h4>
                     </div>
@@ -114,36 +104,37 @@
 
             </div>
             <!--센터 소개글-->
+             <%if(trainerDto.getCenterId()!=null){ %>
             <div class="row center-introbox">
                 <h4><%=centerDto.getCenterIntroduction() %></h4>
             </div>
+            <%}else{ %>
+            <div class="row center-introbox">
+                <h4></h4>
+            </div>
+            <%} %>
         </div>
+      <%if(isPlayer){%>
+        <div class="row">
+        <a href="<%=request.getContextPath()%>/player/matchingInsert.jsp?trainerId=<%=trainerId%>&trainerName=<%=trainerDto.getTrainerName() %>" class="link-btn link fill">매칭</a>
+        </div>
+        <%} %>
 	<!-- 총 평균점수 -->
 	<div class="row">
-	<table class="table table-border">	
-	<tr>
-		<th>평가자수</th>
-		<th>평균점수</th>
-		<th>최저점</th>
-		<th>최고점</th>
-
-	</tr>
+	<table class="table table-border">
 	<tr>
 
-		<th>센터번호</th>
-		<td></td>
+	<th>평균점수</th>
+	<th>평가자수</th>
 	</tr>
-
-	<%if(isRight){ %>
-		<%for(StatisticVO rateDto : rate){%>
-			<td><%=rateDto.getCount()%></td>
-			<td><%=rateDto.getAverage()%></td>
-			<td><%=rateDto.getMin()%></td>
-			<td><%=rateDto.getMax()%></td>
-		<%} %>
-		<%} %>
-		</tr>
-
+	<%for(StatisticVO statisticVO :list){%>
+	<%if(statisticVO.getType().equals(trainerId)){ %>
+	<tr>
+		<td><%=statisticVO.getAverage() %></td>
+		<td><%=statisticVO.getCount() %></td>
+	</tr>
+	<%} %>
+<%} %>
 	</table>
 
 	<br><br>
@@ -156,6 +147,7 @@
 	</div>
 	<!-- 평점 작성 -->
 
+	<%if(isPlayer){ %>
 	<div class="row">
 	<form action="insert.grade" method="post">
 	<div>
@@ -175,14 +167,30 @@
 		<button type="submit" class="btn btn-success">댓글작성</button>
 	</form>
 	</div>
+	<% }%>
 	<!-- 평점 목록 -->
 	<table width="95%" class="table table-border">
 		<%for(GradeDto rDto : GradeList){%>
 		<tr>
-		<th width="5%" id="star"><%=rDto.getGradeRate()%></th>
+			<%if(rDto.getGradeRate()==1){%>
+				<th width="5%">⭐</th>
+			<%} %>
+			<%if(rDto.getGradeRate()==2){%>
+				<th width="5%">⭐⭐</th>
+			<%} %>
+			<%if(rDto.getGradeRate()==3){%>
+				<th width="5%">⭐⭐⭐</th>
+			<%} %>
+			<%if(rDto.getGradeRate()==4){%>
+				<th width="5%">⭐⭐⭐⭐</th>
+			<%} %>
+			<%if(rDto.getGradeRate()==5){%>
+				<th width="5%">⭐⭐⭐⭐⭐</th>
+			<%} %>
+
 		<th width="15%"><%=rDto.getGradeWriter()%></th>
 		<td width="15%"><%=rDto.getGradeTime()%></td>
-		<td><textarea name="gradeContent" cols="70" readonly><%=rDto.getGradeContent()%></textarea></td>
+		<td><textarea name="gradeContent" cols="70" readonly class="input-form input-round fill"><%=rDto.getGradeContent()%></textarea></td>
 		<!-- 댓글 작성자 수정 삭제 가능 -->
 		<td align="right">
 			<a href="grade_delete.grade?gradeNo=<%=rDto.getGradeNo()%>" class="link link-btn">삭제</a>
@@ -191,18 +199,8 @@
 		</tr>
 		<%} %>
 	</table>
-        <!--더보기 기능 구현해야함-->
-        <div class="row m10">
-            <button class="btn btn-semi fill">더보기</button>
-        </div>
         
         <div class="row right">
-            <!--강사 본인의 센터인지 판정
-  			관리자이거나 강사로 로그인 되어 있으면서 현재 로그인 된 강사가 소속된 센터의 아이디가 같다면 -->
-  			<%--<%if(admin||isOwnerCenter){ --%>
-			<a href="<%=request.getContextPath() %>/trainer/update.jsp?centerId=<%=centerDto.getCenterId()%>" class="link link-btn m10" width="30%">수정</a>
-			<a href="<%=request.getContextPath() %>/trainer/delete.kh?centerId=<%=centerDto.getCenterId()%>" class="link link-btn m10" width="30%" id="delete">삭제</a>
-   			<%--<%} --%>
    			<a href="<%=request.getContextPath() %>/trainer/trainerList.jsp" class="link link-btn m10" width="30%">목록</a>
 		</div>    
     </div>
