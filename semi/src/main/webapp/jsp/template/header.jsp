@@ -54,6 +54,8 @@
                   <li class="gnb-right">
                      <a href="<%=request.getContextPath()%>/player/matchingList.jsp">매칭정보</a>
                      <span class="partition">|</span>
+                     <a href="<%=request.getContextPath()%>/reservation/reservationListPlayer.jsp?playerId=<%=playerId%>">내예약</a>
+                     <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/player/mypage.jsp">내정보</a>
                      <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/player/logout.player">로그아웃</a>

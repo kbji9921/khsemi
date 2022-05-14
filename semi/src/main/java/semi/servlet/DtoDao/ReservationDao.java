@@ -30,7 +30,6 @@ public class ReservationDao {
 		con.close();
 		return list;
 	}
-	
 	//시퀀스
 	public int getSequence() throws Exception{
 		Connection con = JdbcUtils.getConnection();

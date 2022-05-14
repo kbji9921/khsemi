@@ -10,13 +10,12 @@
     %>
     <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 
-<title>Insert title here</title>
+<title>회원 예약 리스트</title>
 <style>
 .list-center-area{
 width:100%;
 }
 </style>
-</head>
 <body>
 	<div class="container w500 m30">
 		<div class="row center">
@@ -54,4 +53,5 @@ width:100%;
          <%} %>
         </div>
     </div>
+    </body>
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>
