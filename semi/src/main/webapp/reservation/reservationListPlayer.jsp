@@ -15,13 +15,11 @@
 	    List<ReservationDto> list = reservationDao.selectOnePlayer(playerId);
     %>
 
+<title>회원 예약 리스트</title>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
 
-<style>
-
-</style>
 
 <body>
 	<div class=" c-container w600 m30">
@@ -39,7 +37,8 @@
                 </div>
                 <div class="list-center-area">
                     <div class="row m30 center">
-                    <a href="/semi/center/detail.jsp?centerId=<%=reservationDto.getReservationDate()%>"></a>
+                    	<a href="/semi/center/detail.jsp?centerId=<%=reservationDto.getReservationDate()%>"></a>
+                    </div>
                    	<div class="row m10 center">
                        <h2><%=reservationDto.getReservationDate()%></h2>
                     </div>
@@ -63,11 +62,9 @@
 					<%} %>--%>
                     <!--좋아요 수-->
                 </div>
-      
             </div>
          <%} %>
         </div>
     </div>
     </body>
-    
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>
