@@ -18,9 +18,10 @@ String trainerId= (String)request.getSession().getAttribute("trainer");
 TrainerDao trainerDao = new TrainerDao();
 TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 
+//트레이너 아이디를 통해 trainerAttachment DB에서 번호 획득
 TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao();
 int attach = trainerAttachmentDao.selectOne(trainerId);
-
+//trainerAttachment에서 받은 번호를 attachmentDao에 넣어서 불러오기
 AttachmentDao attachmentDao = new AttachmentDao();
 AttachmentDto attachmentDto = attachmentDao.selectOne(attach);
 
@@ -100,6 +101,13 @@ boolean noPic = attachmentDto==null;
 		text-overflow:visible !important;
 		width:2em important;
 		}
+		.mypage-nickname{
+   display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin-left: 20px;
+}
     </style>
     <!-- 구글 폰트 cdn -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -163,17 +171,13 @@ boolean noPic = attachmentDto==null;
                 <!--센터이미지-->
                 <div class="row center list-image-area">
                 <%if(!noPic){ %>
-                    <a href="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attach%>"></a>
-                    <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attach%>" class="img img-circle asdf">
+                    <a href="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attach%>">
+                    <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attach%>" class="img img-circle asdf"></a>
 				<%}else{ %>
 					 <img src="<%=request.getContextPath()%>/images/profile.png" width="200px" class="img img-round">
 				<%} %>
                 </div>
-                <div class="list-center-area display-center">
-					<div class="row right">
-					<h3><%=trainerDto.getTrainerName()%>님	</h3>
-					</div>
-					</div>
+					<h3 class="mypage-nickname"><%=trainerDto.getTrainerName()%>님</h3>
                 </div>
       
             </div>
@@ -183,7 +187,7 @@ boolean noPic = attachmentDto==null;
 				<%}else{ %>
 				<a href="<%=request.getContextPath()%>/profile/trainerProfileInsert.jsp" class="link link-btn">프로필 등록</a>
 				<%} %>
-				</div>
+				</div> 
         </div>
         <!--  -->
   <div class="container w500 m30">

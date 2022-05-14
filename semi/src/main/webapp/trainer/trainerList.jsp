@@ -104,6 +104,24 @@
 	    border-color: #343B6A;
 	}
 	</style>
+	<script type="text/javascript">
+	  $(function(){
+	        $(".input-dis").attr("disabled", true);
+	    	$("#btn").click(function(event){
+	            $(".input-dis").attr("disabled", false);
+	            $("#btn").addClass("hide")
+	            $('#btn2').removeClass("hide")
+	            $('#btn3').removeClass("hide")
+	            event.preventDefault();
+	    	});
+	        $('#btn3').click(function(event){
+	            $(".input-dis").attr("disabled", true);
+	            $("#btn").removeClass("hide")
+	            $('#btn2').addClass('hide')
+	            $('#btn3').addClass('hide')
+	        });
+	    })
+	</script>
 	 <div class="c-container w650 m30">
         <!--검색창-->
         <div class="row center m20">
@@ -168,14 +186,9 @@
                         </a>
                     </div>
                     <div class="row">
-                         <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?trainerId=<%=trainerDto.getTrainerId()%>"><h3><%=trainerDto.getTrainerName()%><a/>&nbsp;<%=trainerDto.getTrainerGender() %></h3>
+                         <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?trainerId=<%=trainerDto.getTrainerId()%>"><h3><%=trainerDto.getTrainerName()%>&nbsp;<%=trainerDto.getTrainerGender() %></h3></a>
                     </div>
-                    <%--센터 담당 운동 
-                    <%for(EocDto eocDto : eocList){ %>
-                    <div class="row center list-exercise-kinds">
-                        <h4><%=eocDto.getEocExerciseName() %></h4>
-                    </div>
-               <%} %>--%>
+                   
                     <!--좋아요 수-->
                     <div class="row right m20">
                         <h4>[10]</h4>
@@ -188,7 +201,7 @@
         <!-- 페이지네이션 링크 -->
        
       <div class="row center pagination">
-      <!-- 이전 버튼 -->
+   		<!-- 이전 버튼 -->
       <%if(p > 1){ %>
          <%if(isSearch){ %>
          <a href="trainerList.jsp?p=1&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&laquo;</a>
