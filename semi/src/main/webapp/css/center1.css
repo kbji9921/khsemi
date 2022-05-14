@@ -80,6 +80,7 @@
 	border-radius: 0.5em;
 	border: solid #b2bec3 0.05em;
 	padding: 0.5em;
+	
 }
 
 .trainer-nameBox {
@@ -120,6 +121,28 @@
 	border-radius: 1em;
 	padding: 0.1em;
 }
+
+.c-pagination {
+       text-align: center;
+       white-space: nowrap;
+       overflow: hidden;            
+  }
+   
+ .c-pagination > a {
+     color: #95a5a6;
+     text-decoration: none;
+     display: inline-block;
+     min-width:1.7em;
+     padding: 0.25em;
+     text-align: center;
+     border:1px solid #95a5a6;
+ }
+ 
+ .c-pagination > a:hover,
+ .c-pagination > a.active {
+     color: #343B6A;
+     border-color: #343B6A;
+ }
 
 /* exercise page */
 .c-table {
