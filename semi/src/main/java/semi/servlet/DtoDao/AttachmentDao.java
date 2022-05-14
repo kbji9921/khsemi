@@ -103,84 +103,29 @@ public class AttachmentDao {
 		return count > 0;
 
 	}
-	
-	//센터 상세 페이지 이미지(단일조회)(객체로 안되면 삭제....)
-		public AttachmentDto selectCenterOne(CenterAttachmentDto centerAttachmentDto) throws Exception{
-			Connection con = JdbcUtils.getConnection();
+	public List<AttachmentDto> selectTrainer(TrainerAttachmentDto trainerAttachmentDto) throws Exception {
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from attachment where attachment_no = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, trainerAttachmentDto.getAttachmentNo());
+		ResultSet rs = ps.executeQuery();
+		
+		List<AttachmentDto> list = new ArrayList<>();
+		while(rs.next()) {
+			AttachmentDto attachmentDto = new AttachmentDto();
+			attachmentDto.setAttachmentNo(rs.getInt("attachment_no"));
+			attachmentDto.setAttachmentUploadName(rs.getString("attachment_uploadname"));
+			attachmentDto.setAttachmentSavename(rs.getString("attachment_savename"));
+			attachmentDto.setAttachmentType(rs.getString("attachment_type"));
+			attachmentDto.setAttachmentSize(rs.getLong("attachment_size"));
 			
-			String sql = "select * from attachment where attachment_no = ?";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, centerAttachmentDto.getAttachmentNo());
-			ResultSet rs = ps.executeQuery();
-			
-			AttachmentDto attachmentDto;
-			if(rs.next()) {
-				attachmentDto = new AttachmentDto();
-				attachmentDto.setAttachmentNo(rs.getInt("attachment_no"));
-				attachmentDto.setAttachmentUploadName(rs.getString("attachment_uploadname"));
-				attachmentDto.setAttachmentSavename(rs.getString("attachment_savename"));
-				attachmentDto.setAttachmentType(rs.getString("attachment_type"));
-				attachmentDto.setAttachmentSize(rs.getLong("attachment_size"));
-			}
-			else {
-				attachmentDto = null;
-			}
-			con.close();
-			
-			return attachmentDto;
+			list.add(attachmentDto);
 		}
 		
-		//센터 리스트 이미지 전체
-		public List<AttachmentDto> selectCenter(CenterAttachmentDto centerAttachmentDto) throws Exception{
-			Connection con = JdbcUtils.getConnection();
-			
-			String sql = "select * from attachment where attachment_no = ?";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, centerAttachmentDto.getAttachmentNo());
-			ResultSet rs = ps.executeQuery();
-			
-			List<AttachmentDto> list = new ArrayList<>();
-			while(rs.next()) {
-				AttachmentDto attachmentDto = new AttachmentDto();
-				attachmentDto.setAttachmentNo(rs.getInt("attachment_no"));
-				attachmentDto.setAttachmentUploadName(rs.getString("attachment_uploadname"));
-				attachmentDto.setAttachmentSavename(rs.getString("attachment_savename"));
-				attachmentDto.setAttachmentType(rs.getString("attachment_type"));
-				attachmentDto.setAttachmentSize(rs.getLong("attachment_size"));
-				
-				list.add(attachmentDto);
-			}
-			
-			con.close();
-			
-			return list;
-		}
+		con.close();
 		
-		
-		//센터 상세페이지 내 강사 조회
-		public List<AttachmentDto> selectTrainer(TrainerAttachmentDto trainerAttachmentDto) throws Exception {
-			Connection con = JdbcUtils.getConnection();
-			
-			String sql = "select * from attachment where attachment_no = ?";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, trainerAttachmentDto.getAttachmentNo());
-			ResultSet rs = ps.executeQuery();
-			
-			List<AttachmentDto> list = new ArrayList<>();
-			while(rs.next()) {
-				AttachmentDto attachmentDto = new AttachmentDto();
-				attachmentDto.setAttachmentNo(rs.getInt("attachment_no"));
-				attachmentDto.setAttachmentUploadName(rs.getString("attachment_uploadname"));
-				attachmentDto.setAttachmentSavename(rs.getString("attachment_savename"));
-				attachmentDto.setAttachmentType(rs.getString("attachment_type"));
-				attachmentDto.setAttachmentSize(rs.getLong("attachment_size"));
-				
-				list.add(attachmentDto);
-			}
-			
-			con.close();
-			
-			return list;
-		}
+		return list;
+	}
 
 }

@@ -83,29 +83,30 @@
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
    <style>
-      .pagination {
+     .c-pagination {
        text-align: center;
        white-space: nowrap;
        overflow: hidden;            
-   }
-   .pagination > a {
-       color: #95a5a6;
-       text-decoration: none;
+  }
    
-       display: inline-block;
-       min-width:1.7em;
-       padding: 0.25em;
-   
-       text-align: center;
-   
-       border:1px solid #95a5a6;
-   }
-   .pagination > a:hover,
-   .pagination > a.active {
-       color: #343B6A;
-       border-color: #343B6A;
-   }
+ .c-pagination > a {
+     color: #95a5a6;
+     text-decoration: none;
+     display: inline-block;
+     min-width:1.7em;
+     padding: 0.25em;
+     text-align: center;
+     border:1px solid #95a5a6;
+ }
+ 
+ .c-pagination > a:hover,
+ .c-pagination > a.active {
+     color: #343B6A;
+     border-color: #343B6A;
+ }
    </style>
+   
+   
     <div class="c-container w650 m30">
         <!--검색창-->
         <div class="row center m20">
@@ -152,7 +153,7 @@
                 <div class="row c-list-img">
                 <%if(noPic){ %>
                     <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>&exerciseName=<%=exerciseName%>">
-                    <img src="https://placeimg.com/170/170/tech/grayscale" class="c-img img-shadow img-round">
+                    <img src="/semi/images/center_dummy/location.png" class="c-img img-round" width="170px" height="170px">
                     </a>
                      <%} else{ %>
                     <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>&exerciseName=<%=exerciseName%>">
@@ -188,7 +189,7 @@
         <%} %>
         <!-- 페이지네이션 링크 -->
        
-      <div class="row center pagination">
+      <div class="row center c-pagination">
       <!-- 이전 버튼 -->
       <%if(p > 1){ %>
          <%if(isSearch){ %>

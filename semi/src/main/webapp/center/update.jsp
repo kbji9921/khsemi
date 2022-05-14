@@ -20,10 +20,10 @@
   	CenterDto centerDto = centerDao.selectOne(centerId);
   	
   	CenterAttachmentDao centerAttachmentDao = new CenterAttachmentDao();
-  	CenterAttachmentDto centerAttachmentDto = centerAttachmentDao.selectCenterAttachNo(centerId);
+  	int attachmentNo = centerAttachmentDao.selectOne(centerId);
   	
   	AttachmentDao attachmentDao = new AttachmentDao();
-  	AttachmentDto attachmentDto = attachmentDao.selectCenterOne(centerAttachmentDto);
+  	AttachmentDto attachmentDto = attachmentDao.selectOne(attachmentNo);
   %>
    <%--출력 --%>
 
@@ -158,8 +158,8 @@ $(function(){
           
             <div class="row">
                 <label>센터소개</label>
-                <pre><textarea name="centerIntroduction" class="form-input input-round fill" rows="7" placeholder="센터소개 또는 비용 등에 대하여 작성해주세요">
-                <%=centerDto.getCenterIntroduction() %></textarea></pre>
+                <textarea name="centerIntroduction" class="form-input input-round center-introbox fill"  placeholder="센터소개 또는 비용 등에 대하여 작성해주세요">
+                <%=centerDto.getCenterIntroduction() %></textarea>
             </div>
             <!-- <div class="row">
                 <label>센터대표사진</label>

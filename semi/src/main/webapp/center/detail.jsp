@@ -87,17 +87,59 @@
  <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
-        $(function(){
-        	//좋아요
-        	
-        	
-        	
-        	//센터 삭제
+      	$(function(){
+              var p = 1;
+              var s = 3;
+              var centerId = "test2";
 
-            //$("#delete").click(function(){
-             //   return confirm("정말 삭제하시겠습니까?");
-           // });
-        });
+              trainerLoad(p,s,centerId);
+
+              $("#m-btn").click(function(){
+                  p++;
+                  trainerLoad(p,s,centerId)
+              });
+
+              function trainerLoad(p,s,centerId){
+                  $.ajax({
+                      url: "http://localhost:8080/semi/ajax/center-trainer.kh",
+                      type: "post",
+                      dataType: "json",               
+                      data: {
+                          p : p,
+                          s : s,
+                          centerId : centerId
+                      },
+                      
+                      // $("div#append").append("<p>Bye!!</p>");
+                      success:function(resp){
+                          if(resp.length < s) {
+                              $("#m-btn").remove();
+                          }
+
+                          for(var i=0; i < resp.length; i++) {
+                              var tImg = $("<img>").attr("src", "http://via.placeholder.com/150x150").addClass("c-img img-circle img-hover");
+                              var tName = $("<a>").text(resp[i].trainerName).addClass("trainer-nameBox");
+                              
+                              var imgLink = $("<div>").addClass("row center");
+                              var nameLink = $("<div>").addClass("center");
+                              var subArea = $("<div>").addClass("flex-c-container flex-c-vertical layer-3");
+                             
+                             imgLink.append(tImg);
+                             nameLink.append(tName);
+                             subArea.append(imgLink).append(nameLink);
+                             
+                             $("#trainerFBox").append(subArea);
+                          }
+                      }
+                  });
+
+              };
+
+              //삭제 기능
+              //$("#delete").click(function(){
+                  //return confirm("정말 삭제하시겠습니까?");
+              //});
+          });
     </script>
 
     <div class="c-container w650 m30">
@@ -108,7 +150,7 @@
             <div class="flex-c-container">
                <div class="row image-c-area">
                <%if(noPic){ %>
-                    <img src="https://placeimg.com/250/250/tech/grayscale" class="c-img img-round">
+                    <img src="/semi/images/center_dummy/location.png" class="c-img img-round" width="250px" height="250px">
                     <%} else { %>
                     <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentDto1.getAttachmentNo()%>" class="c-img img-round" width="250px" height="250px">
                     <%} %>
@@ -150,26 +192,26 @@
 
             </div>
             <!--센터 소개글-->
-            <div class="row center-introbox">
+           <div class="row center-introbox">
                 <pre><h4><%=centerDto.getCenterIntroduction() %></h4></pre>
             </div>
         </div>
 
         <!--해당 센터 강사 목록-->
         <span>우리 센터의 강사</span>
-        <div class="flex-c-container m10">
+        <div class="flex-c-container m10" id="trainerFBox">
         <%--강사 이름 출력 --%>
-		 <%for(TrainerDto trainerDto : trainerList){ %>
-		 	<%-- 강사 이미지 조회--%>
-		 	<%TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao(); 
+		 <%--<%for(TrainerDto trainerDto : trainerList){ %>
+		 	 강사 이미지 조회--%>
+		 	<%-- <%TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao(); 
 		 	 attachmentNo = trainerAttachmentDao.selectOne(trainerDto.getTrainerId());
 		 	AttachmentDto attachmentDto2 = attachmentDao.selectOne(attachmentNo);
 		  	
 			boolean nonPic = attachmentDto2==null;
 		 	%>
            <div class="flex-c-container flex-c-vertical layer-3">
-                 <%--강사 이미지 출력--%>
-               <div class="row center">
+               <%--강사 이미지 출력--%>
+               <%-- <div class="row center">
                		<%if(nonPic){ %>
 	                  	<a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>&trainerId=<%=trainerDto.getTrainerId() %>">
 	                  	<img src="https://placeimg.com/150/150/tech/grayscale" class="c-img img-circle img-hover"></a>
@@ -177,45 +219,21 @@
                   		<a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>&trainerId=<%=trainerDto.getTrainerId() %>">
                   		<img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentDto2.getAttachmentNo()%>" class="c-img img-circle img-hover" width="150px" height="150px"></a>
                   	<%} %>
-               </div>
-               <%--강사 이름 --%>
+               </div>--%>
+               <%--강사 이름 
                <div class="center">
                    <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId()%>&trainerId=<%=trainerDto.getTrainerId() %>" class="trainer-nameBox">
                    <%=trainerDto.getTrainerName() %>
                    </a>
                </div>
+               
            </div>
-        <%} %>
-        <%--<div class="flex-c-container flex-c-vertical layer-3">
-            <div class="row center">
-                <a href="#"><img src="https://placeimg.com/150/150/people" class="c-img img-circle img-hover"></a>
-            </div>
-            <div class="center">
-                <a href="#" class="trainer-nameBox">황인빈 강사님</a>
-            </div>
-        </div> 
-        <div class="flex-c-container flex-c-vertical layer-3">
-            <div class="row center">
-                <a href="#"><img src="https://placeimg.com/150/150/people" class="c-img img-circle img-hover"></a>
-            </div>
-            <div class="center">
-                <a href="#" class="trainer-nameBox">황인빈 강사님</a>
-            </div>
-        </div> 
-        <div class="flex-c-container flex-c-vertical layer-3">
-            <div class="row center">
-                <a href="#"><img src="https://placeimg.com/150/150/people" class="c-img img-circle img-hover"></a>
-            </div>
-            <div class="center">
-                <a href="#" class="trainer-nameBox">황인빈 강사님</a>
-            </div>
-        </div> --%>
-
+        <%} %>--%>
         </div>
       
         <!--더보기 기능 구현해야함-->
         <div class="row m10">
-            <button class="btn btn-semi fill">더보기</button>
+            <button class="btn btn-semi fill" id="m-btn">더보기</button>
         </div>
         
         <div class="row right">
