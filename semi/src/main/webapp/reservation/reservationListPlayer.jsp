@@ -1,3 +1,7 @@
+<%@page import="semi.servlet.DtoDao.TrainerDto"%>
+<%@page import="semi.servlet.DtoDao.TrainerDao"%>
+<%@page import="semi.servlet.DtoDao.PlayerDto"%>
+<%@page import="semi.servlet.DtoDao.PlayerDao"%>
 <%@page import="semi.servlet.DtoDao.ReservationDto"%>
 <%@page import="java.util.List"%>
 <%@page import="semi.servlet.DtoDao.ReservationDao"%>
@@ -5,41 +9,51 @@
     pageEncoding="UTF-8"%>
     <%
 	    String playerId = request.getParameter("playerId");
+    	PlayerDao playerDao = new PlayerDao();
+    	PlayerDto playerDto = playerDao.selectOne(playerId);
 	    ReservationDao reservationDao = new ReservationDao();
 	    List<ReservationDto> list = reservationDao.selectOnePlayer(playerId);
     %>
-    <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 
-<title>Insert title here</title>
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center.css">
+
 <style>
-.list-center-area{
-width:100%;
-}
+
 </style>
-</head>
+
 <body>
-	<div class="container w500 m30">
+	<div class=" c-container w600 m30">
 		<div class="row center">
-			<h2>스케쥴 목록</h2>
+			<h2>내 예약 정보 </h2>
 		</div>
-	        <div class="flex-container flex-vertical">
+	        <div class="flex-c-container.flex-c-vertical">
         	<%for(ReservationDto reservationDto : list){ %>
-            <div class="flex-container list-center-listbox">
+            <div class="flex-c-container list-exercise-kinds m10">
                 <!--센터이미지-->
                 <div class="row center list-image-area">
                     <a href="/semi/center/detail.jsp?centerId=<%=reservationDto.getReservationNo()%>">
-                    <img src="http://via.placeholder.com/150x150" class="img img-hover img-round">
+                    <img src="http://via.placeholder.com/200x200" class="img img-hover img-round">
                     </a>
                 </div>
                 <div class="list-center-area">
                     <div class="row m30 center">
-                    <a href="/semi/center/detail.jsp?centerId=<%=reservationDto.getReservationDate()%>">
-                        <h2><%=reservationDto.getReservationDate()%></h2>
-                        <h2><%=reservationDto.getReservationTime()%></h2>
-                        </a>
+                    <a href="/semi/center/detail.jsp?centerId=<%=reservationDto.getReservationDate()%>"></a>
+                   	<div class="row m10 center">
+                       <h2><%=reservationDto.getReservationDate()%></h2>
                     </div>
-                    <div class="row center">
-                        <h4><%=reservationDto.getTrainerId()%>&nbsp;<%=reservationDto.getPlayerId()%></h4>
+                    <div class="row m20 center">
+                        <h2><%=reservationDto.getReservationTime()%></h2>
+                    </div>  
+                    <div class="row m10 center">
+                    <%
+                    	TrainerDao trainerDao = new TrainerDao();
+                    	TrainerDto trainerDto = trainerDao.selectOne(reservationDto.getTrainerId());
+                    %>
+                        <h2><label>강사명 : <%=trainerDto.getTrainerName()%></label></h2>                   
+                        <br>
+                        <h2><label>회원명 : <%=playerDto.getPlayerName()%></label></h2>
                     </div>
                     <%--센터 담당 운동 
                     <%for(EocDto eocDto : eocList){ %>
@@ -54,4 +68,6 @@ width:100%;
          <%} %>
         </div>
     </div>
+    </body>
+    
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>
