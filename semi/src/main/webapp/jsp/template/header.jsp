@@ -45,7 +45,9 @@
                <%-- 사용자 로그인 후 --%>
               		 <%}else if(playerLogin){ %>
                   <li class="gnb-right">
-                     <a href="<%=request.getContextPath()%>/player/matchingList.jsp?playerId=<%=playerId%>">내예약</a>
+                   	<a href="<%=request.getContextPath()%>/player/matchingList.jsp?playerId=<%=playerId%>">내매칭</a>
+                     <span class="partition">|</span>
+                     <a href="<%=request.getContextPath()%>/reservation/reservationListPlayer.jsp?playerId=<%=playerId%>">내일정</a>
                      <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/player/mypage.jsp?playerId=<%=playerId%>">내정보</a>
                      <span class="partition">|</span>

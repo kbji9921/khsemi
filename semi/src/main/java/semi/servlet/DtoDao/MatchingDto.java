@@ -9,6 +9,7 @@ public class MatchingDto {
 	private int matchingDays;
 	private Date matchingDate;
 	private String matchingState;
+	private int ptTotal;
 	
 	
 	public int getMatchingNo() {
@@ -51,6 +52,16 @@ public class MatchingDto {
 	public void setMatchingState(String matchingState) {
 		this.matchingState = matchingState;
 	}
+	
+	
+	public int getPtTotal() {
+		return ptTotal;
+	}
+
+	public void setPtTotal(int ptTotal) {
+		this.ptTotal = ptTotal;
+	}
+
 	public MatchingDto() {
 		super();
 	}

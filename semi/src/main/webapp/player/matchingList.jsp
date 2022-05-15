@@ -63,7 +63,13 @@
 			<td><%=matchingDto.getMatchingDays() %></td>
 			<td><%=matchingDto.getMatchingState() %></td>
 			<td>
-				<a href="matchingDetail.jsp?playerId=<%=playerId%>&coachId=<%=matchingDto.getCoachId()%>">확인</a>
+				<% boolean isPass = matchingDto.getMatchingState().equals("매칭완료"); %>
+				<%if(!isPass){ %>
+					<a href="matchingDetail.jsp?playerId=<%=playerId%>&coachId=<%=matchingDto.getCoachId()%>">매칭하기</a>
+				<%}else{ %>
+					<a href="matchingDetail.jsp?playerId=<%=playerId%>&coachId=<%=matchingDto.getCoachId()%>">예약하기</a>
+				<%} %>		
+			
 			</td>
 			<td>
 			   <form action="matchingDelete.player" method="post">
@@ -82,21 +88,4 @@
 		<%} %>
 	</div>
 </section>
-
-<%--페이지네이션 --%>
-<h5 class="pagenation">
-[이전]
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-[다음]
-</h5>
-
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String playerId = (String) session.getAttribute("login");
+	String playerId = request.getParameter("playerId");
 %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 

@@ -157,9 +157,10 @@ display:none}
             </div>
             <%} %>
         </div>
+        <%-- 매칭하기 --%>
       <%if(isPlayer){%>
         <div class="row">
-        <a href="<%=request.getContextPath()%>/player/matchingInsert.jsp?trainerId=<%=trainerId%>&trainerName=<%=trainerDto.getTrainerName()%>" class="link-btn link fill">매칭</a>
+        <a href="<%=request.getContextPath()%>/player/matchingInsert.jsp?trainerId=<%=trainerId%>" class="link-btn link fill">매칭</a>
         </div>
         <%} %>
 	<!-- 총 평균점수 -->

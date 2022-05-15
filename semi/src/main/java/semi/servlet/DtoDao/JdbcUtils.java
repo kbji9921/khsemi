@@ -10,7 +10,7 @@ public class JdbcUtils {
       //Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","kh","kh"); // 개인집
 
 //      Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","user1","user1234"); //할리스
-      Connection con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.1.139:1521:xe","user1","user1234"); //할리스
+      Connection con = DriverManager.getConnection("jdbc:oracle:thin:@172.30.1.51:1521:xe","user1","user1234"); //할리스
       return con;
       
    }

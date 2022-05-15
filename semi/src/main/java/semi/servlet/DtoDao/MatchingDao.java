@@ -68,7 +68,7 @@ public class MatchingDao {
 		return list;
 	}
 	
-	public void insert(MatchingDto matchingDto)throws Exception{
+	public void insert(MatchingDto matchingDto, int ptcount)throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
 		String sql = "insert into matching (matching_no,student_id, coach_id, matching_days, matching_date, matching_state) values(?,?,?,?,sysdate,'임시')";
@@ -77,7 +77,7 @@ public class MatchingDao {
 		ps.setInt(1, matchingDto.getMatchingNo());
 		ps.setString(2, matchingDto.getStudentId());
 		ps.setString(3, matchingDto.getCoachId());
-		ps.setInt(4, matchingDto.getMatchingDays());
+		ps.setInt(4, ptcount);
 		
 		ps.execute();
 		
@@ -145,7 +145,7 @@ public class MatchingDao {
 	public MatchingDto selectOne(MatchingDto matchingDto)throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select * from matching where student_id =? and coach_id =?";
+		String sql = "select * from matching where student_id =? and coach_id =? ";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, matchingDto.getStudentId());
 		ps.setString(2, matchingDto.getCoachId());
@@ -218,7 +218,7 @@ public class MatchingDao {
 	public boolean changeMathcingState(String playerId, String trainerId)throws Exception {
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "update matching set matching_state = '결제완료' where student_id=? and coach_id=? ";
+		String sql = "update matching set matching_state = '매칭완료' where student_id=? and coach_id=? ";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, playerId);
 		ps.setString(2, trainerId);
@@ -242,5 +242,20 @@ public class MatchingDao {
 		return count > 0;
 	}
 
+	public boolean tpTotalInsert(MatchingDto matchingDto, int ptPoint, int ptcount)throws Exception {
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "update matching set ptTotal = ? * ? where student_id=? and coach_id=? ";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, ptcount);
+		ps.setInt(2, ptPoint);
+		ps.setString(3, matchingDto.getStudentId());
+		ps.setString(4, matchingDto.getCoachId());
+		
+		int count = ps.executeUpdate();
+		
+		con.close();
+		return count > 0;
+	}
 	
 }
