@@ -1,3 +1,4 @@
+<%@page import="semi.servlet.DtoDao.GradeDto"%>
 <%@page import="semi.servlet.DtoDao.TrainerDao"%>
 <%@page import="semi.servlet.DtoDao.TrainerDto"%>
 <%@page import="java.util.List"%>
@@ -11,8 +12,6 @@
 <%	
     String trainerId = request.getParameter("trainerId");
     String centerId = request.getParameter("centerId");
-    
-   
 %>
 
 
@@ -68,7 +67,11 @@
 		<%-- sports e --%>
 		
 		<%-- trainer s --%>
-
+		
+<%
+    TrainerDao trainerDao = new TrainerDao();
+    List <GradeDto> list = trainerDao.selectGrade(trainerId);
+%>		
 			<article class="container">
 				<h3 class="contents-title">우리동네 인기 강사</h3>
 				<p class="contents-info">클릭하여 강사님의 이력을 확인해보세요!</p>
@@ -122,6 +125,8 @@
 				<div class="flex-container">
 					<div class="content-box">
 						<div class="content center">
+						
+						<!-- likeCount 을 가져와서 출력 -->
 						
 						<a href="<%=request.getContextPath()%>/center/detail.jsp?centerId=<%=centerId%>"> 
 							
