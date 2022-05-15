@@ -180,7 +180,7 @@
                <%} %>
                     <!--좋아요 수-->
                     <div class="row right">
-                        <h4>[10]</h4>
+                        <h4>[<%=centerDto.getCenterLikeCount() %>]</h4>
                     </div>
                 </div>
             </div>

@@ -71,7 +71,7 @@ public class CenterDao {
 	public List<CenterDto> selectList() throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select * from center order by center_name asc";
+		String sql = "select * from center order by like_count desc";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		
@@ -87,6 +87,7 @@ public class CenterDao {
 			centerDto.setCenterBasicAddress(rs.getString("center_basic_address"));
 			centerDto.setCenterDetailAddress(rs.getString("center_detail_address"));
 			centerDto.setCenterIntroduction(rs.getString("center_introduction"));
+			centerDto.setCenterLikeCount(rs.getInt("like_count"));
 			
 			list.add(centerDto);
 		}
@@ -105,7 +106,7 @@ public class CenterDao {
 		String sql = "select * from ("
 				+ "select rownum rn, TMP.* from (select * from ("
 				+ "select C.*,E.exercise_name from center C inner join eoc E on C.center_id = E.center_id "
-				+ "where E.exercise_name= ? order by center_name asc) where "
+				+ "where E.exercise_name= ? order by like_count desc) where "
 				+ "instr(#1,upper(?))>=1 )TMP)where rn between ? and ?";
 		
 		sql = sql.replace("#1", type);
@@ -128,6 +129,7 @@ public class CenterDao {
 			centerDto.setCenterBasicAddress(rs.getString("center_basic_address"));
 			centerDto.setCenterDetailAddress(rs.getString("center_detail_address"));
 			centerDto.setCenterIntroduction(rs.getString("center_introduction"));
+			centerDto.setCenterLikeCount(rs.getInt("like_count"));
 			
 			list.add(centerDto);
 		}
@@ -147,7 +149,7 @@ public class CenterDao {
 		String sql = "select * from ("
 				+ "select rownum rn, TMP.* from ("
 				+ "select C.*,E.exercise_name from center C inner join eoc E on "
-				+ "C.center_id = E.center_id where E.exercise_name=? order by center_name asc)TMP ) where rn between ? and ?";
+				+ "C.center_id = E.center_id where E.exercise_name=? order by like_count desc)TMP ) where rn between ? and ?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, exerciseName);
@@ -168,6 +170,7 @@ public class CenterDao {
 			centerDto.setCenterBasicAddress(rs.getString("center_basic_address"));
 			centerDto.setCenterDetailAddress(rs.getString("center_detail_address"));
 			centerDto.setCenterIntroduction(rs.getString("center_introduction"));
+			centerDto.setCenterLikeCount(rs.getInt("like_count"));
 			
 			list.add(centerDto);
 		}
@@ -198,6 +201,7 @@ public class CenterDao {
 			centerDto.setCenterBasicAddress(rs.getString("center_basic_address"));
 			centerDto.setCenterDetailAddress(rs.getString("center_detail_address"));
 			centerDto.setCenterIntroduction(rs.getString("center_introduction"));
+			centerDto.setCenterLikeCount(rs.getInt("like_count"));
 		}
 		else {
 			centerDto = null;
@@ -217,7 +221,7 @@ public class CenterDao {
 		
 		String sql = "select * from ("
 				+ "select rownum rn, TMP.* from ("
-				+ "select * from center order by center_name asc)TMP ) where rn between ? and ?";
+				+ "select * from center order by like_count desc)TMP ) where rn between ? and ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, begin);
 		ps.setInt(2, end);
@@ -235,6 +239,7 @@ public class CenterDao {
 			centerDto.setCenterBasicAddress(rs.getString("center_basic_address"));
 			centerDto.setCenterDetailAddress(rs.getString("center_detail_address"));
 			centerDto.setCenterIntroduction(rs.getString("center_introduction"));
+			centerDto.setCenterLikeCount(rs.getInt("like_count"));
 			
 			list.add(centerDto);
 		}
@@ -253,7 +258,7 @@ public class CenterDao {
 		
 		String sql = "select * from ("
 				+ "select rownum rn, TMP.* from ("
-				+ "select * from center where instr(#1,?)>0 order by center_name asc)TMP ) where rn between ? and ?";
+				+ "select * from center where instr(#1,?)>0 order by like_count desc)TMP ) where rn between ? and ?";
 		sql = sql.replace("#1", type);
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, keyword);
@@ -273,6 +278,7 @@ public class CenterDao {
 			centerDto.setCenterBasicAddress(rs.getString("center_basic_address"));
 			centerDto.setCenterDetailAddress(rs.getString("center_detail_address"));
 			centerDto.setCenterIntroduction(rs.getString("center_introduction"));
+			centerDto.setCenterLikeCount(rs.getInt("like_count"));
 			
 			list.add(centerDto);
 		}
@@ -287,7 +293,7 @@ public class CenterDao {
 		
 		String sql = "select count(*) from ("
 				+ "select C.*,E.exercise_name from center C inner join eoc E on C.center_id = E.center_id "
-				+ "where E.exercise_name=? order by center_name asc)";
+				+ "where E.exercise_name=? order by like_count desc)";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, exerciseName);
 		ResultSet rs = ps.executeQuery();
@@ -305,7 +311,7 @@ public class CenterDao {
 		
 		String sql = "select count(*) from ("
 				+ "select C.*,E.exercise_name from center C inner join eoc E on C.center_id = E.center_id "
-				+ "where E.exercise_name= ? order by center_name asc) where instr(#1,upper(?))>=1";
+				+ "where E.exercise_name= ? order by like_count desc) where instr(#1,upper(?))>=1";
 		sql= sql.replace("#1", type);
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, exerciseName);
@@ -322,7 +328,7 @@ public class CenterDao {
 	public boolean like(String centerId) throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "update center set like_count = like_count +1 where center_id = ?";
+		String sql = "update center set like_count = like_count+1 where center_id = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, centerId);
 		int count = ps.executeUpdate();
@@ -335,7 +341,7 @@ public class CenterDao {
 	public boolean dislike(String centerId) throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "update center set like_count = like_count -1 where center_id = ?";
+		String sql = "update center set like_count = like_count-1 where center_id = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, centerId);
 		int count = ps.executeUpdate();
@@ -344,6 +350,22 @@ public class CenterDao {
 		
 		return count > 0;
 	}
-		}
+	
+	//좋아요 카운트 수 조회
+	public int likeCount (String centerId) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select like_count from center where center_id = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, centerId);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int count = rs.getInt("like_count");
+		
+		con.close();
+		
+		return count;
+	}
+}
 
 
