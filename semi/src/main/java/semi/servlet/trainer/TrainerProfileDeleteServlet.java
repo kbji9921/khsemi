@@ -1,5 +1,6 @@
 package semi.servlet.trainer;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import semi.servlet.DtoDao.AttachmentDao;
 
 @WebServlet(urlPatterns = "/profile/profile.delete")
 public class TrainerProfileDeleteServlet extends HttpServlet {
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
@@ -22,9 +24,17 @@ public class TrainerProfileDeleteServlet extends HttpServlet {
 			// 실제로는 이전 사진 이름을 DB에서 불러온다
 			AttachmentDao attachmentDao = new AttachmentDao();
 	
-			attachmentDao.delete(attachmentNo);
-	
-		    
+			String root = req.getSession().getServletContext().getRealPath("/");
+
+			String path = System.getProperty("user.home")+"/upload";
+	        String fileName = attachmentDao.selectName(attachmentNo);
+	        String filePath = path+File.separator+fileName;
+	        System.out.println(fileName);
+	        File file = new File(filePath);
+	        attachmentDao.delete(attachmentNo);
+	        if(file.exists()) {    //삭제하고자 하는 파일이 해당 서버에 존재하면 삭제시킨다
+	            file.delete();
+	        }
 
 			// 출력
 			resp.sendRedirect(

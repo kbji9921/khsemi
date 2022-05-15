@@ -67,7 +67,7 @@ public class GradeDao {
 	public List<GradeDto> selectList(String gradeTarget) throws Exception {
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select * from grade where grade_target = ? order by grade_target desc";
+		String sql = "select * from grade where grade_target = ? order by grade_no desc";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, gradeTarget);
 		ResultSet rs = ps.executeQuery();
