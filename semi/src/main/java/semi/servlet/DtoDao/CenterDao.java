@@ -318,9 +318,32 @@ public class CenterDao {
 		
 		return count;
 	}
-	
-
-
+	//좋아요 증가
+	public boolean like(String centerId) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "update center set like_count = like_count +1 where center_id = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, centerId);
+		int count = ps.executeUpdate();
+		
+		con.close();
+		
+		return count > 0;
+	}
+	//좋아요 감소
+	public boolean dislike(String centerId) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "update center set like_count = like_count -1 where center_id = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, centerId);
+		int count = ps.executeUpdate();
+		
+		con.close();
+		
+		return count > 0;
+	}
 		}
 
 

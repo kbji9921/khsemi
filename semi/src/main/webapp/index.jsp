@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 <%@page import="semi.servlet.DtoDao.GradeDto"%>
+=======
+<%@page import="semi.servlet.DtoDao.AttachmentDto"%>
+<%@page import="semi.servlet.DtoDao.AttachmentDao"%>
+<%@page import="semi.servlet.DtoDao.CenterAttachmentDao"%>
+<%@page import="semi.servlet.DtoDao.CenterDao"%>
+>>>>>>> branch 'main' of https://github.com/kbji9921/khsemi
 <%@page import="semi.servlet.DtoDao.TrainerDao"%>
 <%@page import="semi.servlet.DtoDao.TrainerDto"%>
 <%@page import="java.util.List"%>
@@ -12,6 +19,16 @@
 <%	
     String trainerId = request.getParameter("trainerId");
     String centerId = request.getParameter("centerId");
+
+    
+    //센터 목록
+    int p = 1;
+    int s = 5;
+    CenterDao centerDao = new CenterDao();
+    List<CenterDto> centerList = centerDao.selectListByPaging(p, s);
+    CenterAttachmentDao centerAttachmentDao = new CenterAttachmentDao();
+    AttachmentDao attachmentDao = new AttachmentDao();
+
 %>
 
 
@@ -123,45 +140,23 @@
 				<h3 class="contents-title">우리동네 인기 센터</h3>
 				<p class="contents-info">클릭하여 센터의 상세정보를 확인해보세요!</p>
 				<div class="flex-container">
+				<%for(CenterDto centerDto : centerList){ %>
+				<%int attachmentNo = centerAttachmentDao.selectOne(centerDto.getCenterId()); %>
+				<%AttachmentDto centerAttachmentDto = attachmentDao.selectOne(attachmentNo); %>
+				<%boolean nonPic= centerAttachmentDto==null; %>
 					<div class="content-box">
-						<div class="content center">
-						
-						<!-- likeCount 을 가져와서 출력 -->
-						
+						<div class="content center">					
 						<a href="<%=request.getContextPath()%>/center/detail.jsp?centerId=<%=centerId%>"> 
-							
+						<a href="<%=request.getContextPath()%>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>">
+								<%if(nonPic){ %>
 								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
+								<%} else { %>
+								<img src="/semi/images/center_dummy/location.png" width=170% height=170%>
+								<%} %>
 							</a>
 						</div>
 					</div>
-					<div class="content-box">
-						<div class="content center">
-							<a href="<%=request.getContextPath()%>/center/detail.jsp?centerId=test1">
-								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
-							</a>
-						</div>
-					</div>
-					<div class="content-box">
-						<div class="content center">
-							<a href="<%=request.getContextPath()%>/center/detail.jsp?centerId=test2">
-								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
-							</a>
-						</div>
-					</div>
-					<div class="content-box">
-						<div class="content center">
-							<a href="<%=request.getContextPath()%>/center/detail.jsp?centerId=test3">
-								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
-							</a>
-						</div>
-					</div>
-					<div class="content-box">
-						<div class="content center">
-							<a href="<%=request.getContextPath()%>/center/detail.jsp?centerId=test4">
-								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
-							</a>
-						</div>
-					</div>
+					<%} %>
 				</div>
 			</article>
 
