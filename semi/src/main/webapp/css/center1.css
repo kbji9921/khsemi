@@ -80,7 +80,12 @@
 	border-radius: 0.5em;
 	border: solid #b2bec3 0.05em;
 	padding: 0.5em;
+	white-space: break-spaces;
 	
+}
+.center-tImg{
+	width: 150px;
+	height: 150px;
 }
 
 .trainer-nameBox {
@@ -93,6 +98,13 @@
 
 .c-btn-list a {
 	margin-right: 5px;
+}
+
+a.top {
+
+  right: 50%;
+  bottom: 50px;
+  display: none;
 }
 
 /* center list page */

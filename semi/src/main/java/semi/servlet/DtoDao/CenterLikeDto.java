@@ -1,31 +1,17 @@
 package semi.servlet.DtoDao;
 
 public class CenterLikeDto {
-	private long cLikeNo;
-	private String playerId;
+	private long no;
 	private String centerId;
-	private int cLikeCheck;
-	
-	public int getcLikeCheck() {
-		return cLikeCheck;
-	}
-	public void setcLikeCheck(int cLikeCheck) {
-		this.cLikeCheck = cLikeCheck;
-	}
+	private String playerId;
 	public CenterLikeDto() {
 		super();
 	}
-	public long getcLikeNo() {
-		return cLikeNo;
+	public long getNo() {
+		return no;
 	}
-	public void setcLikeNo(long cLikeNo) {
-		this.cLikeNo = cLikeNo;
-	}
-	public String getPlayerId() {
-		return playerId;
-	}
-	public void setPlayerId(String playerId) {
-		this.playerId = playerId;
+	public void setNo(long no) {
+		this.no = no;
 	}
 	public String getCenterId() {
 		return centerId;
@@ -33,6 +19,13 @@ public class CenterLikeDto {
 	public void setCenterId(String centerId) {
 		this.centerId = centerId;
 	}
+	public String getPlayerId() {
+		return playerId;
+	}
+	public void setPlayerId(String playerId) {
+		this.playerId = playerId;
+	}
+	
 	
 	
 }
