@@ -4,8 +4,16 @@ public class CenterLikeDto {
 	private long no;
 	private String centerId;
 	private String playerId;
+	private int likeCheck;
+	
 	public CenterLikeDto() {
 		super();
+	}
+	public int getLikeCheck() {
+		return likeCheck;
+	}
+	public void setLikeCheck(int likeCheck) {
+		this.likeCheck = likeCheck;
 	}
 	public long getNo() {
 		return no;
