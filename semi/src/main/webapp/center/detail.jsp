@@ -95,6 +95,7 @@
               var trainerImage = $("#trainerImg").val();
               
               trainerLoad(p,s,centerId);
+				              
 				
               $("#m-btn").click(function(){
                   p++;
@@ -112,15 +113,14 @@
                           centerId : centerId
                       },
                       
-                      // $("div#append").append("<p>Bye!!</p>");
                       success:function(resp){
                           if(resp.length < s) {
                               $("#m-btn").remove();
                           }
 
                           for(var i=0; i < resp.length; i++) {
-                              var tImg = $("<img>").attr("src", "/semi/file/download.kh?attachmentNo="+trainerImage).addClass("c-img img-circle img-hover center-tImg");
                               //var tImg = $("<img>").attr("src", "/semi/file/download.kh?attachmentNo="+trainerImage).addClass("c-img img-circle img-hover center-tImg");
+                              var tImg = $("<img>").attr("src", "http://via.placeholder.com/150x150"+trainerImage).addClass("c-img img-circle img-hover");
                               var tImgA = $("<a>").attr("href","/semi/trainer/trainerDetail.jsp?centerId="+centerId+"&trainerId="+trainerId);
                               var tName = $("<a>").text(resp[i].trainerName).attr("href","/semi/trainer/trainerDetail.jsp?centerId="+centerId+"&trainerId="+trainerId).addClass("trainer-nameBox");
                               
@@ -168,7 +168,7 @@
                             style="width:30px; height:30px" id="like-img">
                         </div>
                         <div style="margin-top: 6px;">
-                            <h4 id="like-count">[<%=centerDto.getCenterLikeCount() %>]</h4>
+                            <span id="like-count">[<%=centerDto.getCenterLikeCount() %>]</span>
                         </div>
                         <input type="hidden" name="likeCheck" value="?" id="like-check">
                     </div>
@@ -198,29 +198,26 @@
 
             </div>
             <!--센터 소개글-->
-           <div class="row center-introbox">
-                <pre><h4><%=centerDto.getCenterIntroduction() %></h4></pre>
-            </div>
+           <div class="row center-introbox"><pre><%=centerDto.getCenterIntroduction() %></pre></div>
         </div>
 
         <!--해당 센터 강사 목록-->
         <span>우리 센터의 강사</span>
         <div class="flex-c-container m10" id="trainerFBox">
         <%--강사 이름 출력 --%>
-        <%int zero = 0;%>
-		 <%for(TrainerDto trainerDto : trainerList){ %>
+		<%for(TrainerDto trainerDto : trainerList){ %>
 		 	<input type="hidden" name="trainerId" value=<%=trainerDto.getTrainerId()%> id="trainerId">
 		 	<%-- 강사 이미지 조회--%>
-		 	<%TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao(); 
+		 	<%--<%TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao(); 
 		 	 attachmentNo = trainerAttachmentDao.selectOne(trainerDto.getTrainerId());
-		 	AttachmentDto attachmentDto2 = attachmentDao.selectOne(attachmentNo);%>
+		 	AttachmentDto attachmentDto2 = attachmentDao.selectOne(attachmentNo);--%>
 		 	
-		 	<input type="hidden" name="attachmentNo" value="<%=attachmentDto2.getAttachmentNo()%>" id="trainerImg">
+		 	<%-- <input type="hidden" name="attachmentNo" value="<%=attachmentDto2.getAttachmentNo()%>" id="trainerImg">
 		 	<%if(attachmentDto2==null){ %>
 		 		<%=response.sendError(405)%>
-		 	<%} %>
+		 	<%} %>--%>
 		 	
-		 <%} %>
+		<%} %>
 		  	
 			<%--<%boolean nonPic = attachmentDto2==null;
 		 	--%>
@@ -258,7 +255,7 @@
          <a href="<%=request.getContextPath() %>/center/update.jsp?centerId=<%=centerDto.getCenterId()%>" class="link link-btn m10" width="30%">수정</a>
          <a href="<%=request.getContextPath() %>/center/delete.kh?centerId=<%=centerDto.getCenterId()%>" class="link link-btn m10" width="30%" id="delete">삭제</a>
             <%}%> --%>
-            <a href="<%=request.getContextPath() %>/center/list.jsp?exerciseName=<%=exerciseName%>" class="link link-btn m10" width="30%">목록</a>
+            <a href="#" class="link link-btn m10 top" width="30%">top</a>
       </div>    
     </div>
 

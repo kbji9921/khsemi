@@ -47,7 +47,7 @@ $(function(){
 		};
 		
 		$(".edit-form").submit(function(){
-	        return judgeObject.phone && judgeObject.week && judgeObject.wknd;
+			return confirm("정말 수정하시겠습니까?")
 		})
 	
     
@@ -158,15 +158,14 @@ $(function(){
           
             <div class="row">
                 <label>센터소개</label>
-                <textarea name="centerIntroduction" class="form-input input-round center-introbox fill"  placeholder="센터소개 또는 비용 등에 대하여 작성해주세요">
-                <%=centerDto.getCenterIntroduction() %></textarea>
+                <textarea name="centerIntroduction" class="form-input input-round center-introbox fill"  placeholder="센터소개 또는 비용 등에 대하여 작성해주세요"><%=centerDto.getCenterIntroduction() %></textarea>
             </div>
             <!-- <div class="row">
                 <label>센터대표사진</label>
                 <input type="file" name="centerPics" class="form-input input-round fill">
 				</div> -->
             <div class="row right">
-                <button type="submit" class="btn btn-semi">수정</button>
+                <button type="submit" class="btn btn-semi update-btn">수정</button>
                 <a href="/semi/center/detail.jsp?centerId=<%=centerDto.getCenterId() %>" class="link link-btn">취소</a>
             </div>
         </div>
