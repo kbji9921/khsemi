@@ -1,11 +1,11 @@
-<<<<<<< HEAD
+
 <%@page import="semi.servlet.DtoDao.GradeDto"%>
-=======
+
 <%@page import="semi.servlet.DtoDao.AttachmentDto"%>
 <%@page import="semi.servlet.DtoDao.AttachmentDao"%>
 <%@page import="semi.servlet.DtoDao.CenterAttachmentDao"%>
 <%@page import="semi.servlet.DtoDao.CenterDao"%>
->>>>>>> branch 'main' of https://github.com/kbji9921/khsemi
+
 <%@page import="semi.servlet.DtoDao.TrainerDao"%>
 <%@page import="semi.servlet.DtoDao.TrainerDto"%>
 <%@page import="java.util.List"%>
