@@ -79,7 +79,19 @@
 display:none}
  </style>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$('#textarea').on('keyup', function () {
+				$('#text_count').html("(" + $(this).val().length + " / 100)");
 
+				if ($(this).val().length > 100) {
+					$(this).val($(this).val().substring(0, 100));
+					$('#text_count').html("(100 / 100)");
+				}
+			});
+
+		});
+	</script>
 	 <div class="c-container w650 m30">
         <!--제목-->
         
@@ -189,6 +201,11 @@ display:none}
 
 	</div>
 	<!-- 평점 작성 -->
+	<div class="row">
+	<%if(request.getParameter("error")!=null){ %>
+	<h3 style="color:red;">이미 평가를 하셨습니다.</h3>
+	<%} %>
+	</div>
 <div class="center">
 	<%if(isPlayer){ %>
 	<table border="1" class="board-tb w1000">
@@ -206,7 +223,8 @@ display:none}
 	<input type="hidden" name="gradeTarget" value="<%=trainerId%>">
 	<input type="hidden" name="gradeWriter" value="<%=playerId%>">
 	<td style="width:70%">
-		<pre><textarea name="gradeContent"rows="5"  class="form-input input-round answer" style="width:100%"></textarea></pre>
+		<textarea name="gradeContent"rows="5"  class="form-input input-round answer" style="width:100%" id="textarea"></textarea>
+		<span id="text_count">(0 / 100)</span>
 	</td>
 	<td>
 		<button type="submit" class="btn btn-semi">등록</button>

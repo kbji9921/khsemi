@@ -490,4 +490,43 @@ public class TrainerDao {
 			con.close();
 			return trainerDto;
 		}
+		public List<GradeDto> selectListByGradeRate() throws Exception{
+			Connection con = JdbcUtils.getConnection();
+			
+			String sql="select * from(\r\n"
+					+ "    select rownum rn, TMP.* from(\r\n"
+					+ "    select grade_target from grade group by grade_target order by avg(grade_rate) desc\r\n"
+					+ "    ) TMP\r\n"
+					+ ")where rn between 1and 5";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			List<GradeDto> list = new ArrayList<>();
+			while(rs.next()) {
+				GradeDto gradeDto = new GradeDto();
+				gradeDto.setGradeTarget(rs.getString("grade_target"));
+				list.add(gradeDto);
+			}
+			
+			con.close();
+			
+			return list;
+		}
+		   //트레이너 센터 가입
+		   public boolean trainerJoinCenter(TrainerDto trainerDto) throws Exception {
+			   
+		      Connection con = JdbcUtils.getConnection();
+		      String sql = "update trainer set center_id =? where trainer_id = ?";
+		      PreparedStatement ps = con.prepareStatement(sql);
+		      ps.setString(1, trainerDto.getCenterId());
+		      ps.setString(2, trainerDto.getTrainerId());
+
+		      int count = ps.executeUpdate();
+
+		      con.close();
+
+		      return count > 0;
+
+
+		   }
+		
 }
