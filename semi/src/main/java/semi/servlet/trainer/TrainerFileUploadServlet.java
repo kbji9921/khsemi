@@ -49,7 +49,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 
 		//처리
 		TrainerDao trainerDao = new TrainerDao();
-		trainerDao.changeInformation(trainerDto);
+		trainerDao.join(trainerDto);
 		
 		//첨부파일 정보 추가
 		if(mRequest.getFile("trainerAttachment")!=null) {
@@ -78,7 +78,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 //		TrainerDao trainerDao = new TrainerDao();
 //		trainerDao.join(trainerDto);
 		//출력
-		resp.sendRedirect(req.getContextPath()+"/trainer/trainerJoinSucces.jsp");
+		resp.sendRedirect(req.getContextPath()+"/trainer/trainerJoinSuccess.jsp?trainerId="+trainerDto.getTrainerId());
 		
 		
 		

@@ -20,19 +20,17 @@ public class gradeInsertServlet extends HttpServlet{
 			gradeDto.setGradeWriter(req.getParameter("gradeWriter"));
 			gradeDto.setGradeContent(req.getParameter("gradeContent"));
 			gradeDto.setGradeRate(Integer.parseInt(req.getParameter("gradeRate")));
-			
-			
 			GradeDao gradeDao = new GradeDao();
 			int gradeNo = gradeDao.getSequence();
 			gradeDto.setGradeNo(gradeNo);
-			
+	
+			try {
 			gradeDao.insert(gradeDto);
-			
-			//출력
-			//resp.getWriter().print("성공");
 			resp.sendRedirect(req.getContextPath()+"/trainer/trainerDetail.jsp?trainerId="+gradeDto.getGradeTarget());
-
-		} catch (Exception e) {
+			}catch(Exception ea) {
+				resp.sendRedirect(req.getContextPath()+"/trainer/trainerDetail.jsp?trainerId="+gradeDto.getGradeTarget()+"&error");	
+			}
+		}catch (Exception e) {
 			e.printStackTrace();
 			resp.sendError(500);
 		}

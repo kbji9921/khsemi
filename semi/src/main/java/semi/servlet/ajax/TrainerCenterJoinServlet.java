@@ -8,28 +8,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import semi.servlet.DtoDao.TrainerDao;
-import semi.servlet.DtoDao.TrainerDto;
-
-@WebServlet(urlPatterns = "/ajax/trainerId.check")
-public class TrainerIdCheckServlet extends HttpServlet{
+import semi.servlet.DtoDao.CenterDao;
+import semi.servlet.DtoDao.CenterDto;
+@WebServlet(urlPatterns = "/ajax/trainer-center.join")
+public class TrainerCenterJoinServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			//준비
-			String trainerId = req.getParameter("trainerId");
+			String centerId = req.getParameter("centerId");
 			
 			//처리
-			TrainerDao trainerDao = new TrainerDao();
-			TrainerDto trainerDto = trainerDao.selectOne(trainerId);
+			CenterDao centerDao = new CenterDao();
+			CenterDto centerDto = centerDao.selectOne(centerId);
 			
-			//출력 - 어쨌든 문자열로 나감
+			//출력
 			resp.setContentType("text/plain; charset=UTF-8");
-			if(trainerDto != null) {//사용중
-				resp.getWriter().print("NN");
-			}
-			else {//사용가능
+			if(centerDto != null) {
 				resp.getWriter().print("YY");
+			}
+			else {
+				resp.getWriter().print("NN");
 			}
 		}
 		catch(Exception e) {

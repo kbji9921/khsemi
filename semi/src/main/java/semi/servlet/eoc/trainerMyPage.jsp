@@ -24,6 +24,7 @@ int attach = trainerAttachmentDao.selectOne(trainerId);
 //trainerAttachment에서 받은 번호를 attachmentDao에 넣어서 불러오기
 AttachmentDao attachmentDao = new AttachmentDao();
 AttachmentDto attachmentDto = attachmentDao.selectOne(attach);
+
 boolean noPic = attachmentDto==null;
 %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
@@ -54,7 +55,7 @@ boolean noPic = attachmentDto==null;
         width:60px;}
         .list-image-area{
         width:200px;
-        height:200px;   }
+        height:200px;	}
         .list-image-area img{
         width:100%;
         }
@@ -69,8 +70,8 @@ boolean noPic = attachmentDto==null;
             border-radius: 0.25em;
         }
         .asdf{
-           width:100%;
-           height:100%;
+        	width:100%;
+        	height:100%;
         }
         #lnb{
         margin-top:-40px;
@@ -79,28 +80,28 @@ boolean noPic = attachmentDto==null;
             position: fixed; bottom: 350px; right: 5px;
         }
         #lnb {
-       background-color: #343b6a !important;
-      }
-      #lnb li a {
-          font-weight: 500;
-       height: 50px;
-       line-height: 50px;
-       color: #fff !important;
-       font-size: 17px;
-       }
+    	background-color: #343b6a !important;
+		}
+		#lnb li a {
+   	 	font-weight: 500;
+    	height: 50px;
+    	line-height: 50px;
+    	color: #fff !important;
+    	font-size: 17px;
+    	}
 
-      #lnb-right{
-      display:flex;
-      justify-content: space-around;
-      }
-      .menu, .menu li, .menu ul, .menu a{
-      background-color: #343b6a !important;
-      color:white !important;
-      overflow:visible !important;
-      text-overflow:visible !important;
-      width:2em important;
-      }
-      .mypage-nickname{
+		#lnb-right{
+		display:flex;
+		justify-content: space-around;
+		}
+		.menu, .menu li, .menu ul, .menu a{
+		background-color: #343b6a !important;
+		color:white !important;
+		overflow:visible !important;
+		text-overflow:visible !important;
+		width:2em important;
+		}
+		.mypage-nickname{
    display: flex;
     align-items: center;
     justify-content: center;
@@ -116,20 +117,20 @@ boolean noPic = attachmentDto==null;
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
     <link rel="stylesheet" type="text/css" href="../css/commons.css">
     <!-- <link rel="stylesheet" type="text/css" href="../css/test.css"> -->
-   
+	
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script type="text/javascript">
     $(function(){
         $(".input-dis").attr("disabled", true);
-       $("#btn").click(function(event){
+    	$("#btn").click(function(event){
             $(".input-dis").attr("disabled", false);
             $("#btn").addClass("hide")
             $('#btn2').removeClass("hide")
             $('#btn3').removeClass("hide")
             event.preventDefault();
-       });
+    	});
         $('#btn3').click(function(event){
             $(".input-dis").attr("disabled", true);
             $("#btn").removeClass("hide")
@@ -139,31 +140,26 @@ boolean noPic = attachmentDto==null;
     })
     </script>
 </head>
-
 <nav id="lnb">
             <ul class="menu">
-                <li>센터
-                   <ul>
-                   	<%if(trainerDto.getCenterId()==null){%>
-                      <li><a href="<%=request.getContextPath()%>/center/write.jsp">센터등록</a></li>
-                      <li><a href="<%=request.getContextPath()%>/trainer/trainerJoinCenter.jsp">센터가입</a></li>
-					 <%}else{ %>               	
-                      <li><a href="<%=request.getContextPath()%>/center/update.jsp">센터수정</a></li>
-                      <li><a href="<%=request.getContextPath()%>/center/write.jsp"></a></li>
-                      <%} %>
-                   </ul>
-                </li>
-                <li>일정
-                   <ul>
-                      <li><a href="<%=request.getContextPath()%>/reservation/reservationListTrainer.jsp">일정 목록</a></li>
-                   </ul>
-                </li>
+             	<li>센터
+             		<ul>
+             			<li><a href="<%=request.getContextPath()%>/center/write.jsp">센터등록</a></li>
+             			<li><a href="<%=request.getContextPath()%>/center/update.jsp">센터수정</a></li>
+             			<li><a href="<%=request.getContextPath()%>/center/write.jsp">센터</a></li>
+             		</ul>
+             	</li>
+             	<li>일정
+             		<ul>
+             			<li><a href="<%=request.getContextPath()%>/reservation/reservationListTrainer.jsp">일정 목록</a></li>
+             		</ul>
+             	</li>
                 <li class="right-menu">
-                   설정
-                   <ul>
-                      <li><a href="<%=request.getContextPath()%>/trainer/trainerSetPw.jsp">암호 변경</a></li>
-                      <li><a href="<%=request.getContextPath()%>/trainer/trainerDelete.jsp">회원 탈퇴</a></li>
-                   </ul>
+                	설정
+                	<ul>
+                		<li><a href="<%=request.getContextPath()%>/trainer/trainerSetPw.jsp">암호 변경</a></li>
+                		<li><a href="<%=request.getContextPath()%>/trainer/trainerDelete.jsp">회원 탈퇴</a></li>
+                	</ul>
                 </li>
             </ul>
 </nav>
@@ -177,114 +173,114 @@ boolean noPic = attachmentDto==null;
                 <%if(!noPic){ %>
                     <a href="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attach%>">
                     <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attach%>" class="img img-circle asdf"></a>
-            <%}else{ %>
-                <img src="<%=request.getContextPath()%>/images/profile.png" width="200px" class="img img-round">
-            <%} %>
+				<%}else{ %>
+					 <img src="<%=request.getContextPath()%>/images/profile.png" width="200px" class="img img-round">
+				<%} %>
                 </div>
-               <h3 class="mypage-nickname"><%=trainerDto.getTrainerName()%>님</h3>
+					<h3 class="mypage-nickname"><%=trainerDto.getTrainerName()%>님</h3>
                 </div>
       
             </div>
                      <div class="row">
                 <%if(!noPic){ %>
-            <a href="<%=request.getContextPath()%>/profile/trainerProfileDelete.jsp" class="link link-btn">프로필 삭제</a>
-            <%}else{ %>
-            <a href="<%=request.getContextPath()%>/profile/trainerProfileInsert.jsp" class="link link-btn">프로필 등록</a>
-            <%} %>
-            </div> 
+				<a href="<%=request.getContextPath()%>/profile/trainerProfileDelete.jsp" class="link link-btn">프로필 삭제</a>
+				<%}else{ %>
+				<a href="<%=request.getContextPath()%>/profile/trainerProfileInsert.jsp" class="link link-btn">프로필 등록</a>
+				<%} %>
+				</div> 
         </div>
         <!--  -->
   <div class="container w500 m30">
         <div class="row">
-                <div class="row">
+            	 <div class="row">
                     <label>아이디</label>
                     <input type="text" class="form-input input-round fill" value="<%=trainerDto.getTrainerId()%>" readonly name="trainerId">
                     <span></span>
-                </div>
-                <div class="row">
+            	 </div>
+	 				<div class="row">
                     <label>이름</label>
                     <input type="text" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerName()%>" name="trainerName">
                     <span></span>
-                </div>
-                 <div class="row">
+            	 </div>
+ 	 				<div class="row">
                     <label>생년월일</label>
                     <input type="date" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerBirth()%>" name="trainerBirth">
                     <span></span>
-                </div>
-                <div class="row ">
+            	 </div>
+            	 <div class="row ">
                     <label>전화번호</label>
                     <input type="tel" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerPhone()%>" name="trainerPhone">
                     <span></span>
-                </div>
-              <div class="row ">
+            	 </div>
+ 	 			<div class="row ">
                     <label>이메일</label>
                     <input type="email" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerEmail()%>" name="trainerEmail">
                     <span></span>
-                <div class="row ">
+      	 		<div class="row ">
                     <label>운동종목</label>
                     <select class="form-input input-round fill input-dis" name="trainerSports">
-                         <%if(trainerDto.getTrainerSports().equals("요가")){%>
-                     <option value="요가" selected>요가</option>
-                     <%}else{ %>
-                     <option value="요가">요가</option>
-                     <%} %>
-                     <%if(trainerDto.getTrainerSports().equals("필라테스")){%>
-                     <option value="필라테스" selected>필라테스</option>
-                     <%}else{ %>
-                     <option value="필라테스">필라테스</option>
-                     <%} %>
-                     <%if(trainerDto.getTrainerSports().equals("수영")){%>
-                     <option value="수영" selected>수영</option>
-                     <%}else{ %>
-                     <option value="수영">수영</option>
-                     <%} %>
-                     <%if(trainerDto.getTrainerSports().equals("테니스")){%>
-                     <option value="테니스" selected>테니스</option>
-                     <%}else{ %>
-                     <option value="테니스">테니스</option>
-                     <%} %>
-                     <%if(trainerDto.getTrainerSports().equals("헬스")){%>
-                     <option value="헬스" selected>헬스</option>
-                     <%}else{ %>
-                     <option value="헬스">헬스</option>
-                     <%} %>
+          					<%if(trainerDto.getTrainerSports().equals("요가")){%>
+							<option value="요가" selected>요가</option>
+							<%}else{ %>
+							<option value="요가">요가</option>
+							<%} %>
+							<%if(trainerDto.getTrainerSports().equals("필라테스")){%>
+							<option value="필라테스" selected>필라테스</option>
+							<%}else{ %>
+							<option value="필라테스">필라테스</option>
+							<%} %>
+							<%if(trainerDto.getTrainerSports().equals("수영")){%>
+							<option value="수영" selected>수영</option>
+							<%}else{ %>
+							<option value="수영">수영</option>
+							<%} %>
+							<%if(trainerDto.getTrainerSports().equals("테니스")){%>
+							<option value="테니스" selected>테니스</option>
+							<%}else{ %>
+							<option value="테니스">테니스</option>
+							<%} %>
+							<%if(trainerDto.getTrainerSports().equals("헬스")){%>
+							<option value="헬스" selected>헬스</option>
+							<%}else{ %>
+							<option value="헬스">헬스</option>
+							<%} %>
                     </select>
-                </div>
-                 <div class="row ">
+            	 </div>
+       	 		<div class="row ">
                     <label>성별</label>
                     <select class="form-input input-round fill input-dis" name="trainerGender">
-                             <%if(trainerDto.getTrainerGender().equals("여자")){%>
-                     <option value="여자" selected>여자</option>
-                     <%}else{ %>
-                     <option value="여자">여자</option>
-                     <%} %>
-                     <%if(trainerDto.getTrainerGender().equals("남자")){%>
-                     <option value="남자" selected>"남자"</option>
-                     <%}else{ %>
-                     <option value="남자">남자</option>
-                     <%} %>
+                       		<%if(trainerDto.getTrainerGender().equals("여자")){%>
+							<option value="여자" selected>여자</option>
+							<%}else{ %>
+							<option value="여자">여자</option>
+							<%} %>
+							<%if(trainerDto.getTrainerGender().equals("남자")){%>
+							<option value="남자" selected>"남자"</option>
+							<%}else{ %>
+							<option value="남자">남자</option>
+							<%} %>
                     </select>
-                </div>
-                <div class="row ">
+            	 </div>
+            	 <div class="row ">
                     <label>Pt가격</label>
                     <input type="text" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerPrice()%>" name="trainerPrice">
                     <span></span>
-                </div>
-              <div class="row ">
+            	 </div>
+    	 		<div class="row ">
                     <label for="logindate">가입일</label>
                     <input type="text" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerJoindate()%>" id="logindate">
                     <span></span>
-                </div>
-                  <div class="row ">
+            	 </div>
+              	 <div class="row ">
                     <label>최근접속일</label>
                     <input type="text" class="form-input input-round fill input-dis" value="<%=trainerDto.getTrainerLogindate()%>">
                     <span></span>   
-                </div>
-                      <div class="row ">
+            	 </div>
+            	   	 <div class="row ">
                     <label>비밀번호</label>
                     <input type="password" class="form-input input-round fill input-dis" name="trainerPw">
                     <span></span>   
-                </div>
+            	 </div>
         </div>
     </div>
     <div class="row">

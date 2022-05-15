@@ -1,5 +1,12 @@
 
+
+<%@page import="semi.servlet.DtoDao.AttachmentDto"%>
+<%@page import="semi.servlet.DtoDao.AttachmentDao"%>
+<%@page import="semi.servlet.DtoDao.TrainerAttachmentDao"%>
+
 <%@page import="semi.servlet.DtoDao.GradeDto"%>
+
+<%@page import="semi.servlet.DtoDao.GradeDao"%>
 
 <%@page import="semi.servlet.DtoDao.AttachmentDto"%>
 <%@page import="semi.servlet.DtoDao.AttachmentDao"%>
@@ -84,52 +91,38 @@
 		<%-- sports e --%>
 		
 		<%-- trainer s --%>
-		
-<%
-    TrainerDao trainerDao = new TrainerDao();
-    List <GradeDto> list = trainerDao.selectGrade(trainerId);
-%>		
+
 			<article class="container">
 				<h3 class="contents-title">우리동네 인기 강사</h3>
 				<p class="contents-info">클릭하여 강사님의 이력을 확인해보세요!</p>
 				<div class="flex-container">
-					<div class="content-box">
-						<div class="content trainer">
-						
-							<a href="<%=request.getContextPath()%>/trainer/trainerDetail.jsp?trainerId=<%=trainerId%>">
-						
-								<img src="/semi/images/trainer_dummy/trainer_1.jpg" width=100%>
-							</a>
+
+							<%
+					TrainerDao trainerDao = new TrainerDao();
+					List<GradeDto> list = trainerDao.selectListByGradeRate();
+			    	TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao();
+			    	for(GradeDto gradeDto:list){
+			        	int attachmentNo = trainerAttachmentDao.selectOne(gradeDto.getGradeTarget());
+			
+			        	AttachmentDto attachmentDto = attachmentDao.selectOne(attachmentNo);
+			
+			        	boolean noPic = attachmentDto==null;
+					%>
+				<div class="content-box">
+					<div class="content trainer" >
+						 <%if(noPic){ %>
+                    		<a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?trainerId=<%=gradeDto.getGradeTarget()%>">
+                    		<img src="<%=request.getContextPath()%>/images/profile.png" class="c-img img-shadow img-round" width="170px" >
+                    		</a>
+                		<%}else{ %>
+                			<a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?trainerId=<%=gradeDto.getGradeTarget()%>">
+                	 		<img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentNo%>" class="c-img img-shadow img-round" width="170px">
+                    		</a>
+                		<%} %>
+							
 						</div>
-					</div>
-					<div class="content-box">
-						<div class="content trainer">
-							<a href="<%=request.getContextPath()%>/trainer/trainerDetail.jsp?centerId=test3">
-								<img src="/semi/images/trainer_dummy/trainer_2.jpg" width=100%>
-							</a>
-						</div>
-					</div>
-					<div class="content-box">
-						<div class="content trainer">
-							<a href="<%=request.getContextPath()%>/trainer/trainerDetail.jsp?centerId=<%=centerId%>">
-								<img src="/semi/images/trainer_dummy/trainer_3.jpg" width=100%>
-							</a>
-						</div>
-					</div>
-					<div class="content-box">
-						<div class="content trainer">
-							<a href="#">
-								<img src="/semi/images/trainer_dummy/trainer_4.jpg" width=100%>
-							</a>
-						</div>
-					</div>
-					<div class="content-box">
-						<div class="content trainer">
-							<a href="#">
-								<img src="/semi/images/trainer_dummy/trainer_5.jpg" width=100%>
-							</a>
-						</div>
-					</div>
+					</div>	
+					<%} %>
 				</div>
 			</article>
 

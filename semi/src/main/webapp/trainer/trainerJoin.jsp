@@ -39,46 +39,54 @@
             $("input[name=trainerEmail]").blur(regexCheckEmail);
             $("#password-check").blur(passwordCheck);
 
-            $(".join-form").submit(function(){
-                //함수이름을 적고 call() 이라고 부르면 this 를 바꿔서 부를 수 있다
-                var judge1 = regexCheckId.call(document.querySelector("input[name=trainerId]"));
-                var judge2 = regexCheckPw.call(document.querySelector("input[name=trainerPw]"));
-                var judge3 = regexCheckName.call(document.querySelector("input[name=trainerName]"));
-                var judge4 = regexCheckPhone.call(document.querySelector("input[name=trainerPhone]"));
-                var judge5 = regexCheckEmail.call(document.querySelector("input[name=trainerEmail]"));
-                var judge6 = passwordCheck.call(document.querySelector("#password-check"));
-                return judge1 && judge2 && judge3 && judge4 && judge5 && judge6;
-            });
+        	var judgeObject = {
+        			id:false,
+        			pw1:false,
+        			pw2:false,
+        			name:false,
+        			phone:false,
+        			email:false
+        	};
+        	
+        	$(".join-form").submit(function(){
+                return judgeObject.id && judgeObject.pw1 && judgeObject.pw2 && judgeObject.name && judgeObject.phone && judgeObject.email;
+			})
 
-            //아이디 정규표현식
             function regexCheckId(){
-                var regex =  /[a-z][a-z0-9]{7,19}/;
+            	var regex= /^[a-z][a-z0-9]{7,19}$/;
                 var trainerId = $(this).val();
                 var span = $(this).next("span");
-
                 var judge = regex.test(trainerId);
-                if(!judge){
-                    span.text("형식에 맞는 닉네임을 사용하세요");
-                    return false;
-                } 
+                
+                console.log("judge="+judge);
 
-                $.ajax({
-                    url:"http://localhost:8080/semi/trainerId.check?trainerId="+trainerId,
-                    type:"post",
-                    data:{
-                        trainerId : trainerId
-                    },
-                    success:function(resp) {
-                        if(resp === "Y") {
-                            span.text("사용 가능한 닉네임입니다");
-                            return true;                      
-                        }
-                        else if(resp === "N") {
-                            span.text("사용 불가능한 닉네임입니다");
-                            return false;
-                        }
-                    }
-                });
+                if(!judge){
+                	span.css("color","red");
+                	span.text("아이디를 형식에 맞게 작성하세요");
+                	judgeObject.id = false;
+                	return;
+                }
+	            var that =this;
+	
+	            $.ajax({
+	                url:"http://localhost:8080/semi/ajax/trainerId.check",
+	                type: "post",
+	                data: {
+	                    trainerId : trainerId
+	                },
+	                success:function(resp){
+	                    if(resp==="YY"){
+	                        span.css("color","green");
+	                        span.text("사용 가능한 아이디입니다");
+	                        judgeObject.id = true;
+	                    }
+	                    else if(resp==="NN"){
+	                    	 span.css("color","red");
+	                    	 span.text("이미 사용중인 아이디입니다");
+	                        judgeObject.id = false;
+	                    }
+	                }
+	            });
             }
             //비밀번호 정규표현식
             function regexCheckPw(){
@@ -91,12 +99,12 @@
                 if(judge){
                     $(this).next().css("color", "green");
                     $(this).next("span").text("")
-                    return true;
+                    judgeObject.pw1 = true;
                 }
                 else {
                     $(this).next().css("color", "red");
                     $(this).next("span").text("8~16자 영문,소문,숫자,특수문자를 사용하세요.");
-                    return false;
+                    judgeObject.pw1 = false;
                 }
             }
             //이름 정규표현식
@@ -109,11 +117,11 @@
                 if(judge){
                     $(this).next("span").css("color","green")
                     $(this).next("span").text("")
-                    return true;
+                    judgeObject.name = true;
                 }else{
                     $(this).next("span").css("color","red")
                     $(this).next("span").text("한글 2-7자 이내만 가능합니다.");
-                    return false;
+                    judgeObject.name  = false;
                 } 
             }; 
             
@@ -127,28 +135,28 @@
                 if(judge){
                     $(this).next("span").css("color","green")
                     $(this).next("span").text("")
-                    return true;
+                    judgeObject.phone = true;
                 }else{
                     $(this).next("span").css("color","red")
                     $(this).next("span").text("숫자 11자리를 입력하세요");
-                    return false;
+                    judgeObject.phone  =false;
                 } 
             }; 
             //이메일 정규표현식
             function regexCheckEmail(){
                 //this==이메일 입력창
                 var regex = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-                var trainerEmail =$(this).val();
+                var trainerEmail = $(this).val();
 
                 var judge = regex.test(trainerEmail);
                 if(judge){
                     $(this).next("span").css("color","green")
                     $(this).next("span").text("")
-                    return true;
+                    judgeObject.email =true;
                 }else{
                     $(this).next("span").css("color","red")
                     $(this).next("span").text("이메일주소를 다시 확인하세요");
-                    return false;
+                    judgeObject.email=false;
                 } 
             }; 
 
@@ -161,18 +169,18 @@
                     if(judge2){
                         $(this).next().css("color", "green");
                         $(this).next().text("비밀번호가 일치합니다");
-                        return true;
+                        judgeObject.pw2 =true;
                     }
                     else {
                         $(this).next().css("color", "red");
                         $(this).next().text("비밀번호가 일치하지 않습니다");
-                        return false;
+                        judgeObject.pw2 =false;
                     }
                 }
                 else {
                     $(this).next().css("color", "red");
                     $(this).next().text("비밀번호를 입력하세요");
-                    return false;
+                    judgeObject.pw2 =false;
                 }
             }
 
