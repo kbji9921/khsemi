@@ -37,7 +37,7 @@ function loginCheck(){
        	  	location.replace("/semi/board/boardList.jsp");	
        	  	}else{
        	  	swal("일반회원 게시판입니다","강사회원은 salbbagym@co.kr로 문의바랍니다", "warning")	//강사로그인
-//        	 location.replace("/semi/board/boardList.jsp");	
+       	 location.replace("/semi/board/boardList.jsp");	
        	  	}
          }
 }; 
@@ -51,9 +51,12 @@ function loginCheck(){
          <nav>
             <ul id="gnb">
                <li><a href="<%=request.getContextPath()%>">Home</a></li>
+               <%if(!trainerLogin){ %><%--강사에게 보이지 않게 --%>
               	 <li><a href="javascript:void(0)" onclick="loginCheck()">문의하기</a></li>
+               <%} %>
                <%--강사 로그인 후 --%>
                      <%if(trainerLogin){ %>
+                  <li></li>
                   <li><a href="<%=request.getContextPath()%>/player/allMatchingList.jsp?trainerId=<%=trainerId%>">나의 회원</a></li>
                   <li><a href="<%=request.getContextPath()%>/reservation/reservationListTrainer.jsp?trainerId=<%=trainerId%>">나의 일정</a></li>
                   <li class="gnb-right">

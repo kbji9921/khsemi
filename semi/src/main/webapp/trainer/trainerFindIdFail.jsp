@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -31,7 +32,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/commons.css">
     <!-- <link rel="stylesheet" type="text/css" href="../css/test.css"> -->
 
     <!-- jquery cdn -->
@@ -42,10 +43,8 @@
     </script>
 </head>
 <body>
-    <div class="color">
-        <a href="메인페이지 이동"><img src="../image/ci_main_logo.png"></a>
-    </div>
-    <div class="Container w650 m50">
+
+    <div class="container w650 m50">
         <div class="row center m50">
             <h2>아이디 찾기</h2>
         </div>
@@ -59,9 +58,10 @@
         </div>
         <!-- 버튼-->
         <div class="row m50 center">
-            <input type="submit" class="btn btn-round btn-semi" value="회원가입">
-            <input type="submit" class="btn btn-round btn-semi" value="다시입력">
+	    	<a href="<%=request.getContextPath()%>/trainer/trainerJoin.jsp" class="link link-btn">회원가입</a>
+	    	<a href="<%=request.getContextPath()%>/trainer/trainerFindId.jsp" class="link link-btn">다시 입력하기</a>
         </div>
     </div>
 </body>
 </html>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>

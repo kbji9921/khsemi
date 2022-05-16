@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import semi.servlet.DtoDao.TrainerDao;
 import semi.servlet.DtoDao.TrainerDto;
 
-@WebServlet(urlPatterns = "/trainerId.check")
+@WebServlet(urlPatterns = "/ajax/trainerId.check")
 public class TrainerIdCheckServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,15 +21,15 @@ public class TrainerIdCheckServlet extends HttpServlet{
 			
 			//처리
 			TrainerDao trainerDao = new TrainerDao();
-			TrainerDto trainerDto = trainerDao.findByNickname(trainerId);
+			TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 			
 			//출력 - 어쨌든 문자열로 나감
 			resp.setContentType("text/plain; charset=UTF-8");
-			if(trainerDto.getTrainerId() != null) {//사용중
-				resp.getWriter().print("N");
+			if(trainerDto != null) {//사용중
+				resp.getWriter().print("NN");
 			}
 			else {//사용가능
-				resp.getWriter().print("Y");
+				resp.getWriter().print("YY");
 			}
 		}
 		catch(Exception e) {

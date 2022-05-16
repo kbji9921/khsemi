@@ -188,6 +188,11 @@
                     <span></span>
                 </div>
                 <div class="row ">
+                    <label>포인트</label>
+                    <input type="number" class="form-input input-round fill input-dis" value="<%=playerDto.getPlayerPoint()%>" readonly name="trainerPoint">
+                    <span></span>
+                </div>
+                <div class="row ">
                     <label>전화번호</label>
                     <input type="tel" class="form-input input-round fill input-dis" value="<%=playerDto.getPlayerPhone()%>" name="playerPhone">
                     <span></span>
@@ -235,13 +240,19 @@
         <button class="btn btn-semi fill hide" id="btn2" >변경완료</button>
     </div>
     <div class="row">
+    	<a href="point.jsp" class="link link-btn fill">포인트 충전</a>
+    </div>
+    <div class="row">
+    	<a href="returnPoint.jsp?playerid=<%=playerDto.getPlayerId() %>&playerPoint=<%=playerDto.getPlayerPoint() %>" class="link link-btn fill">환불하기</a>
+    </div>
+    <div class="row">
+        <a href="changePw.jsp?playerId=<%=playerId %>" class="link link-btn fill ">비밀번호 변경</a>
+    </div>
+    <div class="row">
         <button  type="button"class="btn btn-primary fill hide" id="btn3">취소</button>
-        </div>
+    </div>
     <div class="row">
-        <a href="change.jsp?playerId=<%=playerId %>" class="link link-btn fill hide"  id="btn4" >비밀번호 변경</a>
-        </div>
-    <div class="row">
-        <a href="<%=request.getContextPath()%>/deletePlayer.jsp" class="link link-btn  fill hide"  id="btn5" >탈퇴</a>
+        <a href="<%=request.getContextPath()%>/player/deletePlayer.jsp?playerId=<%=playerId %>" class="link link-btn  fill hide"  id="btn5" >탈퇴</a>
     </div>
     <div class="top">
     <a href="#top">
@@ -253,6 +264,5 @@
 		<%if(request.getParameter("error") != null){ %>
 			<h3 style="color:red;">비밀번호가 일치하지 않습니다.</h3>
 		<%} %>
-	</div>"src/main/webapp/player/matchingDetail.jsp"
-
+	</div>
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>

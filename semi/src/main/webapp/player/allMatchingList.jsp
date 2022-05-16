@@ -15,12 +15,13 @@
 <%
 	MatchingDao matchingDao = new MatchingDao();
 	//MatchingDto matchingDto = matchingDao.selectList(playerId);
-	List<MatchingDto> list = matchingDao.selectAllList(trainerId);
+	List<MatchingDto> list = matchingDao.selectPayList(trainerId);
 	
 	TrainerDao trainerDao = new TrainerDao();
 	TrainerDto trainerDto = trainerDao.selectOne(trainerId); 
 %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
 	<div class="container w800 m30 center">
 	   <div class="row center">
 	   		<h2><%=trainerDto.getTrainerName()%> 강사 전체 매칭 리스트</h2>

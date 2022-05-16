@@ -14,24 +14,26 @@ import semi.servlet.DtoDao.MatchingDto;
 @WebServlet(urlPatterns = "/player/matching.insert")
 public class MatchingInsertServlet extends HttpServlet{
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			
 			MatchingDao matchingDao = new MatchingDao();
 			int matchingNo = matchingDao.getSequence();
+			int ptcount = Integer.parseInt(req.getParameter("matchingDays"));
+			int ptPoint = Integer.parseInt(req.getParameter("trainerPrice"));
 			
 			MatchingDto matchingDto = new MatchingDto();
 			matchingDto.setMatchingNo(matchingNo);
 			matchingDto.setStudentId(req.getParameter("playerId"));
 			matchingDto.setCoachId(req.getParameter("trainerId"));
-			matchingDto.setMatchingDays(Integer.parseInt(req.getParameter("matchingDays")));
 			
 			boolean isEmpty = matchingDao.selectOne(matchingDto) == null;
 			if(!isEmpty) {
-				resp.sendRedirect("matchingInsert.jsp?error");
+				resp.sendRedirect("matchingInsert.jsp?trainerId="+matchingDto.getCoachId()+"&error");
 			}else {
-				matchingDao.insert(matchingDto);
-				resp.sendRedirect("matchingList.jsp");
+				matchingDao.insert(matchingDto,ptcount);
+				matchingDao.tpTotalInsert(matchingDto,ptPoint,ptcount);
+				resp.sendRedirect("matchingList.jsp?playerid="+matchingDto.getStudentId());
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

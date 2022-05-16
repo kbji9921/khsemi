@@ -29,46 +29,43 @@
 <jsp:include page="/jsp/template/matchingHeader.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/matching.css">
 <section class="container w850 board-box">
-<table border="1" class="board-tb m30">
-	<tbody>
-		<tr>
-			<th>강사명</th>
-			<td><%=trainerDto.getTrainerName() %></td>
-		</tr>
-		<tr>
-			<th>성별</th>
-			<td><%=trainerDto.getTrainerGender() %></td>
-		</tr>
-		<tr>
-			<th>분야</th>
-			<td><%=trainerDto.getTrainerSports()%></td>
-		</tr>
-		<tr>
-			<th>PT비용</th>
-<%-- 			<td><%=trainerDto.getTrainerPrice() %> 원</td> --%>
-			<td><%=trainerDto.getTrainerPrice() * ptcount %> 원</td>	
-		</tr>
-		<tr>
-			<th>상태</th>
-			<td><%=matchingDto.getMatchingState() %></td>
-		</tr>
-		<tr>
-			<th>연락처</th>
-			<td><%=trainerDto.getTrainerPhone() %></td>
-		</tr>
-		<tr>
-			<th>강사이메일</th>
-			<td><%=trainerDto.getTrainerEmail()%></td>
-		</tr>
-		<tr>
-			<th>학생명</th>
-			<td><%=playerDto.getPlayerName()%></td>
-		</tr>
-		<tr>
-			<th>남은 PT 횟수</th>
-			<td><%=ptcount%></td>
-		</tr>
-	</tbody>
+<table border="1" class="board-tb w850 m30">
+	<tr>
+		<th>강사명</th>
+		<th><%=trainerDto.getTrainerName() %></th>
+	</tr>
+	<tr>
+		<th>성별</th>
+		<th><%=trainerDto.getTrainerGender() %></th>
+	</tr>
+	<tr>
+		<th>분야</th>
+		<th><%=trainerDto.getTrainerSports()%></th>
+	</tr>
+	<tr>
+		<th>PT비용</th>
+		<th><%=trainerDto.getTrainerPrice() * ptcount%></th>
+	</tr>
+	<tr>
+		<th>상태</th>
+		<th><%=matchingDto.getMatchingState() %></th>
+	</tr>
+	<tr>
+		<th>연락처</th>
+		<th><%=trainerDto.getTrainerPhone() %></th>
+	</tr>
+	<tr>
+		<th>강사이메일</th>
+		<th><%=trainerDto.getTrainerEmail()%></th>
+	</tr>
+	<tr>
+		<th>학생명</th>
+		<th><%=playerDto.getPlayerName()%></th>
+	</tr>
+	<tr>
+		<th>남은 PT 횟수</th>
+		<th><%=ptcount%></th>
+	</tr>
 </table>
 <%if(!statecheck){ %>
    	 <div class="row right">

@@ -246,6 +246,18 @@ public class PlayerDao {
 		con.close();
 		return playerDto;
 	}
+
+	public boolean rePoint(PlayerDto playerDto)throws Exception {
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "update player set player_point = 0  where player_id = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, playerDto.getPlayerId());
+		
+		int count = ps.executeUpdate();
+		con.close();
+		return count > 0;
+	}
 	
 	
 }

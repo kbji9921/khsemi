@@ -3,8 +3,30 @@
 <%
 request.setCharacterEncoding("UTF-8");
 %>
+
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
+	<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 아이디 찾기</title>
+ 
+    <!-- 구글 폰트 cdn -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../css/test.css"> -->
     <style>
+     h4{
+	   font-weight: 600;
+	   color: #343b6a;
+	   font-size: 20px;
+	}
         .percent{
             background-color: #343b6a;
             height :10px;
@@ -112,7 +134,7 @@ request.setCharacterEncoding("UTF-8");
             function regexCheckPhone(){
              //this==전화번호 입력창
             var regex = /^[0][1][0][1-9][0-9]{7}$/;
-            var trainerPhone =$(this).val();
+            var playerPhone =$(this).val();
 
             var judge = regex.test(playerPhone);
             if(judge){
@@ -154,13 +176,14 @@ request.setCharacterEncoding("UTF-8");
     </div>
     <div class="container w650 m30 page">
         <div class="row left m30 ">
-            <h4>아이디 찾기 (1/3)</h4>
+            <h4>회원 아이디 찾기 (1/3)</h4>
         </div>
         <div class="box">
             <div class="input-box">
-            	<label>이름 : </label>
-                <input type="text" name="playerName" autocomplete="off" class="form-input input-round " placeholder="이름 입력">
-                <span></span>
+	            <div class="row center">
+	                <input type="text" name="playerName" autocomplete="off" class="form-input input-round fill" placeholder="이름 입력">
+	                <span></span>
+                </div>
             </div>
         </div>
         <div class="row center">
@@ -170,13 +193,14 @@ request.setCharacterEncoding("UTF-8");
     </div>
     <div class="container w650 m30 page">
         <div class="row left m30 ">
-            <h4>아이디 찾기 (2/3)</h4>
+            <h4>회원 아이디 찾기 (2/3)</h4>
         </div>
         <div class="box">
             <div class="input-box">
-            	<label>전화번호 : </label>
-                <input type="text" name="playerPhone" autocomplete="off" class="form-input input-round " placeholder="전화번호 입력">
-                <span></span>
+	           	 <div class="row center">
+	                <input type="tel" name="playerPhone" autocomplete="off" class="form-input input-round fill" placeholder="전화번호 입력">
+	                <span></span>
+               	</div>
             </div>
         </div>
         <div class="row center">
@@ -186,13 +210,12 @@ request.setCharacterEncoding("UTF-8");
     </div>
     <div class="container w650 m30 page">
         <div class="row left m30 ">
-            <h4>아이디 찾기 (3/3)</h4>
+            <h4>회원 아이디 찾기 (3/3)</h4>
         </div>
         <div class="box">
             <div class="input-box">
-                <div class="row">
-                	<label>이메일 : </label>
-                    <input type="text" name="playerEmail" autocomplete="off" class="form-input input-round " placeholder="이메일">
+                <div class="row ">
+                    <input type="text" name="playerEmail" autocomplete="off" class="form-input input-round fill" placeholder="이메일">
                     <span></span>
                 </div>
             </div>
@@ -203,10 +226,7 @@ request.setCharacterEncoding("UTF-8");
             <button type="submit" class="btn btn-semi">아이디 찾기</button>
         </div>
     </div>
-        <div class="row center">
-	       	<%if(request.getParameter("error") != null){ %>
-				<h3 style="color:red;">정보가 일치하는 아이디가 존재하지 않습니다</h3>
-			<%} %>
-		</div>
 </form>
+</body>
+</html>
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>

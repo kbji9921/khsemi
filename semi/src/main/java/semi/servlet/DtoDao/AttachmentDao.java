@@ -66,7 +66,25 @@ public class AttachmentDao {
 		con.close();
 		return attachmentDto;
 	}
-	
+	// 조회
+		public String selectName(int attachmentNo) throws Exception {
+			Connection con = JdbcUtils.getConnection();
+			String sql = "select attachment_savename from attachment where attachment_no=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, attachmentNo);
+			ResultSet rs = ps.executeQuery();
+			String attachmentSavename;
+			if (rs.next()) {
+
+				attachmentSavename =rs.getString("attachment_savename");
+
+			} else {
+				attachmentSavename = null;
+			}
+			con.close();
+			return attachmentSavename;
+		}
+		
 	
 
 	// 수정

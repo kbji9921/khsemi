@@ -35,7 +35,27 @@
 
 <script type="text/javascript">
 $(function(){
-	
+	$(function() {
+		//수정
+		$(".input-dis").attr("disabled", true);
+		$("#btn").click(function(event) {
+			$(".input-dis").attr("disabled", false);
+			$("#btn").addClass("hide")
+			$('#btn2').removeClass("hide")
+			$('#btn3').removeClass("hide")
+			$('#btn4').removeClass("hide")
+			$('#btn5').removeClass("hide")
+			event.preventDefault();
+		});
+		$('#btn3').click(function(event) {
+			$(".input-dis").attr("disabled", true);
+			$("#btn").removeClass("hide")
+			$('#btn2').addClass('hide')
+			$('#btn3').addClass('hide')
+			$('#btn4').addClass("hide")
+			$('#btn5').addClass("hide")
+		});
+	})
 		$("input[name=centerPhone]").blur(phoneCheck);
 		$("input[name=centerWeektime]").blur(weekCheck);
 		$("input[name=centerWkndtime]").blur(wkndCheck);
@@ -47,7 +67,7 @@ $(function(){
 		};
 		
 		$(".edit-form").submit(function(){
-	        return judgeObject.phone && judgeObject.week && judgeObject.wknd;
+			return confirm("정말 수정하시겠습니까?")
 		})
 	
     
@@ -158,16 +178,18 @@ $(function(){
           
             <div class="row">
                 <label>센터소개</label>
-                <textarea name="centerIntroduction" class="form-input input-round center-introbox fill"  placeholder="센터소개 또는 비용 등에 대하여 작성해주세요">
-                <%=centerDto.getCenterIntroduction() %></textarea>
+                <textarea name="centerIntroduction" class="form-input input-round center-introbox fill"  placeholder="센터소개 또는 비용 등에 대하여 작성해주세요"><%=centerDto.getCenterIntroduction() %></textarea>
             </div>
             <!-- <div class="row">
                 <label>센터대표사진</label>
                 <input type="file" name="centerPics" class="form-input input-round fill">
 				</div> -->
             <div class="row right">
-                <button type="submit" class="btn btn-semi">수정</button>
+                <button type="submit" class="btn btn-semi update-btn">수정</button>
                 <a href="/semi/center/detail.jsp?centerId=<%=centerDto.getCenterId() %>" class="link link-btn">취소</a>
+            </div>
+            <div class="row right">
+                <a href="/semi/eoc/detail.jsp?centerId=<%=centerDto.getCenterId() %>" class="link link-btn">운동종목</a>
             </div>
         </div>
     </form>
