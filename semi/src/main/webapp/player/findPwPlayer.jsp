@@ -1,12 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-	String playerId = request.getParameter("playerId");
-%>
+    <%
+    request.setCharacterEncoding("UTF-8");
+    %>
     
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-	 <title>비밀번호 찾기</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 찾기</title>
+ 
+    <!-- 구글 폰트 cdn -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../css/test.css"> -->
     <style>
         .percent{
             background-color: #343b6a;
@@ -52,7 +64,7 @@
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script type="text/javascript">
    $(function(){
-            $("input[name=palyerId]").blur(regexCheckId);
+            $("input[name=playerId]").blur(regexCheckId);
             $("input[name=playerName]").blur(regexCheckName);
             $("input[name=playerPhone]").blur(regexCheckPhone);
             $(".join-form").submit(function(){
@@ -114,7 +126,7 @@
             //전화번호 정규표현식
             function regexCheckPhone(){
              //this==전화번호 입력창
-            var regex = /[0][1][0][1-9][0-9]{7}/;
+            var regex = /^[0][1][0][1-9][0-9]{7}$/;
             var playerPhone =$(this).val();
 
             var judge = regex.test(playerPhone);
@@ -131,7 +143,7 @@
             //이름 정규표현식
             function regexCheckName(){
              //this==이름 입력창
-            var regex = /[가-힣]{2,7}/;
+            var regex = /^[가-힣]{2,7}$/;
             var playerName =$(this).val();
 
             var judge = regex.test(playerName);
@@ -156,31 +168,16 @@
         </div>
     </div>
     <div class="container w650 m30 page">
-    <%if(playerId != null){ %>
         <div class="row left m30 ">
             <h4>비밀번호 찾기 (1/3)</h4>
         </div>
         <div class="box">
             <div class="input-box">
-            	<label>아이디 : </label>
-                <input type="text" name="playerId" autocomplete="off" class="form-input input-round full" value="<%=playerId%>" readonly>
+                <input type="text" name="playerId" autocomplete="off" class="form-input input-round full" placeholder="아이디 입력">
                 <br>
                 <span></span>
             </div>
         </div>
-        <%}else{ %>
-        	<div class="row left m30 ">
-            <h4>비밀번호 찾기 (1/3)</h4>
-        </div>
-        <div class="box">
-            <div class="input-box">
-            	<label>아이디 : </label>
-                <input type="text" name="playerId" autocomplete="off" class="form-input input-round full" placeholder="아이디 입력" required>
-                <br>
-                <span></span>
-            </div>
-        </div>
-        <%} %>
         <div class="row center">
             <button type="button" class="btn btn-prev">이전</button>
             <button type="button" class="btn btn-next">다음</button>
@@ -192,10 +189,11 @@
         </div>
         <div class="box">
             <div class="input-box">
-            	<label>이름 : </label>
-                <input type="text" name="playerName" autocomplete="off" class="form-input input-round full" placeholder="이름 입력" required>
-                <br>
-                <span></span>
+	             <div class="row center">
+	                <input type="text" name="playerName" autocomplete="off" class="form-input input-round full" placeholder="이름 입력">
+	                <br>
+	                <span></span>
+	            </div>
             </div>
         </div>
         <div class="row center">
@@ -207,15 +205,13 @@
         <div class="row left m30 ">
             <h4>비밀번호 찾기 (3/3)</h4>
         </div>
-        <div class="box">
+       <div class="box">
             <div class="input-box">
                 <div class="row">
-                	<label>생년월일 : </label>
-                    <input type="date" name="playerBirth" autocomplete="off" class="form-input input-round full" placeholder="생년월일" required>
+                    <input type="date" name="playerBirth" autocomplete="off" class="form-input input-round full" placeholder="생년월일">
                 </div>
                 <div class="row">
-                	<label>전화번호 : </label>
-                    <input type="text" name="playerPhone" autocomplete="off" class="form-input input-round full" placeholder="전화번호" required>
+                    <input type="number" name="playerPhone" autocomplete="off" class="form-input input-round full" placeholder="전화번호">
                     <br>
                     <span></span>
                 </div>
@@ -226,14 +222,6 @@
             <button type="button" class="btn btn-next last-btn last">다음</button>
             <button type="submit" class="btn btn-semi">비밀번호 찾기</button>
         </div>
-        <div class="row center">
-       		<%if(request.getParameter("error") != null){ %>
-				<h3 style="color:red;">입력한 정보를 찾을 수 없습니다.</h3>
-			<%} %>
-		</div>
     </div>
 </form>
-</body>
-</html>
 <jsp:include page="/jsp/template/footer.jsp"></jsp:include>
-
