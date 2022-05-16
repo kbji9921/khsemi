@@ -47,11 +47,9 @@
     
     if(isSearch){
        centerList = centerDao.selectList(type, keyword, p, s, exerciseName);
-       //eocList = eocDao.selectList(centerId);
     }
     else{
        centerList = centerDao.selectList(p,s,exerciseName);
-       //eocList = eocDao.selectList(centerId);
     }
     
  %>
