@@ -14,8 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebFilter(filterName="f3", urlPatterns = {
 		"/trainer/logout.trainer",
 		"/trainer/trainerMyPage.jsp", "/trainer/trainerSetPw.jsp",
-		"/trainer/trainerJoinCenter",
-		"/trainer/delete.trainer", 
+		"/trainer/trainerJoinCenter","/trainer/delete.trainer", 
 		"/trainer/Information.trainer","/trainer/join.center",
 		"/trainer/join.center","/trainer/logout.trainer",
 		"/profile/profile.delete","/profile/profile.insert",
