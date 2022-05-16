@@ -53,7 +53,7 @@ String centerId = trainerDto.getCenterId();
     </script>
 </head>
 <body>
-<form class="join-form" action="profile.insert" method="post" enctype="multipart/form-data">
+<form class="join-form" action="profileInsert.center" method="post" enctype="multipart/form-data">
     <div class="container w400 m50">
         <div class="row center m50">
             <h2>프로필 등록</h2>
@@ -82,7 +82,7 @@ String centerId = trainerDto.getCenterId();
         	<input type="hidden" name="centerId" value="<%=centerId%>">
        	</div>
        	<button type="submit" class="btn btn-semi">등록하기</button>
-       	<a href="<%=request.getContextPath()%>/trainer/trainerMyPage.jsp?trainerId<%=centerId%>" class="link link-btn">취소</a>
+       	<a href="<%=request.getContextPath()%>/center/update.jsp?centerId=<%=centerId%>" class="link link-btn">취소</a>
         </div>
                 
         </div>
