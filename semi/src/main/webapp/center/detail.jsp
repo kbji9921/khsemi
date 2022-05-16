@@ -33,8 +33,8 @@
  boolean trainerLogin = trainerId != null;
 
  //권한
- String playerGrade = (String)session.getAttribute("auth");
- boolean admin = playerLogin && playerGrade.equals("관리자");
+ //String playerGrade = (String)session.getAttribute("auth");
+ //boolean admin = playerLogin && playerGrade.equals("관리자");
  %> 
 <%--페이징 관련 파라미터 수신 --%>
 <%
@@ -88,20 +88,80 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
       	$(function(){
+      		
               var p = 1;
               var s = 3;
               var centerId = $("#centerId").val();
               var trainerId = $("#trainerId").val();
+              var playerId = $("#playerId").val();
               var trainerImage = $("#trainerImg").val();
               
+              likeLoad(centerId);
               trainerLoad(p,s,centerId);
+              checkedLike(centerId,playerId);
 				              
-				
+				//강사 더보기 버튼 클릭 시
               $("#m-btn").click(function(){
                   p++;
                   trainerLoad(p,s,centerId)
               });
+				
+            //좋아요 버튼 클릭 시 추가 제거
+              $("#like-btn").click(function(){
+                  $.ajax({
+                      url: "http://localhost:8080/semi/ajax/likecheck.kh",
+                      type: "post",   
+                      data: {
+                          centerId : centerId,
+                          playerId : playerId
+                      },
+                      success: function(resp){
+                          likeLoad();
+                          if(resp==1){
+                              $("#like-btn > img").attr("src","/semi/images/center_dummy/dislike1.png").addClass("c-btn");
+                          }
+                          else{
+                              $("#like-btn > img").attr("src","/semi/images/center_dummy/like1.png").addClass("c-btn");
+                          }
+                      }
+                  })
+              })
+                        
 
+              //좋아요 수 조회
+              function likeLoad(){
+                  $.ajax({
+                      url: "http://localhost:8080/semi/ajax/center-like.kh",
+                      type: "post",
+                      data: {
+                          centerId : centerId
+                      },
+                      success:function(resp){
+                          $("#like-count").text(resp);
+                      }
+                  })
+              }
+
+              //이미 좋아요를 누른 사람이라면
+              function checkedLike(){
+                  $.ajax({
+                      url: "http://localhost:8080/semi/ajax/likechecked.kh",
+                      type: "post",   
+                      data: {
+                          centerId : centerId,
+                          playerId : playerId
+                      },
+                      success:function(resp){
+                          if(resp==1){
+                              $("#like-btn > img").attr("src","/semi/images/center_dummy/like1.png").addClass("c-btn");
+                          }else{
+                              $("#like-btn > img").attr("src","/semi/images/center_dummy/dislike1.png").addClass("c-btn");
+                          }
+                      }
+                  })
+              }	
+				
+            //센터 소속 강사 리스트 조회
               function trainerLoad(p,s,centerId){
                   $.ajax({
                       url: "http://localhost:8080/semi/ajax/center-trainer.kh",
@@ -164,8 +224,7 @@
                     <!--좋아요-->
                     <div class="row flex-c-container">
                         <div style="margin-left: auto;">
-                            <img src="<%=request.getContextPath() %>/images/center_dummy/dislike.png"
-                            style="width:30px; height:30px" id="like-img">
+                           <button type="button" class="c-btn" id="like-btn"><img src="<%=request.getContextPath() %>/images/center_dummy/dislike1.png" width="30px" height="30px" ></button>
                         </div>
                         <div style="margin-top: 6px;">
                             <span id="like-count">[<%=centerDto.getCenterLikeCount() %>]</span>
@@ -175,6 +234,7 @@
                     
                     <div class="row center">
                     <input type="hidden" name="centerId" value="<%=centerDto.getCenterId() %>" id="centerId">
+                    <input type="hidden" name="playerId" value="<%=playerId%>" id="playerId">
                         <h1><%=centerDto.getCenterName() %></h1>
                     </div><hr>
                     <div class="row">

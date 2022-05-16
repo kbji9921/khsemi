@@ -210,7 +210,7 @@ request.setCharacterEncoding("UTF-8");
         <div class="box">
             <div class="input-box">
                 <div class="row center">
-                    <input type="email" name="playerEmail" autocomplete="off" class="form-input input-round fill" placeholder="이메일">
+                    <input type="text" name="playerEmail" autocomplete="off" class="form-input input-round " placeholder="이메일">
                     <span></span>
                 </div>
             </div>

@@ -36,7 +36,7 @@
                <%--강사 로그인 후 --%>
               		 <%if(trainerLogin){ %>
                   <li class="gnb-right">
-                     <a href="<%=request.getContextPath()%>/player/matchingList.jsp?playerId=<%=playerId%>">내일정</a>
+                     <a href="<%=request.getContextPath()%>/player/allMatchingList.jsp?trainerId=<%=trainerId%>">내예약</a>
                      <span class="partition">|</span>
                      <a href="<%=request.getContextPath()%>/trainer/trainerMyPage.jsp">내정보</a>
                      <span class="partition">|</span>
@@ -69,12 +69,8 @@
                   <a href="#">로그아웃</a>
                </li>
                --%>
-               
             </ul>
          </nav>
       </header>
    <%-- header end --%>
-   
-      
-
    <section class="wrap">
