@@ -14,7 +14,7 @@ import semi.servlet.DtoDao.PlayerDto;
 @WebServlet(urlPatterns = "/ajax/player.id")
 public class PlayerIdCheckServlet extends HttpServlet{
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			
 			String playerId = req.getParameter("playerId");
@@ -24,9 +24,9 @@ public class PlayerIdCheckServlet extends HttpServlet{
 			
 			resp.setContentType("text/plain; charset=UTF-8");
 			if(playerDto != null) {
-				resp.getWriter().print("NNNNN");
+				resp.getWriter().print("N");
 			}else {
-				resp.getWriter().print("NNNNY");	
+				resp.getWriter().print("Y");	
 			}
 			
 		}catch(Exception e) {

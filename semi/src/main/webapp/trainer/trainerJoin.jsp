@@ -21,6 +21,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <style>
+    h2{
+	   font-weight: 600;
+	   color: #343b6a;
+	   font-size: 20px;
+	}
     html{
         background-color: #F5F6F7;
     }
@@ -190,6 +195,9 @@
 <body>
     <form action="profile.trainer" class="join-form" method="post" enctype="multipart/form-data">
     <div class="container w450 m30">
+    	<div class="row center">
+      		<h2>강사 회원가입</h2>
+      	</div>
         <div class="row">
             <label>아이디</label>
             <input type="text" name="trainerId"  autocomplete="off" class="form-input fill input-round" >

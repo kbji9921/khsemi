@@ -17,7 +17,7 @@ public class PlayerDeleteServelt extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			
-			String playerId = (String)req.getSession().getAttribute("login");
+			String playerId= req.getParameter("playerId");
 			String playerPw = req.getParameter("playerPw");
 			
 			PlayerDao playerDao = new PlayerDao();
@@ -33,7 +33,7 @@ public class PlayerDeleteServelt extends HttpServlet{
 			
 			req.getSession().removeAttribute("login");
 			
-			resp.sendRedirect("login.jsp");
+			resp.sendRedirect(req.getContextPath());
 			
 		}catch(Exception e) {
 			e.printStackTrace();

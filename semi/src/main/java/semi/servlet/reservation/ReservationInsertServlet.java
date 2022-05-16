@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import semi.servlet.DtoDao.MatchingDao;
+import semi.servlet.DtoDao.MatchingDto;
 import semi.servlet.DtoDao.ReservationDao;
 import semi.servlet.DtoDao.ReservationDto;
 
@@ -29,8 +30,10 @@ public class ReservationInsertServlet extends HttpServlet{
 			reservationDto.setReservationNo(reservationNo);
 			
 			MatchingDao matchingDao = new MatchingDao();
+			int ptcount = matchingDao.selectOne(reservationDto.getPlayerId(), reservationDto.getTrainerId());
+		
 			
-			reservationDao.insert(reservationDto);
+			reservationDao.insert(reservationDto,ptcount);
 			matchingDao.updatePtcount(reservationDto.getPlayerId(),reservationDto.getTrainerId());
 			
 			resp.sendRedirect("reservationListPlayer.jsp?playerId="+reservationDto.getPlayerId());

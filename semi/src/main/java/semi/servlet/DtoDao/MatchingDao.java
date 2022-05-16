@@ -44,10 +44,10 @@ public class MatchingDao {
 		return list;
 	}
 	
-	public List<MatchingDto> selectAllList(String trainerId)throws Exception{
+	public List<MatchingDto> selectPayList(String trainerId)throws Exception{
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "select * from matching where coach_id = ?";
+		String sql = "select * from matching where coach_id = ? and matching_state='매칭완료'";
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		ps.setString(1, trainerId);

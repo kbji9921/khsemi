@@ -17,7 +17,7 @@
 
     <section class="container">
     
-         <p class="contents-p">선택하신 종목의 센터 또는 강사로 찾으실 수 있습니다</p>
+         <p class="contents-p">[<%=exerciseName %>] 관련 센터 또는 강사로 찾으실 수 있습니다</p>
          
          <br>
 
