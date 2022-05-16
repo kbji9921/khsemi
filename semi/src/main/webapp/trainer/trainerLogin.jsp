@@ -5,10 +5,17 @@
     
     %>
     <jsp:include page="/jsp/template/header.jsp"></jsp:include>
+    <style>
+	 h1{
+	   font-weight: 600;
+	   color: #343b6a;
+	   font-size: 20px;
+	}
+</style>
 <form action="login.kh" method="post">
     <div class="container w450 m40">
         <div class="row center">
-            <h1>로그인</h1>
+            <h1>강사 로그인</h1>
         </div>
         <div class="row">
             <label for="id">아이디</label>

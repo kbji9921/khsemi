@@ -15,7 +15,7 @@
 <%
 	MatchingDao matchingDao = new MatchingDao();
 	//MatchingDto matchingDto = matchingDao.selectList(playerId);
-	List<MatchingDto> list = matchingDao.selectAllList(trainerId);
+	List<MatchingDto> list = matchingDao.selectPayList(trainerId);
 	
 	TrainerDao trainerDao = new TrainerDao();
 	TrainerDto trainerDto = trainerDao.selectOne(trainerId); 

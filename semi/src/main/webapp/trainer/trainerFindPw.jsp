@@ -22,6 +22,11 @@
     <link rel="stylesheet" type="text/css" href="../css/common.css">
     <!-- <link rel="stylesheet" type="text/css" href="../css/test.css"> -->
     <style>
+	    h4{
+		   font-weight: 600;
+		   color: #343b6a;
+		   font-size: 20px;
+		}
         .percent{
             background-color: #343b6a;
             height :10px;
@@ -171,7 +176,7 @@
     </div>
     <div class="container w650 m30 page">
         <div class="row left m30 ">
-            <h4>비밀번호 찾기 (1/3)</h4>
+            <h4>강사 비밀번호 찾기 (1/3)</h4>
         </div>
         <div class="box">
             <div class="input-box">
@@ -187,7 +192,7 @@
     </div>
     <div class="container w650 m30 page">
         <div class="row left m30 ">
-            <h4>비밀번호 찾기 (2/3)</h4>
+            <h4>강사 비밀번호 찾기 (2/3)</h4>
         </div>
         <div class="box">
             <div class="input-box">
@@ -203,7 +208,7 @@
     </div>
     <div class="container w650 m30 page">
         <div class="row left m30 ">
-            <h4>비밀번호 찾기 (3/3)</h4>
+            <h4>강사 비밀번호 찾기 (3/3)</h4>
         </div>
         <div class="box">
             <div class="input-box">

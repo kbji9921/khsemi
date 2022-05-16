@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>비밀번호 찾기</title>
+    <title>회원 비밀번호 찾기</title>
  
     <!-- 구글 폰트 cdn -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,6 +20,11 @@
     <link rel="stylesheet" type="text/css" href="../css/common.css">
     <!-- <link rel="stylesheet" type="text/css" href="../css/test.css"> -->
     <style>
+	    h4{
+		   font-weight: 600;
+		   color: #343b6a;
+		   font-size: 20px;
+		}
         .percent{
             background-color: #343b6a;
             height :10px;
@@ -169,7 +174,7 @@
     </div>
     <div class="container w650 m30 page">
         <div class="row left m30 ">
-            <h4>비밀번호 찾기 (1/3)</h4>
+            <h4>회원 비밀번호 찾기 (1/3)</h4>
         </div>
         <div class="box">
             <div class="input-box">
@@ -185,7 +190,7 @@
     </div>
     <div class="container w650 m30 page">
         <div class="row left m30 ">
-            <h4>비밀번호 찾기 (2/3)</h4>
+            <h4>회원 비밀번호 찾기 (2/3)</h4>
         </div>
         <div class="box">
             <div class="input-box">
@@ -203,7 +208,7 @@
     </div>
     <div class="container w650 m30 page">
         <div class="row left m30 ">
-            <h4>비밀번호 찾기 (3/3)</h4>
+            <h4>회원 비밀번호 찾기 (3/3)</h4>
         </div>
        <div class="box">
             <div class="input-box">

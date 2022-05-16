@@ -2,11 +2,18 @@
     pageEncoding="UTF-8"%>
 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<style>
+	 h1{
+	   font-weight: 600;
+	   color: #343b6a;
+	   font-size: 20px;
+	}
+</style>
 	<form action="login.player" method="post">
 	
 		<div class="container w450 m30 center">
 		<div class="row m30 center">
-			<h2>일반회원 로그인</h2>
+			<h1>일반회원 로그인</h1>
         </div>
         <div class="row m30">
             <label>아이디</label>

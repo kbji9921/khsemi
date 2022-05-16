@@ -117,7 +117,7 @@
                 <li>
                     <strong>
                         <label>아이디</label>
-                        <input type ="text" name ="playerId" class="fill form-input input-round" value="<%=playerId%>" readonly>
+                        <input type ="text" name ="playerId" class="fill form-input input-round" readonly value="<%=playerId%>">
                     </strong>
                 </li>
                 <li>

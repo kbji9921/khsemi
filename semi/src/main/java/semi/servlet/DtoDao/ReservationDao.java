@@ -47,16 +47,17 @@ public class ReservationDao {
       return number;
    }
    //등록
-   public void insert(ReservationDto reservationDto)throws Exception{
+   public void insert(ReservationDto reservationDto,int ptcount)throws Exception{
       Connection con = JdbcUtils.getConnection();
-      String sql = "insert into reservation (reservation_no, player_id, trainer_id, reservation_date, reservation_time) "
-               + " values (?,?,?,?,?)";
+      String sql = "insert into reservation (reservation_no, player_id, trainer_id, reservation_date, reservation_time,pt_count) "
+               + " values (?,?,?,?,?,?)";
       PreparedStatement ps = con.prepareStatement(sql);
       ps.setInt(1, reservationDto.getReservationNo());
       ps.setString(2, reservationDto.getPlayerId());
       ps.setString(3, reservationDto.getTrainerId());
       ps.setDate(4, reservationDto.getReservationDate());
       ps.setString(5, reservationDto.getReservationTime());
+      ps.setInt(6, ptcount);
       
       ps.execute();
       
