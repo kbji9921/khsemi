@@ -249,7 +249,7 @@
         	<input type="file" accept="jpg,png" placeholder="프로필 사진 선택" name="trainerAttachment">
         </div>
         <div class="row m20">
-            <button type="submit" class="btn btn-semi btn-round full pw-btn">가입하기</button>
+            <button type="submit" class="btn btn-semi btn-round fill pw-btn">가입하기</button>
         </div>
         <div class="row center">
             <a href="#" class="link">이용약관</a>|
