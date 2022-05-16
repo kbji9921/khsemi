@@ -90,6 +90,8 @@
 
 .trainer-nameBox {
 	text-decoration: none;
+	font-size: 20px;
+	
 }
 
 .c-btn-list {
@@ -112,6 +114,14 @@ a.top {
     outline: 0;
     background-color: white;
     cursor: pointer;
+}
+
+.trainer-imgArea{
+    border: solid 2px #CCCCCC;
+    border-radius: 100%;
+    height: 130px;
+    width: 130px;
+    background-color: #efefef;
 }
 
 /* center list page */
@@ -162,6 +172,11 @@ a.top {
      color: #343B6A;
      border-color: #343B6A;
  }
+ 
+ h4.c-basic-like{
+ 	margin-left: auto;
+ 	margin-right: 2px;
+ }	
 
 /* exercise page */
 .c-table {

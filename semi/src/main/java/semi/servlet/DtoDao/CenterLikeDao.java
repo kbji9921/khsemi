@@ -38,7 +38,6 @@ public class CenterLikeDao {
 		else {
 			count = 0;
 		}
-
 		con.close();
 		return count;
 	}	
