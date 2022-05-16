@@ -33,24 +33,15 @@ public class CenterTrainerListServlet extends HttpServlet{
 			TrainerDao trainerDao = new TrainerDao();
 			List<TrainerDto> trainerList = trainerDao.centerTrainerByPaging(p, s, centerId);
 			
-//			List<AttachmentDto> attachmentList = new ArrayList<>();
-//			for(TrainerDto trainerDto : trainerList) {
-//				TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao();
-//				int attachmentNo = trainerAttachmentDao.selectOne(trainerDto.getTrainerId());
-//				AttachmentDao attachmentDao = new AttachmentDao();
-//				AttachmentDto attachmentDto = attachmentDao.selectOne(attachmentNo);
-//				
-//				attachmentList.add(attachmentDto);
-//			}
+
 			
 			//출력
 			ObjectMapper mapper = new ObjectMapper();
 			String jsonString = mapper.writeValueAsString(trainerList);
-//			String jsonString2 = mapper.writeValueAsString(attachmentList);
 			
 			resp.setContentType("application/json; charset=UTF-8");
 			resp.getWriter().print(jsonString);
-//			resp.getWriter().print(jsonString2);
+
 		}
 		catch(Exception e) {
 			e.printStackTrace();
