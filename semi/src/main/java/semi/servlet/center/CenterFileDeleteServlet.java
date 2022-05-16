@@ -37,8 +37,7 @@ public class CenterFileDeleteServlet extends HttpServlet {
 	        }
 
 			// 출력
-			resp.sendRedirect(
-					req.getContextPath() + "/center/update.jsp?centerId=" + centerId);
+			resp.sendRedirect(req.getContextPath()+"/center/update.jsp?centerId="+centerId);
 
 		} catch (Exception e) {
 			e.printStackTrace();
