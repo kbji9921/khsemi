@@ -43,7 +43,12 @@ List<BoardReplyDto> list = boardReplyDao.selectList(boardNo);
 			<span class="board-type"><%=boardDto.getBoardType()%></span>
 			<span class="board-title"><%=boardDto.getBoardTitle() %></span>
 			<div class="board-rightbox">
-				<span class="">작성자: <%=boardDto.getBoardWriter() %></span>
+				<span class="">작성자: 
+				<%if (boardDto.getBoardWriter() == null){%>
+				(탈퇴계정)
+				<%}else{ %>
+				<%=boardDto.getBoardWriter() %>
+				<%} %></span>
 				<span class="">작성일: <%=boardDto.getBoardTime() %></span>
 				<span class="">조회: <%=boardDto.getBoardReadCount() %></span>
 			</div>
@@ -75,7 +80,13 @@ List<BoardReplyDto> list = boardReplyDao.selectList(boardNo);
 		boolean isreplyOwner = playerId != null && playerId.equals(boardReplyDto.getReplyWriter());
 	%>
 		<div class="reply-box flex-container">
-			<span class="reply-id"><%=boardReplyDto.getReplyWriter() %></span>
+			<span class="reply-id">
+			<%if(boardReplyDto.getReplyWriter() == null){ %>
+				(탈퇴계정)
+			<%}else{ %>
+				<%=boardReplyDto.getReplyWriter() %>
+			<%} %>
+			</span>
 			<pre class="reply-content"><%=boardReplyDto.getReplyContent() %></pre>
 			<span class="reply-time">
 			<%=boardReplyDto.getReplyTime() %>
