@@ -51,6 +51,11 @@ List<EocDto> list = eocDao.selectList(centerId);
 		<div class="row right">
 			<a href="<%=request.getContextPath()%>/eoc/write.jsp?centerId=<%=centerId%>" class="link link-btn">추가</a>
 		</div>
+		<div class="row center">
+         <%if(request.getParameter("error")!=null){ %>
+         <h3 style="color:red">이미 존재하는 종목입니다.</h3>
+         <%} %>     
+		</div>
 	</div>
 </div>
 

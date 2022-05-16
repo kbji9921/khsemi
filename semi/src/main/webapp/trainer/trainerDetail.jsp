@@ -75,8 +75,11 @@
 	width: 250px !important;
 	height: 250px !important;
 }
-.hide{
-display:none}
+ .hide{
+	display:none}
+ .abc{
+	margin-left:100px !important;
+}
  </style>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script type="text/javascript">
@@ -206,10 +209,11 @@ display:none}
 	<h3 style="color:red;">이미 평가를 하셨습니다.</h3>
 	<%} %>
 	</div>
-<div class="center">
+
+<div class="container center">
 	<%if(isPlayer){ %>
-	<table border="1" class="board-tb w1000">
-	<form action="insert.grade" method="post">
+	<form action="insert.grade" method="post" class="abc">
+	<table border="1" class="board-tb w800">
 	<td style="width:128px">
 		<select name="gradeRate" class="form-input input-round">
 			<option value="5">⭐⭐⭐⭐⭐</option>
@@ -219,9 +223,10 @@ display:none}
 			<option value="1">⭐</option>
 		</select>
 	</td>
-
+	<td>
 	<input type="hidden" name="gradeTarget" value="<%=trainerId%>">
 	<input type="hidden" name="gradeWriter" value="<%=playerId%>">
+	</td>
 	<td style="width:70%">
 		<textarea name="gradeContent"rows="5"  class="form-input input-round answer" style="width:100%" id="textarea"></textarea>
 		<span id="text_count">(0 / 100)</span>
@@ -229,11 +234,13 @@ display:none}
 	<td>
 		<button type="submit" class="btn btn-semi">등록</button>
 	</td>
-	</form>
 	</table>
+	</form>
 	<% }%>
+	</div>
 	<br>
-	<table border="1" class="board-tb w1000">
+	<div class="container w800 center">
+	<table border="1" class="board-tb">
 	<thead>
 		<tr>
 			<th>별점</th>
@@ -277,6 +284,7 @@ display:none}
 	<%}%>
 	</tbody>
 </table>
+</div>
 </div>
 	<!-- 평점 목록 -->
 
