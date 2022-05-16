@@ -27,13 +27,7 @@ AttachmentDto attachmentDto = attachmentDao.selectOne(attach);
 boolean noPic = attachmentDto == null;
 %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>개인정보 변경</title>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/mypage.css">
 <style>
 .flex-container {
 	padding: 1em;
@@ -131,20 +125,7 @@ input:readonly {
 	color:white !important;
 }
 </style>
-<!-- 구글 폰트 cdn -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
-	rel="stylesheet">
-
-<link rel="stylesheet" type="text/css" href="../css/reset.css">
-<link rel="stylesheet" type="text/css" href="../css/commons.css">
-<!-- <link rel="stylesheet" type="text/css" href="../css/test.css"> -->
-
-<!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 <script type="text/javascript">
 	$(function() {
 		$(".input-dis").attr("disabled", true);
@@ -237,36 +218,36 @@ input:readonly {
 			<div class="row">
 				<div class="row">
 					<label>아이디</label> <input type="text"
-						class="form-input input-round fill"
+						class="form-input input-round fill mypage-input"
 						value="<%=trainerDto.getTrainerId()%>" readonly name="trainerId">
 					<span></span>
 				</div>
 				<div class="row">
 					<label>이름</label> <input type="text"
-						class="form-input input-round fill input-dis"
+						class="form-input input-round fill input-dis mypage-input"
 						value="<%=trainerDto.getTrainerName()%>" name="trainerName">
 					<span></span>
 				</div>
 				<div class="row">
 					<label>생년월일</label> <input type="date"
-						class="form-input input-round fill input-dis"
+						class="form-input input-round fill input-dis mypage-input"
 						value="<%=trainerDto.getTrainerBirth()%>" name="trainerBirth">
 					<span></span>
 				</div>
 				<div class="row ">
 					<label>전화번호</label> <input type="tel"
-						class="form-input input-round fill input-dis"
+						class="form-input input-round fill input-dis mypage-input"
 						value="<%=trainerDto.getTrainerPhone()%>" name="trainerPhone">
 					<span></span>
 				</div>
 				<div class="row ">
 					<label>이메일</label> <input type="email"
-						class="form-input input-round fill input-dis"
+						class="form-input input-round fill input-dis mypage-input"
 						value="<%=trainerDto.getTrainerEmail()%>" name="trainerEmail">
 					<span></span>
 					<div class="row ">
 						<label>운동종목</label> <select
-							class="form-input input-round fill input-dis"
+							class="form-input input-round fill input-dis mypage-input"
 							name="trainerSports">
 							<%
 							if (trainerDto.getTrainerSports().equals("요가")) {
@@ -327,7 +308,7 @@ input:readonly {
 					</div>
 					<div class="row ">
 						<label>성별</label> <select
-							class="form-input input-round fill input-dis"
+							class="form-input input-round fill input-dis mypage-input"
 							name="trainerGender">
 							<%
 							if (trainerDto.getTrainerGender().equals("여자")) {
@@ -355,44 +336,44 @@ input:readonly {
 					</div>
 					<div class="row ">
 						<label>Pt가격</label> <input type="text"
-							class="form-input input-round fill input-dis"
+							class="form-input input-round fill input-dis mypage-input"
 							value="<%=trainerDto.getTrainerPrice()%>" name="trainerPrice">
 						<span></span>
 					</div>
 					<div class="row ">
 						<label for="logindate">가입일</label> <input type="text"
-							class="form-input input-round fill input-dis"
+							class="form-input input-round fill input-dis mypage-input"
 							value="<%=trainerDto.getTrainerJoindate()%>" id="logindate">
 						<span></span>
 					</div>
 					<div class="row ">
 						<label>최근접속일</label> <input type="text"
-							class="form-input input-round fill input-dis"
+							class="form-input input-round fill input-dis mypage-input"
 							value="<%=trainerDto.getTrainerLogindate()%>"> <span></span>
 					</div>
 					<div class="row ">
 						<label>비밀번호</label> <input type="password"
-							class="form-input input-round fill input-dis" name="trainerPw">
+							class="form-input input-round fill input-dis mypage-input" name="trainerPw">
 						<span></span>
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<button class="btn btn-semi fill" id="btn">수정</button>
-				<button class="btn btn-semi fill hide" id="btn2">변경완료</button>
+				<button class="btn btn-semi fill mypage-btn" id="btn">수정</button>
+				<button class="btn btn-semi fill hide mypage-btn" id="btn2">변경완료</button>
 			</div>
 			<div class="row">
-				<button type="button" class="btn btn-primary fill hide" id="btn3">취소</button>
+				<button type="button" class="btn btn-primary fill hide mypage-btn" id="btn3">취소</button>
 			</div>
 			<div class="row">
 				<a
 					href="<%=request.getContextPath()%>/trainer/trainerSetPw.jsp?trainerId=<%=trainerId%>"
-					class="link link-btn fill hide" id="btn4">비밀번호 변경</a>
+					class="link link-btn fill hide mypage-btn" id="btn4">비밀번호 변경</a>
 			</div>
 			<div class="row">
 				<a
 					href="<%=request.getContextPath()%>/trainer/trainerDelete.jsp?trainerId=<%=trainerId%>"
-					class="link link-btn  fill hide" id="btn5">탈퇴</a>
+					class="link link-btn  fill hide mypage-btn" id="btn5">탈퇴</a>
 			</div>
 			<div class="top">
 				<a href="#top"> <img

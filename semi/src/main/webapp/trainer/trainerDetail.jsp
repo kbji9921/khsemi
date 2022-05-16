@@ -66,21 +66,10 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/commons.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/trainer.css">
+
  <!-- jquery cdn -->
- <style>
- .image-c-area img{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 250px !important;
-	height: 250px !important;
-}
- .hide{
-	display:none}
- .abc{
-	margin-left:100px !important;
-}
- </style>
+ 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script type="text/javascript">
 		$(function () {
@@ -215,7 +204,7 @@
 	<form action="insert.grade" method="post" class="abc">
 	<table border="1" class="board-tb w800">
 	<td style="width:128px">
-		<select name="gradeRate" class="form-input input-round">
+		<select name="gradeRate" class="form-input input-round ">
 			<option value="5">⭐⭐⭐⭐⭐</option>
 			<option value="4">⭐⭐⭐⭐</option>
 			<option value="3">⭐⭐⭐</option>
@@ -228,11 +217,11 @@
 	<input type="hidden" name="gradeWriter" value="<%=playerId%>">
 	</td>
 	<td style="width:70%">
-		<textarea name="gradeContent"rows="5"  class="form-input input-round answer" style="width:100%" id="textarea"></textarea>
+		<textarea name="gradeContent"rows="5"  class="form-input input-round answer reply-textarea" id="textarea"></textarea>
 		<span id="text_count">(0 / 100)</span>
 	</td>
 	<td>
-		<button type="submit" class="btn btn-semi">등록</button>
+		<button type="submit" class="btn btn-semi reply-btn">등록</button>
 	</td>
 	</table>
 	</form>
@@ -240,13 +229,13 @@
 	</div>
 	<br>
 	<div class="container w800 center">
-	<table border="1" class="board-tb">
+	<table border="1" class="board-tb w800">
 	<thead>
 		<tr>
 			<th>별점</th>
 			<th>작성자</th>
 			<th>작성시간</th>
-			<th width="59%">내용</th>
+			<th>내용</th>
 			<th>삭제</th>
 		</tr>
 	</thead>
@@ -269,7 +258,7 @@
 				<td width="5%">⭐⭐⭐⭐⭐</td>
 			<%} %>
 			<td><%=rDto.getGradeWriter()%></td>
-			<td align="left">
+			<td>
 				<%=rDto.getGradeTime()%>
 			</td>
 			<td><%=rDto.getGradeContent()%></td>
@@ -279,9 +268,14 @@
 			%>
 			<%if(isGradeWriter){ %>
 			<td><a href="<%=request.getContextPath()%>/grade/gradeDelete.grade?gradeNo=<%=rDto.getGradeNo()%>&trainerId=<%=trainerDto.getTrainerId()%>" class="link link-btn hide">삭제</a></td>
-		</tr>		
 		<%} %>
+		</tr>		
 	<%}%>
+	<%if(GradeList.isEmpty()){ %>
+		<tr> 
+			<td align="center" colspan="5">작성된 리뷰가 없습니다.</td>
+		</tr>
+	<%} %>
 	</tbody>
 </table>
 </div>

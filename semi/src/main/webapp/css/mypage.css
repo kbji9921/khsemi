@@ -7,3 +7,24 @@
     width: 50%;
     margin-left: 20px;
 }
+.mypage-input{
+    padding: 0 10px;
+    margin: 8px 0 10px 0;
+    height: 40px;
+    line-height: 40px;
+}
+.mypage-btn{
+	height: 40px;
+	margin:	0;
+	line-height: 24px;
+}
+/*login*/
+.login-title{
+	font-weight: 600;
+	color: #343b6a;
+	font-size: 20px;
+}
+.find-account{
+	font-size:15px;
+	color: gray;
+}

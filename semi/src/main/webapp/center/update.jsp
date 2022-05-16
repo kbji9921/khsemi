@@ -29,6 +29,7 @@
 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/mypage.css">
 
  <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -137,24 +138,24 @@ $(function(){
             
 			 <div class="row">
 			 	<label>센터아이디
-            	<input type="text" name="centerId" value="<%=centerId%>" class="form-input inpur-round fill" readonly>
+            	<input type="text" name="centerId" value="<%=centerId%>" class="form-input inpur-round fill mypage-input" readonly>
 			 	</label>
             </div>
             
             <div class="row">
                 <label>센터이름
-                <input type="text" name="centerName" value="<%=centerDto.getCenterName() %>" autocomplete="off" class="form-input inpur-round fill" id="centername-input">
+                <input type="text" name="centerName" value="<%=centerDto.getCenterName() %>" autocomplete="off" class="form-input inpur-round fill mypage-input" id="centername-input">
             	</label>
             </div>
             <div class="row">
                 <label>전화번호
-                <input type="text" name="centerPhone" value="<%=centerDto.getCenterPhone() %>" autocomplete="off" class="form-input input-round fill regex-input" 
+                <input type="text" name="centerPhone" value="<%=centerDto.getCenterPhone() %>" autocomplete="off" class="form-input input-round fill regex-input mypage-input" 
                 placeholder="-포함하여 입력하세요" data-fail-msg="입력하신 내용이 올바르지 않습니다">
             	<span></span></label>
             </div>
             <div class="row">
                 <label>평일운영시간
-                <input type="text" name="centerWeektime" value="<%=centerDto.getCenterWeektime() %>" autocomplete="off" class="form-input input-round fill regex-input" 
+                <input type="text" name="centerWeektime" value="<%=centerDto.getCenterWeektime() %>" autocomplete="off" class="form-input input-round fill regex-input mypage-input" 
                 placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" data-fail-msg="입력하신 내용이 올바르지 않습니다">
             	<span></span></label>
             </div>
@@ -173,23 +174,23 @@ $(function(){
                 <input type="text" name="centerBasicAddress" value="<%=centerDto.getCenterBasicAddress() %>" autocomplete="off" class="form-input input-round fill">
             </div>
             <div class="row">
-                <input type="text" name="centerDetailAddress" value="<%=centerDto.getCenterDetailAddress() %>" autocomplete="off" class="form-input input-round fill">
+                <input type="text" name="centerDetailAddress" value="<%=centerDto.getCenterDetailAddress() %>" autocomplete="off" class="form-input input-round fill mypage-input">
             </div>
           
             <div class="row">
                 <label>센터소개</label>
-                <textarea name="centerIntroduction" class="form-input input-round center-introbox fill"  placeholder="센터소개 또는 비용 등에 대하여 작성해주세요"><%=centerDto.getCenterIntroduction() %></textarea>
+                <textarea name="centerIntroduction" class="form-input input-round center-introbox fill mypage-input"  placeholder="센터소개 또는 비용 등에 대하여 작성해주세요"><%=centerDto.getCenterIntroduction() %></textarea>
             </div>
             <!-- <div class="row">
                 <label>센터대표사진</label>
                 <input type="file" name="centerPics" class="form-input input-round fill">
 				</div> -->
             <div class="row right">
-                <button type="submit" class="btn btn-semi update-btn">수정</button>
-                <a href="/semi/center/detail.jsp?centerId=<%=centerDto.getCenterId() %>" class="link link-btn">취소</a>
+                <button type="submit" class="btn btn-semi update-btn mypage-btn">수정</button>
+                <a href="/semi/center/detail.jsp?centerId=<%=centerDto.getCenterId() %>" class="link link-btn mypage-btn">취소</a>
             </div>
             <div class="row right">
-                <a href="/semi/eoc/detail.jsp?centerId=<%=centerDto.getCenterId() %>" class="link link-btn">운동종목</a>
+                <a href="/semi/eoc/detail.jsp?centerId=<%=centerDto.getCenterId() %>" class="link link-btn mypage-btn">운동종목</a>
             </div>
         </div>
     </form>
