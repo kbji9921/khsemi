@@ -296,5 +296,46 @@ public class ReservationDao {
 		      
 		      return list;
 		}
+		public boolean delete(ReservationDto reservationDto)throws Exception{
+			Connection con = JdbcUtils.getConnection();
+			
+			String sql = "delete from reservation where player_id=? and trainer_id=? and reservation_date=? and reservation_time=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, reservationDto.getPlayerId());
+			ps.setString(2, reservationDto.getTrainerId());
+			ps.setDate(3, reservationDto.getReservationDate());
+			ps.setString(4, reservationDto.getReservationTime());
+			
+			int count = ps.executeUpdate();
+			
+			con.close();
+			return count > 0;
+		}
+		public ReservationDto selectDto(ReservationDto reservationDto)throws Exception{
+			Connection con = JdbcUtils.getConnection();
+			
+			String sql = "select * from reservation where player_id=? and trainer_id=? and reservation_date=? and reservation_time=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, reservationDto.getPlayerId());
+			ps.setString(2, reservationDto.getTrainerId());
+			ps.setDate(3, reservationDto.getReservationDate());
+			ps.setString(4, reservationDto.getReservationTime());
+			
+			ResultSet rs = ps.executeQuery();
+			ReservationDto findDto;
+			if(rs.next()) {
+				findDto = new ReservationDto();
+				findDto.setReservationNo(rs.getInt("reservation_no"));
+				findDto.setPlayerId(rs.getString("player_id"));
+				findDto.setTrainerId(rs.getString("trainer_id"));
+				findDto.setReservationDate(rs.getDate("reservation_date"));
+				findDto.setReservationTime(rs.getNString("reservation_time"));
+			}else {
+				findDto = null;
+			}
+			
+			con.close();
+			return findDto;
+		}
 		
 }

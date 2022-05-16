@@ -177,7 +177,7 @@ $(function(){
 							href="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentNo%>">
 							<img
 							src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentNo%>"
-							class="img img-circle asdf">
+							class="img img-circle asdf" width="100%">
 						</a>
 						<%
 						} else {
@@ -217,7 +217,7 @@ $(function(){
             
             <div class="row">
                 <label>센터이름
-                <input type="text" name="centerName" value="<%=centerDto.getCenterName() %>" autocomplete="off" class="form-input inpur-round fill" id="centername-input input-dis">
+                <input type="text" name="centerName" value="<%=centerDto.getCenterName() %>" autocomplete="off" class="form-input inpur-round fill input-dis" id="centername-input">
             	</label>
             </div>
             <div class="row">
