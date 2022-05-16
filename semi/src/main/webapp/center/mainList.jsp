@@ -89,7 +89,7 @@
     <div class="c-container w650 m30">
         <!--검색창-->
         <div class="row center m20">
-            <form action="<%=request.getContextPath() %>/center/list.jsp" method="get">
+            <form action="<%=request.getContextPath() %>/center/mainList.jsp" method="get">
             <%if(type==null||type.equals("center_basic_address")){ %>
                 <select name="type" class="form-input input-round">
                     <option value="center_basic_address" selected >동이름</option>     
@@ -171,17 +171,17 @@
       <!-- 이전 버튼 -->
       <%if(p > 1){ %>
          <%if(isSearch){ %>
-         <a href="list.jsp?p=1&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&laquo;</a>
+         <a href="mainList.jsp?p=1&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&laquo;</a>
          <%} else { %>
-         <a href="list.jsp?p=1&s=<%=s%>">&laquo;</a>
+         <a href="mainList.jsp?p=1&s=<%=s%>">&laquo;</a>
          <%} %>
       <%} %>
       
       <%if(startBlock > 1){ %>
          <%if(isSearch){ %>
-         <a href="list.jsp?p=<%=startBlock-1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&lt;</a>
+         <a href="mainList.jsp?p=<%=startBlock-1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&lt;</a>
          <%} else { %>
-         <a href="list.jsp?p=<%=startBlock-1%>&s=<%=s%>">&lt;</a>
+         <a href="mainList.jsp?p=<%=startBlock-1%>&s=<%=s%>">&lt;</a>
          <%} %>
       <%} %>
       
@@ -189,15 +189,15 @@
       <%for(int i=startBlock; i <= endBlock; i++){ %>
          <%if(isSearch){ %>
             <%if(i == p){ %>
-            <a class="active" href="list.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>   
+            <a class="active" href="mainList.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>   
             <%} else { %>
-            <a href="list.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>
+            <a href="mainList.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>
             <%} %>
          <%} else { %>
             <%if(i == p){ %>
-            <a class="active" href="list.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>   
+            <a class="active" href="mainList.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>   
             <%} else { %>
-            <a href="list.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>
+            <a href="mainList.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>
             <%} %>
          <%} %>
       <%} %>
@@ -205,17 +205,17 @@
       <!-- 다음 버튼 영역 -->
       <%if(endBlock < lastPage){ %>
          <%if(isSearch){ %>
-         <a href="list.jsp?p=<%=endBlock+1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&gt;</a>
+         <a href="mainList.jsp?p=<%=endBlock+1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&gt;</a>
          <%} else { %>
-         <a href="list.jsp?p=<%=endBlock+1%>&s=<%=s%>">&gt;</a>
+         <a href="mainList.jsp?p=<%=endBlock+1%>&s=<%=s%>">&gt;</a>
          <%} %>
       <%} %>
       
       <%if(p < lastPage){ %>
          <%if(isSearch){ %>
-         <a href="list.jsp?p=<%=lastPage%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&raquo;</a>
+         <a href="mainList.jsp?p=<%=lastPage%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&raquo;</a>
          <%} else { %>
-         <a href="list.jsp?p=<%=lastPage%>&s=<%=s%>">&raquo;</a>
+         <a href="mainList.jsp?p=<%=lastPage%>&s=<%=s%>">&raquo;</a>
          <%} %>
       <%} %>
    </div>
