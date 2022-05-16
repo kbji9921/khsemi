@@ -10,7 +10,7 @@
 <%-- 준비 --%>
 <%
 //String trainerId = "testuser6";
-String trainerId = (String) request.getSession().getAttribute("trainer");
+String trainerId =(String)request.getSession().getAttribute("trainer");
 %>
 
 <%-- 처리 --%>
@@ -130,6 +130,11 @@ input:readonly {
 	border:none !important;
 	color:white !important;
 }
+.danger{
+		background-color:red !important;
+	border:none !important;
+	color:white !important;
+}
 </style>
 <!-- 구글 폰트 cdn -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -196,7 +201,7 @@ input:readonly {
 					<h3 class="mypage-nickname"><%=trainerDto.getTrainerName()%>님
 					</h3>
 				</div>
-
+			<%=trainerId%>
 			</div>
 			<div class="row">
 				<%
@@ -227,6 +232,9 @@ input:readonly {
 				<a
 					href="<%=request.getContextPath()%>/center/update.jsp?centerId=<%=trainerDto.getCenterId()%>"
 					class="link link-btn">센터수정</a>
+									<a
+					href="<%=request.getContextPath()%>/center/delete.kh?centerId=<%=trainerDto.getCenterId()%>&trainerId=<%=trainerId%>"
+					class="link link-btn danger">센터삭제</a>
 				<%
 				}
 				%>
