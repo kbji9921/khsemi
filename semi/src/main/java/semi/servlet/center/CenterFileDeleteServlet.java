@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import semi.servlet.DtoDao.AttachmentDao;
 
-@WebServlet(urlPatterns = "/center/profile.delete")
+@WebServlet(urlPatterns = "/profile/profileDelete.center")
 public class CenterFileDeleteServlet extends HttpServlet {
 	@SuppressWarnings("deprecation")
 	@Override
@@ -37,7 +37,8 @@ public class CenterFileDeleteServlet extends HttpServlet {
 	        }
 
 			// 출력
-			resp.sendRedirect(req.getContextPath()+"/center/update.jsp?centerId="+centerId);
+			resp.sendRedirect(
+					req.getContextPath() + "/center/update.jsp?centerId=" + centerId);
 
 		} catch (Exception e) {
 			e.printStackTrace();

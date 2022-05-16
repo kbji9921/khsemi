@@ -76,7 +76,7 @@
         	<input type="hidden" name="trainerId" value="<%=trainerId%>">
        	</div>
        	<button type="submit" class="btn btn-semi">등록하기</button>
-       	<a href="<%=request.getContextPath()%>/trainer/trainerMyPage.jsp?trainerId<%=trainerId%>" class="link link-btn">취소</a>
+       	<a href="<%=request.getContextPath()%>/trainer/trainerMyPage.jsp?trainerId=<%=trainerId%>" class="link link-btn">취소</a>
         </div>
                 
         </div>

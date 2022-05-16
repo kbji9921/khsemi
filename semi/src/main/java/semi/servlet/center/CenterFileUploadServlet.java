@@ -16,10 +16,8 @@ import semi.servlet.DtoDao.AttachmentDao;
 import semi.servlet.DtoDao.AttachmentDto;
 import semi.servlet.DtoDao.CenterAttachmentDao;
 import semi.servlet.DtoDao.CenterAttachmentDto;
-import semi.servlet.DtoDao.CenterDao;
-import semi.servlet.DtoDao.CenterDto;
 
-@WebServlet(urlPatterns ="/centerFile/insert.kh")
+@WebServlet(urlPatterns ="/profile/profileInsert.center")
 public class CenterFileUploadServlet extends HttpServlet{
 @Override
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,51 +35,40 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		
 		MultipartRequest mRequest = new MultipartRequest(req, path, max, encoding, policy);
 		
-		CenterDto centerDto = new CenterDto();
-		centerDto.setCenterId(mRequest.getParameter("centerId"));
-		centerDto.setCenterName(mRequest.getParameter("centerPw"));
-		centerDto.setCenterPhone(mRequest.getParameter("centerName"));
-		centerDto.setCenterWeektime(mRequest.getParameter("centerBirth"));
-		centerDto.setCenterWkndtime(mRequest.getParameter("centerPhone"));
-		centerDto.setCenterPost(mRequest.getParameter("centerEmail"));
-		centerDto.setCenterBasicAddress(mRequest.getParameter("centerBasicAddress"));
-		centerDto.setCenterDetailAddress(mRequest.getParameter("centerDetailAddress"));
-		centerDto.setCenterIntroduction(mRequest.getParameter("centerIntroduction"));
-
-		//처리
-		CenterDao centerDao = new CenterDao();
-		centerDao.insert(centerDto);
+		String centerId = mRequest.getParameter("centerId");
 		
 		//첨부파일 정보 추가
-		if(mRequest.getFile("centerProfile")!=null) {
+		if(mRequest.getFile("centerAttachment")!=null) {
 			//첨부파일 등록
 			AttachmentDao attachmentDao = new AttachmentDao();
 			AttachmentDto attachmentDto = new AttachmentDto();
 			attachmentDto.setAttachmentNo(attachmentDao.getSequence());
-			attachmentDto.setAttachmentUploadName(mRequest.getOriginalFileName("centerProfile"));
-			attachmentDto.setAttachmentSavename(mRequest.getFilesystemName("centerProfile"));
-			attachmentDto.setAttachmentType(mRequest.getContentType("centerProfile"));
-			File target = mRequest.getFile("centerProfile");
+			attachmentDto.setAttachmentUploadName(mRequest.getOriginalFileName("centerAttachment"));
+			attachmentDto.setAttachmentSavename(mRequest.getFilesystemName("centerAttachment"));
+			attachmentDto.setAttachmentType(mRequest.getContentType("centerAttachment"));
+			File target = mRequest.getFile("centerAttachment");
 			attachmentDto.setAttachmentSize(target.length());
 			
 			attachmentDao.insert(attachmentDto);
 			
 			CenterAttachmentDto centerAttachmentDto = new CenterAttachmentDto();
-			centerAttachmentDto.setCenterId(centerDto.getCenterId());
+			centerAttachmentDto.setCenterId(centerId);
 			centerAttachmentDto.setAttachmentNo(attachmentDto.getAttachmentNo());
 			
 			CenterAttachmentDao centerAttachmentDao = new CenterAttachmentDao();
 			centerAttachmentDao.insert(centerAttachmentDto);
+		
+		
+			resp.sendRedirect(req.getContextPath()+"/center/update.jsp?centerId="+centerId);
+		//출력
+		}else{
+	         resp.sendRedirect(req.getContextPath()+"/center/update.jsp?centerId="+centerId+"&error");
+	   }
+		
+		
+		}catch(Exception e) {
+			e.printStackTrace();
+			resp.sendError(500);
 		}
-		
-		
-		
-
-		
-		
-	}catch(Exception e) {
-		e.printStackTrace();
-		resp.sendError(500);
 	}
-}
 }
