@@ -142,7 +142,7 @@
 	            <button type="submit" class="btn btn-semi pw-btn">확인</button>
 	        </div>
 	        <div class="row center">
-	            <a href="마이페이지 이동" class="link link-btn pw-btn">취소</a>
+	            <a href="login.jsp" class="link link-btn pw-btn">취소</a>
 	        </div>
 	        <div class="row center">
 				<%if(type1){ %>

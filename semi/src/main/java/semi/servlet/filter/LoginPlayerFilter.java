@@ -12,16 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebFilter(filterName="f2", urlPatterns = {
-		"/player/loginSuccess.jsp","/player/logout.player",
-		"/player/changePw.jsp","/player/changeInformation.jsp",
+		"/player/logout.player","/player/changePw.jsp","/player/changeInformation.jsp",
 		"/player/deletePlayer.jsp","/player/matchingDetail.jsp",
 		"/player/matchingInsert.jsp","/player/mypage.jsp",
 		"/player/point.jsp","/player.insert.kh","/player/matchingDelete.player",
 		"/player/matching.insert","/player/pay.player","/player/password.player",
 		"/player/chageinformation.player","/player/chargePoint.player",
-		"/player/matchingList.jsp","/reservation/reservationListPlayer.jsp"
-		
-		
+		"/player/matchingList.jsp","/reservation/reservationListPlayer.jsp",
+		"/player/returnPoint.jsp","/grade/gradeDelete.grade",
+		"/trainer/insert.grade","/grade/gradeUpdate.grade",
+		"/board/boardDetail.jsp","/board/boardEdit.jsp",
+		"/board/boardList.jsp","/board/boardWrite.jsp",
+		"/profile/playerProfileInsert.jsp","/player/insert.kh",
+		"/player/returnPoint.player"
 })
 public class LoginPlayerFilter implements Filter{
 

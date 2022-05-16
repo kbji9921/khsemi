@@ -1,18 +1,12 @@
-
-
 <%@page import="semi.servlet.DtoDao.AttachmentDto"%>
 <%@page import="semi.servlet.DtoDao.AttachmentDao"%>
 <%@page import="semi.servlet.DtoDao.TrainerAttachmentDao"%>
-
 <%@page import="semi.servlet.DtoDao.GradeDto"%>
-
 <%@page import="semi.servlet.DtoDao.GradeDao"%>
-
 <%@page import="semi.servlet.DtoDao.AttachmentDto"%>
 <%@page import="semi.servlet.DtoDao.AttachmentDao"%>
 <%@page import="semi.servlet.DtoDao.CenterAttachmentDao"%>
 <%@page import="semi.servlet.DtoDao.CenterDao"%>
-
 <%@page import="semi.servlet.DtoDao.TrainerDao"%>
 <%@page import="semi.servlet.DtoDao.TrainerDto"%>
 <%@page import="java.util.List"%>
@@ -79,7 +73,6 @@
 					<div class="content-box">
 						<div class="content exercise">
 							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exerciseName=수영">
-
 								<img src="/semi/images/swim_icon.png" width=45%>
 							</a>
 						</div>
@@ -101,11 +94,11 @@
 					List<GradeDto> list = trainerDao.selectListByGradeRate();
 			    	TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao();
 			    	for(GradeDto gradeDto:list){
-			        	int attachmentNo = trainerAttachmentDao.selectOne(gradeDto.getGradeTarget());
-			
-			        	AttachmentDto attachmentDto = attachmentDao.selectOne(attachmentNo);
-			
-			        	boolean noPic = attachmentDto==null;
+		        	int attachmentNo = trainerAttachmentDao.selectOne(gradeDto.getGradeTarget());
+		
+		        	AttachmentDto attachmentDto = attachmentDao.selectOne(attachmentNo);
+		
+		        	boolean noPic = attachmentDto==null;
 					%>
 				<div class="content-box">
 					<div class="content trainer" >
