@@ -47,6 +47,7 @@ String centerId = trainerDto.getCenterId();
 
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="<%=request.getContextPath()%>/js/upload.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script type="text/javascript">
     </script>
@@ -75,9 +76,9 @@ String centerId = trainerDto.getCenterId();
             </ul>
             </div>
             <div  class="row center m30">
-           	<img src="<%=request.getContextPath()%>/images/profile.png" width="80%">
+               <img src="" class="thumb"/ width="80%">
            	 <div  class="row center">
-        	<input type="file" accept="jpg,png" name="centerAttachment" class="form-input input-round">
+        	      <input type="file" class="hidden_input" id="imageSelector" name="centerAttachment" accept="image/jpeg, image/jpg, image/png" multiple />
         	<input type="hidden" name="centerId" value="<%=centerId%>">
        	</div>
        	<button type="submit" class="btn btn-semi">등록하기</button>
