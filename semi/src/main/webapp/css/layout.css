@@ -48,8 +48,8 @@ header {
     align-items: center;
 }
 .gnb-right a {
-	font-size:13px !important;
-	width:auto;
+	font-size:14px !important;
+	width: auto !important;
 }
 .partition{
     line-height: 46px;

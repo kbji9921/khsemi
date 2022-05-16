@@ -26,10 +26,10 @@
 	boolean statecheck = matchingDto.getMatchingState().length() == 4;
 %>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-<jsp:include page="/jsp/template/matchingHeader.jsp"></jsp:include>
+<jsp:include page="/jsp/template/matchingPayHeader.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/matching.css">
 <section class="container w850 board-box">
-<table border="1" class="board-tb w850 m30">
+<table border="1" class="board-tb m30">
 	<tr>
 		<th>강사명</th>
 		<th><%=trainerDto.getTrainerName() %></th>

@@ -163,7 +163,7 @@ a:hover{text-decoration:none;}
 board-select{
 	font-size:17px;
 	width:100px;
-    height: 35px;
+		    height: 35px;
 }
 .board-content{
 	margin: 30px 0 120px 0;

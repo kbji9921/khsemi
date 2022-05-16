@@ -3,6 +3,7 @@
 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/mypage.css">
 
     <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -173,48 +174,48 @@
 
             <div class="row">
                 <label>센터아이디
-                <input type="text" name="centerId" placeholder="영문소문자,숫자 5~20글자내로 입력하세요" autocomplete="off" class="form-input input-round fill"
+                <input type="text" name="centerId" placeholder="영문소문자,숫자 5~20글자내로 입력하세요" autocomplete="off" class="form-input input-round fill mypage-input"
                 data-fail-msg="아이디의 형식이 올바르지 않습니다">
                  <span></span> </label>
             </div>
 
             <div class="row">
                 <label>센터이름
-                <input type="text" name="centerName" autocomplete="off" class="form-input input-round fill"></label>
+                <input type="text" name="centerName" autocomplete="off" class="form-input input-round fill mypage-input"></label>
             </div>
             <div class="row">
                 <label>전화번호
-                <input type="text" name="centerPhone" autocomplete="off" placeholder="-포함하여 입력하세요" class="form-input input-round fill regex-input"
+                <input type="text" name="centerPhone" autocomplete="off" placeholder="-포함하여 입력하세요" class="form-input input-round fill regex-input mypage-input"
                 data-success-msg="올바른 전화번호 입니다" data-fail-msg="-를 포함하여 입력하세요">
                  <span></span></label>
             </div>
             <div class="row">
                 <label>평일운영시간
-                <input type="text" name="centerWeektime" placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" autocomplete="off" class="form-input input-round fill regex-input"
+                <input type="text" name="centerWeektime" placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" autocomplete="off" class="form-input input-round fill regex-input mypage-input"
                	 data-fail-msg="입력하신 시간을 다시 확인해주세요">
                	<span></span></label>
             </div>
             <div class="row">
                 <label>주말운영시간
-                <input type="text" name="centerWkndtime" placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" autocomplete="off" class="form-input input-round fill regex-input"
+                <input type="text" name="centerWkndtime" placeholder="휴무 또는 00:00~00:00과 같이 입력하세요" autocomplete="off" class="form-input input-round fill regex-input mypage-input"
                  data-fail-msg="입력하신 시간을 다시 확인해주세요">
                 <span></span></label>
             </div>
             <div class="row">
                 <label>주소</label><br>
-                <input type="text" name="centerPost" class="form-input input-round">
+                <input type="text" name="centerPost" class="form-input input-round mypage-input">
 
                 <a href="#" class="link link-btn address-find-btn">검색</a>
             </div>
             <div class="row">
-                <input type="text" name="centerBasicAddress" autocomplete="off" class="form-input input-round fill">
+                <input type="text" name="centerBasicAddress" autocomplete="off" class="form-input input-round fill mypage-input">
             </div>
             <div class="row">
-                <input type="text" name="centerDetailAddress" autocomplete="off" class="form-input input-round fill">
+                <input type="text" name="centerDetailAddress" autocomplete="off" class="form-input input-round fill mypage-input">
             </div>
             <div class="row">
                 <label>운동종목</label>
-				<select name="exerciseName" class="form-input input-round fill">
+				<select name="exerciseName" class="form-input input-round fill mypage-input">
 					<option selected disabled>주종목 외 운동은 내 정보에서 추가 가능합니다</option>
 					<option>헬스</option>
 					<option>필라테스</option>
@@ -225,17 +226,17 @@
             </div>
             <div class="row">
                 <label for="introduction-input">
-                    <textarea name="centerIntroduction" class="form-input input-round fill center-introbox" rows="7" autocomplete="off" 
+                    <textarea name="centerIntroduction" class="form-input input-round fill center-introbox mypage-input" rows="7" autocomplete="off" 
                     placeholder="센터소개 또는 비용 등에 대하여 작성해주세요"></textarea>
                 </label>
             </div>
             <div class="row">
                 <label>센터대표사진</label>
-                <input type="file" name="centerPics" class="form-input input-round fill">
+                <input type="file" name="centerPics" class="form-input input-round fill mypage-input">
             </div>
             <div class="row right">
-                <button type="submit" class="btn btn-semi">등록</button>
-                <a href="<%=request.getContextPath()%>/index.jsp" class="link link-btn">취소</a>
+                <button type="submit" class="btn btn-semi mypage-btn">등록</button>
+                <a href="<%=request.getContextPath()%>/index.jsp" class="link link-btn mypage-btn">취소</a>
             </div>
         </div>
     </form>

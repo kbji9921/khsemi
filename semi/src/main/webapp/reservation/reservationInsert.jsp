@@ -34,6 +34,7 @@
    <link rel="stylesheet" href="/resources/demos/style.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
    <link rel="stylesheet" type="text/css" href="../css/common.css">
+   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/mypage.css">
    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
@@ -100,22 +101,22 @@
         </div>
         <div class="row m30">
             <label>강사</label>
-            <input type="text" name="trainerName" value="<%=trainerDto.getTrainerName() %>" class="form-input input-round  fill" readonly>
+            <input type="text" name="trainerName" value="<%=trainerDto.getTrainerName() %>" class="form-input input-round  fill mypage-input" readonly>
             <input type="hidden" name="trainerId" value="<%=trainerDto.getTrainerId()%>">
         </div>
         <div class="row m30">
             <label>회원</label>
-            <input type="text" name="playerName" value="<%=playerDto.getPlayerName() %>" class="form-input input-round fill" readonly>
+            <input type="text" name="playerName" value="<%=playerDto.getPlayerName() %>" class="form-input input-round fill mypage-input" readonly>
             <input type="hidden" name="playerId" value="<%=playerDto.getPlayerId()%>">
         </div>
         
         <div class="row m30">
         <label>날짜 선택</label>
-            <input id="datepicker" name="reservationDate" class="form-input input-round fill">
+            <input id="datepicker" name="reservationDate" class="form-input input-round fill mypage-input">
         </div>
         <div class="row m30">
           <label for="time">시간 선택</label>
-          <select name="reservationTime" class="form-input input-round fill">
+          <select name="reservationTime" class="form-input input-round fill mypage-input">
             <option>시간선택</option>
              <option>09:00AM</option>
              <option>10:00AM</option>
@@ -134,7 +135,7 @@
           </select>
         </div>
         <div class="row m40">
-            <input type="submit" class="btn btn-semi btn-round fill" value="예약">
+            <input type="submit" class="btn btn-semi btn-round fill mypage-input" value="예약">
         </div>
         <div class="row center">
             <a href="#" class="link">이용약관</a>|

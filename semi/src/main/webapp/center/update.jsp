@@ -30,17 +30,7 @@
 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
-<style>
-.hide{
-display:none !important;}
-.mypage-nickname {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 50%;
-	margin-left: 0px;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/mypage.css">
  <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
@@ -211,7 +201,7 @@ $(function(){
 		</div>
 			 <div class="row">
 			 	<label>센터아이디
-            	<input type="text" name="centerId" value="<%=centerId%>" class="form-input inpur-round fill" readonly>
+            	<input type="text" name="centerId" value="<%=centerId%>" class="form-input inpur-round fill mypage-input" readonly>
 			 	</label>
             </div>
             
