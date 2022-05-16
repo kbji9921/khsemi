@@ -41,6 +41,7 @@
 
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="<%=request.getContextPath()%>/js/upload.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script type="text/javascript">
     </script>
@@ -69,9 +70,9 @@
             </ul>
             </div>
             <div  class="row center m30">
-           	<img src="<%=request.getContextPath()%>/images/profile.png" width="80%">
-     	 <div  class="row center">
-        	<input type="file" accept="jpg,png" name="playerAttachment" class="form-input input-round">
+           <img class="thumb"/ width="80%">
+           	 <div  class="row center">
+        	      <input type="file" class="hidden_input" id="imageSelector" name="playerAttachment" accept="image/jpeg, image/jpg, image/png" multiple />
         	<input type="hidden" name="playerId" value="<%=playerId%>">
        	</div>
 	       	<button type="submit" class="btn btn-semi">등록하기</button>

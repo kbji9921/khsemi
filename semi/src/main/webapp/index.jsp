@@ -140,7 +140,7 @@
 								<%if(nonPic){ %>
 								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
 								<%} else { %>
-								<img src="/semi/images/center_dummy/location.png" width=170% height=170%>
+								<img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=centerAttachmentDto.getAttachmentNo()%>" width=170% height=170%>
 								<%} %>
 							</a>
 						</div>

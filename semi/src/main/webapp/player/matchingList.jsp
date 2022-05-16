@@ -10,7 +10,6 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String playerId = (String)session.getAttribute("login");
-	String trainerId = request.getParameter("trainerId");
 %>
 
 <%

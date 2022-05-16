@@ -209,7 +209,7 @@ public class TrainerDao {
 		
 		String sql = "select * from ("
 				+ "select rownum rn, TMP.* from ("
-				+ "select trainer_id, avg(grade_rate) from (select * from trainer T inner join grade G on  T.trainer_id = G.grade_target)group by trainer_id order by avg(grade_rate) desc)TMP ) where rn between ? and ?";
+				+ "select trainer_id, avg(grade_rate) from (select * from trainer T left outer join  grade G on  T.trainer_id = G.grade_target)group by trainer_id order by avg(grade_rate) desc NULLS LAST)TMP ) where rn between ? and ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, begin);
 		ps.setInt(2, end);

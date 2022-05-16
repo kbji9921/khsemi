@@ -101,7 +101,16 @@
                         <h4 class="reservation-info">운동종목 : <%=trainerDto.getTrainerSports()%></h4>
                     </div>
                 </div>
-      
+      			<form action="reservation.Delete" method="post">
+      				<input type="hidden" name="playerId" value="<%=reservationDto.getPlayerId()%>">
+      				<input type="hidden" name="trainerId" value="<%=reservationDto.getTrainerId() %>">
+      				<input type="hidden" name="reservationDate" value="<%=reservationDto.getReservationDate() %>">
+      				<input type="hidden" name="reservationTime" value="<%=reservationDto.getReservationTime() %>">
+      				<button type="submit">X</button>
+      			</form>
+      			<% if(request.getParameter("error") != null){ %>
+					<h2 style="color:red;">오류가 발생했습니다. 게시판에 문의해주세요</h2>
+				<%} %>
             </div>
          <%} %>
         </div>

@@ -1,6 +1,7 @@
 package semi.servlet.ajax;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,7 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import semi.servlet.DtoDao.AttachmentDao;
+import semi.servlet.DtoDao.AttachmentDto;
 import semi.servlet.DtoDao.CenterDao;
+import semi.servlet.DtoDao.TrainerAttachmentDao;
+import semi.servlet.DtoDao.TrainerAttachmentDto;
 import semi.servlet.DtoDao.TrainerDao;
 import semi.servlet.DtoDao.TrainerDto;
 @WebServlet(urlPatterns = "/ajax/center-trainer.kh")
@@ -28,12 +33,15 @@ public class CenterTrainerListServlet extends HttpServlet{
 			TrainerDao trainerDao = new TrainerDao();
 			List<TrainerDto> trainerList = trainerDao.centerTrainerByPaging(p, s, centerId);
 			
+
+			
 			//출력
 			ObjectMapper mapper = new ObjectMapper();
 			String jsonString = mapper.writeValueAsString(trainerList);
 			
 			resp.setContentType("application/json; charset=UTF-8");
 			resp.getWriter().print(jsonString);
+
 		}
 		catch(Exception e) {
 			e.printStackTrace();

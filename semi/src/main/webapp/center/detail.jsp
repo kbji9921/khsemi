@@ -23,18 +23,12 @@
     String centerId = request.getParameter("centerId");
     String exerciseName =request.getParameter("exerciseName");
 
- //현재 접속한 사용자가 로그인 상태인지 아닌지를 판정하는 코드
- //1. 세션에 login이라는 이름으로 저장된 데이터를 꺼낸다.
  String playerId = (String)session.getAttribute("login");
  String trainerId = (String)session.getAttribute("trainer");
 
- //2. memberId가 있으면 로그인 상태라고 판정하고, 없으면 로그아웃 상태라고 판정한다.
  boolean playerLogin = playerId != null;
  boolean trainerLogin = trainerId != null;
 
- //권한
- //String playerGrade = (String)session.getAttribute("auth");
- //boolean admin = playerLogin && playerGrade.equals("관리자");
  %> 
 <%--페이징 관련 파라미터 수신 --%>
 <%
@@ -75,9 +69,6 @@
 	AttachmentDto attachmentDto1 = attachmentDao.selectOne(attachmentNo);
   	
 	boolean noPic = attachmentDto1==null;
-  	//강사 본인의 센터인지 판정 강사로 로그인 되어 있으면서 현재 로그인 된 강사가 소속된 센터의 아이디가 같다면
-  	//TrainerDto trainerDto = trainerDao.selectOne(trainerId);
-  	//boolean isOwnerCenter = trainerDto!=null && trainerDto.getCenterId().equals(centerDto.getCenterId());
 
    
   %>
@@ -108,6 +99,7 @@
 				
             //좋아요 버튼 클릭 시 추가 제거
               $("#like-btn").click(function(){
+            		  
                   $.ajax({
                       url: "http://localhost:8080/semi/ajax/likecheck.kh",
                       type: "post",   
@@ -126,7 +118,6 @@
                       }
                   })
               })
-                        
 
               //좋아요 수 조회
               function likeLoad(){
@@ -160,6 +151,7 @@
                       }
                   })
               }	
+              
 				
             //센터 소속 강사 리스트 조회
               function trainerLoad(p,s,centerId){
@@ -179,19 +171,15 @@
                           }
 
                           for(var i=0; i < resp.length; i++) {
-                              //var tImg = $("<img>").attr("src", "/semi/file/download.kh?attachmentNo="+trainerImage).addClass("c-img img-circle img-hover center-tImg");
-                              var tImg = $("<img>").attr("src", "http://via.placeholder.com/150x150"+trainerImage).addClass("c-img img-circle img-hover");
-                              var tImgA = $("<a>").attr("href","/semi/trainer/trainerDetail.jsp?centerId="+centerId+"&trainerId="+trainerId);
-                              var tName = $("<a>").text(resp[i].trainerName).attr("href","/semi/trainer/trainerDetail.jsp?centerId="+centerId+"&trainerId="+trainerId).addClass("trainer-nameBox");
+
+                              var tName = $("<a>").text(resp[i].trainerName).attr("href","/semi/trainer/trainerDetail.jsp?centerId="+centerId+"&trainerId="+resp[i].trainerId).addClass("trainer-nameBox");
+
                               
-                              var imgLink = $("<div>").addClass("row center");
-                              var nameLink = $("<div>").addClass("center");
-                              var subArea = $("<div>").addClass("flex-c-container flex-c-vertical layer-3");
+                              var nameLink = $("<div>").addClass("row display-c-center trainer-imgArea");
+                              var subArea = $("<div>").addClass("flex-c-container display-c-center layer-3");
                               
-                             tImgA.append(tImg);
-                             imgLink.append(tImgA);
                              nameLink.append(tName);
-                             subArea.append(imgLink).append(nameLink);
+                             subArea.append(nameLink);
                              
                              $("#trainerFBox").append(subArea);
                           }
@@ -200,16 +188,11 @@
 
               };
 
-              //삭제 기능
-              //$("#delete").click(function(){
-                  //return confirm("정말 삭제하시겠습니까?");
-              //});
+             
           });
     </script>
 
     <div class="c-container w650 m30">
-        <!--제목-->
-        
         <!--센터 정보-->
         <div class="flex-c-container flex-c-vertical m30">
             <div class="flex-c-container">
@@ -218,17 +201,26 @@
                     <img src="/semi/images/center_dummy/location.png" class="c-img img-round" width="250px" height="250px">
                     <%} else { %>
                     <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentDto1.getAttachmentNo()%>" class="c-img img-round" width="250px" height="250px">
-                    <%} %>
+                    <%} %>	
                 </div>
                 <div class="content-c-area">
                     <!--좋아요-->
                     <div class="row flex-c-container">
+                    <%if(playerLogin){ %>
                         <div style="margin-left: auto;">
                            <button type="button" class="c-btn" id="like-btn"><img src="<%=request.getContextPath() %>/images/center_dummy/dislike1.png" width="30px" height="30px" ></button>
                         </div>
                         <div style="margin-top: 6px;">
-                            <span id="like-count">[<%=centerDto.getCenterLikeCount() %>]</span>
+                            <span id="like-count"><%=centerDto.getCenterLikeCount() %></span>
                         </div>
+                        <%}else{ %>
+                        <div style="margin-left: auto;">
+                        	<a href="<%=request.getContextPath()%>/player/login.jsp"><img src="<%=request.getContextPath() %>/images/center_dummy/dislike1.png" width="30px" height="30px" ></a>
+                        </div>
+                        	<div style="margin-top: 6px;">
+                            <span id="like-count"><%=centerDto.getCenterLikeCount() %></span>
+                        </div>
+                        <%} %>
                         <input type="hidden" name="likeCheck" value="?" id="like-check">
                     </div>
                     
@@ -268,53 +260,26 @@
 		<%for(TrainerDto trainerDto : trainerList){ %>
 		 	<input type="hidden" name="trainerId" value=<%=trainerDto.getTrainerId()%> id="trainerId">
 		 	<%-- 강사 이미지 조회--%>
-		 	<%--<%TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao(); 
+		 	<%TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao(); 
 		 	 attachmentNo = trainerAttachmentDao.selectOne(trainerDto.getTrainerId());
-		 	AttachmentDto attachmentDto2 = attachmentDao.selectOne(attachmentNo);--%>
+		 	AttachmentDto attachmentDto2 = attachmentDao.selectOne(attachmentNo);%>
 		 	
-		 	<%-- <input type="hidden" name="attachmentNo" value="<%=attachmentDto2.getAttachmentNo()%>" id="trainerImg">
-		 	<%if(attachmentDto2==null){ %>
-		 		<%=response.sendError(405)%>
-		 	<%} %>--%>
+		 	<input type="hidden" name="attachmentNo" value="<%=attachmentDto2.getAttachmentNo()%>" id="trainerImg">
 		 	
-		<%} %>
+
 		  	
-			<%--<%boolean nonPic = attachmentDto2==null;
-		 	--%>
-          <%-- <div class="flex-c-container flex-c-vertical layer-3">
-               <%--강사 이미지 출력--%>
-               <%-- <div class="row center">
-               		<%if(nonPic){ %>
-	                  	<a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>&trainerId=<%=trainerDto.getTrainerId() %>">
-	                  	<img src="https://placeimg.com/150/150/tech/grayscale" class="c-img img-circle img-hover"></a>
-                  	<%} else {%>
-                  		<a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>&trainerId=<%=trainerDto.getTrainerId() %>">
-                  		<img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentDto2.getAttachmentNo()%>" class="c-img img-circle img-hover" width="150px" height="150px"></a>
-                  	<%} %>
-               </div>--%>
-               <%--강사 이름 
-               <div class="center">
-                   <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId()%>&trainerId=<%=trainerDto.getTrainerId() %>" class="trainer-nameBox">
-                   <%=trainerDto.getTrainerName() %>
-                   </a>
-               </div>
-               
-           </div>
-        <%} %>--%>
+			<%boolean nonPic = attachmentDto2==null;
+		 	%>
+         
+        <%} %>
         </div>
       
-        <!--더보기 기능 구현해야함-->
+       
         <div class="row m10">
             <button class="btn btn-semi fill" id="m-btn">더보기</button>
         </div>
         
         <div class="row right">
-            <!--강사 본인의 센터인지 판정
-           관리자이거나 강사로 로그인 되어 있으면서 현재 로그인 된 강사가 소속된 센터의 아이디가 같다면 -->
-           <%--<%if(admin||trainerLogin&&isOwnerCenter){ %>
-         <a href="<%=request.getContextPath() %>/center/update.jsp?centerId=<%=centerDto.getCenterId()%>" class="link link-btn m10" width="30%">수정</a>
-         <a href="<%=request.getContextPath() %>/center/delete.kh?centerId=<%=centerDto.getCenterId()%>" class="link link-btn m10" width="30%" id="delete">삭제</a>
-            <%}%> --%>
             <a href="#" class="link link-btn m10 top" width="30%">top</a>
       </div>    
     </div>

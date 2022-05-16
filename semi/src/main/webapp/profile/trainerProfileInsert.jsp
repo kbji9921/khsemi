@@ -40,6 +40,7 @@
 
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="<%=request.getContextPath()%>/js/upload.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script type="text/javascript">
     </script>
@@ -68,13 +69,14 @@
             </ul>
             </div>
             <div  class="row center m30">
-           	<img src="<%=request.getContextPath()%>/images/profile.png" width="80%">
+           <img src="" class="thumb"/ width="80%">
            	 <div  class="row center">
-        	<input type="file" accept="jpg,png" name="trainerAttachment" class="form-input input-round">
+        	      <input type="file" class="hidden_input" id="imageSelector" name="trainerAttachment" accept="image/jpeg, image/jpg, image/png" multiple />
+
         	<input type="hidden" name="trainerId" value="<%=trainerId%>">
        	</div>
        	<button type="submit" class="btn btn-semi">등록하기</button>
-       	<a href="<%=request.getContextPath()%>/trainer/trainerMyPage.jsp?trainerId<%=trainerId%>" class="link link-btn">취소</a>
+       	<a href="<%=request.getContextPath()%>/trainer/trainerMyPage.jsp?trainerId=<%=trainerId%>" class="link link-btn">취소</a>
         </div>
                 
         </div>
