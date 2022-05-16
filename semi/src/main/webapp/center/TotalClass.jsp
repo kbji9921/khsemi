@@ -11,8 +11,7 @@
     pageEncoding="UTF-8"%>
  <%--준비 --%>
  <%
-    String exerciseName = request.getParameter("exerciseName");
-    String type = request.getParameter("type");	
+    String type = request.getParameter("type");
     String keyword = request.getParameter("keyword");
  %>
  <%-- 페이지네이션 처리 --%>
@@ -46,11 +45,11 @@
     List<CenterDto> centerList;
     
     if(isSearch){
-       centerList = centerDao.selectList(type, keyword, p, s, exerciseName);
+       centerList = centerDao.selectList(type, keyword, p, s);
        //eocList = eocDao.selectList(centerId);
     }
     else{
-       centerList = centerDao.selectList(p,s,exerciseName);
+       centerList = centerDao.selectList(p,s);
        //eocList = eocDao.selectList(centerId);
     }
     
@@ -61,10 +60,10 @@
 <%
    int count;
    if(isSearch){//검색 결과 수 카운트
-      count = centerDao.countByPaging(type, keyword,exerciseName);
+      count = centerDao.countByPaging(type, keyword);
    }
    else{//목록 결과 수 카운트
-      count = centerDao.countByPaging(exerciseName);
+      count = centerDao.countByPaging();
    }
    
    //마지막 페이지 번호 계산
@@ -91,7 +90,6 @@
         <!--검색창-->
         <div class="row center m20">
             <form action="<%=request.getContextPath() %>/center/list.jsp" method="get">
-            <input type="hidden" name="exerciseName" value="<%=exerciseName %>">
             <%if(type==null||type.equals("center_basic_address")){ %>
                 <select name="type" class="form-input input-round">
                     <option value="center_basic_address" selected >동이름</option>     
@@ -132,18 +130,18 @@
                 <!--센터이미지-->
                 <div class="row c-list-img">
                 <%if(noPic){ %>
-                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>&exerciseName=<%=exerciseName%>">
+                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>">
                     <img src="/semi/images/center_dummy/location.png" class="c-img img-round" width="170px" height="170px">
                     </a>
                      <%} else{ %>
-                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>&exerciseName=<%=exerciseName%>">
+                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>">
                     <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentDto.getAttachmentNo()%>" class="c-img img-shadow img-round" width="170px" height="170px">
                     </a>
                     <%} %>
                 </div>
                 <div class="c-list-area">
                     <div class="row m20">
-                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>&exerciseName=<%=exerciseName%>">
+                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>">
                         <h2><%=centerDto.getCenterName() %></h2></a>
                     </div>
                     <div>
@@ -173,17 +171,17 @@
       <!-- 이전 버튼 -->
       <%if(p > 1){ %>
          <%if(isSearch){ %>
-         <a href="list.jsp?p=1&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>">&laquo;</a>
+         <a href="list.jsp?p=1&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&laquo;</a>
          <%} else { %>
-         <a href="list.jsp?p=1&s=<%=s%>&exerciseName=<%=exerciseName%>">&laquo;</a>
+         <a href="list.jsp?p=1&s=<%=s%>">&laquo;</a>
          <%} %>
       <%} %>
       
       <%if(startBlock > 1){ %>
          <%if(isSearch){ %>
-         <a href="list.jsp?p=<%=startBlock-1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>">&lt;</a>
+         <a href="list.jsp?p=<%=startBlock-1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&lt;</a>
          <%} else { %>
-         <a href="list.jsp?p=<%=startBlock-1%>&s=<%=s%>&exerciseName=<%=exerciseName%>">&lt;</a>
+         <a href="list.jsp?p=<%=startBlock-1%>&s=<%=s%>">&lt;</a>
          <%} %>
       <%} %>
       
@@ -191,15 +189,15 @@
       <%for(int i=startBlock; i <= endBlock; i++){ %>
          <%if(isSearch){ %>
             <%if(i == p){ %>
-            <a class="active" href="list.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>"><%=i%></a>   
+            <a class="active" href="list.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>   
             <%} else { %>
-            <a href="list.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>"><%=i%></a>
+            <a href="list.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>
             <%} %>
          <%} else { %>
             <%if(i == p){ %>
-            <a class="active" href="list.jsp?p=<%=i%>&s=<%=s%>&exerciseName=<%=exerciseName%>"><%=i%></a>   
+            <a class="active" href="list.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>   
             <%} else { %>
-            <a href="list.jsp?p=<%=i%>&s=<%=s%>&exerciseName=<%=exerciseName%>"><%=i%></a>
+            <a href="list.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>
             <%} %>
          <%} %>
       <%} %>
@@ -207,17 +205,17 @@
       <!-- 다음 버튼 영역 -->
       <%if(endBlock < lastPage){ %>
          <%if(isSearch){ %>
-         <a href="list.jsp?p=<%=endBlock+1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>">&gt;</a>
+         <a href="list.jsp?p=<%=endBlock+1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&gt;</a>
          <%} else { %>
-         <a href="list.jsp?p=<%=endBlock+1%>&s=<%=s%>&exerciseName=<%=exerciseName%>">&gt;</a>
+         <a href="list.jsp?p=<%=endBlock+1%>&s=<%=s%>">&gt;</a>
          <%} %>
       <%} %>
       
       <%if(p < lastPage){ %>
          <%if(isSearch){ %>
-         <a href="list.jsp?p=<%=lastPage%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>">&raquo;</a>
+         <a href="list.jsp?p=<%=lastPage%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&raquo;</a>
          <%} else { %>
-         <a href="list.jsp?p=<%=lastPage%>&s=<%=s%>&exerciseName=<%=exerciseName%>">&raquo;</a>
+         <a href="list.jsp?p=<%=lastPage%>&s=<%=s%>">&raquo;</a>
          <%} %>
       <%} %>
    </div>

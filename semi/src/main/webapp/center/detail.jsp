@@ -108,6 +108,7 @@
 				
             //좋아요 버튼 클릭 시 추가 제거
               $("#like-btn").click(function(){
+            		  
                   $.ajax({
                       url: "http://localhost:8080/semi/ajax/likecheck.kh",
                       type: "post",   
@@ -126,7 +127,6 @@
                       }
                   })
               })
-                        
 
               //좋아요 수 조회
               function likeLoad(){
@@ -160,6 +160,7 @@
                       }
                   })
               }	
+              
 				
             //센터 소속 강사 리스트 조회
               function trainerLoad(p,s,centerId){
@@ -180,18 +181,18 @@
 
                           for(var i=0; i < resp.length; i++) {
                               //var tImg = $("<img>").attr("src", "/semi/file/download.kh?attachmentNo="+trainerImage).addClass("c-img img-circle img-hover center-tImg");
-                              var tImg = $("<img>").attr("src", "http://via.placeholder.com/150x150"+trainerImage).addClass("c-img img-circle img-hover");
-                              var tImgA = $("<a>").attr("href","/semi/trainer/trainerDetail.jsp?centerId="+centerId+"&trainerId="+trainerId);
-                              var tName = $("<a>").text(resp[i].trainerName).attr("href","/semi/trainer/trainerDetail.jsp?centerId="+centerId+"&trainerId="+trainerId).addClass("trainer-nameBox");
+                              //var tImg = $("<img>").attr("src", "http://via.placeholder.com/150x150"+trainerImage).addClass("c-img img-circle img-hover");
+                              //var tImgA = $("<a>").attr("href","/semi/trainer/trainerDetail.jsp?centerId="+centerId+"&trainerId="+resp[i].trainerId);
+                              var tName = $("<a>").text(resp[i].trainerName).attr("href","/semi/trainer/trainerDetail.jsp?centerId="+centerId+"&trainerId="+resp[i].trainerId).addClass("trainer-nameBox");
                               
-                              var imgLink = $("<div>").addClass("row center");
-                              var nameLink = $("<div>").addClass("center");
-                              var subArea = $("<div>").addClass("flex-c-container flex-c-vertical layer-3");
+                              //var imgLink = $("<div>").addClass("row center");
+                              var nameLink = $("<div>").addClass("row display-c-center trainer-imgArea");
+                              var subArea = $("<div>").addClass("flex-c-container display-c-center layer-3");
                               
-                             tImgA.append(tImg);
-                             imgLink.append(tImgA);
+                             //tImgA.append(tImg);
+                             //imgLink.append(tImgA);
                              nameLink.append(tName);
-                             subArea.append(imgLink).append(nameLink);
+                             subArea.append(nameLink);
                              
                              $("#trainerFBox").append(subArea);
                           }
@@ -208,8 +209,6 @@
     </script>
 
     <div class="c-container w650 m30">
-        <!--제목-->
-        
         <!--센터 정보-->
         <div class="flex-c-container flex-c-vertical m30">
             <div class="flex-c-container">
@@ -223,12 +222,21 @@
                 <div class="content-c-area">
                     <!--좋아요-->
                     <div class="row flex-c-container">
+                    <%if(playerLogin){ %>
                         <div style="margin-left: auto;">
                            <button type="button" class="c-btn" id="like-btn"><img src="<%=request.getContextPath() %>/images/center_dummy/dislike1.png" width="30px" height="30px" ></button>
                         </div>
                         <div style="margin-top: 6px;">
-                            <span id="like-count">[<%=centerDto.getCenterLikeCount() %>]</span>
+                            <span id="like-count"><%=centerDto.getCenterLikeCount() %></span>
                         </div>
+                        <%}else{ %>
+                        <div style="margin-left: auto;">
+                        	<a href="<%=request.getContextPath()%>/player/login.jsp"><img src="<%=request.getContextPath() %>/images/center_dummy/dislike1.png" width="30px" height="30px" ></a>
+                        </div>
+                        	<div style="margin-top: 6px;">
+                            <span id="like-count"><%=centerDto.getCenterLikeCount() %></span>
+                        </div>
+                        <%} %>
                         <input type="hidden" name="likeCheck" value="?" id="like-check">
                     </div>
                     

@@ -304,6 +304,38 @@ public class CenterDao {
 		
 		return count;
 	}
+	
+	//센터 전체 개수(메인)
+		public int countByPaging() throws Exception{
+			Connection con = JdbcUtils.getConnection();
+			
+			String sql = "select count(*) from center order by like_count desc";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int count = rs.getInt("count(*)");
+			
+			con.close();
+			
+			return count;
+		}
+	//센터 검색 개수(메인)
+		public int countByPaging(String type, String keyword) throws Exception{
+			Connection con = JdbcUtils.getConnection();
+			
+			String sql = "select count(*) from center where instr(#1,upper(?))>=1 order by like_count desc";
+					
+			sql= sql.replace("#1", type);
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, keyword);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int count = rs.getInt("count(*)");
+			
+			con.close();
+			
+			return count;
+		}
 
 	//센터 검색 개수
 	public int countByPaging(String type, String keyword, String exerciseName) throws Exception{
@@ -365,6 +397,84 @@ public class CenterDao {
 		con.close();
 		
 		return count;
+	}
+	//센터 메인(검색)
+	//동,센터명 검색
+		public List<CenterDto> selectList(String type,String keyword,int p, int s) throws Exception{
+			Connection con = JdbcUtils.getConnection();
+			int end = p *s;
+			int begin = end -(s-1);
+			
+			String sql = "select * from ("
+					+ "select rownum rn,TMP.* from ("
+					+ "select * from center where instr (#1,?)>0 order by like_count desc)TMP)"
+					+ "where rn between ? and ?";
+			
+			sql = sql.replace("#1", type);
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, keyword);
+			ps.setInt(2, begin);
+			ps.setInt(3, end);
+			ResultSet rs = ps.executeQuery();
+			
+			List<CenterDto> list = new ArrayList<>();
+			while(rs.next()) {
+				CenterDto centerDto = new CenterDto();
+				centerDto.setCenterId(rs.getString("center_id"));
+				centerDto.setCenterName(rs.getString("center_name"));
+				centerDto.setCenterPhone(rs.getString("center_phone"));
+				centerDto.setCenterWeektime(rs.getString("center_weektime"));
+				centerDto.setCenterWkndtime(rs.getString("center_wkndtime"));
+				centerDto.setCenterPost(rs.getString("center_post"));
+				centerDto.setCenterBasicAddress(rs.getString("center_basic_address"));
+				centerDto.setCenterDetailAddress(rs.getString("center_detail_address"));
+				centerDto.setCenterIntroduction(rs.getString("center_introduction"));
+				centerDto.setCenterLikeCount(rs.getInt("like_count"));
+				
+				list.add(centerDto);
+			}
+			
+			
+			con.close();
+			
+			return list;
+		}
+	//메인 전체 목록
+	public List<CenterDto> selectList(int p, int s) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		int end = p *s;
+		int begin = end -(s-1);
+		
+		String sql = "select * from ("
+				+ "select rownum rn,TMP.* from ("
+				+ "select * from center order by like_count desc)TMP)"
+				+ "where rn between ? and ?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, begin);
+		ps.setInt(2, end);
+		ResultSet rs = ps.executeQuery();
+		List<CenterDto> list = new ArrayList<>();
+		while(rs.next()) {
+			CenterDto centerDto = new CenterDto();
+			centerDto.setCenterId(rs.getString("center_id"));
+			centerDto.setCenterName(rs.getString("center_name"));
+			centerDto.setCenterPhone(rs.getString("center_phone"));
+			centerDto.setCenterWeektime(rs.getString("center_weektime"));
+			centerDto.setCenterWkndtime(rs.getString("center_wkndtime"));
+			centerDto.setCenterPost(rs.getString("center_post"));
+			centerDto.setCenterBasicAddress(rs.getString("center_basic_address"));
+			centerDto.setCenterDetailAddress(rs.getString("center_detail_address"));
+			centerDto.setCenterIntroduction(rs.getString("center_introduction"));
+			centerDto.setCenterLikeCount(rs.getInt("like_count"));
+			
+			list.add(centerDto);
+		}
+		
+		
+		con.close();
+		
+		return list;
 	}
 }
 
