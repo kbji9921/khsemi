@@ -167,7 +167,37 @@ public class GradeDao {
 	}
 	
 	
-
+	public List<GradeDto> selectListByPaging(int p, int s) throws Exception{
+		int end = p *s;
+		int begin = end -(s-1);
+		
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from ("
+				+ "select rownum rn, TMP.* from ("
+				+ "select * from grade order by grade_no desc)TMP ) where rn between ? and ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, begin);
+		ps.setInt(2, end);
+		ResultSet rs = ps.executeQuery();
+		
+		List<GradeDto> list = new ArrayList<>();
+		while(rs.next()) {
+			GradeDto gradeDto = new GradeDto();
+			gradeDto.setGradeNo(rs.getInt("grade_no"));
+			gradeDto.setGradeTarget(rs.getString("grade_target"));
+			gradeDto.setGradeWriter(rs.getString("grade_writer"));
+			gradeDto.setGradeTime(rs.getDate("grade_time"));
+			gradeDto.setGradeContent(rs.getString("grade_content"));
+			gradeDto.setGradeRate(rs.getInt("grade_rate"));
+			
+			list.add(gradeDto);
+		}
+				
+		con.close();
+		
+		return list;
+	}
 	
 
 

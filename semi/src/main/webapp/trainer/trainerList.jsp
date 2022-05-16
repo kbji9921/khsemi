@@ -134,7 +134,7 @@
                 <%} else{%>
                  <select name="type" class="form-input input-round">
                     <option value="center_id">센터아이디</option>     
-                    <option value="trainer_name" selected >센터명</option>
+                    <option value="trainer_name" selected >강사명</option>
                 </select>
                 <%} %>
                 <%if(isSearch){ %>
@@ -172,11 +172,11 @@
                 <div class="row c-list-img">
                 <%if(noPic){ %>
                     <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?trainerId=<%=trainerDto.getTrainerId()%>">
-                    <img src="<%=request.getContextPath()%>/images/profile.png" class="c-img img-shadow img-round" width="100%">
+                    <img src="<%=request.getContextPath()%>/images/profile.png" class="c-img img-shadow img-round" style="width:170px; height:170px">
                     </a>
                 <%}else{ %>
                 	<a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?trainerId=<%=trainerDto.getTrainerId()%>">
-                	 <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentNo%>" class="c-img img-shadow img-round" width="100%">
+                	 <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentNo%>" class="c-img img-shadow img-round" style="width:170px; height:170px">
                     </a>
                 <%} %>
                 </div>
@@ -189,10 +189,7 @@
                          <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?trainerId=<%=trainerDto.getTrainerId()%>"><h3><%=trainerDto.getTrainerName()%>&nbsp;<%=trainerDto.getTrainerGender() %></h3></a>
                     </div>
                    
-                    <!--좋아요 수-->
-                    <div class="row right m20">
-                        <h4>[10]</h4>
-                    </div>
+
                 </div>
             </div>
                     <%} %>
