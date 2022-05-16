@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import semi.servlet.DtoDao.AttachmentDao;
 
-@WebServlet(urlPatterns = "/center/profile.delete")
+@WebServlet(urlPatterns = "/profile/profileDelete.center")
 public class CenterFileDeleteServlet extends HttpServlet {
 	@SuppressWarnings("deprecation")
 	@Override

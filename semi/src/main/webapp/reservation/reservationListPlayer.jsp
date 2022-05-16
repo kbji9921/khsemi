@@ -62,8 +62,41 @@
  %>    
 <title>회원 예약 리스트</title>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<<<<<<< HEAD
 <jsp:include page="/jsp/template/reservationHeader.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/matching.css">
+=======
+<style>
+.list-center-area{
+width:100%;
+}
+.reservation-box{
+    border: 1px solid #333;}
+.c-pagination {
+       text-align: center;
+       white-space: nowrap;
+       overflow: hidden;            
+  }
+   
+ .c-pagination > a {
+     color: #95a5a6;
+     text-decoration: none;
+     display: inline-block;
+     min-width:1.7em;
+     padding: 0.25em;
+     text-align: center;
+     border:1px solid #95a5a6;
+ }
+ 
+ .c-pagination > a:hover,
+ .c-pagination > a.active {
+     color: #343B6A;
+     border-color: #343B6A;
+ }
+
+
+</style>
+>>>>>>> refs/remotes/origin/main
 
 <body>
 	<div class="container w600 m30">
@@ -101,7 +134,16 @@
                         <h4 class="reservation-info">운동종목 : <%=trainerDto.getTrainerSports()%></h4>
                     </div>
                 </div>
-      
+      			<form action="reservation.Delete" method="post">
+      				<input type="hidden" name="playerId" value="<%=reservationDto.getPlayerId()%>">
+      				<input type="hidden" name="trainerId" value="<%=reservationDto.getTrainerId() %>">
+      				<input type="hidden" name="reservationDate" value="<%=reservationDto.getReservationDate() %>">
+      				<input type="hidden" name="reservationTime" value="<%=reservationDto.getReservationTime() %>">
+      				<button type="submit">X</button>
+      			</form>
+      			<% if(request.getParameter("error") != null){ %>
+					<h2 style="color:red;">오류가 발생했습니다. 게시판에 문의해주세요</h2>
+				<%} %>
             </div>
          <%} %>
         </div>
