@@ -16,11 +16,11 @@
 			<h1>일반회원 로그인</h1>
         </div>
         <div class="row m30">
-            <label>아이디</label>
-            	<input type="text" name="playerId" required autocomplete="off" class="form-input fill input-round" >
+            <label for="playerId">아이디</label>
+            <input type="text" name="playerId" required autocomplete="off" class="form-input fill input-round" >
         </div>
         <div class="row">
-            <label>비밀번호</label>
+            <label for="playerPw">비밀번호</label>
             <input type="password" name="playerPw" required class="form-input fill input-round">
         </div>
       <div class="row m40">

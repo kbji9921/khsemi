@@ -138,7 +138,6 @@ a:hover{text-decoration:none;}
     right: 0;
     color: #777;
     transform: translate(0%,-50%);
-    left: 50%;
     text-align: right;
 }
 .board-rightbox span{
@@ -159,10 +158,12 @@ a:hover{text-decoration:none;}
 	font-size:17px;
 	width:100%;
 	line-height: 35px;
+	height: 35px;
 }
 board-select{
 	font-size:17px;
-	width:100px
+	width:100px;
+    height: 35px;
 }
 .board-content{
 	margin: 30px 0 120px 0;
@@ -172,7 +173,6 @@ board-select{
 
 }
 .btn-box{
-	text-align:right;
 	text-align: right;
     margin: 70px auto 0 auto;
 }
