@@ -16,13 +16,14 @@ public class CenterDeleteServlet extends HttpServlet{
 		try {
 			//준비
 			String centerId= req.getParameter("centerId");
-			
+			String trainerId = req.getParameter("trainerId");
 			//처리
 			CenterDao centerDao = new CenterDao();
 			centerDao.delete(centerId);
 			
+			
 			//출력
-			resp.sendRedirect(req.getContextPath()+"/center/list.jsp");
+			resp.sendRedirect(req.getContextPath()+"/trainer/trainerMyPage.jsp?trainerId="+trainerId);
 		}
 		catch(Exception e) {
 			e.printStackTrace();

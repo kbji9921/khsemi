@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import oracle.jdbc.proxy.annotation.Pre;
-
 public class CenterDao {
 	//센터 등록
 	public void insert(CenterDto centerDto) throws Exception{

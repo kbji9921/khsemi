@@ -15,35 +15,47 @@ header {
 }
 #logo{
 	display: inline-block;
-	margin: 40px 0;
+	margin: 20px 0;
     font-size: 3em;
     font-weight: 600;
 }
 #gnb {
-	display:flex;
-	justify-content: space-around;
-	height: 50px;
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #343b6a;
+    padding: 0px 40px;
+    align-content: center;
+}
+#gnb li{
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #gnb li a {
-    font-weight: 500;
-    height: 50px;
-    line-height: 50px;
+	font-weight: 500;
     color: #fff;
     font-size: 17px;
-    }
-#gnb li:first-child {
-	margin-right:500px;
-	    }
+    height: 47px;
+    width: 100%;
+    line-height: 47px;
+}
 
 .gnb-right{
-	display:flex;
-	justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.gnb-right a {
+	font-size:13px !important;
+	width:auto;
 }
 .partition{
-	line-height: 47px;
+    line-height: 46px;
     color: #fff;
-    padding: 0 15px;
+    font-size: 12px;
+	margin: 0 10px;
 }
 
 .wrap{

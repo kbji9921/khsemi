@@ -1,14 +1,26 @@
+<%@page import="semi.servlet.DtoDao.CenterAttachmentDao"%>
+<%@page import="semi.servlet.DtoDao.CenterDto"%>
+<%@page import="semi.servlet.DtoDao.CenterDao"%>
+<%@page import="semi.servlet.DtoDao.AttachmentDto"%>
+<%@page import="semi.servlet.DtoDao.AttachmentDao"%>
+<%@page import="semi.servlet.DtoDao.TrainerAttachmentDao"%>
 <%@page import="semi.servlet.DtoDao.TrainerDto"%>
 <%@page import="semi.servlet.DtoDao.TrainerDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String trainerId = (String)request.getSession().getAttribute("trainer"); 
+<% String trainerId = (String)request.getSession().getAttribute("trainer"); %>
+<%
 TrainerDao trainerDao = new TrainerDao();
 TrainerDto trainerDto = trainerDao.selectOne(trainerId);
-String centerId = trainerDto.getCenterId();
 
+CenterAttachmentDao centerAttachmentDao = new CenterAttachmentDao();
+int attach = centerAttachmentDao.selectOne(trainerDto.getCenterId());
+
+AttachmentDao attachmentDao = new AttachmentDao();
+AttachmentDto attachmentDto = attachmentDao.selectOne(attach);
+
+boolean noPic = attachmentDto==null;
 %>
-
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html lang="ko">
@@ -16,8 +28,10 @@ String centerId = trainerDto.getCenterId();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>프로필 사진 등록</title>
+    <title>프로필 사진 삭제</title>
     <style>
+    .img{
+    width:100%;}
         .box{
             padding:39px ,40px, 20px;
             font:12px;
@@ -47,13 +61,12 @@ String centerId = trainerDto.getCenterId();
 
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-        <script src="<%=request.getContextPath()%>/js/upload.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script type="text/javascript">
     </script>
 </head>
 <body>
-<form class="join-form" action="profile.insert" method="post" enctype="multipart/form-data">
+<form class="join-form" action="<%=request.getContextPath()%>/center/profile.delete" method="get">
     <div class="container w400 m50">
         <div class="row center m50">
             <h2>프로필 등록</h2>
@@ -63,26 +76,15 @@ String centerId = trainerDto.getCenterId();
         </div>
         <div class="box">
             <div class="row center">
-            <ul>
-                <li>
-                    프로필 사진을 등록하세요.
-                </li>
-                <li>
-                    jpg, png 파일만 등록이 가능합니다.
-                </li>
-                <li>
-                    크기는 2mb 이내로 등록하세요
-                </li>
-            </ul>
+  					<a href="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attach%>"></a>
+                    <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attach%>" class="img img-circle asdf">
             </div>
-            <div  class="row center m30">
-               <img src="" class="thumb"/ width="80%">
            	 <div  class="row center">
-        	      <input type="file" class="hidden_input" id="imageSelector" name="centerAttachment" accept="image/jpeg, image/jpg, image/png" multiple />
-        	<input type="hidden" name="centerId" value="<%=centerId%>">
+        	<input type="hidden" name="centerId" value="<%=trainerDto.getCenterId()%>">
+        	<input type="hidden" name="attachmentNo" value="<%=attach%>">
        	</div>
-       	<button type="submit" class="btn btn-semi">등록하기</button>
-       	<a href="<%=request.getContextPath()%>/trainer/trainerMyPage.jsp?trainerId<%=centerId%>" class="link link-btn">취소</a>
+       	<button type="submit" class="btn btn-semi">삭제하기</button>
+       	<a href="<%=request.getContextPath()%>/center/update.jsp?centerId=<%=trainerDto.getCenterId()%>" class="link link-btn">취소</a>
         </div>
                 
         </div>

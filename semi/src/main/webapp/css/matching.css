@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+
+/* matchingList */
+.matching-delete{
+	background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 5px;
+    width: 72px;
+    height: 26px;
+    cursor: pointer;
+}
+
+.board-tb,
+.board-tb tr td a{
+	font-size:16px;
+}
+
+
+.row.right > a{
+	font-size: 17px;
+	color: #2a6cf5;
+	font-weight: bold;
+}
+
+/* matchingDetail */
+.board-tb{
+	width: 100%;
+}
+.board-tb tbody tr td,
+.board-tb tbody tr th{
+	vertical-align: middle;
+	text-align: center;
+}

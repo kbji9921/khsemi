@@ -41,6 +41,8 @@ if (search){
 //댓글수 표시
 BoardReplyDao boardReplyDao = new BoardReplyDao();
 boolean replyExsist;
+
+
 %>
 
 
@@ -121,7 +123,12 @@ boolean replyExsist;
 					<span class="reply_count">(<%=replyList.size()%>)</span>
 				<%} %>
 			</td>
-			<td><%=boardDto.getBoardWriter()%></td>
+			<td>
+			<%if(boardDto.getBoardWriter() == null){%>
+			(탈퇴계정)
+			<%}else{ %>
+			<%=boardDto.getBoardWriter()%></td>
+			<%} %>
 			<td><%=boardDto.getBoardTime() %></td>
 			<td><%=boardDto.getBoardReadCount() %></td>
 		</tr>

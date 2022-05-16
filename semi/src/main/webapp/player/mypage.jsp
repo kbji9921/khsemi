@@ -246,16 +246,16 @@
     	<a href="returnPoint.jsp?playerid=<%=playerDto.getPlayerId() %>&playerPoint=<%=playerDto.getPlayerPoint() %>" class="link link-btn fill">환불하기</a>
     </div>
     <div class="row">
-        <button  type="button"class="btn btn-primary fill hide" id="btn3">취소</button>
-        </div>
+        <a href="changePw.jsp?playerId=<%=playerId %>" class="link link-btn fill ">비밀번호 변경</a>
+    </div>
     <div class="row">
-        <a href="changePw.jsp?playerId=<%=playerId %>" class="link link-btn fill hide"  id="btn4" >비밀번호 변경</a>
-        </div>
+        <button  type="button"class="btn btn-primary fill hide" id="btn3">취소</button>
+    </div>
     <div class="row">
         <a href="<%=request.getContextPath()%>/player/deletePlayer.jsp?playerId=<%=playerId %>" class="link link-btn  fill hide"  id="btn5" >탈퇴</a>
     </div>
     <div class="top">
-    <a href="top">
+    <a href="#top">
     <img src="<%=request.getContextPath()%>/images/top.png"  width="50px"title="위로 가기"></a>
     </div>
     </div>

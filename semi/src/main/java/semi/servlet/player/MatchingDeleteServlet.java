@@ -24,7 +24,8 @@ public class MatchingDeleteServlet extends HttpServlet{
 			
 			MatchingDto matchingDto = matchingDao.selectCheck(studentId, coachId);
 			boolean matchingStateCheck = matchingDto.getMatchingState().length() == 4;
-			if(!matchingStateCheck) {
+			boolean matchingDaysCheck = matchingDto.getMatchingDays() == 0;
+			if(!matchingStateCheck || matchingDaysCheck) {
 				matchingDao.delete(studentId, coachId);
 				resp.sendRedirect("matchingList.jsp");
 			}else {

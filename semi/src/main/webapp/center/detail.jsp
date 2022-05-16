@@ -180,10 +180,12 @@
                           }
 
                           for(var i=0; i < resp.length; i++) {
+
                               //var tImg = $("<img>").attr("src", "/semi/file/download.kh?attachmentNo="+trainerImage).addClass("c-img img-circle img-hover center-tImg");
                               //var tImg = $("<img>").attr("src", "http://via.placeholder.com/150x150"+trainerImage).addClass("c-img img-circle img-hover");
                               //var tImgA = $("<a>").attr("href","/semi/trainer/trainerDetail.jsp?centerId="+centerId+"&trainerId="+resp[i].trainerId);
                               var tName = $("<a>").text(resp[i].trainerName).attr("href","/semi/trainer/trainerDetail.jsp?centerId="+centerId+"&trainerId="+resp[i].trainerId).addClass("trainer-nameBox");
+
                               
                               //var imgLink = $("<div>").addClass("row center");
                               var nameLink = $("<div>").addClass("row display-c-center trainer-imgArea");
@@ -217,7 +219,7 @@
                     <img src="/semi/images/center_dummy/location.png" class="c-img img-round" width="250px" height="250px">
                     <%} else { %>
                     <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentDto1.getAttachmentNo()%>" class="c-img img-round" width="250px" height="250px">
-                    <%} %>
+                    <%} %>	
                 </div>
                 <div class="content-c-area">
                     <!--좋아요-->
@@ -276,39 +278,18 @@
 		<%for(TrainerDto trainerDto : trainerList){ %>
 		 	<input type="hidden" name="trainerId" value=<%=trainerDto.getTrainerId()%> id="trainerId">
 		 	<%-- 강사 이미지 조회--%>
-		 	<%--<%TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao(); 
+		 	<%TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao(); 
 		 	 attachmentNo = trainerAttachmentDao.selectOne(trainerDto.getTrainerId());
-		 	AttachmentDto attachmentDto2 = attachmentDao.selectOne(attachmentNo);--%>
+		 	AttachmentDto attachmentDto2 = attachmentDao.selectOne(attachmentNo);%>
 		 	
-		 	<%-- <input type="hidden" name="attachmentNo" value="<%=attachmentDto2.getAttachmentNo()%>" id="trainerImg">
-		 	<%if(attachmentDto2==null){ %>
-		 		<%=response.sendError(405)%>
-		 	<%} %>--%>
+		 	<input type="hidden" name="attachmentNo" value="<%=attachmentDto2.getAttachmentNo()%>" id="trainerImg">
 		 	
-		<%} %>
+
 		  	
-			<%--<%boolean nonPic = attachmentDto2==null;
-		 	--%>
-          <%-- <div class="flex-c-container flex-c-vertical layer-3">
-               <%--강사 이미지 출력--%>
-               <%-- <div class="row center">
-               		<%if(nonPic){ %>
-	                  	<a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>&trainerId=<%=trainerDto.getTrainerId() %>">
-	                  	<img src="https://placeimg.com/150/150/tech/grayscale" class="c-img img-circle img-hover"></a>
-                  	<%} else {%>
-                  		<a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId() %>&trainerId=<%=trainerDto.getTrainerId() %>">
-                  		<img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentDto2.getAttachmentNo()%>" class="c-img img-circle img-hover" width="150px" height="150px"></a>
-                  	<%} %>
-               </div>--%>
-               <%--강사 이름 
-               <div class="center">
-                   <a href="<%=request.getContextPath() %>/trainer/trainerDetail.jsp?centerId=<%=centerDto.getCenterId()%>&trainerId=<%=trainerDto.getTrainerId() %>" class="trainer-nameBox">
-                   <%=trainerDto.getTrainerName() %>
-                   </a>
-               </div>
-               
-           </div>
-        <%} %>--%>
+			<%boolean nonPic = attachmentDto2==null;
+		 	%>
+         
+        <%} %>
         </div>
       
         <!--더보기 기능 구현해야함-->

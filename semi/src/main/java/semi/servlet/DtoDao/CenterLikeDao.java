@@ -3,7 +3,6 @@ package semi.servlet.DtoDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Map;
 
 public class CenterLikeDao {
 	
@@ -39,7 +38,6 @@ public class CenterLikeDao {
 		else {
 			count = 0;
 		}
-		
 		con.close();
 		return count;
 	}	

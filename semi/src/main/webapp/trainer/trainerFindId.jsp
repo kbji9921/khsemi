@@ -5,13 +5,11 @@ request.setCharacterEncoding("UTF-8");
 %>
 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-	<!DOCTYPE html>
-<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아이디 찾기</title>
+    <title>강사 아이디 찾기</title>
  
     <!-- 구글 폰트 cdn -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +20,11 @@ request.setCharacterEncoding("UTF-8");
     <link rel="stylesheet" type="text/css" href="../css/common.css">
     <!-- <link rel="stylesheet" type="text/css" href="../css/test.css"> -->
     <style>
+	    h4{
+		   font-weight: 600;
+		   color: #343b6a;
+		   font-size: 20px;
+		}
         .percent{
             background-color: #343b6a;
             height :10px;
@@ -171,7 +174,7 @@ request.setCharacterEncoding("UTF-8");
     </div>
     <div class="container w650 m30 page">
         <div class="row left m30 ">
-            <h4>아이디 찾기 (1/3)</h4>
+            <h4>강사 아이디 찾기 (1/3)</h4>
         </div>
         <div class="box">
             <div class="input-box">
@@ -186,7 +189,7 @@ request.setCharacterEncoding("UTF-8");
     </div>
     <div class="container w650 m30 page">
         <div class="row left m30 ">
-            <h4>아이디 찾기 (2/3)</h4>
+            <h4>강사 아이디 찾기 (2/3)</h4>
         </div>
         <div class="box">
             <div class="input-box">
@@ -201,7 +204,7 @@ request.setCharacterEncoding("UTF-8");
     </div>
     <div class="container w650 m30 page">
         <div class="row left m30 ">
-            <h4>아이디 찾기 (3/3)</h4>
+            <h4>강사 아이디 찾기 (3/3)</h4>
         </div>
         <div class="box">
             <div class="input-box">

@@ -23,10 +23,16 @@ public class EocWriteServlet extends HttpServlet{
 			EocDao eocDao = new EocDao();
 			eocDto.setEocNo(eocDao.getSequence());
 			//처리
-			eocDao.insert1(eocDto);
-			
+			EocDto findDto = eocDao.selectOne(eocDto.getEocExerciseName() ,eocDto.getEocCenterId());
+			boolean isExist = findDto !=null;
+			if(isExist) {
 			//출력
+			resp.sendRedirect("/semi/eoc/detail.jsp?centerId="+eocDto.getEocCenterId()+"&error");
+			}else {
 			resp.sendRedirect("/semi/eoc/detail.jsp?centerId="+eocDto.getEocCenterId());
+			eocDao.insert1(eocDto);
+			}
+			
 		}
 		catch(Exception e) {
 			e.printStackTrace();

@@ -47,16 +47,17 @@ public class ReservationDao {
       return number;
    }
    //등록
-   public void insert(ReservationDto reservationDto)throws Exception{
+   public void insert(ReservationDto reservationDto,int ptcount)throws Exception{
       Connection con = JdbcUtils.getConnection();
-      String sql = "insert into reservation (reservation_no, player_id, trainer_id, reservation_date, reservation_time) "
-               + " values (?,?,?,?,?)";
+      String sql = "insert into reservation (reservation_no, player_id, trainer_id, reservation_date, reservation_time,pt_count) "
+               + " values (?,?,?,?,?,?)";
       PreparedStatement ps = con.prepareStatement(sql);
       ps.setInt(1, reservationDto.getReservationNo());
       ps.setString(2, reservationDto.getPlayerId());
       ps.setString(3, reservationDto.getTrainerId());
       ps.setDate(4, reservationDto.getReservationDate());
       ps.setString(5, reservationDto.getReservationTime());
+      ps.setInt(6, ptcount);
       
       ps.execute();
       
@@ -197,5 +198,103 @@ public class ReservationDao {
       con.close();
       return list;
    }
-            
+           
+	//이용자 페이징 조회
+	public List<ReservationDto> selectListByPagingPlayer(int p, int s , String playerId) throws Exception{
+		int end = p *s;
+		int begin = end -(s-1);
+		
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select * from ("
+				+ "select rownum rn, TMP.* from ("
+				+ "select * from reservation where player_id = ? order by reservation_date desc, reservation_time desc)TMP ) where rn between ? and ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, playerId);
+		ps.setInt(2, begin);
+		ps.setInt(3, end);
+		ResultSet rs = ps.executeQuery();
+		
+
+	     List<ReservationDto> list = new ArrayList<>();
+	      while(rs.next()) {
+	          ReservationDto reservationDto = new ReservationDto();
+	          reservationDto.setReservationNo(rs.getInt("reservation_no"));
+	          reservationDto.setPlayerId(rs.getString("player_id"));
+	          reservationDto.setTrainerId(rs.getString("trainer_id"));
+	          reservationDto.setReservationDate(rs.getDate("reservation_date"));
+	          reservationDto.setReservationTime(rs.getString("reservation_time"));
+	         list.add(reservationDto);
+	      }
+	      
+	      con.close();
+	      
+	      return list;
+	}
+	
+	//이용자
+	public int countByPagingPlayer(String playerId) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select count(*) from ("
+				+ "select R.*,R.player_id from reservation R inner join player P on R.player_id = P.player_id where R.player_id= ? order by reservation_date desc, reservation_time desc)";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, playerId);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int count = rs.getInt("count(*)");
+		
+		con.close();
+		
+		return count;
+	}
+	// 강사
+	public int countByPagingTrainer(String trainerId) throws Exception{
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "select count(*) from ("
+				+ "select R.*,R.trainer_id from reservation R inner join trainer T on R.trainer_id = T.trainer_id where R.trainer_id= ? order by reservation_date desc, reservation_time desc)";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, trainerId);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int count = rs.getInt("count(*)");
+		
+		con.close();
+		
+		return count;
+	}
+	//강사 페이징 조회
+		public List<ReservationDto> selectListByPagingTrainer(int p, int s , String trainerId) throws Exception{
+			int end = p *s;
+			int begin = end -(s-1);
+			
+			Connection con = JdbcUtils.getConnection();
+			
+			String sql = "select * from ("
+					+ "select rownum rn, TMP.* from ("
+					+ "select * from reservation where trainer_id = ? order by reservation_date desc, reservation_time desc)TMP ) where rn between ? and ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, trainerId);
+			ps.setInt(2, begin);
+			ps.setInt(3, end);
+			ResultSet rs = ps.executeQuery();
+			
+
+		     List<ReservationDto> list = new ArrayList<>();
+		      while(rs.next()) {
+		          ReservationDto reservationDto = new ReservationDto();
+		          reservationDto.setReservationNo(rs.getInt("reservation_no"));
+		          reservationDto.setPlayerId(rs.getString("player_id"));
+		          reservationDto.setTrainerId(rs.getString("trainer_id"));
+		          reservationDto.setReservationDate(rs.getDate("reservation_date"));
+		          reservationDto.setReservationTime(rs.getString("reservation_time"));
+		         list.add(reservationDto);
+		      }
+		      
+		      con.close();
+		      
+		      return list;
+		}
+		
 }
