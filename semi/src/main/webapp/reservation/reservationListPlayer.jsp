@@ -90,6 +90,7 @@ width:100%;
      border-color: #343B6A;
  }
 
+
 </style>
 
 <body>
@@ -133,7 +134,16 @@ width:100%;
                         <h4>회원명:<%=playerDto.getPlayerName()%></h4>
                     </div>
                 </div>
-      
+      			<form action="reservation.Delete" method="post">
+      				<input type="hidden" name="playerId" value="<%=reservationDto.getPlayerId()%>">
+      				<input type="hidden" name="trainerId" value="<%=reservationDto.getTrainerId() %>">
+      				<input type="hidden" name="reservationDate" value="<%=reservationDto.getReservationDate() %>">
+      				<input type="hidden" name="reservationTime" value="<%=reservationDto.getReservationTime() %>">
+      				<button type="submit">X</button>
+      			</form>
+      			<% if(request.getParameter("error") != null){ %>
+					<h2 style="color:red;">오류가 발생했습니다. 게시판에 문의해주세요</h2>
+				<%} %>
             </div>
          <%} %>
         </div>

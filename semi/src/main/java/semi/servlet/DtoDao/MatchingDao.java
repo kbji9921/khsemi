@@ -218,7 +218,7 @@ public class MatchingDao {
 	public boolean changeMathcingState(String playerId, String trainerId)throws Exception {
 		Connection con = JdbcUtils.getConnection();
 		
-		String sql = "update matching set matching_state = '매칭완료' where student_id=? and coach_id=? ";
+		String sql = "update matching set matching_state = '결제완료' where student_id=? and coach_id=? ";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, playerId);
 		ps.setString(2, trainerId);
@@ -254,6 +254,19 @@ public class MatchingDao {
 		
 		int count = ps.executeUpdate();
 		
+		con.close();
+		return count > 0;
+	}
+
+	public boolean plusPt(ReservationDto reservationDto)throws Exception {
+		Connection con = JdbcUtils.getConnection();
+		
+		String sql = "update matching set matching_days = matching_days + 1 where student_id =? and coach_id=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, reservationDto.getPlayerId());
+		ps.setString(2, reservationDto.getTrainerId());
+		
+		int count = ps.executeUpdate();
 		con.close();
 		return count > 0;
 	}
