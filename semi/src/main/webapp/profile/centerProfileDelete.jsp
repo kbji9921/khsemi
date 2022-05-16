@@ -66,7 +66,7 @@ boolean noPic = attachmentDto==null;
     </script>
 </head>
 <body>
-<form class="join-form" action="<%=request.getContextPath()%>/center/profile.delete" method="get">
+<form class="join-form" action="<%=request.getContextPath()%>/centerFile/insert.kh" method="get">
     <div class="container w400 m50">
         <div class="row center m50">
             <h2>프로필 등록</h2>

@@ -70,7 +70,7 @@
             </ul>
             </div>
             <div  class="row center m30">
-           <img src="" class="thumb"/ width="80%">
+           <img class="thumb"/ width="80%">
            	 <div  class="row center">
         	      <input type="file" class="hidden_input" id="imageSelector" name="playerAttachment" accept="image/jpeg, image/jpg, image/png" multiple />
         	<input type="hidden" name="playerId" value="<%=playerId%>">
