@@ -42,6 +42,9 @@
         <div class="row center">
             살빠Gym 새로운 아이디는 <%=trainerDto.getTrainerId()%>입니다.
         </div>
+        <div class="row center m40">
+        	<a href="trainerLogin.jsp" class="link link-btn fill">로그인</a>
+        </div>
     </div>
 </body>
 </html>
