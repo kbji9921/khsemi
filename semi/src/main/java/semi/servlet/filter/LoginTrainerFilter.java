@@ -22,8 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 		"/player/MatchinigDeleteTrainerServlet",
 		"/player/deleteTrainer.matching",
 		"/center/write.jsp","/center/update.jsp",
-		"/board/boardDetail.jsp","/board/boardEdit.jsp",
-		"/board/boardList.jsp","/board/boardWrite.jsp",
 		"/profile/trainerProfileDelete.jsp","/profile/trainerProfileInsert.jsp"
 		
 })

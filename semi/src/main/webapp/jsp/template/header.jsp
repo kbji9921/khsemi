@@ -66,7 +66,7 @@ function loginCheck(){
                   </li>
                <%-- 사용자 로그인 후 --%>
                      <%}else if(playerLogin){ %>
-                  <li><a href="<%=request.getContextPath()%>/player/matchingList.jsp?playerId=<%=playerId%>">나의 매칭</a></li>
+                  <li><a href="<%=request.getContextPath()%>/player/matchingList.jsp">나의 매칭</a></li>
                   <li><a href="<%=request.getContextPath()%>/reservation/reservationListPlayer.jsp?playerId=<%=playerId%>">나의 일정</a></li>
                   <li class="gnb-right">
                      <a href="<%=request.getContextPath()%>/player/mypage.jsp?playerId=<%=playerId%>">마이페이지</a>

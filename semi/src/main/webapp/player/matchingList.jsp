@@ -10,7 +10,6 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String playerId = (String)session.getAttribute("login");
-	String trainerId = request.getParameter("trainerId");
 %>
 
 <%
@@ -52,11 +51,10 @@
 	<tbody>
 		<%for(MatchingDto matchingDto  : list){ %>
 		<tr class="center">
-		<%
-			TrainerDao trainerDao = new TrainerDao();
-			TrainerDto trainerDto = trainerDao.selectOne(matchingDto.getCoachId()); 
-			TrainerDto trainerInfo = trainerDao.selectOne(trainerId);
-		%>
+			<%
+				TrainerDao trainerDao = new TrainerDao();
+				TrainerDto trainerDto = trainerDao.selectOne(matchingDto.getCoachId()); 
+			%>
 			<td><%=matchingDto.getMatchingNo() %></td>
 			<td><%=playerDto.getPlayerName() %></td>
 			<td><%=trainerDto.getTrainerName() %></td>
@@ -64,7 +62,7 @@
 			<td><%=matchingDto.getMatchingDays() %></td>
 			<td><%=matchingDto.getMatchingState() %></td>
 			<td>
-				<% boolean isPass = matchingDto.getMatchingState().equals("매칭완료"); %>
+				<% boolean isPass = matchingDto.getMatchingState().equals("결제완료"); %>
 				<%if(!isPass){ %>
 					<a href="matchingDetail.jsp?playerId=<%=playerId%>&coachId=<%=matchingDto.getCoachId()%>">결제하기</a>
 				<%}else{ %>
@@ -81,6 +79,13 @@
 			</td>
 			</tr>
 		<%} %>
+		<%if(list.isEmpty()){ %>
+	      <tr>
+	         <td colspan="8" align=center>
+	         	매칭 내역이 없습니다.
+	         </td>
+	      </tr>
+	   <%} %>
 	</tbody>	
 </table>
   	<div class="row center">
