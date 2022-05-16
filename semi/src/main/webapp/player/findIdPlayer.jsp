@@ -158,7 +158,6 @@ request.setCharacterEncoding("UTF-8");
         </div>
         <div class="box">
             <div class="input-box">
-            	<label>이름 : </label>
                 <input type="text" name="playerName" autocomplete="off" class="form-input input-round " placeholder="이름 입력">
                 <span></span>
             </div>
@@ -174,7 +173,6 @@ request.setCharacterEncoding("UTF-8");
         </div>
         <div class="box">
             <div class="input-box">
-            	<label>전화번호 : </label>
                 <input type="text" name="playerPhone" autocomplete="off" class="form-input input-round " placeholder="전화번호 입력">
                 <span></span>
             </div>
@@ -190,8 +188,7 @@ request.setCharacterEncoding("UTF-8");
         </div>
         <div class="box">
             <div class="input-box">
-                <div class="row">
-                	<label>이메일 : </label>
+                <div class="row center">
                     <input type="text" name="playerEmail" autocomplete="off" class="form-input input-round " placeholder="이메일">
                     <span></span>
                 </div>
