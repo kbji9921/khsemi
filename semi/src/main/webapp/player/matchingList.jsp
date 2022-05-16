@@ -29,7 +29,6 @@
 
 
 <section class="container w850">
-<<<<<<< HEAD
 	<div class="row right">
 	  		<a href="<%=request.getContextPath()%>">새로운 매칭 찾으러가기!</a>
 	</div>
@@ -43,7 +42,6 @@
 				<th>상태</th>
 				<th>결제/예약</th>
 				<th>비고</th>
-=======
 <div class="row right">
   		<a href="<%=request.getContextPath()%>">새로운 매칭 찾으러가기!</a>
   </div>
@@ -66,6 +64,7 @@
 			<%
 				TrainerDao trainerDao = new TrainerDao();
 				TrainerDto trainerDto = trainerDao.selectOne(matchingDto.getCoachId()); 
+				TrainerDto trainerInfo = trainerDao.selectOne(trainerId);
 			%>
 			<td><%=matchingDto.getMatchingNo() %></td>
 			<td><%=playerDto.getPlayerName() %></td>
@@ -85,53 +84,13 @@
 			   <form action="matchingDelete.player" method="post">
 					<input type="hidden" name="playerId" value="<%=playerId%>">
 					<input type="hidden" name="trainerId" value="<%=matchingDto.getCoachId()%>">
-					<%--매칭 완료 후 매칭 삭제버튼 삭제 --%>
 					<button type="submit" class="matching-delete">매칭삭제</button>
 				</form>
 			</td>
->>>>>>> refs/remotes/origin/main
 			</tr>
-<<<<<<< HEAD
 		</thead>
 		<tbody>
-			<%for(MatchingDto matchingDto  : list){ %>
-			<tr class="center">
-			<%
-				TrainerDao trainerDao = new TrainerDao();
-				TrainerDto trainerDto = trainerDao.selectOne(matchingDto.getCoachId()); 
-				TrainerDto trainerInfo = trainerDao.selectOne(trainerId);
-			%>
-				<td><%=matchingDto.getMatchingNo() %></td>
-				<td><%=trainerDto.getTrainerName() %></td>
-				<td><%=matchingDto.getMatchingDate() %></td>
-				<td><%=matchingDto.getMatchingDays() %></td>
-				<td><%=matchingDto.getMatchingState() %></td>
-				<td>
-					<% boolean isPass = matchingDto.getMatchingState().equals("매칭완료"); %>
-					<%if(!isPass){ %>
-						<a href="matchingDetail.jsp?playerId=<%=playerId%>&coachId=<%=matchingDto.getCoachId()%>">결제하기</a>
-					<%}else{ %>
-						<a href="matchingDetail.jsp?playerId=<%=playerId%>&coachId=<%=matchingDto.getCoachId()%>">예약하기</a>
-					<%} %>		
-				</td>
-				<td>
-				   <form action="matchingDelete.player" method="post">
-						<input type="hidden" name="playerId" value="<%=playerId%>">
-						<input type="hidden" name="trainerId" value="<%=matchingDto.getCoachId()%>">
-						<button type="submit" class="matching-delete">매칭삭제</button>
-					</form>
-				</td>
-				</tr>
-			<%} %>
-			<%if(list.isEmpty()){ %>
-				<tr>
-					<td colspan="7" align="center">매칭내역이 없습니다.</td>
-				</tr>
-				
-			<%} %>
-		</tbody>	
 	</table>
-=======
 		<%} %>
 		<%if(list.isEmpty()){ %>
 	      <tr>
@@ -142,7 +101,6 @@
 	   <%} %>
 	</tbody>	
 </table>
->>>>>>> refs/remotes/origin/main
   	<div class="row center">
 		<%if(request.getParameter("error") != null){ %>
 			
