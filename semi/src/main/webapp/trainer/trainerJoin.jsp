@@ -195,7 +195,7 @@
     </script>
 </head>
 <body>
-    <form action="profile.trainer" class="join-form" method="post" enctype="multipart/form-data">
+    <form action="<%=request.getContextPath()%>/trainer/profile.trainer" class="join-form" method="post" enctype="multipart/form-data">
     <div class="container w450 m30">
     	<div class="row center">
       		<h2>강사 회원가입</h2>

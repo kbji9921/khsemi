@@ -166,7 +166,7 @@ request.setCharacterEncoding("UTF-8");
     </script>
 </head>
 <body>
-<form class="join-form" action="findId.trainer" method="post">
+<form class="join-form" action="<%=request.getContextPath()%>/trainer/findId.trainer" method="post">
     <div class="container w650 m30">
         <div class="row">
             <div class="percent"></div>

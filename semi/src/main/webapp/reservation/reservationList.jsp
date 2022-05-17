@@ -42,13 +42,13 @@ width:100%;
             <div class="flex-container list-center-listbox">
                 <!--센터이미지-->
                 <div class="row center list-image-area">
-                    <a href="<%=request.getContextPath() %>/semi/center/detail.jsp?centerId=<%=reservationDto.getReservationNo()%>">
+                    <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=reservationDto.getReservationNo()%>">
                     <img src="http://via.placeholder.com/150x150" class="img img-hover img-round">
                     </a>
                 </div>
                 <div class="list-center-area">
                     <div class="row m30 center">
-                    <a href="/semi/center/detail.jsp?centerId=<%=reservationDto.getReservationDate()%>">
+                    <a href="<%=request.getContextPath()%>/center/detail.jsp?centerId=<%=reservationDto.getReservationDate()%>">
                         <h2><%=reservationDto.getReservationDate()%></h2>
                         <h2><%=reservationDto.getReservationTime()%></h2>
                         </a>

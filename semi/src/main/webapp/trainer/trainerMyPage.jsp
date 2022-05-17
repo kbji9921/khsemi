@@ -155,7 +155,7 @@ input:readonly {
 </script>
 </head>
 <body>
-	<form class="join-form" method="post" action="Information.trainer">
+	<form class="<%=request.getContextPath()%>/trainer/join-form" method="post" action="Information.trainer">
 		<div class="container w500 m30">
 			<div class="flex-container flex-vertical">
 				<div class="flex-container list-center-listbox">

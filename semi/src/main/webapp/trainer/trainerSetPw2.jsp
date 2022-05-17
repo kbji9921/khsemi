@@ -97,7 +97,7 @@
     </script>
 </head>
 <body>
-    <form class="join-form" action="setPw2.trainer" method="post">
+    <form class="join-form" action="<%=request.getContextPath()%>/trainer/setPw2.trainer" method="post">
     <div class="container w400 m50">
         <div class="row center m50">
             <h2>비밀번호 재설정</h2>

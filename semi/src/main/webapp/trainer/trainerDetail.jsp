@@ -207,7 +207,7 @@
 <%-- <%-- %> --%>
 <div class="container center">
 	<%if(isPlayer){ %>
-	<form action="insert.grade" method="post" class="abc">
+	<form action="<%=request.getContextPath()%>/trainer/insert.grade" method="post" class="abc">
 	<table border="1" class="board-tb w800">
 	<td style="width:128px">
 		<select name="gradeRate" class="form-input input-round ">
