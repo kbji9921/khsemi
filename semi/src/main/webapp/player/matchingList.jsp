@@ -23,13 +23,13 @@
 	PlayerDto playerDto = playerDao.selectOne(playerId);
 	
 %>
-<jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
 <style>
 	a {
 		font-size: 20px;
 	}
 </style>
-<jsp:include page="/jsp/template/matchingHeader.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/matchingHeader.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/matching.css">
 <section class="container w850">
 <div class="row right">
@@ -64,9 +64,9 @@
 			<td>
 				<% boolean isPass = matchingDto.getMatchingState().equals("결제완료"); %>
 				<%if(!isPass){ %>
-					<a href="matchingDetail.jsp?playerId=<%=playerId%>&coachId=<%=matchingDto.getCoachId()%>">결제하기</a>
+					<a href="<%=request.getContextPath() %>/player/matchingDetail.jsp?playerId=<%=playerId%>&coachId=<%=matchingDto.getCoachId()%>">결제하기</a>
 				<%}else{ %>
-					<a href="matchingDetail.jsp?playerId=<%=playerId%>&coachId=<%=matchingDto.getCoachId()%>">예약하기</a>
+					<a href="<%=request.getContextPath() %>/player/matchingDetail.jsp?playerId=<%=playerId%>&coachId=<%=matchingDto.getCoachId()%>">예약하기</a>
 				<%} %>		
 			</td>
 			<td>
@@ -94,4 +94,4 @@
 		<%} %>
 	</div>
 </section>
-<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>

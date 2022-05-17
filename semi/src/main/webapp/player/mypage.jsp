@@ -24,7 +24,7 @@
 	
 	boolean noPic = attachmentDto==null;
 %>
-<jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -240,13 +240,13 @@
         <button class="btn btn-semi fill hide" id="btn2" >변경완료</button>
     </div>
     <div class="row">
-    	<a href="point.jsp" class="link link-btn fill">포인트 충전</a>
+    	<a href="<%=request.getContextPath() %>/player/point.jsp" class="link link-btn fill">포인트 충전</a>
     </div>
     <div class="row">
-    	<a href="returnPoint.jsp?playerid=<%=playerDto.getPlayerId() %>&playerPoint=<%=playerDto.getPlayerPoint() %>" class="link link-btn fill">환불하기</a>
+    	<a href="<%=request.getContextPath() %>/player/returnPoint.jsp?playerid=<%=playerDto.getPlayerId() %>&playerPoint=<%=playerDto.getPlayerPoint() %>" class="link link-btn fill">환불하기</a>
     </div>
     <div class="row">
-        <a href="changePw.jsp?playerId=<%=playerId %>" class="link link-btn fill ">비밀번호 변경</a>
+        <a href="<%=request.getContextPath() %>/player/changePw.jsp?playerId=<%=playerId %>" class="link link-btn fill ">비밀번호 변경</a>
     </div>
     <div class="row">
         <button  type="button"class="btn btn-primary fill hide" id="btn3">취소</button>
@@ -265,4 +265,4 @@
 			<h3 style="color:red;">비밀번호가 일치하지 않습니다.</h3>
 		<%} %>
 	</div>
-<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>

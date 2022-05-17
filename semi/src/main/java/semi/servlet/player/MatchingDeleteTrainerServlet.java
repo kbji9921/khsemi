@@ -26,9 +26,9 @@ public class MatchingDeleteTrainerServlet extends HttpServlet{
 			boolean matchingStateCheck = matchingDto.getMatchingState().length() == 4;
 			if(!matchingStateCheck) {
 				matchingDao.delete(playerId,trainerId);
-				resp.sendRedirect("allMatchingList.jsp");
+				resp.sendRedirect(req.getContextPath()+"/player/allMatchingList.jsp");
 			}else {
-				resp.sendRedirect("allMatchingList.jsp?error");
+				resp.sendRedirect(req.getContextPath()+"/player/allMatchingList.jsp?error");
 			}
 			
 		}catch(Exception e) {

@@ -18,7 +18,7 @@
 	TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 %>
 
-<jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
 	<form action="matching.insert" method="get">
 		<input type="hidden" name="playerId" value="<%=playerId%>">
 		<input type="hidden" name="trainerId" value="<%=trainerId%>">
@@ -78,4 +78,4 @@
 			<h3 style="color:red;">이미 매칭이 잡힌 아이디입니다.</h3>
 		<%} %>
 	</div>
-<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>

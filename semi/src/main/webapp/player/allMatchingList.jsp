@@ -20,7 +20,7 @@
 	TrainerDao trainerDao = new TrainerDao();
 	TrainerDto trainerDto = trainerDao.selectOne(trainerId); 
 %>
-<jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
 	<div class="container w800 m30 center">
 	   <div class="row center">
@@ -54,7 +54,7 @@
 							<td><%=matchingDto.getMatchingDate() %></td>
 							<td><%=matchingDto.getMatchingDays() %></td>
 							<td><%=matchingDto.getMatchingState() %></td>
-							<td><a href="deleteTrainer.matching?playerId=<%=playerDto.getPlayerId()%>&trainerId=<%=trainerId%>">삭제</a></td>
+							<td><a href="<%=request.getContextPath() %>/player/deleteTrainer.matching?playerId=<%=playerDto.getPlayerId()%>&trainerId=<%=trainerId%>">삭제</a></td>
 						</tr>
 					<%} %>
 	   			</tbody>	
@@ -66,4 +66,4 @@
 			<%} %>
 		</div>
 	</div>
-<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>

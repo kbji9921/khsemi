@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,8 +57,8 @@
         </div>
         <!-- 버튼-->
         <div class="row m50 center">
-            <a href="login.jsp" class="link link-btn" >로그인하기</a>
+            <a href="<%=request.getContextPath() %>/player/login.jsp" class="link link-btn" >로그인하기</a>
         </div>
     </div>
     </form>
-<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>

@@ -1,3 +1,5 @@
+<%@page import="semi.servlet.DtoDao.MatchingDto"%>
+<%@page import="semi.servlet.DtoDao.MatchingDao"%>
 <%@page import="java.text.Format"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="semi.servlet.DtoDao.AttachmentDto"%>
@@ -209,7 +211,11 @@
 	<h3 style="color:red;">이미 평가를 하셨습니다.</h3>
 	<%} %>
 	</div>
-
+<%-- <%-- <% --%> 
+<!-- // 	MatchingDao matchingDao = new MatchingDao(); -->
+<!-- // 	MatchingDto matchingDto = matchingDao.selectCheck(playerId, trainerId); -->
+<!-- // 	boolean isMatched= matchingDto.getCoachId() !=null && matchingDto.getStudentId() != null; -->
+<%-- <%-- %> --%>
 <div class="container center">
 	<%if(isPlayer){ %>
 	<form action="insert.grade" method="post" class="abc">

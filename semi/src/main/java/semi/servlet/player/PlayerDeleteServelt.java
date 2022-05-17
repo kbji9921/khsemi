@@ -25,7 +25,7 @@ public class PlayerDeleteServelt extends HttpServlet{
 			
 			boolean isPasswordCorrect = playerPw != null && playerPw.equals(playerDto.getPlayerPw());
 			if(!isPasswordCorrect) {
-				resp.sendRedirect("delete.jsp?error");
+				resp.sendRedirect(req.getContextPath()+"/player/deletePlayer.jsp?error");
 				return;
 			}
 			

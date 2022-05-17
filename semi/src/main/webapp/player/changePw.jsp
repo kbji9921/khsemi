@@ -18,7 +18,7 @@
     }
 </style>
 
-<jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
    
 	 <form action="password.player" method="post">
 	 <input type="hidden" name="playerId" value="<%=playerId%>">
@@ -57,4 +57,4 @@
 			<%} %>
 	</div>	
 	 </form>
-<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>

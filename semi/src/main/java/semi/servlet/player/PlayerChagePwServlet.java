@@ -27,13 +27,13 @@ public class PlayerChagePwServlet  extends HttpServlet{
 			
 			boolean isCorrectPassword = currentPw.equals(playerDto.getPlayerPw());
 			if(!isCorrectPassword) {
-				resp.sendRedirect("changePw.jsp?error=3");
+				resp.sendRedirect(req.getContextPath()+"/player/changePw.jsp?error=3");
 				return;
 			}
 			
 			boolean isChecckPassword = changePw.length() >= 8;
 			if(!isChecckPassword) {
-				resp.sendRedirect("changePw.jsp?error=2");
+				resp.sendRedirect(req.getContextPath()+"/player/changePw.jsp?error=2");
 				return;
 			}
 			

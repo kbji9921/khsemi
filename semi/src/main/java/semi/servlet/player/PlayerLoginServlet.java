@@ -33,7 +33,7 @@ public class PlayerLoginServlet extends HttpServlet{
 				
 				resp.sendRedirect(req.getContextPath());
 			}else {
-				resp.sendRedirect("login.jsp?error");
+				resp.sendRedirect(req.getContextPath()+"/player/login.jsp?error");
 			}
 			
 			
