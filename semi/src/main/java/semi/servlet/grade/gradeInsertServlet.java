@@ -12,28 +12,26 @@ import semi.servlet.DtoDao.GradeDao;
 import semi.servlet.DtoDao.GradeDto;
 @WebServlet(urlPatterns = "/trainer/insert.grade")
 public class gradeInsertServlet extends HttpServlet{
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try {
-			GradeDto gradeDto = new GradeDto();
-			gradeDto.setGradeTarget(req.getParameter("gradeTarget"));
-			gradeDto.setGradeWriter(req.getParameter("gradeWriter"));
-			gradeDto.setGradeContent(req.getParameter("gradeContent"));
-			gradeDto.setGradeRate(Integer.parseInt(req.getParameter("gradeRate")));
-			GradeDao gradeDao = new GradeDao();
-			int gradeNo = gradeDao.getSequence();
-			gradeDto.setGradeNo(gradeNo);
-	
-			try {
-			gradeDao.insert(gradeDto);
-			resp.sendRedirect(req.getContextPath()+"/trainer/trainerDetail.jsp?trainerId="+gradeDto.getGradeTarget());
-			}catch(Exception ea) {
-				resp.sendRedirect(req.getContextPath()+"/trainer/trainerDetail.jsp?trainerId="+gradeDto.getGradeTarget()+"&error");	
-			}
-		}catch (Exception e) {
-			e.printStackTrace();
-			resp.sendError(500);
-		}
-	}
+   @Override
+   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      try {
+         GradeDto gradeDto = new GradeDto();
+         gradeDto.setGradeTarget(req.getParameter("gradeTarget"));
+         gradeDto.setGradeWriter(req.getParameter("gradeWriter"));
+         gradeDto.setGradeContent(req.getParameter("gradeContent"));
+         gradeDto.setGradeRate(Integer.parseInt(req.getParameter("gradeRate")));
+         GradeDao gradeDao = new GradeDao();
+         int gradeNo = gradeDao.getSequence();
+         gradeDto.setGradeNo(gradeNo);
+         
+            resp.sendRedirect(req.getContextPath()+"/trainer/trainerDetail.jsp?trainerId="+gradeDto.getGradeTarget());
+            gradeDao.insert(gradeDto);
+            
+   
+      }catch (Exception e) {
+         e.printStackTrace();
+         resp.sendError(500);
+      }
+   }
 
 }

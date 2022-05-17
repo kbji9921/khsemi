@@ -10,7 +10,7 @@ import java.util.List;
 public class AttachmentDao {
 
 	// 저장 위치를 지정
-	public static final String path = System.getProperty("user.home") + "/upload";
+	public static final String path = "D:/upload/kh84";
 
 	// 등록: 번호 생성 + 등록
 	// 시퀀스 생성

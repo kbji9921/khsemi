@@ -5,6 +5,9 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/mypage.css">
 
+<script>
+	var context = <%=request.getContextPath()%>;
+</script>
     <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -45,7 +48,7 @@
 	            var that =this;
 	
 	            $.ajax({
-	                url:"http://localhost:8080/semi/ajax/center-id.kh",
+	                url: context+"/ajax/center-id.kh",
 	                type: "post",
 	                data: {
 	                    centerId : centerId

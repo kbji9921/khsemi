@@ -26,7 +26,7 @@ public class CenterWritetServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			String path = System.getProperty("user.home")+"/upload";
+			String path = "D:/upload/kh84";
 			
 			File dir = new File(path);
 			dir.mkdirs();
