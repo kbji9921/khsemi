@@ -55,7 +55,7 @@
 				TrainerDao trainerDao = new TrainerDao();
 				TrainerDto trainerDto = trainerDao.selectOne(matchingDto.getCoachId()); 
 				TrainerDto trainerInfo = trainerDao.selectOne(trainerId);
-			%>
+				%>
 				<td><%=matchingDto.getMatchingNo() %></td>
 				<td><%=trainerDto.getTrainerName() %></td>
 				<td><%=matchingDto.getMatchingDate() %></td>
