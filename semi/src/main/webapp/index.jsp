@@ -14,7 +14,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath()%>/jsp/template/header.jsp"></jsp:include>
 
 
 <%	
@@ -41,7 +41,7 @@
 					<div class="content-box">
 						<div class="content exercise">
 							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exerciseName=헬스">
-								<img src="/semi/images/health_icon.png" width=45%>
+								<img src="<%=request.getContextPath()%>/images/health_icon.png" width=45%>
 							</a>
 						</div>
 						<a href="#">헬스</a>
@@ -49,7 +49,7 @@
 					<div class="content-box">
 						<div class="content exercise">
 							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exerciseName=필라테스">
-								<img src="/semi/images/pilates_icon.png" width=45%>
+								<img src="<%=request.getContextPath()%>/images/pilates_icon.png" width=45%>
 							</a>
 						</div>
 						<a href="#">필라테스</a>
@@ -57,7 +57,7 @@
 					<div class="content-box">
 						<div class="content exercise">
 							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exerciseName=요가">
-								<img src="/semi/images/yoga_icon.png" width=35%>
+								<img src="<%=request.getContextPath()%>/images/yoga_icon.png" width=35%>
 							</a>
 						</div>
 						<a href="#">요가</a>
@@ -65,7 +65,7 @@
 					<div class="content-box">
 						<div class="content exercise">
 							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exerciseName=테니스">
-								<img src="/semi/images/tennis_icon.png" width=45%>
+								<img src="<%=request.getContextPath()%>/images/tennis_icon.png" width=45%>
 							</a>
 						</div>
 						<a href="#">테니스</a>
@@ -73,7 +73,7 @@
 					<div class="content-box">
 						<div class="content exercise">
 							<a href="<%=request.getContextPath()%>/index/sportsSelect.jsp?exerciseName=수영">
-								<img src="/semi/images/swim_icon.png" width=45%>
+								<img src="<%=request.getContextPath()%>/images/swim_icon.png" width=45%>
 							</a>
 						</div>
 						<a href="#">수영</a>
@@ -140,6 +140,8 @@
 								<%if(nonPic){ %>
 								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
 								<%} else { %>
+<!-- 								오류시 아마 이거 수정? -->
+<%-- 								<img src="<%=request.getContextPath()%>/images/center_dummy/location.png" width=170% height=170%> --%>
 								<img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=centerAttachmentDto.getAttachmentNo()%>" width=170% height=170%>
 								<%} %>
 							</a>
@@ -149,4 +151,4 @@
 				</div>
 			</article>
 
-<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath()%>/jsp/template/footer.jsp"></jsp:include>

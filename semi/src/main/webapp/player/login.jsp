@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
+<style>
+	 h1{
+	   font-weight: 600;
+	   color: #343b6a;
+	   font-size: 20px;
+	}
+</style>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/mypage.css">
 	<form action="login.player" method="post">
 	
@@ -28,8 +35,8 @@
 	</div>
     </form>
 	<div class ="row center m30">
-		<h3><a href="findIdPlayer.jsp" class="find-account">아이디 찾기</a> <span class="find-account"> | </span> <a href="findPwPlayer.jsp" class="find-account">비밀번호 찾기</a></h3>
+		<h3><a href="<%=request.getContextPath() %>/player/findIdPlayer.jsp">아이디 찾기</a> <span> / </span> <a href="findPwPlayer.jsp">비밀번호 찾기</a></h3>
 	</div>
 	
 	
-<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>

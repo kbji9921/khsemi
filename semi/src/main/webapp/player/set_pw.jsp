@@ -8,7 +8,7 @@
    String error = request.getParameter("error");
 	boolean type1 = error != null && error.equals("1");
 %>
-<jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
     <title>비밀번호 재설정</title>
     <style>
         .box{
@@ -142,7 +142,7 @@
 	            <button type="submit" class="btn btn-semi pw-btn">확인</button>
 	        </div>
 	        <div class="row center">
-	            <a href="login.jsp" class="link link-btn pw-btn">취소</a>
+	            <a href="<%=request.getContextPath() %>/player/login.jsp" class="link link-btn pw-btn">취소</a>
 	        </div>
 	        <div class="row center">
 				<%if(type1){ %>
@@ -153,4 +153,4 @@
         <!-- 버튼-->
     </div>
 </form>
-<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>

@@ -20,8 +20,8 @@
 	TrainerDao trainerDao = new TrainerDao();
 	TrainerDto trainerDto = trainerDao.selectOne(trainerId); 
 %>
-<jsp:include page="/jsp/template/header.jsp"></jsp:include>
-<jsp:include page="/jsp/template/matchingHeader.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/matchingHeader.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/matching.css">
 
@@ -53,7 +53,7 @@
 							<td><%=matchingDto.getMatchingDate() %></td>
 							<td><%=matchingDto.getMatchingDays() %></td>
 							<td><%=matchingDto.getMatchingState() %></td>
-							<td><a href="deleteTrainer.matching?playerId=<%=playerDto.getPlayerId()%>&trainerId=<%=trainerId%>">삭제</a></td>
+							<td><a href="<%=request.getContextPath() %>/player/deleteTrainer.matching?playerId=<%=playerDto.getPlayerId()%>&trainerId=<%=trainerId%>">삭제</a></td>
 						</tr>
 					<%} %>
 					<%if(list.isEmpty()){ %>
@@ -68,5 +68,6 @@
 				<h3 style="color:red;">결제한 내역은 지울수 없습니다.</h3>
 			<%} %>
 		</div>
-	</section>
-<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
+	</div>
+</section>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>

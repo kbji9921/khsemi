@@ -33,11 +33,11 @@ public class MatchingPayServlet extends HttpServlet{
 			
 			
 			if(!isPayCheck){
-				resp.sendRedirect("matchingDetail.jsp?playerId="+playerId+"&coachId="+trainerId+"&error");
+				resp.sendRedirect(req.getContextPath()+"/player/matchingDetail.jsp?playerId="+playerId+"&coachId="+trainerId+"&error");
 			}else if( isPayCheck) {
 				playerDao.minusPoint(playerId, minusPoint);
 				matchingDao.changeMathcingState(playerId,trainerId);
-				resp.sendRedirect("matchingList.jsp");
+				resp.sendRedirect(req.getContextPath()+"/player/matchingList.jsp");
 			}
 			
 		}catch(Exception e) {

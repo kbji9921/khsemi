@@ -35,9 +35,9 @@ public class FindPwPlayerServlet extends HttpServlet {
 			boolean isPass =findDto != null;
 			
 			if(isPass) {
-				resp.sendRedirect("set_pw.jsp?playerId="+findDto.getPlayerId());
+				resp.sendRedirect(req.getContextPath()+"/player/set_pw.jsp?playerId="+findDto.getPlayerId());
 			}else {
-				resp.sendRedirect("findPwPlayer.jsp?error");			
+				resp.sendRedirect(req.getContextPath()+"/player/findPwPlayer.jsp?error");			
 			}
 			
 		}catch(Exception e){

@@ -28,9 +28,9 @@ public class PlayerChargePointServlet extends HttpServlet{
 		boolean isIdCorrect = playerDto.getPlayerId().equals(playerId);
 		if(isIdCorrect) {
 			playerDao.chargePoint(playerId, chargePoint);
-			resp.sendRedirect("mypage.jsp");
+			resp.sendRedirect(req.getContextPath()+"/player/mypage.jsp");
 		}else {
-			resp.sendRedirect("point.jsp?error");
+			resp.sendRedirect(req.getContextPath()+"/player/point.jsp?error");
 		}
 		
 		

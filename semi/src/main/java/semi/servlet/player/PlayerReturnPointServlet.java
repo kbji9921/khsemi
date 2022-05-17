@@ -24,7 +24,7 @@ public class PlayerReturnPointServlet extends HttpServlet{
 			PlayerDao playerDao = new PlayerDao();
 			playerDao.rePoint(playerDto);
 			
-			resp.sendRedirect("mypage.jsp");
+			resp.sendRedirect(req.getContextPath()+"/player/mypage.jsp");
 		}catch(Exception e) {
 			e.printStackTrace();
 			resp.sendError(500);

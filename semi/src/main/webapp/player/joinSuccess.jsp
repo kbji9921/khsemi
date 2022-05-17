@@ -7,7 +7,7 @@
 	PlayerDao playerDao = new PlayerDao();
 	PlayerDto playerDto = playerDao.selectOne(playerId);
  %>
-<jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
     <!-- 구글 폰트 cdn -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,9 +32,9 @@
             살빠Gym 새로운 아이디는 <%=playerDto.getPlayerId()%>입니다.
         </div>
         <div class="row center m40">
-           <a href="login.jsp" class="link link-btn fill">로그인</a>
+           <a href="<%=request.getContextPath()%>/player/login.jsp" class="link link-btn fill">로그인</a>
         </div>
     </div>
 </body>
 </html>
-<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>

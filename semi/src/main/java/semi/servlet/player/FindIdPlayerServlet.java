@@ -26,7 +26,7 @@ public class FindIdPlayerServlet extends HttpServlet{
 			PlayerDao playerDao = new PlayerDao();
 			String playerId = playerDao.findId(playerDto);
 			
-			resp.sendRedirect("idFindSuccess.jsp?playerId="+ playerId);
+			resp.sendRedirect(req.getContextPath()+"/player/idFindSuccess.jsp?playerId="+ playerId);
 			
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -29,11 +29,11 @@ public class MatchingInsertServlet extends HttpServlet{
 			
 			boolean isEmpty = matchingDao.selectOne(matchingDto) == null;
 			if(!isEmpty) {
-				resp.sendRedirect("matchingInsert.jsp?trainerId="+matchingDto.getCoachId()+"&error");
+				resp.sendRedirect(req.getContextPath()+"/player/matchingInsert.jsp?trainerId="+matchingDto.getCoachId()+"&error");
 			}else {
 				matchingDao.insert(matchingDto,ptcount);
 				matchingDao.tpTotalInsert(matchingDto,ptPoint,ptcount);
-				resp.sendRedirect("matchingList.jsp?playerid="+matchingDto.getStudentId());
+				resp.sendRedirect(req.getContextPath()+"/player/matchingList.jsp?playerid="+matchingDto.getStudentId());
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

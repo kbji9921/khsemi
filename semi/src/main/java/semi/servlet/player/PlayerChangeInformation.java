@@ -34,13 +34,13 @@ public class PlayerChangeInformation extends HttpServlet{
 			boolean isPasswordCorrect = playerDto.getPlayerPw().equals(findDto.getPlayerPw());
 			
 			if(!isPasswordCorrect) {
-				resp.sendRedirect("mypage.jsp?error");
+				resp.sendRedirect(req.getContextPath()+"/player/mypage.jsp?error");
 				return;
 			}
 			
 			playerDao.changeInformation(playerDto);
 			
-			resp.sendRedirect("mypage.jsp");
+			resp.sendRedirect(req.getContextPath()+"/player/mypage.jsp");
 		}catch(Exception e) {
 			e.printStackTrace();
 			resp.sendError(500);

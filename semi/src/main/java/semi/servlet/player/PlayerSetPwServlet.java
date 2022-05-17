@@ -28,12 +28,12 @@ public class PlayerSetPwServlet extends HttpServlet{
 			//boolean isCheckPassword2 = changePw == checkPw;
 			
 			if(isCheckPassword) {
-				resp.sendRedirect("set_pw.jsp?error=1");
+				resp.sendRedirect(req.getContextPath()+"/player/set_pw.jsp?error=1");
 				return;
 			}
 			
 			playerDao.changePassword(playerId, changePw);
-			resp.sendRedirect("set_pw_finish.jsp");
+			resp.sendRedirect(req.getContextPath()+"/player/set_pw_finish.jsp");
 			
 		}catch(Exception e) {
 			e.printStackTrace();

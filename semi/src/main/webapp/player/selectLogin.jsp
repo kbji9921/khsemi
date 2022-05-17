@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/sports.css">
     <section class="container">
@@ -8,7 +8,7 @@
             <div class="content-box">
                 <div class="content">                   
                   	<a href="<%=request.getContextPath()%>/player/login.jsp">
-						<img src="../images/asdfff.png"  width = "200px"alt="일반">
+						<img src="<%=request.getContextPath() %>/images/asdfff.png"  width = "200px"alt="일반">
 					</a>
                 </div>
                   <span>회원 로그인</span>
@@ -17,11 +17,11 @@
             <div class="content-box">
                 <div class="content">         
   						<a href="<%=request.getContextPath()%>/trainer/trainerLogin.jsp">
-							<img src="../images/asdfff.png" width = "200px"alt="강사">
+							<img src="<%=request.getContextPath() %>/images/asdfff.png" width = "200px"alt="강사">
 						</a>
                	</div>
                 <span>강사 로그인</span>
           </div> 
       </div>              
     </section>
-<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>
