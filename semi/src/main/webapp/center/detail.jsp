@@ -256,22 +256,7 @@
         <!--해당 센터 강사 목록-->
         <span>우리 센터의 강사</span>
         <div class="flex-c-container m10" id="trainerFBox">
-        <%--강사 이름 출력 --%>
-		<%for(TrainerDto trainerDto : trainerList){ %>
-		 	<input type="hidden" name="trainerId" value=<%=trainerDto.getTrainerId()%> id="trainerId">
-		 	<%-- 강사 이미지 조회--%>
-		 	<%TrainerAttachmentDao trainerAttachmentDao = new TrainerAttachmentDao(); 
-		 	 attachmentNo = trainerAttachmentDao.selectOne(trainerDto.getTrainerId());
-		 	AttachmentDto attachmentDto2 = attachmentDao.selectOne(attachmentNo);%>
-		 	
-		 	<input type="hidden" name="attachmentNo" value="<%=attachmentDto2.getAttachmentNo()%>" id="trainerImg">
-		 	
-
-		  	
-			<%boolean nonPic = attachmentDto2==null;
-		 	%>
-         
-        <%} %>
+       
         </div>
       
        
