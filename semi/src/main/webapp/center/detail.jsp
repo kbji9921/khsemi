@@ -72,9 +72,14 @@
 
    
   %>
+  <script>
+	var context = "<%=request.getContextPath()%>";
+</script>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
-
+<script>
+	var context = <%=request.getContextPath()%>;
+</script>
  <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
@@ -101,7 +106,7 @@
               $("#like-btn").click(function(){
             		  
                   $.ajax({
-                      url: "http://localhost:8080/semi/ajax/likecheck.kh",
+                      url: context+"/ajax/likecheck.kh",
                       type: "post",   
                       data: {
                           centerId : centerId,
@@ -122,7 +127,7 @@
               //좋아요 수 조회
               function likeLoad(){
                   $.ajax({
-                      url: "http://localhost:8080/semi/ajax/center-like.kh",
+                      url: context+"/ajax/center-like.kh",
                       type: "post",
                       data: {
                           centerId : centerId
@@ -136,7 +141,7 @@
               //이미 좋아요를 누른 사람이라면
               function checkedLike(){
                   $.ajax({
-                      url: "http://localhost:8080/semi/ajax/likechecked.kh",
+                      url: context+"/ajax/likechecked.kh",
                       type: "post",   
                       data: {
                           centerId : centerId,
@@ -156,7 +161,7 @@
             //센터 소속 강사 리스트 조회
               function trainerLoad(p,s,centerId){
                   $.ajax({
-                      url: "http://localhost:8080/semi/ajax/center-trainer.kh",
+                      url: context+"/ajax/center-trainer.kh",
                       type: "post",
                       dataType: "json",               
                       data: {
