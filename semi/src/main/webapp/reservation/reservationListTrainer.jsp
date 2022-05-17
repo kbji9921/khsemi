@@ -68,41 +68,12 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
     
  %>    
     <jsp:include page="/jsp/template/header.jsp"></jsp:include>
+    <jsp:include page="/jsp/template/reservationTrainerHeader.jsp"></jsp:include>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/matching.css">
 
-<title>Insert title here</title>
-<style>
-.list-center-area{
-width:100%;
-}
-.reservation-box{
-    border: 1px solid #333;
-}.c-pagination {
-       text-align: center;
-       white-space: nowrap;
-       overflow: hidden;            
-  }
-   
- .c-pagination > a {
-     color: #95a5a6;
-     text-decoration: none;
-     display: inline-block;
-     min-width:1.7em;
-     padding: 0.25em;
-     text-align: center;
-     border:1px solid #95a5a6;
- }
- 
- .c-pagination > a:hover,
- .c-pagination > a.active {
-     color: #343B6A;
-     border-color: #343B6A;
- }
-</style>
-</head>
-<body>
+
 	<div class="container w500 m30">
 		<div class="row center">
-			<h2>스케쥴 목록</h2>
 		</div>
 	        <div class="flex-container flex-vertical">
         	<%for(ReservationDto reservationDto : reservationList){ %>
@@ -120,7 +91,7 @@ width:100%;
         	%>
             <div class="flex-container list-center-listbox reservation-box">
                 <!--센터이미지-->
-                <div class="row center list-image-area">
+                <div class="center list-image-area">
               <%if(!noPic){ %>            
                   <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attach%>" class="img img-circle asdf" style="width:170px"></a>
             <%}else{ %>
@@ -128,16 +99,14 @@ width:100%;
             <%} %>
                 </div>
                 <div class="list-center-area">
-                    <div class="row m30 center">
-                        <h2><%=reservationDto.getReservationDate()%></h2>
-                        <h2><%=reservationDto.getReservationTime()%></h2>
+                    <div class="row m20 center reservation-title">
+                        <h3><%=reservationDto.getReservationDate()%></h3>
+                        <h3><%=reservationDto.getReservationTime()%></h3>
 
                     </div>
                     <div class="row center">
-                        <h4>강사명:<%=trainerDto.getTrainerName()%></h4>
-                        <br>
-                        
-                        <h4>회원명:<%=playerDto.getPlayerName()%></h4>
+                        <h4 class="reservation-info">강사명:<%=trainerDto.getTrainerName()%></h4>
+                        <h4 class="reservation-info">회원명:<%=playerDto.getPlayerName()%></h4>
                     </div>
                 </div>
       

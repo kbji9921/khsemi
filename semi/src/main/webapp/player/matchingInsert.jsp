@@ -4,20 +4,21 @@
 <%@page import="java.util.List"%>
 <%@page import="semi.servlet.DtoDao.TrainerDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
-	String playerId = (String) session.getAttribute("login");
-	String trainerId = request.getParameter("trainerId");
-	
-	//String trainerName = request.getParameter("trainerName");
+String playerId = (String) session.getAttribute("login");
+String trainerId = request.getParameter("trainerId");
+
+//String trainerName = request.getParameter("trainerName");
 %>
 <%
-	PlayerDao playerDao = new PlayerDao();
-	PlayerDto playerDto = playerDao.selectOne(playerId);
-	TrainerDao trainerDao = new TrainerDao();
-	TrainerDto trainerDto = trainerDao.selectOne(trainerId);
+PlayerDao playerDao = new PlayerDao();
+PlayerDto playerDto = playerDao.selectOne(playerId);
+TrainerDao trainerDao = new TrainerDao();
+TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 %>
 
+<<<<<<< HEAD
 <jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
 	<form action="matching.insert" method="get">
 		<input type="hidden" name="playerId" value="<%=playerId%>">

@@ -15,6 +15,9 @@
     <link rel="stylesheet" type="text/css" href="../css/commons.css">
     <!-- <link rel="stylesheet" type="text/css" href="../css/test.css"> -->
 
+<script>
+	var context = <%=request.getContextPath()%>;
+</script>
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
@@ -72,7 +75,7 @@
 	            var that =this;
 	
 	            $.ajax({
-	                url:"http://localhost:8080/semi/ajax/player.id",
+	                url: context+"/ajax/player.id",
 	                type: "post",
 	                data: {
 	                    playerId : playerId

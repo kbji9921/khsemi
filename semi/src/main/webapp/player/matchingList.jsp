@@ -8,26 +8,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("UTF-8");
-	String playerId = (String)session.getAttribute("login");
+   request.setCharacterEncoding("UTF-8");
+   String playerId = (String)session.getAttribute("login");
+   String trainerId = request.getParameter("trainerId");
 %>
 
 <%
-	// matching테이블 회원 아이디로 List 조회
-	MatchingDao matchingDao = new MatchingDao();
-	//MatchingDto matchingDto = matchingDao.selectList(playerId);
-	List<MatchingDto> list = matchingDao.selectList(playerId);
-	
-	//회원 이름 조회
-	PlayerDao playerDao = new PlayerDao();
-	PlayerDto playerDto = playerDao.selectOne(playerId);
-	
+   // matching테이블 회원 아이디로 List 조회
+   MatchingDao matchingDao = new MatchingDao();
+   //MatchingDto matchingDto = matchingDao.selectList(playerId);
+   List<MatchingDto> list = matchingDao.selectList(playerId);
+   
+   //회원 이름 조회
+   PlayerDao playerDao = new PlayerDao();
+   PlayerDto playerDto = playerDao.selectOne(playerId);
+   
 %>
 <jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
 <style>
-	a {
-		font-size: 20px;
-	}
+   a {
+      font-size: 20px;
+   }
 </style>
 <jsp:include page="<%=request.getContextPath() %>/jsp/template/matchingHeader.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/matching.css">

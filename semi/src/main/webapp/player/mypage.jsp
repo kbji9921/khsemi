@@ -43,9 +43,6 @@
         .contents-wrapper{
             flex-grow:1; /*나머지 전부 다 라는 의미로 쓰임 */
         }
-        /* .Container{
-            /* border:1px solid black; 
-        } */
         .list-center-area{
         width:60px;}
         .list-image-area{
@@ -102,19 +99,8 @@
       width:2em important;
       }
     </style>
-    <!-- 구글 폰트 cdn -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="../css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../css/commons.css">
-     <link rel="stylesheet" type="text/css" href="../css/mypage.css">
-    <!-- <link rel="stylesheet" type="text/css" href="../css/test.css"> -->
-   
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script type="text/javascript">
     $(function(){
         $(".input-dis").attr("disabled", true);
@@ -174,37 +160,37 @@
         <div class="row">
                 <div class="row">
                     <label>아이디</label>
-                    <input type="text" class="form-input input-round fill" value="<%=playerDto.getPlayerId()%>" readonly name="playerId">
+                    <input type="text" class="form-input input-round fill mypage-input" value="<%=playerDto.getPlayerId()%>" readonly name="playerId">
                     <span></span>
                 </div>
                 <div class="row">
                     <label>이름</label>
-                    <input type="text" class="form-input input-round fill input-dis" value="<%=playerDto.getPlayerName()%>" name="playerName">
+                    <input type="text" class="form-input input-round fill input-dis mypage-input" value="<%=playerDto.getPlayerName()%>" name="playerName">
                     <span></span>
                 </div>
                  <div class="row">
                     <label>생년월일</label>
-                    <input type="date" class="form-input input-round fill input-dis" value="<%=playerDto.getPlayerBirth()%>" name="playerBirth">
+                    <input type="date" class="form-input input-round fill input-dis mypage-input" value="<%=playerDto.getPlayerBirth()%>" name="playerBirth">
                     <span></span>
                 </div>
                 <div class="row ">
                     <label>포인트</label>
-                    <input type="number" class="form-input input-round fill input-dis" value="<%=playerDto.getPlayerPoint()%>" readonly name="trainerPoint">
+                    <input type="number" class="form-input input-round fill input-dis mypage-input" value="<%=playerDto.getPlayerPoint()%>" readonly name="trainerPoint">
                     <span></span>
                 </div>
                 <div class="row ">
                     <label>전화번호</label>
-                    <input type="tel" class="form-input input-round fill input-dis" value="<%=playerDto.getPlayerPhone()%>" name="playerPhone">
+                    <input type="tel" class="form-input input-round fill input-dis mypage-input" value="<%=playerDto.getPlayerPhone()%>" name="playerPhone">
                     <span></span>
                 </div>
               <div class="row ">
                     <label>이메일</label>
-                    <input type="email" class="form-input input-round fill input-dis" value="<%=playerDto.getPlayerEmail()%>" name="playerEmail">
+                    <input type="email" class="form-input input-round fill input-dis mypage-input" value="<%=playerDto.getPlayerEmail()%>" name="playerEmail">
                     <span></span>
                 
                  <div class="row ">
                     <label>성별</label>
-                    <select class="form-input input-round fill input-dis" name="playerGender">
+                    <select class="form-input input-round fill input-dis mypage-input" name="playerGender">
                              <%if(playerDto.getPlayerGender().equals("여")){%>
                      <option value="여" selected>여자</option>
                      <%}else{ %>
@@ -220,24 +206,24 @@
                
               <div class="row ">
                     <label for="logindate">가입일</label>
-                    <input type="text" class="form-input input-round fill input-dis" value="<%=playerDto.getPlayerJoindate()%>" id="logindate" readonly>
+                    <input type="text" class="form-input input-round fill input-dis mypage-input" value="<%=playerDto.getPlayerJoindate()%>" id="logindate" readonly>
                     <span></span>
                 </div>
                   <div class="row ">
                     <label>최근접속일</label>
-                    <input type="text" class="form-input input-round fill input-dis" value="<%=playerDto.getPlayerLogindate()%>" readonly>
+                    <input type="text" class="form-input input-round fill input-dis mypage-input" value="<%=playerDto.getPlayerLogindate()%>" readonly>
                     <span></span>   
                 </div>
                       <div class="row ">
                     <label>비밀번호</label>
-                    <input type="password" class="form-input input-round fill input-dis" name="playerPw" required>
+                    <input type="password" class="form-input input-round fill input-dis mypage-input" name="playerPw" required>
                     <span></span>   
                 </div>
         </div>
     </div>
     <div class="row">
-        <button class="btn btn-semi fill" id="btn">수정</button>
-        <button class="btn btn-semi fill hide" id="btn2" >변경완료</button>
+        <button class="btn btn-semi fill mypage-btn" id="btn">수정</button>
+        <button class="btn btn-semi fill hide mypage-btn" id="btn2" >변경완료</button>
     </div>
     <div class="row">
     	<a href="<%=request.getContextPath() %>/player/point.jsp" class="link link-btn fill">포인트 충전</a>
@@ -249,10 +235,10 @@
         <a href="<%=request.getContextPath() %>/player/changePw.jsp?playerId=<%=playerId %>" class="link link-btn fill ">비밀번호 변경</a>
     </div>
     <div class="row">
-        <button  type="button"class="btn btn-primary fill hide" id="btn3">취소</button>
+        <button  type="button"class="btn btn-primary fill hide mypage-btn" id="btn3">취소</button>
     </div>
     <div class="row">
-        <a href="<%=request.getContextPath()%>/player/deletePlayer.jsp?playerId=<%=playerId %>" class="link link-btn  fill hide"  id="btn5" >탈퇴</a>
+        <a href="<%=request.getContextPath()%>/player/deletePlayer.jsp?playerId=<%=playerId %>" class="link link-btn  fill hide mypage-btn"  id="btn5" >탈퇴</a>
     </div>
     <div class="top">
     <a href="#top">

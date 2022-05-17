@@ -85,8 +85,10 @@
 		<%-- trainer s --%>
 
 			<article class="container">
-				<h3 class="contents-title">우리동네 인기 강사</h3>
-				<p class="contents-info">클릭하여 강사님의 이력을 확인해보세요!</p>
+				<h3 class="contents-title">HOT! 5 인기 강사</h3>
+				<p class="contents-info">클릭하여 강사님의 이력을 확인해보세요!
+				<a href="<%=request.getContextPath()%>/trainer/trainerList.jsp" class="see-all-btn">전체보기</a>
+				</p>
 				<div class="flex-container">
 
 							<%
@@ -122,8 +124,10 @@
 		
 		<%-- center s --%>
 			<article class="container">
-				<h3 class="contents-title">우리동네 인기 센터</h3>
-				<p class="contents-info">클릭하여 센터의 상세정보를 확인해보세요!</p>
+				<h3 class="contents-title">HOT! 5 인기 센터</h3>
+				<p class="contents-info">클릭하여 센터의 상세정보를 확인해보세요!
+					<a href="<%=request.getContextPath()%>/center/mainList.jsp" class="see-all-btn">전체보기</a>
+				</p>
 				<div class="flex-container">
 				<%for(CenterDto centerDto : centerList){ %>
 				<%int attachmentNo = centerAttachmentDao.selectOne(centerDto.getCenterId()); %>
@@ -136,7 +140,9 @@
 								<%if(nonPic){ %>
 								<img src="https://placeimg.com/170/170/tech/grayscale" width=100%>
 								<%} else { %>
-								<img src="<%=request.getContextPath()%>/images/center_dummy/location.png" width=170% height=170%>
+<!-- 								오류시 아마 이거 수정? -->
+<%-- 								<img src="<%=request.getContextPath()%>/images/center_dummy/location.png" width=170% height=170%> --%>
+								<img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=centerAttachmentDto.getAttachmentNo()%>" width=170% height=170%>
 								<%} %>
 							</a>
 						</div>
