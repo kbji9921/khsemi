@@ -27,7 +27,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	try {
 		//준비
 		//파일 업로드
-		String path = System.getProperty("user.home")+"/upload"; //업로드 경로
+		String path = "D:/upload/kh84"; //업로드 경로
 		
 		File dir = new File(path);
 		dir.mkdirs();
