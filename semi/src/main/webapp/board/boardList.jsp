@@ -25,7 +25,7 @@ try{
 //목록 및 검색
 String type = request.getParameter("type");
 String keyword = request.getParameter("keyword");
-boolean search = (type!=null) && (keyword!=null);
+boolean search = (type!=null && !type.equals("")) && (keyword!=null && !keyword.equals(""));
 List<BoardDto> list;
 
 BoardDao boardDao = new BoardDao();
@@ -87,10 +87,10 @@ boolean replyExsist;
 		
 		
 		<%if(type!=null && keyword!=null){ %>
-			<input class="search-input" type="search" name="keyword" placeholder="검색어입력" value ="<%=keyword%>" required>
+			<input class="search-input" type="search" name="keyword" placeholder="검색어입력" value ="<%=keyword%>" >
 			<input class="search-submit" type="submit" value="검색">
 		<%}else{ %>
-			<input class="search-input" type="search" name="keyword" placeholder="검색어입력" required>
+			<input class="search-input" type="search" name="keyword" placeholder="검색어입력" >
 			<input class="search-submit" type="submit" value="검색">
 		<%} %>
 		</form>
@@ -176,7 +176,7 @@ boolean replyExsist;
 		<%if(startBlock > 1 ){ %>
 			<a href="boardList.jsp?p=1&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&lt;&lt;</a>
 			<a href="boardList.jsp?p=<%=startBlock-1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&lt;</a>
-		<%}else{ %>
+		<%}else if(list.size()>0){%>
 			<a href="javascript:void(0);">&lt;&lt;</a>
 			<a href="javascript:void(0);">&lt;</a>
 		<%} %>
@@ -187,7 +187,7 @@ boolean replyExsist;
 		<%if(endBlock < lastPage ){ %>
 			<a href="boardList.jsp?p=<%=endBlock+1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&gt;</a>
 			<a href="boardList.jsp?p=<%=lastPage%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&gt;&gt;</a> 
-		<%}else{ %>
+		<%}else if(list.size()>0){%>
 			<a href="javascript:void(0);">&gt;&gt;</a>
 			<a href="javascript:void(0);">&gt;</a>
 		<%} %>
@@ -196,7 +196,7 @@ boolean replyExsist;
 		<%if(startBlock > 1 ){ %>
 			<a href="boardList.jsp?p=1&s=<%=s%>">&lt;&lt;</a>
 			<a href="boardList.jsp?p=<%=startBlock-1%>&s=<%=s%>">&lt;</a>
-		<%}else{ %>
+		<%}else if(list.size()>0){%>
 			<a href="javascript:void(0);">&lt;&lt;</a>
 			<a href="javascript:void(0);">&lt;</a>
 		<%} %>
@@ -207,7 +207,7 @@ boolean replyExsist;
 	 	<%if(endBlock < lastPage ){ %>
 		 	<a href="boardList.jsp?p=<%=endBlock+1%>&s=<%=s%>">&gt;</a>
 			<a href="boardList.jsp?p=<%=lastPage%>&s=<%=s%>">&gt;&gt;</a>
-		<%}else{ %>
+		<%}else if(list.size()>0){%>
 			<a href="javascript:void(0);">&gt;</a>
 			<a href="javascript:void(0);">&gt;&gt;</a>
 		<%} %>
