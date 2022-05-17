@@ -6,7 +6,7 @@
     %>
     <jsp:include page="/jsp/template/header.jsp"></jsp:include>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/mypage.css">
-<form action="login.kh" method="post">
+<form action="<%=request.getContextPath()%>/trainer/login.kh" method="post">
     <div class="container w450 m40">
         <div class="row center">
             <h1 class="login-title">강사회원 로그인</h1>
@@ -23,7 +23,7 @@
             <input type="submit" class="btn btn-primary fill btn-semi mypage-btn" value="로그인"> 
         </div>
         <div class ="row center m30">
-		<h3><a href="trainerFindId.jsp" class="find-account">아이디 찾기</a> <span class="find-account"> | </span> <a href="trainerFindPw.jsp" class="find-account">비밀번호 찾기</a></h3>
+		<h3><a href="<%=request.getContextPath()%>/trainer/trainerFindId.jsp" class="find-account">아이디 찾기</a> <span class="find-account"> | </span> <a href="<%=request.getContextPath()%>/trainer/trainerFindPw.jsp" class="find-account">비밀번호 찾기</a></h3>
 	</div>
         <div class="row center">
          <%-- 에러표시가 있는 경우 메세지를 출력 --%>

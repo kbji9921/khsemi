@@ -95,7 +95,7 @@
     </script>
 </head>
 <body>
-<form class="join-form" action="setPw1.trainer" method="post">
+<form class="join-form" action="<%=request.getContextPath()%>/trainer/setPw1.trainer" method="post">
     <div class="container w400 m50">
         <div class="row center m50">
             <h2>비밀번호 재설정</h2>
@@ -160,7 +160,7 @@
                         <button type="submit" class="btn btn-semi pw-btn">확인</button>
                     </div>
                     <div class="row center">
-                        <a href="trainerMyPage.jsp" class="link link-btn pw-btn">취소</a>
+                        <a href="<%=request.getContextPath()%>/trainer/trainerMyPage.jsp" class="link link-btn pw-btn">취소</a>
                     </div>
                 </li>
             </ul>

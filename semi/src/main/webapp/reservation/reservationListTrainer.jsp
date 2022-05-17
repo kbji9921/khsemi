@@ -120,21 +120,21 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
       <!-- 이전 버튼 -->
       <%if(p > 1){ %>
 
-         <a href="reservationListTrainer.jsp?p=1&s=<%=s%>&trainerId=<%=trainerId%>">&laquo;</a>
+         <a href="<%=request.getContextPath()%>/reservation/reservationListTrainer.jsp?p=1&s=<%=s%>&trainerId=<%=trainerId%>">&laquo;</a>
 
       <%} %>
       
       <%if(startBlock > 1){ %>
 
-         <a href="reservationListTrainer.jsp?p=<%=startBlock-1%>&s=<%=s%>&trainerId=<%=trainerId%>">&lt;</a>
+         <a href="<%=request.getContextPath()%>/reservation/reservationListTrainer.jsp?p=<%=startBlock-1%>&s=<%=s%>&trainerId=<%=trainerId%>">&lt;</a>
     <%} %>
       
       <!-- 숫자 링크 영역 -->
       <%for(int i=startBlock; i <= endBlock; i++){ %>
             <%if(i == p){ %>
-            <a class="active" href="reservationListTrainer.jsp?p=<%=i%>&s=<%=s%>&trainerId=<%=trainerId%>"><%=i%></a>   
+            <a class="active" href="<%=request.getContextPath()%>/reservation/reservationListTrainer.jsp?p=<%=i%>&s=<%=s%>&trainerId=<%=trainerId%>"><%=i%></a>   
             <%} else { %>
-            <a href="reservationListTrainer.jsp?p=<%=i%>&s=<%=s%>&trainerId=<%=trainerId%>"><%=i%></a>
+            <a href="<%=request.getContextPath()%>/reservation/reservationListTrainer.jsp?p=<%=i%>&s=<%=s%>&trainerId=<%=trainerId%>"><%=i%></a>
             <%} %>
          <%} %>
 
@@ -142,13 +142,13 @@ TrainerDto trainerDto = trainerDao.selectOne(trainerId);
       <!-- 다음 버튼 영역 -->
       <%if(endBlock < lastPage){ %>
 
-         <a href="reservationListTrainer.jsp?p=<%=endBlock+1%>&s=<%=s%>&trainerId=<%=trainerId%>">&gt;</a>
+         <a href="<%=request.getContextPath()%>/reservation/reservationListTrainer.jsp?p=<%=endBlock+1%>&s=<%=s%>&trainerId=<%=trainerId%>">&gt;</a>
 
       <%} %>
       
       <%if(p < lastPage){ %>
 
-         <a href="reservationListTrainer.jsp?p=<%=lastPage%>&s=<%=s%>&trainerId=<%=trainerId%>">&raquo;</a>
+         <a href="<%=request.getContextPath()%>/reservation/reservationListTrainer.jsp?p=<%=lastPage%>&s=<%=s%>&trainerId=<%=trainerId%>">&raquo;</a>
 
       <%} %>
    </div>

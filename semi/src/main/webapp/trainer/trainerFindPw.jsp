@@ -168,7 +168,7 @@
     </script>
 </head>
 <body>
-    <form action="findPw.trainer" class="join-form" method="post">
+    <form action="<%=request.getContextPath()%>/trainer/findPw.trainer" class="join-form" method="post">
     <div class="container w650 m30">
         <div class="row">
             <div class="percent"></div>

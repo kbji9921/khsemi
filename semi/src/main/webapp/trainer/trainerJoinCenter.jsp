@@ -88,7 +88,7 @@
     </script>
 </head>
 <body>
-    <form action="join.center" class="join-form" method="post">
+    <form action="<%=request.getContextPath()%>/trainer/join.center" class="join-form" method="post">
     <div class="container w450 m30">
         <div class="row">
         	<input type="hidden" name="trainerId" value="<%=trainerId%>">

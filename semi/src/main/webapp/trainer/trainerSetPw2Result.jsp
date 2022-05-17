@@ -58,7 +58,7 @@
             <h5>비밀번호 재설정이 완료 되었습니다.</h5>
         </div>
         <div class="row m50 center">
-            <a href="trainerLogin.jsp" class="link link-btn" >로그인하기</a>
+            <a href="<%=request.getContextPath()%>/trainer/trainerLogin.jsp" class="link link-btn" >로그인하기</a>
         </div>
     </div>
     </form>

@@ -101,7 +101,7 @@
                         <h4 class="reservation-info">운동종목 : <%=trainerDto.getTrainerSports()%></h4>
                     </div>
                 </div>
-      			<form action="reservation.Delete" method="post">
+      			<form action="<%=request.getContextPath()%>/reservation/reservation.Delete" method="post">
       				<input type="hidden" name="playerId" value="<%=reservationDto.getPlayerId()%>">
       				<input type="hidden" name="trainerId" value="<%=reservationDto.getTrainerId() %>">
       				<input type="hidden" name="reservationDate" value="<%=reservationDto.getReservationDate() %>">
@@ -121,21 +121,21 @@
       <!-- 이전 버튼 -->
       <%if(p > 1){ %>
 
-         <a href="reservationListPlayer.jsp?p=1&s=<%=s%>&playerId=<%=playerId%>">&laquo;</a>
+         <a href="<%=request.getContextPath()%>/reservation/reservationListPlayer.jsp?p=1&s=<%=s%>&playerId=<%=playerId%>">&laquo;</a>
 
       <%} %>
       
       <%if(startBlock > 1){ %>
 
-         <a href="reservationListPlayer.jsp?p=<%=startBlock-1%>&s=<%=s%>&playerId=<%=playerId%>">&lt;</a>
+         <a href="<%=request.getContextPath()%>/reservation/reservationListPlayer.jsp?p=<%=startBlock-1%>&s=<%=s%>&playerId=<%=playerId%>">&lt;</a>
     <%} %>
       
       <!-- 숫자 링크 영역 -->
       <%for(int i=startBlock; i <= endBlock; i++){ %>
             <%if(i == p){ %>
-            <a class="active" href="reservationListPlayer.jsp?p=<%=i%>&s=<%=s%>&playerId=<%=playerId%>"><%=i%></a>   
+            <a class="active" href="<%=request.getContextPath()%>/reservation/reservationListPlayer.jsp?p=<%=i%>&s=<%=s%>&playerId=<%=playerId%>"><%=i%></a>   
             <%} else { %>
-            <a href="reservationListPlayer.jsp?p=<%=i%>&s=<%=s%>&playerId=<%=playerId%>"><%=i%></a>
+            <a href="<%=request.getContextPath()%>/reservation/reservationListPlayer.jsp?p=<%=i%>&s=<%=s%>&playerId=<%=playerId%>"><%=i%></a>
             <%} %>
          <%} %>
 
@@ -143,13 +143,13 @@
       <!-- 다음 버튼 영역 -->
       <%if(endBlock < lastPage){ %>
 
-         <a href="reservationListPlayer.jsp?p=<%=endBlock+1%>&s=<%=s%>&playerId=<%=playerId%>">&gt;</a>
+         <a href="<%=request.getContextPath()%>/reservation/reservationListPlayer.jsp?p=<%=endBlock+1%>&s=<%=s%>&playerId=<%=playerId%>">&gt;</a>
 
       <%} %>
       
       <%if(p < lastPage){ %>
 
-         <a href="reservationListPlayer.jsp?p=<%=lastPage%>&s=<%=s%>&playerId=<%=playerId%>">&raquo;</a>
+         <a href="<%=request.getContextPath()%>/reservation/reservationListPlayer.jsp?p=<%=lastPage%>&s=<%=s%>&playerId=<%=playerId%>">&raquo;</a>
 
       <%} %>
    </div>

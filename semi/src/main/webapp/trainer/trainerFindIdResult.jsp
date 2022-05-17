@@ -70,8 +70,8 @@
         </div>
         <!-- 버튼-->
         <div class="row m50 center">
-            <a href="trainerLogin.jsp" class="link link-btn" >로그인하기</a>
-            <a href="trainerFindPw.jsp?trainerId=<%=trainerId%>>" class="link link-btn" >비밀번호 찾기</a>
+            <a href="<%=request.getContextPath()%>/trainer/trainerLogin.jsp" class="link link-btn" >로그인하기</a>
+            <a href="<%=request.getContextPath()%>/trainer/trainerFindPw.jsp?trainerId=<%=trainerId%>>" class="link link-btn" >비밀번호 찾기</a>
         </div>
     </div>
     </form>

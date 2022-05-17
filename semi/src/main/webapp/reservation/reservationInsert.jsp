@@ -94,7 +94,7 @@
   </script>
 </head>
 <body>
-    <form action="insert.kh" method="post">
+    <form action="<%=request.getContextPath()%>/reservation/insert.kh" method="post">
     <div class="container w450">
         <div class="row center">
         <h1>예약</h1>
