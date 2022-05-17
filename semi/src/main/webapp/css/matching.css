@@ -1,5 +1,7 @@
 @charset "UTF-8";
-
+a {
+		font-size: 20px;
+}
 
 /* matchingList */
 .matching-delete{
@@ -22,6 +24,11 @@
 	color: #2a6cf5;
 	font-weight: bold;
 }
+.row.right > h4{
+	font-size: 17px;
+	color: #2a6cf5;
+	font-weight: bold;
+}
 
 /* matchingDetail */
 .board-tb{
@@ -32,3 +39,41 @@
 	vertical-align: middle;
 	text-align: center;
 }
+
+/*reservationList*/
+.list-center-area{
+width:100%;
+}
+.reservation-box{
+    border: 2px solid #999;
+    border-radius: 15px;
+    overflow: hidden;
+    }
+.reservation-title{
+	line-height: 30px;
+}
+.reservation-info{
+	margin-bottom: 8px;
+	font-size: 15px;
+}
+.c-pagination {
+       text-align: center;
+       white-space: nowrap;
+       overflow: hidden;            
+  }
+   
+ .c-pagination > a {
+     color: #95a5a6;
+     text-decoration: none;
+     display: inline-block;
+     min-width:1.7em;
+     padding: 0.25em;
+     text-align: center;
+     border:1px solid #95a5a6;
+ }
+ 
+ .c-pagination > a:hover,
+ .c-pagination > a.active {
+     color: #343B6A;
+     border-color: #343B6A;
+ }
