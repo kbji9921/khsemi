@@ -73,16 +73,17 @@
    
   %>
   <script>
-	var context = "<%=request.getContextPath()%>";
+	var context = <%=request.getContextPath()%>
 </script>
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 <script>
-	var context = <%=request.getContextPath()%>;
+	var context = <%=request.getContextPath()%>
 </script>
  <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
+
       	$(function(){
       		
               var p = 1;
@@ -115,10 +116,10 @@
                       success: function(resp){
                           likeLoad();
                           if(resp==1){
-                              $("#like-btn > img").attr("src","/semi/images/center_dummy/dislike1.png").addClass("c-btn");
+                              $("#like-btn > img").attr("src",context+"/images/center_dummy/dislike1.png").addClass("c-btn");
                           }
                           else{
-                              $("#like-btn > img").attr("src","/semi/images/center_dummy/like1.png").addClass("c-btn");
+                              $("#like-btn > img").attr("src",context+"/images/center_dummy/like1.png").addClass("c-btn");
                           }
                       }
                   })
@@ -149,9 +150,9 @@
                       },
                       success:function(resp){
                           if(resp==1){
-                              $("#like-btn > img").attr("src","/semi/images/center_dummy/like1.png").addClass("c-btn");
+                              $("#like-btn > img").attr("src",context+"/images/center_dummy/like1.png").addClass("c-btn");
                           }else{
-                              $("#like-btn > img").attr("src","/semi/images/center_dummy/dislike1.png").addClass("c-btn");
+                              $("#like-btn > img").attr("src",context+"/images/center_dummy/dislike1.png").addClass("c-btn");
                           }
                       }
                   })
@@ -177,7 +178,7 @@
 
                           for(var i=0; i < resp.length; i++) {
 
-                              var tName = $("<a>").text(resp[i].trainerName).attr("href","/semi/trainer/trainerDetail.jsp?centerId="+centerId+"&trainerId="+resp[i].trainerId).addClass("trainer-nameBox");
+                              var tName = $("<a>").text(resp[i].trainerName).attr("href",context+"/trainer/trainerDetail.jsp?centerId="+centerId+"&trainerId="+resp[i].trainerId).addClass("trainer-nameBox");
 
                               
                               var nameLink = $("<div>").addClass("row display-c-center trainer-imgArea");
