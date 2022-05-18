@@ -24,7 +24,7 @@
    PlayerDto playerDto = playerDao.selectOne(playerId);
    
 %>
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <style>
    a {
       font-size: 20px;
@@ -95,4 +95,4 @@
 		<%} %>
 	</div>
 </section>
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>

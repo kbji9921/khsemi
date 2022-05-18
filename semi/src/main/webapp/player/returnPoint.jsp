@@ -4,7 +4,7 @@
     	String playerId = (String)request.getSession().getAttribute("login");
     	int playerPoint = Integer.parseInt(request.getParameter("playerPoint"));
     %>
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <style>
 h2{
    font-weight: 600;
@@ -33,4 +33,4 @@ h2{
 		</div>
 		</div>
 	</form>
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>

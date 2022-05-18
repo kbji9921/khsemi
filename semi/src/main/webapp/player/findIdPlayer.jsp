@@ -4,7 +4,7 @@
 request.setCharacterEncoding("UTF-8");
 %>
 
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 	<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -229,4 +229,4 @@ request.setCharacterEncoding("UTF-8");
 </form>
 </body>
 </html>
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
