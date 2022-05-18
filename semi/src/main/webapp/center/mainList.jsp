@@ -131,7 +131,7 @@
                 <div class="row c-list-img">
                 <%if(noPic){ %>
                     <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>">
-                    <img src="/semi/images/center_dummy/location.png" class="c-img img-round" width="170px" height="170px">
+                    <img src="<%=request.getContextPath()%>/images/center_dummy/location.png" class="c-img img-round" width="170px" height="170px">
                     </a>
                      <%} else{ %>
                     <a href="<%=request.getContextPath() %>/center/detail.jsp?centerId=<%=centerDto.getCenterId()%>">

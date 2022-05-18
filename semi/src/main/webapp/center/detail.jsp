@@ -203,7 +203,7 @@
             <div class="flex-c-container">
                <div class="row image-c-area">
                <%if(noPic){ %>
-                    <img src="/semi/images/center_dummy/location.png" class="c-img img-round" width="250px" height="250px">
+                    <img src="<%=request.getContextPath()%>/images/center_dummy/location.png" class="c-img img-round" width="250px" height="250px">
                     <%} else { %>
                     <img src="<%=request.getContextPath()%>/file/download.kh?attachmentNo=<%=attachmentDto1.getAttachmentNo()%>" class="c-img img-round" width="250px" height="250px">
                     <%} %>	

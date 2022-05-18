@@ -27,9 +27,9 @@ public class EocWriteServlet extends HttpServlet{
 			boolean isExist = findDto !=null;
 			if(isExist) {
 			//출력
-			resp.sendRedirect("/semi/eoc/detail.jsp?centerId="+eocDto.getEocCenterId()+"&error");
+			resp.sendRedirect(req.getContextPath()+"/eoc/detail.jsp?centerId="+eocDto.getEocCenterId()+"&error");
 			}else {
-			resp.sendRedirect("/semi/eoc/detail.jsp?centerId="+eocDto.getEocCenterId());
+			resp.sendRedirect(req.getContextPath()+"/eoc/detail.jsp?centerId="+eocDto.getEocCenterId());
 			eocDao.insert1(eocDto);
 			}
 			
