@@ -13,7 +13,7 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <script type="text/javascript">
         $(function(){
-			
+        	var context = <%=request.getContextPath()%>;
         	$("input[name=centerId]").blur(idCheck);
         	$("input[name=centerPhone]").blur(phoneCheck);
         	$("input[name=centerWeektime]").blur(weekCheck);

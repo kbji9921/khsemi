@@ -21,7 +21,6 @@ public class CenterFileDeleteServlet extends HttpServlet {
 			int attachmentNo = Integer.parseInt(req.getParameter("attachmentNo"));
 			String centerId = req.getParameter("centerId");
 	
-			// 실제로는 이전 사진 이름을 DB에서 불러온다
 			AttachmentDao attachmentDao = new AttachmentDao();
 	
 			String root = req.getSession().getServletContext().getRealPath("/");
@@ -32,7 +31,7 @@ public class CenterFileDeleteServlet extends HttpServlet {
 	        System.out.println(fileName);
 	        File file = new File(filePath);
 	        attachmentDao.delete(attachmentNo);
-	        if(file.exists()) {    //삭제하고자 하는 파일이 해당 서버에 존재하면 삭제시킨다
+	        if(file.exists()) {    
 	            file.delete();
 	        }
 

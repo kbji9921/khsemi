@@ -255,10 +255,7 @@ $(function(){
                 <label>센터소개</label>
                 <textarea name="centerIntroduction" class="form-input input-round center-introbox fill input-dis"  placeholder="센터소개 또는 비용 등에 대하여 작성해주세요"><%=centerDto.getCenterIntroduction() %></textarea>
             </div>
-            <!-- <div class="row">
-                <label>센터대표사진</label>
-                <input type="file" name="centerPics" class="form-input input-round fill">
-            </div> -->
+           
             <div class="row right">
                 <button type="button" class="btn btn-semi fill mypage-btn update-btn " id="btn">수정</button>
                 <button type="submit" class="btn btn-semi fill mypage-btn hide" id="btn4">변경완료</button>

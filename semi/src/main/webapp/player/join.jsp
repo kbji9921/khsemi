@@ -37,6 +37,7 @@
     </style>
       <script type="text/javascript">
         $(function(){
+        	var context = <%=request.getContextPath()%>;
             //정규표현식 검사를 합쳐서 구현
             $("input[name=playerId]").blur(regexCheckId);
             $("input[name=playerPw]").blur(regexCheckPw);
