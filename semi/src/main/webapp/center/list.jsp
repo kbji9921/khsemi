@@ -171,17 +171,17 @@
       <!-- 이전 버튼 -->
       <%if(p > 1){ %>
          <%if(isSearch){ %>
-         <a href="list.jsp?p=1&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>">&laquo;</a>
+         <a href="<%=request.getContextPath()%>/center/list.jsp?p=1&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>">&laquo;</a>
          <%} else { %>
-         <a href="list.jsp?p=1&s=<%=s%>&exerciseName=<%=exerciseName%>">&laquo;</a>
+         <a href="<%=request.getContextPath()%>/center/list.jsp?p=1&s=<%=s%>&exerciseName=<%=exerciseName%>">&laquo;</a>
          <%} %>
       <%} %>
       
       <%if(startBlock > 1){ %>
          <%if(isSearch){ %>
-         <a href="list.jsp?p=<%=startBlock-1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>">&lt;</a>
+         <a href="<%=request.getContextPath()%>/center/list.jsp?p=<%=startBlock-1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>">&lt;</a>
          <%} else { %>
-         <a href="list.jsp?p=<%=startBlock-1%>&s=<%=s%>&exerciseName=<%=exerciseName%>">&lt;</a>
+         <a href="<%=request.getContextPath()%>/center/list.jsp?p=<%=startBlock-1%>&s=<%=s%>&exerciseName=<%=exerciseName%>">&lt;</a>
          <%} %>
       <%} %>
       
@@ -189,15 +189,15 @@
       <%for(int i=startBlock; i <= endBlock; i++){ %>
          <%if(isSearch){ %>
             <%if(i == p){ %>
-            <a class="active" href="list.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>"><%=i%></a>   
+            <a class="active" href="<%=request.getContextPath()%>/center/list.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>"><%=i%></a>   
             <%} else { %>
-            <a href="list.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>"><%=i%></a>
+            <a href="<%=request.getContextPath()%>/center/list.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>"><%=i%></a>
             <%} %>
          <%} else { %>
             <%if(i == p){ %>
-            <a class="active" href="list.jsp?p=<%=i%>&s=<%=s%>&exerciseName=<%=exerciseName%>"><%=i%></a>   
+            <a class="active" href="<%=request.getContextPath()%>/center/list.jsp?p=<%=i%>&s=<%=s%>&exerciseName=<%=exerciseName%>"><%=i%></a>   
             <%} else { %>
-            <a href="list.jsp?p=<%=i%>&s=<%=s%>&exerciseName=<%=exerciseName%>"><%=i%></a>
+            <a href="<%=request.getContextPath()%>/center/list.jsp?p=<%=i%>&s=<%=s%>&exerciseName=<%=exerciseName%>"><%=i%></a>
             <%} %>
          <%} %>
       <%} %>
@@ -205,17 +205,17 @@
       <!-- 다음 버튼 영역 -->
       <%if(endBlock < lastPage){ %>
          <%if(isSearch){ %>
-         <a href="list.jsp?p=<%=endBlock+1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>">&gt;</a>
+         <a href="<%=request.getContextPath()%>/center/list.jsp?p=<%=endBlock+1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>">&gt;</a>
          <%} else { %>
-         <a href="list.jsp?p=<%=endBlock+1%>&s=<%=s%>&exerciseName=<%=exerciseName%>">&gt;</a>
+         <a href="<%=request.getContextPath()%>/center/list.jsp?p=<%=endBlock+1%>&s=<%=s%>&exerciseName=<%=exerciseName%>">&gt;</a>
          <%} %>
       <%} %>
       
       <%if(p < lastPage){ %>
          <%if(isSearch){ %>
-         <a href="list.jsp?p=<%=lastPage%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>">&raquo;</a>
+         <a href="<%=request.getContextPath()%>/center/list.jsp?p=<%=lastPage%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>&exerciseName=<%=exerciseName%>">&raquo;</a>
          <%} else { %>
-         <a href="list.jsp?p=<%=lastPage%>&s=<%=s%>&exerciseName=<%=exerciseName%>">&raquo;</a>
+         <a href="<%=request.getContextPath()%>/center/list.jsp?p=<%=lastPage%>&s=<%=s%>&exerciseName=<%=exerciseName%>">&raquo;</a>
          <%} %>
       <%} %>
    </div>
