@@ -20,8 +20,8 @@
 	TrainerDao trainerDao = new TrainerDao();
 	TrainerDto trainerDto = trainerDao.selectOne(trainerId); 
 %>
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/matchingHeader.jsp"></jsp:include>
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="/jsp/template/matchingHeader.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/matching.css">
 
@@ -70,4 +70,4 @@
 		</div>
 	</div>
 </section>
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>

@@ -8,7 +8,7 @@
    String error = request.getParameter("error");
 	boolean type1 = error != null && error.equals("1");
 %>
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
     <title>비밀번호 재설정</title>
     <style>
         .box{
@@ -153,4 +153,4 @@
         <!-- 버튼-->
     </div>
 </form>
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>

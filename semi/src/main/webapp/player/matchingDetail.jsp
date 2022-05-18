@@ -25,8 +25,8 @@
 	MatchingDto matchingDto = matchingDao.selectCheck(playerId, trainerId);
 	boolean statecheck = matchingDto.getMatchingState().length() == 4;
 %>
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/matchingHeader.jsp"></jsp:include>
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="/jsp/template/matchingHeader.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/matching.css">
 <section class="container w850 board-box">
 <table border="1" class="board-tb m30">
@@ -90,4 +90,4 @@
 		<%} %>
 	</div>
 </section>
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>

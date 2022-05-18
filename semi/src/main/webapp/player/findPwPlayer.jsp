@@ -4,7 +4,7 @@
     request.setCharacterEncoding("UTF-8");
     %>
     
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/header.jsp"></jsp:include>
+<jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -229,4 +229,4 @@
         </div>
     </div>
 </form>
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/footer.jsp"></jsp:include>
+<jsp:include page="/jsp/template/footer.jsp"></jsp:include>
