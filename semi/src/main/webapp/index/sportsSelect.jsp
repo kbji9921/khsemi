@@ -26,7 +26,7 @@
             <div class="content-box">
                 <div class="content">                   
                   <a href="<%=request.getContextPath()%>/center/list.jsp?exerciseName=<%=exerciseName%>">
-                    <img src="/semi/images/main_center.jpg" width="100%" alt="센터 검색으로">
+                    <img src="<%=request.getContextPath()%>/images/main_center.jpg" width="100%" alt="센터 검색으로">
                   </a>
                 </div>
                   <span>센터</span>
@@ -35,7 +35,7 @@
             <div class="content-box">
                 <div class="content">            
                      <a href="<%=request.getContextPath()%>/trainer/trainerList.jsp?type=trainer_sports&keyword=<%=trainerSports%>">
-        	       <img src="/semi/images/main_trainer.jpg" width="100%" alt="강사 검색으로">
+        	       <img src="<%=request.getContextPath()%>/images/main_trainer.jpg" width="100%" alt="강사 검색으로">
                     </a>
                   </div>
                     <span>강사</span>

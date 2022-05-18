@@ -72,9 +72,7 @@
 
    
   %>
-  <script>
-	var context = <%=request.getContextPath()%>
-</script>
+
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
 <script>
@@ -85,13 +83,15 @@
 <script type="text/javascript">
 
       	$(function(){
-      		
+      			
+      		  var context = <%=request.getContextPath()%>;
               var p = 1;
               var s = 3;
               var centerId = $("#centerId").val();
               var trainerId = $("#trainerId").val();
               var playerId = $("#playerId").val();
               var trainerImage = $("#trainerImg").val();
+              
               
               likeLoad(centerId);
               trainerLoad(p,s,centerId);

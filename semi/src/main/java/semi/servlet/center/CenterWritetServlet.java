@@ -84,7 +84,6 @@ public class CenterWritetServlet extends HttpServlet{
 			}
 			
 			//출력
-//			resp.sendRedirect("/semi/center/detail.jsp?centerId="+centerDto.getCenterId());
 			resp.sendRedirect(req.getContextPath()+"/center/detail.jsp?centerId="+centerDto.getCenterId()+
 					"&exerciseName="+eocDto.getEocExerciseName());
 			

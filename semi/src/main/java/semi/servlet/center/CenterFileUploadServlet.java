@@ -60,7 +60,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		
 		
 			resp.sendRedirect(req.getContextPath()+"/center/update.jsp?centerId="+centerId);
-		//출력
+		
 		}else{
 	         resp.sendRedirect(req.getContextPath()+"/center/update.jsp?centerId="+centerId+"&error");
 	   }

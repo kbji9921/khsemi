@@ -34,7 +34,7 @@
     </style>
       <script type="text/javascript">
         $(function(){
-			
+        	var context = <%=request.getContextPath()%>;
         	$("input[name=centerId]").blur(idCheck);
 
         	
