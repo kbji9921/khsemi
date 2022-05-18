@@ -28,7 +28,7 @@
         </div>
         <div class="row center">
             <button type="submit" class="btn btn-semi">등록</button>
-            <a href="/semi/eoc/detail.jsp?centerId=<%=centerId%>" class="link link-btn">취소</a>
+            <a href="<%=request.getContextPath()%>/eoc/detail.jsp?centerId=<%=centerId%>" class="link link-btn">취소</a>
         </div>
     </div>
 </form>

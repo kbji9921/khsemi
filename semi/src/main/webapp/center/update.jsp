@@ -262,10 +262,10 @@ $(function(){
             <div class="row right">
                 <button type="button" class="btn btn-semi fill mypage-btn update-btn " id="btn">수정</button>
                 <button type="submit" class="btn btn-semi fill mypage-btn hide" id="btn4">변경완료</button>
-                <a href="/semi/center/update.jsp?centerId=<%=centerDto.getCenterId() %>" class="link link-btn fill mypage-btn hide" id="btn3" style="margin-top: 10px;">취소</a>
+                <a href="<%=request.getContextPath()%>/center/update.jsp?centerId=<%=centerDto.getCenterId() %>" class="link link-btn fill mypage-btn hide" id="btn3" style="margin-top: 10px;">취소</a>
             </div>
             <div class="row right">
-                <a href="/semi/eoc/detail.jsp?centerId=<%=centerDto.getCenterId() %>" class="link link-btn fill mypage-btn hide" id="btn2">운동종목</a>
+                <a href="<%=request.getContextPath()%>/eoc/detail.jsp?centerId=<%=centerDto.getCenterId() %>" class="link link-btn fill mypage-btn hide" id="btn2">운동종목</a>
             </div>
         </div>
     </form>

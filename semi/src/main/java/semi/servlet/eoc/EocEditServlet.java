@@ -31,7 +31,7 @@ public class EocEditServlet extends HttpServlet{
 			
 			//출력
 			if(success) {
-				resp.sendRedirect("/semi/eoc/detail.jsp?centerId="+eocDto.getEocCenterId());
+				resp.sendRedirect(req.getContextPath()+"/eoc/detail.jsp?centerId="+eocDto.getEocCenterId());
 			}
 			else {
 				resp.sendError(404);

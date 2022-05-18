@@ -24,7 +24,7 @@ public class EocDeleteServlet extends HttpServlet {
 			
 			//출력
 			if(success) {
-				resp.sendRedirect("/semi/eoc/detail.jsp?centerId="+centerId);
+				resp.sendRedirect(req.getContextPath()+"/eoc/detail.jsp?centerId="+centerId);
 			}
 			else {
 				resp.sendError(400);
