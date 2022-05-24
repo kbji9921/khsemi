@@ -20,7 +20,7 @@ public class boardWriteServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			String path = "D:/upload/kh84";
+			String path = "D:/upload/kh94";
 			  
 			File dir = new File(path);
 			dir.mkdirs();
