@@ -26,7 +26,7 @@
 				auth="Container"
 				
 				driverClassName="oracle.jdbc.OracleDriver"
-				url="jdbc:oracle:thin:@w172.20.173.179:1521:xe"
+				url="jdbc:oracle:thin:@www.sysout.co.kr:1521:xe"
 				username="user1"
 				password="user1234"
 				
