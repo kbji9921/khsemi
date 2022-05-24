@@ -32,9 +32,9 @@ public class TrainerFindPwServlet extends HttpServlet {
          boolean isPass =trainerDto.getTrainerId() != null;
          
          if(isPass) {
-            resp.sendRedirect("trainerSetPw2.jsp?trainerId="+trainerDto.getTrainerId());
+            resp.sendRedirect(req.getContextPath()+"/trainer/trainerSetPw2.jsp?trainerId="+trainerDto.getTrainerId());
          }else {
-            resp.sendRedirect("trainerFindPw.jsp?error");         
+            resp.sendRedirect(req.getContextPath()+"/trainer/trainerFindPw.jsp?error");         
          }
          
       }catch(Exception e){

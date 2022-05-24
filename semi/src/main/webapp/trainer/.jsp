@@ -201,17 +201,17 @@
    		<!-- 이전 버튼 -->
       <%if(p > 1){ %>
          <%if(isSearch){ %>
-         <a href="trainerList.jsp?p=1&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&laquo;</a>
+         <a href="<%=request.getContextPath()%>/trainer/trainerList.jsp?p=1&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&laquo;</a>
          <%} else { %>
-         <a href="trainerList.jsp?p=1&s=<%=s%>">&laquo;</a>
+         <a href="<%=request.getContextPath()%>/trainer/trainerList.jsp?p=1&s=<%=s%>">&laquo;</a>
          <%} %>
       <%} %>
       
       <%if(startBlock > 1){ %>
          <%if(isSearch){ %>
-         <a href="trainerList.jsp?p=<%=startBlock-1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&lt;</a>
+         <a href="<%=request.getContextPath()%>/trainer/trainerList.jsp?p=<%=startBlock-1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&lt;</a>
          <%} else { %>
-         <a href="trainerList.jsp?p=<%=startBlock-1%>&s=<%=s%>">&lt;</a>
+         <a href="<%=request.getContextPath()%>/trainer/trainerList.jsp?p=<%=startBlock-1%>&s=<%=s%>">&lt;</a>
          <%} %>
       <%} %>
       
@@ -219,15 +219,15 @@
       <%for(int i=startBlock; i <= endBlock; i++){ %>
          <%if(isSearch){ %>
             <%if(i == p){ %>
-            <a class="active" href="trainerList.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>   
+            <a class="active" href="<%=request.getContextPath()%>/trainer/trainerList.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>   
             <%} else { %>
-            <a href="trainerList.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>
+            <a href="<%=request.getContextPath()%>/trainer/trainerList.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>
             <%} %>
          <%} else { %>
             <%if(i == p){ %>
-            <a class="active" href="trainerList.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>   
+            <a class="active" href="<%=request.getContextPath()%>/trainer/trainerList.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>   
             <%} else { %>
-            <a href="trainerList.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>
+            <a href="<%=request.getContextPath()%>/trainer/trainerList.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>
             <%} %>
          <%} %>
       <%} %>
@@ -235,17 +235,17 @@
       <!-- 다음 버튼 영역 -->
       <%if(endBlock < lastPage){ %>
          <%if(isSearch){ %>
-         <a href="trainerList.jsp?p=<%=endBlock+1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&gt;</a>
+         <a href="<%=request.getContextPath()%>/trainer/trainerList.jsp?p=<%=endBlock+1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&gt;</a>
          <%} else { %>
-         <a href="trainerList.jsp?p=<%=endBlock+1%>&s=<%=s%>">&gt;</a>
+         <a href="<%=request.getContextPath()%>/trainer/trainerList.jsp?p=<%=endBlock+1%>&s=<%=s%>">&gt;</a>
          <%} %>
       <%} %>
       
       <%if(p < lastPage){ %>
          <%if(isSearch){ %>
-         <a href="trainerList.jsp?p=<%=lastPage%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&raquo;</a>
+         <a href="<%=request.getContextPath()%>/trainer/trainerList.jsp?p=<%=lastPage%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&raquo;</a>
          <%} else { %>
-         <a href="trainerList.jsp?p=<%=lastPage%>&s=<%=s%>">&raquo;</a>
+         <a href="<%=request.getContextPath()%>/trainer/trainerList.jsp?p=<%=lastPage%>&s=<%=s%>">&raquo;</a>
          <%} %>
          <%} %>
    </div>

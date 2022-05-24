@@ -27,7 +27,7 @@ public class TrainerDeleteServlet extends HttpServlet{
 			TrainerDto trainerDto = trainerDao.selectOne(trainerId);
 			boolean isPasswordCorrect = trainerPw!=null && trainerPw.equals(trainerDto.getTrainerPw());
 			if(!isPasswordCorrect) {
-				resp.sendRedirect("trainerDelete.jsp?error");
+				resp.sendRedirect(req.getContextPath()+"/trainer/trainerDelete.jsp?error");
 				return;
 			}
 			

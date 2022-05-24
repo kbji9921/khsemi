@@ -22,7 +22,7 @@ public class replyDeleteServlet extends HttpServlet{
 			boolean success = boardReplyDao.delete(replyNo);
 			
 			if(success) {
-				resp.sendRedirect("boardDetail.jsp?boardNo="+boardNo);
+				resp.sendRedirect(req.getContextPath()+"/board/boardDetail.jsp?boardNo="+boardNo);
 			}else {
 				resp.sendError(404);
 			}

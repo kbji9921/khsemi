@@ -29,7 +29,7 @@ public class TrainerFindIdServlet extends HttpServlet{
 			
 			
 			if(trainerId==null) {
-				resp.sendRedirect("trainerFindId.jsp?error");
+				resp.sendRedirect(req.getContextPath()+"/trainer/trainerFindId.jsp?error");
 			}else {
 				resp.sendRedirect(req.getContextPath()+"/trainer/trainerFindIdResult.jsp?trainerId="+trainerId);
 			}

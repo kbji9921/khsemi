@@ -30,7 +30,7 @@ function loginCheck(){
          if(playerId=="null" && trainerId == 'null'){								//비로그인상태
         	 swal("일반회원 로그인이 필요한 항목입니다","로그인 후 이용해주세요", "warning")
         	 .then(function(){
-            	location.replace("/semi/player/login.jsp");
+            	location.replace("<%=request.getContextPath()%>/player/login.jsp");
 			})	
          }else{																		//일반회원로그인			
        	  	if(playerId != 'null'){

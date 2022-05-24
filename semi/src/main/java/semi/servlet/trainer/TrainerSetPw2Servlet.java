@@ -31,7 +31,7 @@ public class TrainerSetPw2Servlet extends HttpServlet{
 				
 			
 				trainerDao.changePassword(trainerId, changePw1);
-				resp.sendRedirect("trainerLogin.jsp");
+				resp.sendRedirect(req.getContextPath()+"/trainer/trainerLogin.jsp");
 	
 
 				
