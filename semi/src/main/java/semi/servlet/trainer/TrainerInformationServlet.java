@@ -35,7 +35,7 @@ public class TrainerInformationServlet extends HttpServlet{
 			boolean isPasswordCorrect = trainerDto.getTrainerPw().equals(findDto.getTrainerPw());
 				
 			if(!isPasswordCorrect) {
-				resp.sendRedirect("trainerMyPage.jsp");
+				resp.sendRedirect(req.getContextPath()+"/trainer/trainerMyPage.jsp");
 				return;
 			}
 			//2. 개인정보 변경
@@ -43,7 +43,7 @@ public class TrainerInformationServlet extends HttpServlet{
 				
 				
 			//출력
-			resp.sendRedirect("trainerMyPage.jsp");		 
+			resp.sendRedirect(req.getContextPath()+"/trainer/trainerMyPage.jsp");		 
 			
 			
 			

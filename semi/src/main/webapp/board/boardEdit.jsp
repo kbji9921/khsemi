@@ -58,7 +58,7 @@ $(function(){
 
 <div class="btn-box w850">
 	<a href="javascript:void(0)" type="submit" class="confirm-btn" >저장</a>
-	<a href="boardList.jsp" class="list_btn">목록</a>
+	<a href="<%=request.getContextPath()%>/board/boardList.jsp" class="list_btn">목록</a>
 </div>
 <script>
 $(function(){

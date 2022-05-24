@@ -34,7 +34,6 @@ List<BoardReplyDto> list = boardReplyDao.selectList(boardNo);
 %>
 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
-<%-- <jsp:include page="/jsp/template/boardHeader.jsp"></jsp:include> --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
 
 <section class="container board-box w850">
@@ -64,12 +63,13 @@ List<BoardReplyDto> list = boardReplyDao.selectList(boardNo);
 
 <div class="btn-box w850">
 	<%if(isOwner || isManager){ %>
-		<a href="boardEdit.jsp?boardNo=<%=boardNo%>" class="modify-btn">수정</a>
+		<a href="<%=request.getContextPath()%>/board/boardEdit.jsp?boardNo=<%=boardNo%>" class="modify-btn">수정</a>
+		
 	<%} %>
 	<%if(isOwner || isManager){ %>
 		<a href="javascript:void(0);" onclick="deleteToggle()" class="delete-btn">삭제</a>
 	<%} %>
-	<a href="boardList.jsp" class="list_btn">목록</a>
+	<a href="<%=request.getContextPath()%>/board/boardList.jsp" class="list_btn">목록</a>
 </div>
 
 <%-- 댓글 --%>

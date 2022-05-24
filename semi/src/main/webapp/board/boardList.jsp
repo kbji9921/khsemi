@@ -54,7 +54,7 @@ boolean replyExsist;
 <%--<p>type=<%=type%> keyword=<%=keyword %> search=<%=search %></p> --%>
 <section class="container w850">
 	<div class="search-box">
-		<form action="boardList.jsp" method="get" class="flex-form">
+		<form action="<%=request.getContextPath()%>/board/boardList.jsp" method="get" class="flex-form">
 		<%if(type==null || type.equals("board_type")){%>
 			<select name="type" class="search-select">
 				<option value="board_type" selected>문의구분</option>
@@ -116,7 +116,7 @@ boolean replyExsist;
 			<td><%=boardDto.getBoardNo() %></td>
 			<td><%=boardDto.getBoardType()%></td>
 			<td align="left">
-				<a href="boardDetail.jsp?boardNo=<%=boardDto.getBoardNo()%>">
+				<a href="<%=request.getContextPath()%>/board/boardDetail.jsp?boardNo=<%=boardDto.getBoardNo()%>">
 					<%=boardDto.getBoardTitle() %>
 				</a>
 				<%if(replyExsist){ %>
@@ -143,7 +143,7 @@ boolean replyExsist;
 	</tbody>
 </table>
 <div class="btn-box w850">
-	<a href="boardWrite.jsp" class="modify-btn">글쓰기</a>
+	<a href="<%=request.getContextPath()%>/board/boardWrite.jsp" class="modify-btn">글쓰기</a>
 </div>
 </section>
 
@@ -174,19 +174,19 @@ boolean replyExsist;
 	<%if(search){ %>
 	<%-- 검색 --%>
 		<%if(startBlock > 1 ){ %>
-			<a href="boardList.jsp?p=1&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&lt;&lt;</a>
-			<a href="boardList.jsp?p=<%=startBlock-1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&lt;</a>
+			<a href="<%=request.getContextPath()%>/board/boardList.jsp?p=1&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&lt;&lt;</a>
+			<a href="<%=request.getContextPath()%>/board/boardList.jsp?p=<%=startBlock-1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&lt;</a>
 		<%}else if(list.size()>0){%>
 			<a href="javascript:void(0);">&lt;&lt;</a>
 			<a href="javascript:void(0);">&lt;</a>
 		<%} %>
 		<%for(int i=startBlock; i<=endBlock; i++){ %>
 			<a <%if(i == p){ %> class="active" <%}%>
-			href="boardList.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>
+			href="<%=request.getContextPath()%>/board/boardList.jsp?p=<%=i%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a>
 		<%}%>
 		<%if(endBlock < lastPage ){ %>
-			<a href="boardList.jsp?p=<%=endBlock+1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&gt;</a>
-			<a href="boardList.jsp?p=<%=lastPage%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&gt;&gt;</a> 
+			<a href="<%=request.getContextPath()%>/board/boardList.jsp?p=<%=endBlock+1%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&gt;</a>
+			<a href="<%=request.getContextPath()%>/board/boardList.jsp?p=<%=lastPage%>&s=<%=s%>&type=<%=type%>&keyword=<%=keyword%>">&gt;&gt;</a> 
 		<%}else if(list.size()>0){%>
 			<a href="javascript:void(0);">&gt;&gt;</a>
 			<a href="javascript:void(0);">&gt;</a>
@@ -194,19 +194,19 @@ boolean replyExsist;
 	<%}else{ %>
 	<%-- 목록 --%>
 		<%if(startBlock > 1 ){ %>
-			<a href="boardList.jsp?p=1&s=<%=s%>">&lt;&lt;</a>
-			<a href="boardList.jsp?p=<%=startBlock-1%>&s=<%=s%>">&lt;</a>
+			<a href="<%=request.getContextPath()%>/board/boardList.jsp?p=1&s=<%=s%>">&lt;&lt;</a>
+			<a href="<%=request.getContextPath()%>/board/boardList.jsp?p=<%=startBlock-1%>&s=<%=s%>">&lt;</a>
 		<%}else if(list.size()>0){%>
 			<a href="javascript:void(0);">&lt;&lt;</a>
 			<a href="javascript:void(0);">&lt;</a>
 		<%} %>
 		<%for(int i=startBlock; i<=endBlock; i++){ %>
 	 		<a <%if(i == p){ %> class="active" <%}%>
-	 		href="boardList.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>
+	 		href="<%=request.getContextPath()%>/board/boardList.jsp?p=<%=i%>&s=<%=s%>"><%=i%></a>
 	 	<%}%>
 	 	<%if(endBlock < lastPage ){ %>
-		 	<a href="boardList.jsp?p=<%=endBlock+1%>&s=<%=s%>">&gt;</a>
-			<a href="boardList.jsp?p=<%=lastPage%>&s=<%=s%>">&gt;&gt;</a>
+		 	<a href="<%=request.getContextPath()%>/board/boardList.jsp?p=<%=endBlock+1%>&s=<%=s%>">&gt;</a>
+			<a href="<%=request.getContextPath()%>/board/boardList.jsp?p=<%=lastPage%>&s=<%=s%>">&gt;&gt;</a>
 		<%}else if(list.size()>0){%>
 			<a href="javascript:void(0);">&gt;</a>
 			<a href="javascript:void(0);">&gt;&gt;</a>

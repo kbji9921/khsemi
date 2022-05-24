@@ -41,7 +41,7 @@ public class boardWriteServlet extends HttpServlet{
 			boardDto.setBoardNo(Integer.parseInt(mRequest.getParameter("boardNo")));
 			boardDao.insert(boardDto);
 			
-			resp.sendRedirect("boardDetail.jsp?boardNo="+boardDto.getBoardNo());
+			resp.sendRedirect(req.getContextPath()+"/board/boardDetail.jsp?boardNo="+boardDto.getBoardNo());
 			
 		}catch(Exception e) {
 			e.printStackTrace();

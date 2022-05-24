@@ -27,7 +27,7 @@ public class replyWriteServlet extends HttpServlet{
 			boardReplyDto.setReplyNo(boardReplyDao.getSequence());
 			boardReplyDao.insert(boardReplyDto);
 			
-			resp.sendRedirect("boardDetail.jsp?boardNo="+boardReplyDto.getBoardNo());
+			resp.sendRedirect(req.getContextPath()+"/board/boardDetail.jsp?boardNo="+boardReplyDto.getBoardNo());
 			
 		}catch(Exception e) {
 			e.printStackTrace();

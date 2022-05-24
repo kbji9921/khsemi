@@ -25,7 +25,7 @@ public class boardDeleteServlet extends HttpServlet{
 			
 			//출력
 			if(success) {
-				resp.sendRedirect("boardList.jsp");
+				resp.sendRedirect(req.getContextPath()+"/board/boardList.jsp");
 			}
 			else {
 				resp.sendError(404);

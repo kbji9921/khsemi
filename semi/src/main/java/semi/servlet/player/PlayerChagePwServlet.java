@@ -39,7 +39,7 @@ public class PlayerChagePwServlet  extends HttpServlet{
 			
 			boolean isSamePassword = currentPw == null || changePw == null || currentPw.equals(changePw);
 			if(isSamePassword) {
-				resp.sendRedirect("changePw.jsp?error=1");
+				resp.sendRedirect(req.getContextPath()+"/player/changePw.jsp?error=1");
 				return;
 			}
 			
@@ -47,7 +47,7 @@ public class PlayerChagePwServlet  extends HttpServlet{
 			playerDao.changePassword(playerId, changePw);
 			
 			
-			resp.sendRedirect("mypage.jsp");
+			resp.sendRedirect(req.getContextPath()+"/player/mypage.jsp");
 		}catch(Exception e) {
 			e.printStackTrace();
 			resp.sendError(500);
