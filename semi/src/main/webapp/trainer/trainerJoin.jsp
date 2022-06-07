@@ -16,9 +16,7 @@
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
     <link rel="stylesheet" type="text/css" href="../css/commons.css">
     <!-- <link rel="stylesheet" type="text/css" href="../css/test.css"> -->
-<script>
-	var context = <%=request.getContextPath()%>;
-</script>
+
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
@@ -38,7 +36,7 @@
     </style>
       <script type="text/javascript">
         $(function(){
-        	var context = <%=request.getContextPath()%>;
+        	var context = '<%=request.getContextPath()%>'
             //정규표현식 검사를 합쳐서 구현
             $("input[name=trainerId]").blur(regexCheckId);
             $("input[name=trainerPw]").blur(regexCheckPw);

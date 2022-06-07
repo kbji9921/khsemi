@@ -75,16 +75,13 @@
 
 <jsp:include page="/jsp/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/center1.css">
-<script>
-	var context = <%=request.getContextPath()%>
-</script>
  <!-- jquery cdn -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 
       	$(function(){
       			
-      		  var context = <%=request.getContextPath()%>;
+      		  var context = '<%=request.getContextPath()%>'
               var p = 1;
               var s = 3;
               var centerId = $("#centerId").val();

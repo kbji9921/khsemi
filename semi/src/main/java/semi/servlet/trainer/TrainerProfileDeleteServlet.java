@@ -26,7 +26,7 @@ public class TrainerProfileDeleteServlet extends HttpServlet {
 	
 			String root = req.getSession().getServletContext().getRealPath("/");
 
-			String path = "D:/upload/kh84";
+			String path = "D:/upload/kh94";
 	        String fileName = attachmentDao.selectName(attachmentNo);
 	        String filePath = path+File.separator+fileName;
 	        System.out.println(fileName);
