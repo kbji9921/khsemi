@@ -35,7 +35,7 @@ public class CenterOwnerFilter implements Filter{
 			
 			TrainerDao trainerDao = new TrainerDao();
 			TrainerDto trainerDto = trainerDao.selectOne(trainerId);
-			if(trainerDto.getCenterId().equals(centerId)) {
+			if(centerId.equals(trainerDto.getCenterId())) {
 				chain.doFilter(request, response);
 			}
 			else {
