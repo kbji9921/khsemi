@@ -33,7 +33,7 @@ function loginCheck(){
             	location.replace("<%=request.getContextPath()%>/player/login.jsp")
 			})	
          }else{																		//일반회원로그인			
-       	  	if(!playerId){
+       	  	if(playerId){
        	  	location.replace("<%=request.getContextPath()%>/board/boardList.jsp")
        	  	}else{
        	  	swal("강사회원 문의하기","살빠Gym을 이용해주셔서 감사합니다.\n salbbagym@co.kr 으로 문의바랍니다.", "info")	//강사로그인

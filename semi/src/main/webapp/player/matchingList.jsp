@@ -30,7 +30,7 @@
       font-size: 20px;
    }
 </style>
-<jsp:include page="<%=request.getContextPath() %>/jsp/template/matchingHeader.jsp"></jsp:include>
+<jsp:include page="/jsp/template/matchingHeader.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/matching.css">
 <section class="container w850">
 <div class="row right">
