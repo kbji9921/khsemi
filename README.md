@@ -20,11 +20,14 @@
 ***
 
 ## 사이트 주소
-1. https://sysout.co.kr/SalbbayGym
-2. http://sysout.co.kr/SalbbayGym
+https://sysout.co.kr/SalbbayGym
+
+http://sysout.co.kr/SalbbayGym
 
 
 ## 사용자 계정 정보
 ● 관리자계정 : admin1234 / admin1234
+
 ● 회원계정 : test9999 / test9999
+
 ● 강사계정 : testuser99 / Testuser@2
