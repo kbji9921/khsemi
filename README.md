@@ -21,6 +21,7 @@
 
 ## 사이트 주소
 https://sysout.co.kr/SalbbayGym
+http://sysout.co.kr/SalbbayGym
 
 
 ## 사용자 계정 정보
