@@ -24,17 +24,17 @@
 </head>
 <script type="text/javascript">
 function loginCheck(){ 
-        var playerId = '<%=(String)session.getAttribute("login")%>';
-        var trainerId = '<%=(String)session.getAttribute("trainer")%>';
+        var playerId = '<%=(String)session.getAttribute("login")%>'
+        var trainerId = '<%=(String)session.getAttribute("trainer")%>'
         
-         if(playerId=="null" && trainerId == 'null'){								//비로그인상태
+         if(playerId==null && trainerId == null){								//비로그인상태
         	 swal("일반회원 로그인이 필요한 항목입니다","로그인 후 이용해주세요", "warning")
         	 .then(function(){
-            	location.replace("<%=request.getContextPath()%>/player/login.jsp");
+            	location.replace("<%=request.getContextPath()%>/player/login.jsp")
 			})	
          }else{																		//일반회원로그인			
-       	  	if(playerId != 'null'){
-       	  	location.replace("<%=request.getContextPath()%>/board/boardList.jsp");	
+       	  	if(playerId != null){
+       	  	location.replace("<%=request.getContextPath()%>/board/boardList.jsp")
        	  	}else{
        	  	swal("강사회원 문의하기","살빠Gym을 이용해주셔서 감사합니다.\n salbbagym@co.kr 으로 문의바랍니다.", "info")	//강사로그인
 //        	 location.replace("/semi/board/boardList.jsp");	
@@ -46,7 +46,7 @@ function loginCheck(){
    <main>
       <header>
          <a href="<%=request.getContextPath()%>" id="logo">
-            <img src="/semi/images/ci_main_logo.png" width="320px" alt="살빠짐 홈으로 가기">
+            <img src="<%=request.getContextPath()%>/images/ci_main_logo.png" width="320px" alt="살빠짐 홈으로 가기">
          </a>
          <nav>
             <ul id="gnb">
