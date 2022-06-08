@@ -15,9 +15,8 @@
 
 ## 프로젝트 제목
 
-***
 ### PT 예약 사이트 살빠GYM
-***
+
 
 ## 프로젝트 주제
 
@@ -30,6 +29,7 @@
 https://sysout.co.kr/SalbbayGym
 
 http://sysout.co.kr/SalbbayGym
+
 
 
 ## 사용자 계정 정보
